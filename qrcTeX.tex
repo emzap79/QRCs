@@ -1,0 +1,964 @@
+% Reference Card for TeX
+% Copyright (c) 1992 Joseph H. Silverman. May be freely distributed.
+% Created Tuesday, August 18, 1992
+% Thanks to Stephen Gildea for the multicolumn macro package
+% which I modified from his GNU emacs reference card
+% TeX is a trademark of the American Mathematical Society
+
+%**start of header
+\newcount\columnsperpage
+
+% This file can be printed with 1, 2, or 3 columns per page (see below).
+% [For 2 or 3 columns, you'll need 6 and 8 point fonts.]
+% Specify how many you want here.  Nothing else needs to be changed.
+
+\columnsperpage=1
+
+% Smaller (97%) pdf file with horizontal offset 1.5in
+% dvipdfm -l -m 0.97 -x 1.5in -o TeXRefCard.v1.5.pdf TeXRefCard.v1.5.dvi
+
+% There are a couple extra sections included at the end of the document
+% (after the \bye) that didn't fit into six columns.
+% It would be nice to have additional sections covering:
+% \hrules and \vrules, Registers
+% \input and \output files (including \read, \write, \message)
+
+% This reference card is distributed in the hope that it will be useful,
+% but WITHOUT ANY WARRANTY; without even the implied warranty of
+% MERCHANTABILITY or FITNESS FOR A PARTICULAR PURPOSE.
+
+% This file is intended to be processed by plain TeX (TeX82).
+%
+% The final reference card has six columns, three on each side.
+% This file can be used to produce it in any of three ways:
+% 1 column per page
+%    produces six separate pages, each of which needs to be reduced to 80%.
+%    This gives the best resolution.
+% 2 columns per page
+%    produces three already-reduced pages.
+%    You will still need to cut and paste.
+% 3 columns per page
+%    produces two pages which must be printed sideways to make a
+%    ready-to-use 8.5 x 11 inch reference card.
+%    For this you need a dvi device driver that can print sideways.
+% Which mode to use is controlled by setting \columnsperpage above.
+%
+% Author:
+%  Joseph H. Silverman
+%  Brown University Mathematics Department
+%  Providence, RI 02912 USA
+%  Internet:  jhs@math.brown.edu
+%  (reference card macros due to Stephen Gildea)
+
+% History:
+%  Version 1.0 - August 1992, distributed at Brown University
+%  Version 1.1 - April 1994, general distribution
+%  Version 1.2 - January 1996, minor corrections and changes
+%  Version 1.3 - November 1998, minor corrections and changes
+%  Version 1.4 - January 2003, minor corrections and changes
+%  Version 1.5 - January 2007, minor corrections and changes
+
+\def\versionnumber{1.5}  % Version of this reference card
+\def\year{2007}
+\def\month{January}
+\def\version{\month\ \year\ v\versionnumber}
+
+
+\def\shortcopyrightnotice{
+\vskip 0pt plus 2 fill\begingroup\parskip=0pt\small
+   \centerline{\copyright\ \number\year\ J.H. Silverman,
+   Permissions on back.  v\versionnumber}
+
+Send comments and corrections to J.H. Silverman, Math.\ Dept.,
+Brown Univ., Providence, RI 02912 USA.
+$\langle$jhs@math.brown.edu$\rangle$
+
+\endgroup}
+
+\def\copyrightnotice{
+\vskip 1ex plus 2 fill\begingroup\parskip=0pt\small
+\centerline{Copyright \copyright\ \year\ J.H. Silverman, \version}
+\centerline{Math.\ Dept., Brown Univ., Providence, RI 02912 USA}
+\centerline{\TeX\ is a trademark of the American Mathematical Society}
+
+Permission is granted to make and distribute copies of
+this card provided the copyright notice and this permission notice
+are preserved on all copies.
+
+\endgroup}
+
+% make \bye not \outer so that the \def\bye in the \else clause below
+% can be scanned without complaint.
+\def\bye{\par\vfill\supereject\end}
+
+\newdimen\intercolumnskip
+\newbox\columna
+\newbox\columnb
+
+\def\ncolumns{\the\columnsperpage}
+
+\message{[\ncolumns\space
+   column\if 1\ncolumns\else s\fi\space per page]}
+
+\def\scaledmag#1{ scaled \magstep #1}
+
+% This multi-way format was designed by Stephen Gildea
+% October 1986.
+\if 1\ncolumns
+   \hsize 4in
+   \vsize 10in
+   \voffset -.7in
+   \font\titlefont=\fontname\tenbf \scaledmag3
+   \font\headingfont=\fontname\tenbf \scaledmag2
+   \font\smallfont=\fontname\sevenrm
+   \font\smallsy=\fontname\sevensy
+
+   \footline{\hss\folio}
+   \def\makefootline{\baselineskip10pt\hsize6.5in\line{\the\footline}}
+\else
+   \hsize 3.2in
+   \vsize 7.95in
+   \hoffset -.75in
+   \voffset -.745in
+   \font\titlefont=cmbx10 \scaledmag2
+   \font\headingfont=cmbx10 \scaledmag1
+   \font\smallfont=cmr6
+   \font\smallsy=cmsy6
+   \font\eightrm=cmr8
+   \font\eighti=cmmi8
+   \font\eightsy=cmsy8
+   \font\eightbf=cmbx8
+   \font\eighttt=cmtt8
+   \font\eightit=cmti8
+   \font\eightsl=cmsl8
+   \textfont0=\eightrm
+   \textfont1=\eighti
+   \textfont2=\eightsy
+   \def\rm{\eightrm}
+   \def\bf{\eightbf}
+   \def\tt{\eighttt}
+   \def\it{\eightit}
+   \def\sl{\eightsl}
+   \normalbaselineskip=.8\normalbaselineskip
+   \normallineskip=.8\normallineskip
+   \normallineskiplimit=.8\normallineskiplimit
+   \normalbaselines\rm          %make definitions take effect
+
+   \if 2\ncolumns
+     \let\maxcolumn=b
+     \footline{\hss\rm\folio\hss}
+     \def\makefootline{\vskip 2in \hsize=6.86in\line{\the\footline}}
+   \else \if 3\ncolumns
+     \let\maxcolumn=c
+     \nopagenumbers
+   \else
+     \errhelp{You must set \columnsperpage equal to 1, 2, or 3.}
+     \errmessage{Illegal number of columns per page}
+   \fi\fi
+
+   \intercolumnskip=.46in
+   \def\abc{a}
+   \output={%
+       % This next line is useful when designing the layout.
+       %\immediate\write16{Column \folio\abc\space starts with \firstmark}
+       \if \maxcolumn\abc \multicolumnformat \global\def\abc{a}
+       \else\if a\abc
+        \global\setbox\columna\columnbox \global\def\abc{b}
+         %% in case we never use \columnb (two-column mode)
+         \global\setbox\columnb\hbox to -\intercolumnskip{}
+       \else
+        \global\setbox\columnb\columnbox \global\def\abc{c}\fi\fi}
+   \def\multicolumnformat{\shipout\vbox{\makeheadline
+       \hbox{\box\columna\hskip\intercolumnskip
+         \box\columnb\hskip\intercolumnskip\columnbox}
+       \makefootline}\advancepageno}
+   \def\columnbox{\leftline{\pagebody}}
+
+   \def\bye{\par\vfill\supereject
+     \if a\abc \else\null\vfill\eject\fi
+     \if a\abc \else\null\vfill\eject\fi
+     \end}
+\fi
+
+% ***** Verbatim typesetting *****
+
+% Verbatim typesetting is done by
+%    \verbatim"stuff to verbatim typeset"
+% Any character can be used in place of ".
+% E.g. \verbatim?stuff? or \verbatim|stuff|.  Cf. TeXbook pp.380-382
+
+\def\uncatcodespecials{\def\do##1{\catcode`##1=12}\dospecials}
+\def\setupverbatim{\tt%
+\def\par{\leavevmode\endgraf}\catcode`\`=\active%
+\obeylines\uncatcodespecials\obeyspaces}
+\def\verbatim{\begingroup\setupverbatim\doverbatim}
+\def\doverbatim#1{\def\next##1#1{##1\endgroup}\next}
+
+\def\\{\verbatim}
+\def\ds{\displaystyle}
+\def\SPC{\quad} % space between symbol and command
+
+\parindent 0pt
+\parskip 1ex plus .5ex minus .5ex
+
+\def\small{\smallfont\textfont2=\smallsy\baselineskip=.8\baselineskip}
+
+\outer\def\newcolumn{\vfill\eject}
+
+\outer\def\title#1{{\titlefont\centerline{#1}}\vskip 1ex plus .5ex minus.5ex}
+
+%\outer\def\section#1{\par\filbreak
+%  \vskip 1ex plus 2ex minus 2ex {\headingfont #1}\mark{#1}%
+%  \vskip 1ex plus 1ex minus .5ex}
+\outer\def\section#1{\par\filbreak
+   \vskip .75ex plus 1ex minus 2ex {\headingfont #1}\mark{#1}%
+   \vskip .5ex plus .5ex minus .5ex}
+
+
+\def\paralign{\vskip\parskip\halign}
+
+\def\<#1>{$\langle${\rm #1}$\rangle$}
+
+\def\begintext{\par\leavevmode\begingroup\parskip0pt\rm}
+\def\endtext{\endgroup}
+
+
+% ************  TEXT STARTS HERE **************************
+
+\title{\TeX~Reference Card}
+
+\centerline{(for Plain \TeX)}
+
+\section{Greek Letters}
+
+% ***** Three Column Format *****
+\paralign to\hsize{%
+$#$\hfil\qquad\tabskip=0pt&#\hfil\tabskip=0pt plus 1 fil
+&$#$\hfil\SPC\tabskip=0pt&#\hfil\tabskip=0pt plus 1 fil
+&$#$\hfil\SPC\tabskip=0pt&#\hfil\cr
+%----------- 3 Column Data -------------------
+\alpha&\\"\alpha"&\iota&\\"\iota"&\varrho&\\"\varrho"\cr
+\beta&\\"\beta"&\kappa&\\"\kappa"&\sigma&\\"\sigma"\cr
+\gamma&\\"\gamma"&\lambda&\\"\lambda"&\varsigma&\\"\varsigma"\cr
+\delta&\\"\delta"&\mu&\\"\mu"&\tau&\\"\tau"\cr
+\epsilon&\\"\epsilon"&\nu&\\"\nu"&\upsilon&\\"\upsilon"\cr
+\varepsilon&\\"\varepsilon"&\xi&\\"\xi"&\phi&\\"\phi"\cr
+\zeta&\\"\zeta"&o&\\"\o"&\varphi&\\"\varphi"\cr
+\eta&\\"\eta"&\pi&\\"\pi"&\chi&\\"\chi"\cr
+\theta&\\"\theta"&\varpi&\\"\varpi"&\psi&\\"\psi"\cr
+\vartheta&\\"\vartheta"&\rho&\\"\rho"&\omega&\\"\omega"\cr
+\noalign{\vskip\parskip}
+\Gamma&\\"\Gamma"&\Xi&\\"\Xi"&\Phi&\\"\Phi"\cr
+\Delta&\\"\Delta"&\Pi&\\"\Pi"&\Psi&\\"\Psi"\cr
+\Theta&\\"\Theta"&\Sigma&\\"\Sigma"&\Omega&\\"\Omega"\cr
+\Lambda&\\"\Lambda"&\Upsilon&\\"\Upsilon"\cr
+}
+
+\section{Symbols of Type Ord}
+
+% ***** Three Column Format *****
+\paralign to\hsize{%
+$#$\hfil\SPC\tabskip=0pt&#\hfil\tabskip=0pt plus 1 fil
+&$#$\hfil\SPC\tabskip=0pt&#\hfil\tabskip=0pt plus 1 fil
+&$#$\hfil\SPC\tabskip=0pt&#\hfil\cr
+%----------- 3 Column Data -------------------
+\aleph&\\"\aleph"&\prime&\\"\prime"&\forall&\\"\forall"\cr
+\hbar&\\"\hbar"&\emptyset&\\"\emptyset"&\exists&\\"\exists"\cr
+\imath&\\"\imath"&\nabla&\\"\nabla"&\neg&\\"\neg" or \\"\lnot"\cr
+\jmath&\\"\jmath"&\surd&\\"\surd"&\flat&\\"\flat"\cr
+\ell&\\"\ell"&\top&\\"\top"&\natural&\\"\natural"\cr
+\wp&\\"\wp"&\bot&\\"\bot"&\sharp&\\"\sharp"\cr
+\Re&\\"\Re"&\|&\\"\|"&\clubsuit&\\"\clubsuit"\cr
+\Im&\\"\Im"&\angle&\\"\angle"&\diamondsuit&\\"\diamondsuit"\cr
+\partial&\\"\partial"&\triangle&\\"\triangle"&\heartsuit&\\"\heartsuit"\cr
+\infty&\\"\infty"&\backslash&\\"\backslash"&\spadesuit&\\"\spadesuit"\cr
+}
+
+\section{Large Operators}
+
+% ***** Three Column Format *****
+\paralign to\hsize{%
+$#$\hfil\SPC\tabskip=0pt&#\hfil\tabskip=0pt plus 1 fil
+&$#$\hfil\SPC\tabskip=0pt&#\hfil\tabskip=0pt plus 1 fil
+&$#$\hfil\SPC\tabskip=0pt&#\hfil\cr
+%----------- 3 Column Data -------------------
+\sum &\\"\sum"&\bigcap &\\"\bigcap"
+      &\bigodot &\\"\bigodot"\cr
+\prod &\\"\prod"&\bigcup &\\"\bigcup"
+      &\bigotimes &\\"\bigotimes"\cr
+\coprod &\\"\coprod"&\bigsqcup
+      &\\"\bigsqcup"&\bigoplus &\\"\bigoplus"\cr
+\int &\\"\int"&\bigvee &\\"\bigvee"
+      &\biguplus &\\"\biguplus"\cr
+\oint &\\"\oint"&\bigwedge &\\"\bigwedge"\cr
+}
+
+\section{Binary Operations}
+
+% ***** Three Column Format *****
+\paralign to\hsize{%
+$#$\hfil\SPC\tabskip=0pt&#\hfil\tabskip=0pt plus 1 fil
+&$#$\hfil\SPC\tabskip=0pt&#\hfil\tabskip=0pt plus 1 fil
+&$#$\hfil\SPC\tabskip=0pt&#\hfil\cr
+%----------- 3 Column Data -------------------
+\pm&\\"\pm"&\cap&\\"\cap"&\vee&\\"\vee" or \\"\lor"\cr
+\mp&\\"\mp"&\cup&\\"\cup"&\wedge&\\"\wedge" or \\"\land"\hidewidth\cr
+\setminus&\\"\setminus"&\uplus&\\"\uplus"&\oplus&\\"\oplus"\cr
+\cdot&\\"\cdot"&\sqcap&\\"\sqcap"&\ominus&\\"\ominus"\cr
+\times&\\"\times"&\sqcup&\\"\sqcup"&\otimes&\\"\otimes"\cr
+\ast&\\"\ast"&\triangleleft&\\"\triangleleft"&\oslash&\\"\oslash"\cr
+\star&\\"\star"&\triangleright&\\"\triangleright"&\odot&\\"\odot"\cr
+\diamond&\\"\diamond"&\wr&\\"\wr"&\dagger&\\"\dagger"\cr
+\circ&\\"\circ"&\bigcirc&\\"\bigcirc"&\ddagger&\\"\ddagger"\cr
+\bullet&\\"\bullet"&\bigtriangleup&\\"\bigtriangleup"&\amalg&\\"\amalg"\cr
+\div&\\"\div"&\bigtriangledown&\\"\bigtriangledown"\cr
+}
+
+\section{Page Layout}
+
+\halign{#\hfil\qquad&#\hfil\cr
+\\"\hsize="\<dimen>&set width of page\cr
+\\"\vsize="\<dimen>&set height of page\cr
+\\"\displaywidth="\<dimen>&set width of math displays\cr
+\\"\hoffset="\<dimen>&move page horizontally\cr
+\\"\voffset="\<dimen>&move page vertically\cr
+}
+
+\section{Relations}
+% ***** Three Column Format *****
+\paralign to\hsize{%
+$#$\hfil\SPC\tabskip=0pt&#\hfil\tabskip=0pt plus 1 fil
+&$#$\hfil\SPC\tabskip=0pt&#\hfil\tabskip=0pt plus 1 fil
+&$#$\hfil\SPC\tabskip=0pt&#\hfil\cr
+%----------- 3 Column Data -------------------
+\leq&\\"\leq" or \\"\le"&\geq&\\"\geq" or \\"\ge"&\equiv&\\"\equiv"\cr
+\prec&\\"\prec"&\succ&\\"\succ"&\sim&\\"\sim"\cr
+\preceq&\\"\preceq"&\succeq&\\"\succeq"&\simeq&\\"\simeq"\cr
+\ll&\\"\ll"&\gg&\\"\gg"&\asymp&\\"\asymp"\cr
+\subset&\\"\subset"&\supset&\\"\supset"&\approx&\\"\approx"\cr
+\subseteq&\\"\subseteq"&\supseteq&\\"\supseteq"&\cong&\\"\cong"\cr
+\sqsubseteq&\\"\sqsubseteq"&\sqsupseteq&\\"\sqsupseteq"&\bowtie&\\"\bowtie"\cr
+\in&\\"\in"&\notin&\\"\notin"&\ni&\\"\ni" or \\"\owns"\cr
+\vdash&\\"\vdash"&\dashv&\\"\dashv"&\models&\\"\models"\cr
+\smile&\\"\smile"&\mid&\\"\mid"&\doteq&\\"\doteq"\cr
+\frown&\\"\frown"&\parallel&\\"\parallel"&\perp&\\"\perp"\cr
+\propto&\\"\propto"\cr
+\noalign{\vskip\parskip
+\hbox{Most relations can be negated by prefixing them with \\"\not".}
+\vskip\parskip}
+\not\equiv&\\"\not\equiv"&\notin&\\"\notin"&\ne&\\"\ne"\cr
+}
+
+
+\section{Arrows}
+
+% ***** Two Column Format *****
+\paralign to\hsize{%
+$#$\hfil\SPC\tabskip=0pt&#\hfil\tabskip=0pt plus 1 fil
+&$#$\hfil\SPC\tabskip=0pt&#\hfil\cr
+%----------- 2 Column Data -------------------
+\leftarrow&\\"\leftarrow" or \\"\gets"&\longleftarrow&\\"\longleftarrow"\cr
+\Leftarrow&\\"\Leftarrow"&\Longleftarrow&\\"\Longleftarrow"\cr
+\rightarrow&\\"\rightarrow" or \\"\to"&\longrightarrow&\\"\longrightarrow"\cr
+\Rightarrow&\\"\Rightarrow"&\Longrightarrow&\\"\Longrightarrow"\cr
+\leftrightarrow&\\"\leftrightarrow"&\longleftrightarrow
+      &\\"\longleftrightarrow"\cr
+\Leftrightarrow&\\"\Leftrightarrow"&\Longleftrightarrow
+      &\\"\Longleftrightarrow"\cr
+\mapsto&\\"\mapsto"&\longmapsto&\\"\longmapsto"\cr
+\hookleftarrow&\\"\hookleftarrow"&\hookrightarrow&\\"\hookrightarrow"\cr
+\uparrow&\\"\uparrow"&\Uparrow&\\"\Uparrow"\cr
+\downarrow&\\"\downarrow"&\Downarrow&\\"\Downarrow"\cr
+\updownarrow&\\"\updownarrow"&\Updownarrow&\\"\Updownarrow"\cr
+\nearrow&\\"\nearrow"&\searrow&\\"\searrow"\cr
+\nwarrow&\\"\nwarrow"&\swarrow&\\"\swarrow"\cr
+}
+
+\begingroup
+\parskip=0pt
+\begintext
+The \\"\buildrel" macro puts one symbol over another. The format
+is \\"\buildrel"\<superscript>\\"\over"\<relation>.
+\endtext
+
+\tabskip=\centering
+\paralign to\hsize{%
+\hfil$#$\hfil&\qquad#\hfil\cr
+\buildrel\alpha\beta\over\longrightarrow
+   &\\"\buildrel\alpha\beta\over\longrightarrow"\cr
+f(x)\; {\buildrel\hbox{\smallfont def}\over=} \;x+1
+   &\\"f(x)\; {\buildrel\rm def\over=} \;x+1"\cr
+}
+\endgroup
+
+\section{Delimiters}
+
+% ***** Three Column Format *****
+\paralign to\hsize{%
+$#$\hfil\SPC\tabskip=0pt&#\hfil\tabskip=0pt plus 1 fil
+&$#$\hfil\SPC\tabskip=0pt&#\hfil\tabskip=0pt plus 1 fil
+&$#$\hfil\SPC\tabskip=0pt&#\hfil\cr
+%----------- 3 Column Data -------------------
+[&\\"\lbrack" or \\"["&\{&\\"\lbrace" or \\"\{"&\langle&\\"\langle"\cr
+]&\\"\rbrack" or \\"]"&\}&\\"\rbrace" or \\"\}"&\rangle&\\"\rangle"\cr
+\vert&\\"\vert" or \\"|"&\lfloor&\\"\lfloor"&\lceil&\\"\lceil"\cr
+\|&\\"\Vert" or \\"\|"&\rfloor&\\"\rfloor"&\rceil&\\"\rceil"\cr
+[\![&\\"[\!["&(\!(&\\"(\!("&\langle\!\langle&\\"\langle\!\langle"\cr
+]\!]&\\"]\!]"&)\!)&\\")\!)"&\rangle\!\rangle&\\"\rangle\!\rangle"\cr
+}
+
+\begintext
+Left and right delimiters will be enlarged if they are prefixed with
+\\"\left" or \\"\right". Each \\"\left" must have a matching \\"\right", one of
+which may be an empty delimiter (\\"\left." or \\"\right.").
+To specify a particular size, use the following:
+\endtext
+
+\begingroup
+\parskip=0pt
+\tabskip=\centering
+\paralign to\hsize{%
+&\hfil#\hfil\cr
+\\"\bigl", \\"\bigr"&\\"\Bigl", \\"\Bigr"&\\"\biggl", \\"\biggr"\cr
+}
+\begintext
+You can also say \\"\bigm" for a  large delimiter in the middle of a
+formula, or just \\"\big" for one that acts as an ordinary symbol.
+\endtext
+\endgroup
+
+\section{Every Time Insertions}
+\halign{#\hfil\qquad&#\hfil\cr
+\\"\everypar"&insert whenever a paragraph begins\cr
+\\"\everymath"&insert whenever math in text begins\cr
+\\"\everydisplay"&insert whenever displayed math begins\cr
+\\"\everycr"&insert after every \\"\cr"\cr
+}
+
+
+
+\section{Accents}
+
+% ***** Four Column Format *****
+\paralign to\hsize{%
+\tabskip=\centering
+#\hfil & \hfil$#$\hfil & #\hfil & \hfil#\hfil\tabskip=0pt\cr
+%----------- 4 Column Data -------------------
+Type & \omit\hfil Example\hfil & In Math & In Text \cr
+hat & \hat a & \\"\hat" & \\"\^" \cr
+expanding hat & \widehat{abc} & \\"\widehat" & none\cr
+check & \check a & \\"\check" & \\"\v"\cr
+tilde & \tilde a & \\"\tilde" & \\"\~" \cr
+expanding tilde & \widetilde{abc} & \\"\widetilde" & none\cr
+acute & \acute a & \\"\acute" & \\"\'" \cr
+grave & \grave a & \\"\grave" & \tt\\"\"\char`\` \cr
+dot & \dot a & \\"\dot" & \\"\." \cr
+double dot & \ddot a & \\"\ddot" & \\?\"? \cr
+breve & \breve a & \\"\breve" & \\"\u" \cr
+bar & \bar a & \\"\bar" & \\"\=" \cr
+vector & \vec a & \\"\vec" & none\cr
+}
+
+\begintext
+The \\"\skew"\<number> command shifts accents for proper positioning,
+the larger the \<number>, the more right the shift. Compare
+\endtext
+
+% ***** Centered Text Format *****
+\vbox{\tabskip=\centering
+\paralign to\hsize{\hfil#\hfil\cr
+%----------- Centered Text Data -------------------
+\\"\hat{\hat A}" gives $\hat{\hat A}$,\qquad
+\\"\skew6\hat{\hat A}" gives $\skew6\hat{\hat A}$.\cr
+} }
+
+\section{Elementary Math Control Sequences}
+
+% ***** Other Three Column Format *****
+\paralign to\hsize{%
+\tabskip=\centering
+#\hfil & \hfil$\ds#$\hfil & #\hfil \tabskip=0pt\cr
+%----------- 3 Column Data -------------------
+overline a formula&\overline{x+y}&\\"\overline{x+y}"\cr
+underline a formula&\underline{x+y}&\\"\underline{x+y}"\cr
+square root&\sqrt{x+2}&\\"\sqrt{x+2}"\cr
+higher order roots&\root n\of {x+2}&\\"\root n\of{x+2}"\cr
+fraction&{n+1\over 3}&\\"{n+1\over 3}"\cr
+fraction, no line&{n+1\atop 3}&\\"{n+1\atop 3}"\cr
+binomial coeff.&{n+1\choose 3}&\\"{n+1\choose 3}"\cr
+braced fraction&{n+1\brace 3}&\\"{n+1\brace 3}"\cr
+bracketed fraction&{n+1\brack 3}&\\"{n+1\brack 3}"\cr
+}
+
+\begintext
+The following specify a style for typesetting formulas.
+\endtext
+
+% ***** Centered Text Format *****
+\vbox{\tabskip=\centering
+\paralign to\hsize{\hfil#\hfil\cr
+%----------- Centered Text Data -------------------
+\\"\displaystyle"
+\\"\textstyle"
+\\"\scriptstyle"
+\\"\scriptscriptstyle"\cr
+} }
+
+
+\section{Non-Italic Function Names}
+
+\def\lim{\mathop{\hbox{\rm lim}}}
+\def\log{\mathop{\hbox{\rm log}}\nolimits}
+\def\pmod#1{\allowbreak\mkern18mu(\hbox{\rm mod}\,\,#1)}
+\def\bmod{\mskip-\medmuskip\mkern5mu\mathbin{\hbox{\rm mod}}\penalty900%
+\mkern5mu\mskip-\medmuskip}
+
+\paralign to\hsize{#\hfil\tabskip=\centering
+&#\hfil&#\hfil&#\hfil&#\hfil&#\hfil&#\hfil&#\hfil\tabskip=0pt\cr
+\\"\arccos"&\\"\cos"&\\"\csc"&\\"\exp"&\\"\ker"&\\"\limsup"&\\"\min"&\\"\sinh"\cr
+\\"\arcsin"&\\"\cosh"&\\"\deg"&\\"\gcd"&\\"\lg"&\\"\ln"&\\"\Pr"&\\"\sup"\cr
+\\"\arctan"&\\"\cot"&\\"\det"&\\"\hom"&\\"\lim"&\\"\log"&\\"\sec"&\\"\tan"\cr
+\\"\arg"&\\"\coth"&\\"\dim"&\\"\inf"&\\"\liminf"&\\"\max"&\\"\sin"&\\"\tanh"\cr
+}
+\vskip-.5\baselineskip
+\paralign to\hsize{#\hfil\tabskip=0pt plus 1fil&#\hfil&#\hfil\tabskip=0pt\cr
+\\"a \pmod{m}"&$a\pmod{m}$&mod with parentheses\cr
+\\"a \bmod m"&$a\bmod m$&mod without parentheses\cr
+}
+\begintext
+The following examples  use \\"\mathop" to create function names.
+\endtext
+
+\vskip-.75\baselineskip
+\begingroup
+\openup.5\jot
+\paralign to\hsize{#\hfil\tabskip=0pt plus 1fil&#\hfil&#\hfil\tabskip=0pt\cr
+Example&Command&Plain \TeX\ Definition\hfil\cr
+\noalign{\vskip-1\jot}
+$\displaystyle \lim_{x\to2}$ & \\"\lim_{x\to2}" &
+   \\"\def\lim{\mathop{\rm lim}}"   \cr
+$\displaystyle \log_2$ & \multispan2 \\"\log_2" \hfill
+   \\"\def\log{\mathop{\rm log}\nolimits}" \cr
+}
+\endgroup
+
+\section{Footnotes, Insertions, and Underlines}
+
+\paralign{#\hfil\quad&#\hfil\cr
+\\"\footnote"\<marker>\\"{"\<text>\\"}"&footnote\cr
+\\"\topinsert"\<vmode material>\\"\endinsert"&insert at top of page\cr
+\\"\pageinsert"\<vmode material>\\"\endinsert"&insert on full page\cr
+\\"\midinsert"\<vmode material>\\"\endinsert"&insert middle of page\cr
+%\noalign{\vskip2\jot}
+\\"\underbar{"\<text>\\"}"&underline text\cr
+}
+
+
+\shortcopyrightnotice
+
+
+\section{Useful Parameters and Conversions}
+
+\halign{#\hfil\qquad&#\hfil\cr
+\\"\day,\month,\year"&the current day, month, year\cr
+\\"\jobname"&name of current job\cr
+\\"\romannumeral"\<number>&convert to lower case roman nums.\cr
+\\"\uppercase{"\<token list>\\"}"&convert to upper case\cr
+\\"\lowercase{"\<token list>\\"}"&convert to lower case\cr
+}
+
+\section{Fills, Leaders and Ellipses}
+
+\paralign to\hsize{%
+#\quad\hfil&
+#\hfil\enspace\tabskip=0pt&#\hfil\tabskip=1em plus1fil&
+#\hfil\enspace\tabskip=0pt&#\hfil\tabskip=1em plus1fil&
+#\hfil\enspace\tabskip=0pt&#\hfil\tabskip=1em plus1fil&
+#\hfil\enspace\tabskip=0pt&#\hfil\cr
+\multispan3\ignorespaces Text or Math:\hfil&\dots&\\"\dots"\cr
+Math:&
+$\ldots$&\\"\ldots"&
+$\cdots$&\\"\cdots"&
+$\smash{\vdots}$&\\"\vdots"&
+$\smash{\ddots}$&\\"\ddots"\cr
+}
+
+\begintext
+The following fill space with the indicated item.
+\endtext
+\halign to\hsize{\hfil#\hfil\tabskip=\centering
+&\hfil#\hfil\tabskip=\centering
+&\hfil#\hfil\tabskip=\centering
+&\hfil#\hfil\tabskip=0pt\cr
+\\"\hrulefill"&\\"\rightarrowfill"&\\"\leftarrowfill"&\\"\dotfill"\cr
+}
+The general format for constructing leaders is
+\halign{#\hfil\quad&#\hfil\cr
+\\"\leaders"\<box or rule>\\"\hskip"\<glue>&repeat box or rule\cr
+\\"\leaders"\<box or rule>\\"\hfill"&fill space with box or rule\cr
+}
+
+\section{\TeX~Fonts and Magnification}
+
+\paralign{&#\quad\hfil&#\qquad\hfil\cr
+\\"\rm"&Roman&
+\\"\bf"&\bf Bold&
+\\"\tt"&\tt Typewriter\cr
+\\"\sl"&\sl Slant&
+\\"\it"&\it Italic&
+\\"\/"&``italic correction''
+\cr
+}
+
+\paralign{#\hfil\qquad&#\hfil\cr
+\\"\magnification="\<number>&scale document by $n/1000$\cr
+\\"\magstep"\<number>&scaling factor of $1.2^n\times1000$\cr
+\\"\magstephalf"&scaling factor of $\sqrt{1.2}$\cr
+\\"\font\FN="\<fontname>&load a font, naming it \\"\FN"\cr
+\\"\font\FN="\<fontname> {\tt at} \<dimen>
+   \hglue3.6em  scaled to dimension\hidewidth\cr
+%%   &load font scaled to dimension\cr
+\\"\font\FN="\<fontname> {\tt scaled} \<number>
+   \quad  scaled by $n/1000$\hidewidth\cr
+%%   &load font scaled by $n/1000$\cr
+{\tt true} \<dimen>&dimension with no scaling\cr
+\\"\char"{\tt\char`\`}\\"\"$c$&print the character or symbol $c$ \cr
+}
+
+\section{Alignment Displays}
+
+\paralign{#\hfil\qquad&#\hfil\cr
+\\"\settabs"\<number>\\"\columns"&
+   set equally spaced tabs\cr
+\\"\settabs\+"\<sample line>\\"\cr"&
+   set tabs as per sample line\cr
+\\"\+"\<text$_1$>{\tt\&}\<text$_2$>{\tt\&}$\cdots$\\"\cr"
+   &tabbed text to be typeset\cr
+\\"\halign"&horizontal alignment\cr
+\\"\halign to"\<dimen>&horizontal alignment\cr
+\\"\openup"\<dimen>&add space between lines\cr
+\\"\noalign{"\<vmode material>\\"}"&insert material after any \\"\cr"\cr
+\\"\tabskip="\<glue>&set glue at tab stops\cr
+\\"\omit"&omit the template for a column\cr
+\\"\span"&span two columns\cr
+\\"\multispan"\<number>&span several columns\cr
+\\"\hidewidth"&ignore the width of an entry\cr
+\\"\crcr"&insert \\"\cr" if one is not present\cr
+}
+
+\section{Boxes}
+
+\halign{#\hfil\qquad&#\hfil\cr
+\\"\hbox to"\<dimen>&hbox of given dimension\cr
+\\"\vbox to"\<dimen>&vbox, bottom justified\cr
+\\"\vtop to"\<dimen>&vbox, top justified\cr
+\\"\vcenter to"\<dimen>&vbox, center justified (math only)\cr
+\\"\rlap"&right overlap material\cr
+\\"\llap"&left overlap material\cr
+}
+
+\section{Overfull Boxes}
+
+\halign{#\hfil\qquad&#\hfil\cr
+\\"\hfuzz"&allowable excess in hboxes\cr
+\\"\vfuzz"&allowable excess in vboxes\cr
+\\"\overfullrule"&width of overfull box marker. To eliminate\cr
+   &\qquad entirely, set \\"\overfullrule=0pt".\cr
+}
+
+\section{Indentation and Itemized Lists}
+
+\halign{#\hfil\qquad&#\hfil\cr
+\\"\indent"&indent\cr
+\\"\noindent"&do not indent\cr
+\\"\parindent="\<dimen>&set indentation of paragraphs\cr
+\\"\displayindent="\<dimen>&set indentation of math displays\cr
+\\"\leftskip="\<dimen>&skip space on left\cr
+\\"\rightskip="\<dimen>&skip space on right\cr
+\\"\narrower"&make paragraph narrower\cr
+\\"\item{"\<label>\\"}"&singly indented itemized list\cr
+\\"\itemitem{"\<label>\\"}"&doubly indented itemized list\cr
+\\"\hangindent="\<dimen>&hanging indentation for paragraph\cr
+\\"\hangafter="\<number>&start hanging indent after line $n$.\cr
+   &\omit\hfil If $n<0$, indent first $|n|$ lines.\cr
+\\"\parshape="\<number>&general paragraph shaping macro\cr
+}
+
+
+\section{Headers, Footers, and Page Numbers}
+
+\halign{#\hfil\qquad&#\hfil\cr
+\\"\nopagenumbers"&turn off page numbering\cr
+\\"\pageno"&current page number. To get roman nums,\cr
+   &\omit\hfil   set \\"\pageno="\<negative number>\cr
+\\"\folio"&current page number, roman num if ${}<0$\cr
+\\"\footline"&material to put at foot of page\cr
+\\"\headline"&material to put at top of page. To leave\cr
+   &\quad  space, set \\"\voffset=2\baselineskip", make\cr
+   &\quad  room with \\"\advance\vsize by-\voffset".\cr
+}
+
+\section{Macro Definitions}
+
+\paralign{#\hfil\qquad&#\hfil\cr
+\\"\def\cs{"\<replacement text>\\"}"
+   &define the macro \\"\cs"\hfil\cr
+\\"\def\cs#1"${}\cdots{}\hbox{\tt\#}n$\\"{"\<repl.\ text>\\"}"
+   &macro with parameters\cr
+\multispan2\ignorespaces
+\\"\let\cs="\<token>\hfil give \\"\cs" token's current meaning\cr
+}
+
+
+\begingroup
+\parskip=0pt
+\begintext
+{\bf Advanced Macro Definition Commands}
+\endtext
+
+\paralign{#\hfil\qquad&#\hfil\cr
+\\"\long\def"&macro whose args may include \\"\par"\cr
+\\"\outer\def"&macro not allowed inside definitions\cr
+\\"\global\def" or \\"\gdef"&definition that transcends grouping\cr
+\\"\edef"&expand while defining macro\cr
+\\"\xdef" or \\"\global\edef"&global version of \\"\edef"\cr
+\\"\noexpand"\<token>&do not expand token\cr
+\\"\expandafter"\<token>&expand item after token first\cr
+\multispan2\ignorespaces
+\\"\futurelet\cs"\<tok$_1$>\<tok$_2$>
+   \hfil equals \\"\let\cs="\<tok$_2$>\<tok$_1$>\<tok$_2$>\cr
+\\"\csname"\dots\\"\endcsname"&create a control sequence name\cr
+\\"\string\cs"&list characters in name, \\"\"\ \\"c"\ \\"s"\cr
+\\"\number"\<number>&list of characters in number\cr
+\\"\the"\<internal quantity>&list of tokens giving value of quantity\cr
+}
+\endgroup
+
+\section{Conditionals}
+
+\begingroup
+\parskip=0pt
+\begintext
+The general format of a conditional is
+\endtext
+\tabskip=\centering
+\halign to\hsize{\hfil#\hfil\cr
+\\"\if"\<condition>\<true text>\\"\else"\<false text>\\"\fi"\cr
+}
+\paralign{#\hfil\qquad&#\hfil\cr
+\\"\ifnum"\<num$_1$>\<relation>\<num$_2$>&compare two integers\cr
+\\"\ifdim"\<dimen$_1$>\<relation>\<dimen$_2$>&compare two dimensions\cr
+\\"\ifodd"\<num>&test for an odd integer\cr
+\\"\ifmmode"&test for math mode\cr
+\\"\if"\<token$_1$>\<token$_2$>&test if character codes agree\cr
+\\"\ifx"\<token$_1$>\<token$_2$>&test if tokens agree\cr
+\\"\ifdim"\<dim$_1$>\<dim$_2$>&test if dimensions agree\cr
+\\"\ifeof"\<number>&test for end of file\cr
+\\"\iftrue", \\"\iffalse"&always true, always false\cr
+\\"\ifcase"\<number>\<text$_0$>\\"\or"\<text$_1$>\\"\or"$\cdots$\hidewidth\cr
+   \qquad \\"\or"\<text$_n$>\\"\else"\<text>\\"\fi"&choose text by \<number>\cr
+\multispan2\ignorespaces
+\\"\loop" $\alpha$ \\"\if"\dots $\beta$ \\"\repeat"\qquad
+   loop $\alpha\beta\alpha\cdots\alpha$ until \\"\if" is false\cr
+}
+\endgroup
+\vskip-.5\baselineskip
+\paralign{#\hfil\qquad&#\hfil\cr
+\\"\newif\ifblob"&create a new  conditional called \\"\ifblob"\cr
+\\"\blobtrue", \\"\blobfalse"&set conditional \\"\ifblob" true, false\cr
+%\\"\blobtrue"&set the conditional \\"\ifblob" to be true\cr
+%\\"\blobfalse"&set the conditional \\"\ifblob" to be false\cr
+}
+
+\section{Dimensions, Spacing, and Glue}
+\begintext
+Dimensions are specified as  \<number>\<unit of measure>.
+\par
+Glue is specified as \<dimen> {\tt plus}\<dimen> {\tt minus}\<dimen>.
+\endtext
+
+\vbox{%
+\offinterlineskip
+\halign to\hsize{%
+\strut#\hfil\tabskip=1em&\tt#\hfil\tabskip=0pt plus1fil&\vrule#
+&#\hfil\tabskip=1em&\tt#\hfil\tabskip=0pt plus1fil&\vrule#
+&#\hfil\tabskip=1em&\tt#\hfil\tabskip=0pt plus1fil&\vrule#
+&#\hfil\tabskip=1em&\tt#\hfil\tabskip=0pt\cr
+point&pt&&pica&pc&&inch&in&&centimeter&cm\cr
+m width&em&&x height&ex&&math unit&mu&&millimeter&mm\cr
+\omit&& height 2pt&&& height 2pt&&& height 2pt\cr
+\multispan2 1 pc = 12 pt\hfil&&
+\multispan2 1 in = 72.72 pt\hfil&&
+\multispan2 2.54 cm = 1 in\hfil&&
+\multispan2 18 mu = 1 em\hfil\tabskip=0pt\cr
+}}
+
+
+
+\paralign{%
+#\quad\hfil&#\hfil\cr
+Horizontal Spacing:&
+\\"\quad" (skip 1em)\quad
+\\"\qquad"\cr
+Horizontal Spacing (Text):&
+   \\"\thinspace"\quad
+   \\"\enspace"\quad
+   \\"\enskip"
+\cr
+\multispan1\hfil
+   \\"\hskip"\<glue>\quad
+   \\"\hfil"\quad
+   \\"\hfill"\quad
+   \\"\hfilneg"\hidewidth
+\cr
+Horizontal Spacing (Math):&
+   thin space \\"\," \quad
+   medium space \\"\>"
+\cr
+\multispan1\hfil
+   thick space \\"\;"\quad
+   neg.\ thin space \\"\!"\quad
+   \\"\mskip"\<muglue>\hidewidth
+\cr
+\noalign{\vskip1\parskip}
+Vertical Spacing:&
+   \\"\vskip"\<glue>\quad
+   \\"\vfil"\quad
+   \\"\vfill"
+\cr
+\noalign{\vbox{
+\halign{\qquad#\quad\hfil&#\hfil\cr
+\\"\strut"&box w/ ht and depth of ``('', zero width\cr
+\\"\phantom{"\<text>\\"}"&invisible box with dim of \<text>\cr
+\\"\vphantom{"\<text>\\"}"&box w/ ht \& depth of \<text>, zero width\cr
+\\"\hphantom{"\<text>\\"}"&box w/ width of \<text>, zero ht \& depth\cr
+\\"\smash{"\<text>\\"}"&typeset \<text>, set ht \& depth to zero\cr
+}
+\halign{\qquad#\quad\hfil&#\hfil\cr
+\\"\raise"\<dimen>\\"\hbox{"\<text>\\"}"&raise box up\cr
+\\"\lower"\<dimen>\\"\hbox{"\<text>\\"}"&lower  box down\cr
+\\"\moveleft"\<dimen>\\"\vbox{"\<text>\\"}"&move  box left\cr
+\\"\moveright"\<dimen>\\"\vbox{"\<text>\\"}"&move  box right\cr
+}
+}}
+Skip Space Between Lines:&
+   \\"\smallskip"\quad\\"\medskip"\quad\\"\bigskip"\cr
+   \qquad encourage a break\qquad
+     \\"\smallbreak"\quad\\"\medbreak"\quad\\"\bigbreak"\hidewidth\cr
+   \qquad break if no room&\\"\filbreak"\cr
+Set Line Spacing:&
+   \\"\baselineskip =" \<glue>\cr
+   \qquad single space&\\"\baselineskip = 12pt"\cr
+   \qquad 1 1/2 space&\\"\baselineskip = 18pt"\cr
+   \qquad double space&\\"\baselineskip = 24pt"
+\cr
+Increase Line Spacing&
+   \\"\openup"\<dimen>\cr
+   \qquad use \\"\jot"'s&\\"1\jot = 3pt"
+\cr
+Allow Unjustified Lines&\\"\raggedright"\cr
+Allow Unjustified Pages&\\"\raggedbottom"\cr
+}
+
+\section{Braces and Matrices}
+
+\halign{#\hfil\qquad&#\hfil\cr
+\\"\matrix"&rectangular array of entries\cr
+\\"\pmatrix"&matrix with parentheses\cr
+\\"\bordermatrix"&matrix with labels on top and left\cr
+\\"\overbrace"&overbrace, may be superscripted\cr
+\\"\underbrace"&underbrace, may be subscripted\cr
+}
+
+\begintext
+For small matrices in text, use the following constructions:
+\endtext
+\halign{\qquad#\hfil&\qquad$#$\hfil\cr
+\\"{a\,b \choose c\,d}"&a\,b \choose c\,d\cr
+\\"\left( {a\atop c} {b\atop d} \right)"
+         &\left( {a\atop c}  {b\atop d} \right)\cr
+}
+
+\section{Displayed Equations}
+
+\halign{#\hfil\qquad&#\hfil\cr
+\\"\eqno"&equation number at right\cr
+\\"\leqno"&equation number at left\cr
+\\"\eqalign"&display several aligned equations\cr
+\\"\eqalignno"&display aligned equations numbered at right\cr
+\\"\leqalignno"&display aligned equations numbered at left\cr
+\\"\displaylines"&display several equations, centered\cr
+\\"\cases"&case by case definitions\cr
+\\"\noalign"&to insert space between lines in displays,\cr
+   &\enspace use \\"\noalign{\vskip"\<glue>\\"}" after any \\"\cr"\cr
+\\"\openup"\<dimen>&add space between all lines in a display\cr
+}
+
+\copyrightnotice
+
+\bye
+
+% *************** END OF MATERIAL THAT FITS INTO SIX COLUMNS ****************
+
+% Additional material that didn't fit into six columns, including an expanded
+% version of the "Conditionals" and "Every Time Insertions" sections.
+
+\section{Conditionals}
+
+\begintext
+The general format of a conditional is
+\endtext
+\begingroup
+\parskip=0pt
+\tabskip=\centering
+\halign to\hsize{\hfil#\hfil\cr
+\\"\if"\<condition>\<true text>\\"\else"\<false text>\\"\fi"\cr
+}
+\paralign{#\hfil\qquad&#\hfil\cr
+\\"\ifnum"\<num$_1$>\<relation>\<num$_2$>&compare two integers\cr
+\\"\ifdimen"\<dim$_1$>\<relation>\<dim$_2$>&compare two dimensions\cr
+\\"\ifodd"\<num>&test for an odd integer\cr
+\\"\ifvmode"&test for vertical mode\cr
+\\"\ifhmode"&test for horizontal mode\cr
+\\"\ifmmode"&test for math mode\cr
+\\"\ifinner"&test for an internal mode\cr
+\\"\if"\<token$_1$>\<token$_2$>&test if character codes agree\cr
+\\"\ifcat"\<token$_1$>\<token$_2$>&test if category codes agree\cr
+\\"\ifx"\<token$_1$>\<token$_2$>&test if tokens agree\cr
+\\"\ifvoid"\<number>&test if box register is empty\cr
+\\"\ifeof"\<number>&test for end of file\cr
+\\"\iftrue", \\"\iffalse"&always true, always false\cr
+\\"\ifcase"\<number>\<text$_0$>\\"\or"\<text$_1$>\\"\or"$\cdots$\hidewidth\cr
+   \qquad \\"\or"\<text$_n$>\\"\else"\<text>\\"\fi"&choose text by \<number>\cr
+\multispan2\ignorespaces
+\\"\loop" $\alpha$ \\"\if"\dots $\beta$ \\"\repeat"\qquad
+   loop $\alpha\beta\alpha\cdots\alpha$ until \\"\if" is false\cr
+}
+\endgroup
+\paralign{#\hfil\qquad&#\hfil\cr
+\\"\newif\ifblob"&create a new  conditional called \\"\ifblob"\cr
+\\"\blobtrue"&set the conditional \\"\ifblob" to be true\cr
+\\"\blobfalse"&set the conditional \\"\ifblob" to be false\cr
+}
+
+\section{Advanced Control Sequences}
+
+\halign{#\hfil\qquad&#\hfil\cr
+\\"\mathchoice{"\<f$_1$>\\"}",\\"{"\<f$_2$>\\"}",\\"{"\<f$_3$>\\"}",
+   \\"{"\<f$_4$>\\"}"\hidewidth\cr
+   &choose formula based on current style\cr
+\\"\mathpalette\f{xyz}"&expands to \\"\f{"\<style>\\"}{xyz}"\cr
+}
+
+\section{Every Time Insertions}
+\halign{#\hfil\qquad&#\hfil\cr
+\\"\everypar"&insert whenever a paragraph begins\cr
+\\"\everymath"&insert whenever math in text begins\cr
+\\"\everydisplay"&insert whenever displayed math begins\cr
+\\"\everyhbox"&insert whenever an hbox begins\cr
+\\"\everyvbox"&insert whenever a vbox begins\cr
+\\"\everycr"&insert after every \\"\cr"\cr
+}
+
+
+\bye

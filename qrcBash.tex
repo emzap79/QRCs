@@ -1,0 +1,361 @@
+% vim:ts=2:expandtab
+% GIT Quick Reference Card
+% Copyright (c) 2011 Jonas Petong.
+% TeX Format - Based on VIM Quick Reference Card
+
+% compile as 'pdftex qrcBash.tex'
+% preamble%{{{
+\overfullrule=0pt %supressing black boxes at eol
+\def\versionnumber{1.0}  % Version of this reference card
+\def\key#1{$\langle${\rm{\it#1\/}}$\rangle$}
+\def\year{2014}
+\def\month{Mar}
+\def\version{v\versionnumber\ \month\ \year}
+
+\def\shortcopyrightnotice{\smallskip
+  \centerline{\smallrm \copyright\ \year\ Jonas Petong -
+  Permissions on back. \version}}
+
+\def\copyrightnotice{
+\vfill \hrule\smallskip\begingroup\smallrm
+\centerline{\version. Copyright \copyright\ \year\ Jonas Petong}
+
+Permission is granted to make and distribute copies of this card provided
+the copyright notice and this permission notice are preserved on all
+copies. Send comments or corrections to Jonas Petong at:
+$\langle$kaktuuus@gmx.de$\rangle$
+
+\centerline{https://github.com/emzap79/latex/blob/master/qrcBash.tex}
+
+This TeXfile is based on Gabriel B. Burcas git-qrc.tex
+
+% \centerline{http://ebixio.com/ and http://github.com/gburca/git-qrc}
+
+\endgroup}
+
+% \pdfoutput=1
+\pdfpageheight=21cm
+% \pdfpagewidth=29.7cm
+\pdfpagewidth=30.2cm
+
+% Font definitions
+\font\bigbf=cmbx12
+\font\smallrm=cmr8
+\font\smalltt=cmtt8
+\font\tinyit=cmmi5
+
+\def\title#1{\hfil{\bf #1}\hfil\par\vskip 2pt\hrule}
+\def\section#1#2{\vskip 0.7cm {\bf#1}\vskip 1pt#2\vskip 5pt}
+\def\subsection#1#2{\vskip 0.7cm {#1\/}\par\vskip 1pt\hrule\vskip 1pt#2\vskip 5pt}
+\def\subsubsection#1{\vskip 0.7cm \hskip 1em {- #1\/}\par\vskip 1pt\vskip 1pt}
+
+% Characters definitions
+\def\\{\hfil\break}
+\def\bs{$\backslash$}
+\def\backspace{$\leftarrow$}
+\def\ctrl{{\rm\char94}\kern-1pt}
+\def\enter{$\hookleftarrow$}
+\def\or{\thinspace{\tinyit{or}}\thinspace}
+\def\key#1{$\langle${\rm{\it#1\/}}$\rangle$}
+\def\rapos{\char125}
+\def\lapos{\char123}
+\def\bs{\char92}
+\def\tild{\char126}
+\def\lbracket{[}
+\def\rbracket{]}
+
+% Three columns definitions
+\parindent 0pt
+\nopagenumbers
+\hoffset=-1.56cm
+\voffset=-1.54cm
+\newdimen\fullhsize
+\fullhsize=27.9cm
+\hsize=8.5cm
+\vsize=19cm
+\def\fullline{\hbox to\fullhsize}
+\let\lr=L
+\newbox\leftcolumn
+\newbox\midcolumn
+\output={
+  \if L\lr
+    \global\setbox\leftcolumn=\columnbox
+    \global\let\lr=M
+  \else\if M\lr
+    \global\setbox\midcolumn=\columnbox
+    \global\let\lr=R
+  \else
+    \tripleformat
+    \global\let\lr=L
+  \fi\fi
+  \ifnum\outputpenalty>-20000
+  \else
+    \dosupereject
+  \fi}
+\def\tripleformat{
+  \shipout\vbox{\fullline{\box\leftcolumn\hfil\box\midcolumn\hfil\columnbox}}
+  \advancepageno}
+\def\columnbox{\leftline{\pagebody}}
+
+% cmd optimizations%{{{
+% \def\cmdFooBar#1{{\tt#1}\null}	%\null so not an abbrev even if period follows
+%}}}
+% A short command%{{{
+\def\cmd#1#2{
+  \noindent
+  \hbox to \hsize {% This comment is needed to remove space at start of line
+    \vtop{
+      \hbox to 3.0cm {
+        \noindent{#1}\dotfill
+      }
+      %\hrule
+    }% This comment is needed to remove space
+    \hfil	% absorb extra space b/w columns
+    \vtop{
+      \hsize=5.20cm
+      \hbox{\hfuzz = 25pt \vtop{%The \hfuzz setting specifies the maximum amount
+              %of box-overflow before a warning message will be issued.
+      % Uncomment line below to right-align description
+      %\leftskip=0cm plus 150fil
+      {#2}
+      \hfil
+      }}
+      %\hrule
+    }
+  }
+  %\hrule
+  \par
+  \vskip 0.14cm
+}%}}}
+% A long command%{{{
+\def\cmdL#1#2{
+  \hsize=8.5cm
+  \vbox {
+    \hbox{
+        {#1}\hfil
+    }%
+    %\vskip -0.2cm % adjusts space b/w command & description
+    \hskip 2.5cm  % indent for description
+    \hbox to 5.9cm {%
+      \hfuzz = 5pt
+      % Use the first one when right-aligned
+      %\vrule\hskip -0.05cm
+      %\vrule\hskip 0.05cm
+      \hfil
+      \hsize=5.9cm
+      \vtop{
+        %\hrule
+        % Uncomment line below to right-align description
+        %\leftskip=0cm plus 150fil
+        {#2}
+        }}
+  }%
+  %\hrule
+  \par
+  \vskip 0.14cm
+}%}}}
+% A example command%{{{
+\def\cmdExample#1#2{
+  \noindent
+  \hbox to \hsize {% This comment is needed to remove space at start of line
+    \vtop{
+      \hbox to 2.2cm {
+      % \hfuzz = 5pt
+      \hskip 4pt
+      \hfil
+      %\hsize=5.9cm
+      \noindent{\it#1}
+      }
+      %\hrule
+    }% This comment is needed to remove space
+    \hfil	% absorb extra space b/w columns
+    \vtop{
+      \hsize=5.90cm
+      \hbox{\hfuzz = 15pt \vtop{
+      % Uncomment line below to right-align description
+      %\leftskip=0cm plus 150fil
+      \it{#2}
+      }}
+      %\hrule
+    }
+  }
+  %\hrule
+  \par
+  \vskip 1ex
+}%}}}
+% An option command%{{{
+\def\cmdOpt#1#2{
+  \noindent
+  \hbox to \hsize {% This comment is needed to remove space at start of line
+    \vtop{
+      % \leftskip=0cm plus 150fil
+        \hbox to 3.0cm {
+      % \hfuzz = 5pt
+      % \hskip 10pt
+      % \hsize=2.9cm
+      \hfil
+      \hfil
+      \noindent{#1}
+      \hfil
+      }
+      %\hrule
+    }% This comment is needed to remove space
+    \hfil	% absorb extra space b/w columns
+    \vtop{
+      \hsize=5.00cm
+      \hbox{
+          \hfuzz = 15pt
+      % \dotfill
+          \vtop{
+      % Uncomment line below to right-align description
+      %\leftskip=0cm plus 150fil
+      {#2}
+      }}
+      %\hrule
+    }
+  }
+  %\hrule
+  \par
+  \vskip 0.14cm
+}%}}}
+% An operator command%{{{
+\def\cmdOper#1#2{
+  \noindent
+  \hbox to \hsize {% This comment is needed to remove space at start of line
+    \vtop{
+      % \leftskip=0cm plus 150fil
+        \hbox to 1.9cm {
+      \hfil
+      % \hfuzz = 5pt
+      % \hskip 10pt
+      \hsize=5em
+      \noindent{#1}
+      \hfil
+      }
+      %\hrule
+    }% This comment is needed to remove space
+    \hfil	% absorb extra space b/w columns
+    \vtop{
+      \hsize=5.90cm
+      \hbox{\hfuzz = 15pt \vtop{
+      % Uncomment line below to right-align description
+      %\leftskip=0cm plus 150fil
+      {#2}
+      }}
+      %\hrule
+    }
+  }
+  %\hrule
+  \par
+  \vskip 0.14cm
+}%}}}
+%}}}
+% card content%{{{
+% Header%{{{
+\title{BASH QUICK REFERENCE CARD}
+
+\shortcopyrightnotice
+%}}}
+\section{Basic Operations}{}%{{{
+\cmd{cd $path$}{change directory}
+\cmdOper{\ ..}{move one folder up}
+\cmdOper{--}{change to last visited directory}
+\cmdOper{\key{None}}{change to homedir ($\sim$)}
+\cmd{mkdir $fold$}{create new folder in current $path$}
+%}}}
+\section{Movements}{for \key{esc} you can use whether \key{esc} or \key{alt}-key}%{{{
+\cmd{\ctrl a\ \ctrl e}{jump to beginning/end of the line}
+\cmd{\key{esc f}\ /\ \key{esc b}}{jump one word forward/backward}
+\cmd{\ctrl c}{cancel current command}
+\cmd{\ctrl y}{paste most recently cut out text}
+\cmd{\key{esc d}\ /\ \key{esc $\leftarrow$}}{cut one word forward/backward}
+\cmd{\ctrl w}{cut text backward until space}
+\cmd{\ctrl u\ /\ \ctrl k}{cut from current position to the beginning/end of line}
+\cmd{\ctrl \#}{prepend hashtag on command, then jump to next line (... and reedit later)}
+%}}}
+\section{History}{clearing your entire history event line: {\tt history -c}}%{{{
+\subsection{Shortcuts}{}
+\cmd{\ctrl p}{fetch the previous command from the history list}
+% \cmd{\ctrl n}{fetch the next command from the history list}
+\cmd{\ctrl r}{search history backward (incremental search)}
+\cmd{\key{esc -\ }}{running last executed command}
+% \cmd{\ctrl r}{search history backward for a command matching \it{string}}
+% \cmd{\ctrl s}{search history forward (incremental search)}
+% \cmd{\ctrl s}{search history forward for a command matching \it{string}}
+\cmd{\key{esc p}}{search backward using non-incre\-mental search}
+\cmd{\key{esc n}}{search forward using non-incremental search}
+\cmd{\key{esc $<$}}{move to the first line in the history}
+\cmd{\key{esc $>$}}{move to the end of the history list (current entry)}
+% \cmd{k}{fetch the previous command from the history list}
+% \cmd{j}{fetch the next command from the history list}
+% \cmd{n}{repeat search in the same direction as previous}
+% \cmd{N}{repeat search in the opposite direction as previous}
+% \cmd{G}{move to the N-th history line}
+% \cmdExample{15G}{move to $15$th line}
+%}}}
+\subsection{History-Commands}{example command is: {\tt echo foo bar}}%{{{
+\cmd{!!}{runs previous executed command (also known as `bang bang')}
+\cmdExample{sudo\ !!}{sudo echo foo bar}
+\cmd{!\$ / \key{esc .\ }}{repeats last $arg$ of prev command}
+\cmd{!$n$\ / !-$n$}{executes command $n$/$n$th last command}
+\cmd{!$str$\ / !?$str$?}{runs last executed command, starting with/containing string or character $str$ (ending ? is optional)}
+\cmdExample{!echo}{echo foo bar}
+\cmdExample{!? sudo}{sudo echo foo bar}
+\cmd{!$n$:$d$}{executes first/last/specific/all $arg$'s of command $n$ (refers to prev command, in case $n$ is not given) $\rightarrow$ for meaning of designators $d$, see below!}
+\cmdExample{vim !sudo:*}{vim echo foo bar}
+\cmd{!\#}{refers to the entire command line typed so far}
+\subsubsection{Designators}%{{{
+\cmdOper{0}{the zeroth (first) word in a line (usually command name)}
+\cmdOper{n}{the $n$th word in a line}
+\cmdOper{\^{}}{the first $arg$ (the second word) in a line}
+\cmdOper{$\$$}{the last argument $arg$ in a line}
+\cmdOper{\%}{the word $str$ matched by the most recent !?$str$? search}
+\cmdOper{$m$-$n$}{a range of words from $m$ to $n$ (-$n$ is synonymous with 0-$n$)}
+\cmdOper{*}{all $arg$'s}
+\cmdOper{$m$*}{synonymous with $m$-\$}
+\cmdOper{$m$-}{from $arg$ $m$ to end, ommitting last word}
+%}}}
+%}}}
+\subsection{Substitutions \& Replacements}{}%{{{
+\cmd{\^{}$str_1$\^{}$str_2$\^{}}{quick substitution. Repeats the last command, replacing $str_1$ with $str_2$}
+\cmdL{$mod\,$s/old/new/}{substitutes new for old (for meaning of modifiers $mod$ see below)}
+%}}}
+\subsubsection{Modifiers}%{{{
+\cmdOper{h}{removes a trailing pathname component, leaving the head}
+\cmdOper{t}{removes all leading pathname components, leaving the tail (filename in path)}
+\cmdOper{r}{removes a trailing suffix of the form .xxx, leaving the basename}
+\cmdOper{e}{removes all but the trailing suffix}
+\cmdOper{p}{prints the resulting command but does not execute it}
+\cmdOper{q}{quotes the substituted words, escaping further substitutions}
+\cmdOper{m}{quotes the substituted words, breaking them into words at blanks and newlines}
+\cmdOper{\&}{repeats the previous substitution}
+\cmdOper{g}{causes s/old/new/ or \& to be applied over the entire event line}
+\cmdOper{G}{apply the following `s' modifier just once to each word in the event line.}
+%}}}
+\subsection{Variables}{append {\tt export <setting>=<value>} to your$\,\sim$/.bashrc}%{{{
+\cmd{HISTFILE}{if set to /dev/null history file is rejected (Default:$\,\sim$/.bash\_history)}
+\cmdL{HISTFILESIZE}{controls how many history commands to keep in HISTFILE (Default: 500)}
+\cmd{HISTSIZE}{controls how many history commands to keep in the history list of current session (Default: 500)}
+\cmdL{HISTCONTROL}{modality of how to save commands on the history list.}
+\cmdOpt{ignorespace}{if the list of values includes ignorespace, lines which begin with a space character are not saved in the history list.}
+\cmdOpt{ignoredups}{a value of ignoredups causes lines matching the previous history  entry  to  not  be saved.}
+\cmdOpt{ignoreboth}{a value of ignoreboth is shorthand for ignorespace and ignoredups.}
+\cmdOpt{erasedups}{a value of erasedups causes all previous lines matching the current line to be removed from the history list before that line is saved.}
+\cmdL{HISTIGNORE}{controls which commands to ignore and not save to the history list.}
+%}}}
+\subsection{Shopt Option}{shopt options can be set by a {\tt shopt -s option} and can be unset by a {\tt shopt -u option} shell com\-mand.}
+\cmd{histappend}{setting the variable appends current session history to HISTFILE. Unsetting overwrites the file each time}
+\cmd{histreedit}{if set, puts a failed history substitution back on the command line for re-editing}
+\cmd{histverify}{if set, puts the command to be executed after a substitution on command line as if you had typed it}
+
+
+%% Footer
+\copyrightnotice
+
+% Ending
+\supereject
+\if L\lr \else\null\vfill\eject\fi
+\if L\lr \else\null\vfill\eject\fi
+\bye
+
+% EOF

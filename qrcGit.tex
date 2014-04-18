@@ -1,0 +1,355 @@
+% vim:ts=2:expandtab
+% GIT Quick Reference Card
+% Copyright (c) 2011 Gabriel Burca.
+% TeX Format - Based on VIM Quick Reference Card
+
+% compile as 'pdftex git-qrc.tex'
+
+\def\versionnumber{1.0}  % Version of this reference card
+\def\year{2011}
+\def\month{Sep}
+\def\version{v\versionnumber\ \month\ \year}
+
+\def\shortcopyrightnotice{\smallskip
+  \centerline{\smallrm \copyright\ \year\ Gabriel Burca -
+  Permissions on back. \version}}
+
+\def\copyrightnotice{
+\vfill \hrule\smallskip\begingroup\smallrm
+\centerline{\version. Copyright \copyright\ \year\ Gabriel B. Burca}
+
+Permission is granted to make and distribute copies of this card provided
+the copyright notice and this permission notice are preserved on all
+copies. Send comments or corrections to Gabriel Burca at:
+$\langle$gburca-GitQRC@ebixio.com$\rangle$
+
+\centerline{http://ebixio.com/ and http://github.com/gburca/git-qrc}
+\endgroup}
+
+% \pdfoutput=1
+\pdfpageheight=21cm
+\pdfpagewidth=29.7cm
+
+% Font definitions
+\font\bigbf=cmbx12
+\font\smallrm=cmr8
+\font\smalltt=cmtt8
+\font\tinyit=cmmi5
+
+\def\title#1{\hfil{\bf #1}\hfil\par\vskip 2pt\hrule}
+\def\section#1{\vskip 0.7cm {\it#1\/}\par\vskip 1pt\hrule}
+
+
+% Characters definitions
+\def\\{\hfil\break}
+\def\bs{$\backslash$}
+\def\backspace{$\leftarrow$}
+\def\ctrl{{\rm\char94}\kern-1pt}
+\def\enter{$\hookleftarrow$}
+\def\or{\thinspace{\tinyit{or}}\thinspace}
+\def\key#1{$\langle${\rm{\it#1\/}}$\rangle$}
+\def\rapos{\char125}
+\def\lapos{\char123}
+\def\bs{\char92}
+\def\tild{\char126}
+\def\lbracket{[}
+\def\rbracket{]}
+
+% Three columns definitions
+\parindent 0pt
+\nopagenumbers
+\hoffset=-1.56cm
+\voffset=-1.54cm
+\newdimen\fullhsize
+\fullhsize=27.9cm
+\hsize=8.5cm
+\vsize=19cm
+\def\fullline{\hbox to\fullhsize}
+\let\lr=L
+\newbox\leftcolumn
+\newbox\midcolumn
+\output={
+  \if L\lr
+    \global\setbox\leftcolumn=\columnbox
+    \global\let\lr=M
+  \else\if M\lr
+    \global\setbox\midcolumn=\columnbox
+    \global\let\lr=R
+  \else
+    \tripleformat
+    \global\let\lr=L
+  \fi\fi
+  \ifnum\outputpenalty>-20000
+  \else
+    \dosupereject
+  \fi}
+\def\tripleformat{
+  \shipout\vbox{\fullline{\box\leftcolumn\hfil\box\midcolumn\hfil\columnbox}}
+  \advancepageno}
+\def\columnbox{\leftline{\pagebody}}
+
+% GIT optimizations
+\def\cmd#1{{\tt#1}\null}	%\null so not an abbrev even if period follows
+
+% A short command
+\def\cmdS#1#2{
+  \noindent
+  \hbox to \hsize {% This comment is needed to remove space at start of line
+    \vtop{
+      \hbox to 2.4cm {
+        \noindent\cmd{#1}\dotfill
+      }
+      %\hrule
+    }% This comment is needed to remove space
+    \hfil	% absorb extra space b/w columns
+    \vtop{
+      \hsize=5.90cm
+      \hbox{\hfuzz = 15pt \vtop{
+      % Uncomment line below to right-align description
+      %\leftskip=0cm plus 150fil
+      {#2}
+      }}
+      %\hrule
+    }
+  }
+  %\hrule
+  \par
+  \vskip 0.14cm
+}
+
+% A short command + options
+\def\cmdOpt#1#2{
+  \noindent
+  \hbox to \hsize {% This comment is needed to remove space at start of line
+    \vtop{
+      \hbox to 2.4cm {
+      %\hfuzz = 5pt
+      \hskip 24pt
+      %\hfil
+      %\hsize=5.9cm
+      \noindent\cmd{\it-#1}
+      }
+      %\hrule
+    }% This comment is needed to remove space
+    \hfil	% absorb extra space b/w columns
+    \vtop{
+      \hsize=5.90cm
+      \hbox{\hfuzz = 15pt \vtop{
+      % Uncomment line below to right-align description
+      %\leftskip=0cm plus 150fil
+      \it{#2}
+      }}
+      %\hrule
+    }
+  }
+  %\hrule
+  \par
+  \vskip 0.14cm
+}
+
+% A long command
+\def\cmdL#1#2{
+  \hsize=8.5cm
+  \vbox {
+    \hbox{
+        \cmd{#1}\hfil
+    }%
+    %\vskip -0.2cm % adjusts space b/w command & description
+    \hskip 2.5cm  % indent for description
+    \hbox to 5.9cm {%
+      \hfuzz = 5pt
+      % Use the first one when right-aligned
+      %\vrule\hskip -0.05cm
+      %\vrule\hskip 0.05cm
+      \hfil
+      \hsize=5.9cm
+      \vtop{
+        %\hrule
+        % Uncomment line below to right-align description
+        %\leftskip=0cm plus 150fil
+        {#2}
+        }}
+  }%
+  %\hrule
+  \par
+  \vskip 0.14cm
+}
+
+
+% Card content
+% Header
+\title{GIT QUICK REFERENCE CARD}
+
+\shortcopyrightnotice
+
+\section{Main commands}
+\cmdS{add}	{Add file contents to the index}
+\cmdOpt{A [:/]}	{adds all file changes including deletions to the staging area [for the whole tree]}
+\cmdOpt{f}	{Allow adding otherwise ignored files}
+\cmdS{am}	{Apply a series of patches from a mailbox}
+\cmdS{archive}	{Create an archive of files from a named tree}
+\cmdS{bisect}	{Find by binary search the change that introduced a bug}
+\cmdS{branch}	{List, create, or delete branches}
+\cmdOpt{a}	{lists all branches including the remote branches}
+\cmdOpt{d}	{delete {\tt \dots branch}}
+\cmdOpt{m}	{rename branch: \dots {\tt old\_name new\_name}}
+\cmdOpt{v}	{lists more information about the branches}
+\cmdS{bundle}	{Move objects and refs by archive}
+\cmdS{checkout}	{Checkout a branch or paths to the working tree}
+\cmdOpt{b}	{create a branch {\tt new\_name} and switch to it instantly}
+\cmdS{cherry-pick}	{Apply the change introduced by an existing commit}
+\cmdS{citool}	{Graphical alternative tocommit}
+\cmdS{clean}	{Remove untracked files from the working tree}
+\cmdS{clone}	{Clone a repository into a new directory}
+\cmdS{commit}	{Record changes to the repository}
+\cmdOpt{a}	{adding changes of files known by the Git repository to the commit}
+\cmdOpt{m}	{Set comment for commitment -- correcting it with adding {\tt --amend}}
+\cmdS{describe}	{Show the most recent tag that is reachable from a commit}
+\cmdS{diff}	{Show changes between commits, commit and working tree, etc.}
+\cmdS{fetch}	{Download objects and refs from another repository}
+\cmdS{format-patch}	{Prepare patches for e-mail submission}
+\cmdS{gc}	{Cleanup unnecessary files and optimize the local repository}
+\cmdS{grep}	{Print lines matching a pattern}
+\cmdS{gui}	{A portable graphical interface to Git}
+\cmdS{init}	{Create an empty git repository or reinitialize an existing one}
+\cmdS{log}	{Show commit logs}
+\cmdS{merge}	{Join two or more development histories together}
+\cmdS{mv}	{Move or rename a file, a directory, or a symlink}
+\cmdS{notes}	{Add/inspect commit notes}
+\cmdS{pull}	{Fetch from and merge with another re\-pository or a local branch}
+\cmdS{push}	{Update remote refs along with associated objects}
+\cmdS{rebase}	{Forward-port local commits to the updated upstream head}
+\cmdS{reset}	{Reset current HEAD to the specified state (Remove a {\it file} from
+staging area)}
+\cmdS{revert}	{Revert an existing commit}
+\cmdS{rm}	{Remove files from the working tree and from the index}
+\cmdOpt{r}	{remove recursive -- for removing additionally from repo, add
+{\tt --cached *}}
+\cmdS{shortlog}	{Summarize git log output}
+\cmdS{show}	{Show various types of objects}
+\cmdS{stash}	{Stash the changes in a dirty working directory away}
+\cmdS{status}	{Show the working tree status}
+\cmdS{submodule}	{Initialize, update or inspect submodules}
+\cmdS{tag}	{Create, list, delete or verify a tag object signed with GPG}
+
+\cmdS{gitk}	{The git repository browser}
+
+\section{Manipulators}
+\cmdS{config}	{Get and set repository or global options}
+\cmdS{fast-export}	{Git data exporter}
+\cmdS{fast-import}	{Backend for fast Git data importers}
+\cmdL{filter-branch}	{Rewrite branches}
+\cmdS{mergetool}	{Run merge conflict resolution tools to resolve merge conflicts}
+\cmdS{pack-refs}	{Pack heads and tags for efficient repository access}
+\cmdS{prune}	{Prune all unreachable objects from the object database}
+\cmdS{reflog}	{Manage reflog information}
+\cmdS{relink}	{Hardlink common objects in local repositories}
+\cmdS{remote}	{Manage set of tracked repositories}
+\cmdOpt{v}	{show details about the remotes}
+\cmdS{repack}	{Pack unpacked objects in a repository}
+\cmdS{replace}	{Create, list, delete refs to replace objects}
+
+\section{Interrogators}
+\cmdS{annotate}	{Annotate file lines with commit information}
+\cmdS{blame}	{\emergencystretch=5pt Show what revision and author last modified each line of a file}
+\cmdS{cherry}	{Find commits not merged upstream}
+\cmdL{count-objects}	{Count unpacked number of objects and their disk consumption}
+\cmdS{difftool}	{Show changes using common diff tools}
+\cmdS{fsck}	{Verifies the connectivity and validity of the objects in the database}
+\cmdL{get-tar-commit-id}	{Extract commit ID from an archive created usingarchive}
+\cmdS{help}	{Display help information about git}
+\cmdS{instaweb}	{Instantly browse your working repository in gitweb}
+\cmdS{merge-tree}	{Show three-way merge without touching index}
+\cmdS{rerere}	{Reuse recorded resolution of conflicted merges}
+\cmdS{rev-parse}	{Pick out and massage parameters}
+\cmdS{show-branch}	{Show branches and their commits}
+\cmdS{verify-tag}	{Check the GPG signature of tags}
+\cmdS{whatchanged}	{Show logs with difference each commit introduces}
+
+\section{Interacting with Others}
+\cmdS{archimport}	{Import an Arch repository into git}
+\cmdL{cvsexportcommit}	{Export a single commit to a CVS checkout}
+\cmdS{cvsimport}	{Salvage your data out of another SCM people love to hate}
+\cmdS{cvsserver}	{A CVS server emulator for git}
+\cmdS{imap-send}	{Send a collection of patches from stdin to an IMAP folder}
+\cmdS{quiltimport}	{Applies a quilt patchset onto the current branch}
+\cmdS{request-pull}	{Generates a summary of pending chan\-ges}
+\cmdS{send-email}	{Send a collection of patches as emails}
+\cmdS{svn}	{Bidirectional operation between a Subversion repository and git}
+
+\section{Manipulators (plumbing)}
+\cmdS{apply}	{Apply a patch to files and/or to the index}
+\cmdL{checkout-index}	{Copy files from the index to the working tree}
+\cmdS{commit-tree}	{Create a new commit object}
+\cmdS{hash-object}	{Compute object ID and optionally creates a blob from a file}
+\cmdS{index-pack}	{Build pack index file for an existing packed archive}
+\cmdS{merge-file}	{Run a three-way file merge}
+\cmdS{merge-index}	{Run a merge for files needing merging}
+\cmdS{mktag}	{Creates a tag object}
+\cmdS{mktree}	{Build a tree-object from ls-tree formatted text}
+\cmdS{pack-objects}	{Create a packed archive of objects}
+\cmdS{prune-packed}	{Remove extra objects that are already in pack files}
+\cmdS{read-tree}	{Reads tree information into the index}
+\cmdS{symbolic-ref}	{Read and modify symbolic refs}
+\cmdL{unpack-objects}	{Unpack objects from a packed archive}
+\cmdS{update-index}	{Register file contents in the working tree to the index}
+\cmdS{update-ref}	{Update the object name stored in a ref safely}
+\cmdS{write-tree}	{Create a tree object from the current index}
+
+\section{Interrogators (plumbing)}
+\cmdS{cat-file}	{Provide content or type and size information for repository objects}
+\cmdS{diff-files}	{Compares files in the working tree and the index}
+\cmdS{diff-index}	{Compares content and mode of blobs between the index and repository}
+\cmdS{diff-tree}	{\emergencystretch=5pt Compares the content and mode of blobs found via two tree objects}
+\cmdS{for-each-ref}	{Output information on each ref}
+\cmdS{ls-files}	{Show information about files in the index and the working tree}
+\cmdS{ls-remote}	{List references in a remote repository}
+\cmdS{ls-tree}	{List the contents of a tree object}
+\cmdS{merge-base}	{Find as good common ancestors as possible for a merge}
+\cmdS{name-rev}	{Find symbolic names for given revs}
+\cmdL{pack-redundant}	{Find redundant pack files}
+\cmdS{rev-list}	{Lists commit objects in reverse chronological order}
+\cmdS{show-index}	{Show packed archive index}
+\cmdS{show-ref}	{List references in a local repository}
+\cmdS{unpack-file}	{Creates a temporary file with a blob’s contents}
+\cmdS{var}	{Show a git logical variable}
+\cmdS{verify-pack}	{Validate packed git archive files}
+
+\section{Synching repositories}
+\cmdS{daemon}	{A really simple server for git repositories}
+\cmdS{fetch-pack}	{Receive missing objects from another repository}
+\cmdS{http-backend}	{Server side implementation of Git over HTTP}
+\cmdS{send-pack}	{Push objects over git protocol to another repository}
+\cmdL{update-server-info}	{Update auxiliary info file to help dumb servers}
+
+\section{Helper commands}
+\cmdS{http-fetch}	{Download from a remote git repository via HTTP}
+\cmdS{http-push}	{Push objects over HTTP/DAV to another repository}
+\cmdS{parse-remote}	{Routines to help parsing remote repository access parameters}
+\cmdS{receive-pack}	{Receive what is pushed into the repository}
+\cmdS{shell}	{Restricted login shell foronly SSH access}
+\cmdL{upload-archive}	{Send archive back toarchive}
+\cmdS{upload-pack}	{Send objects packed back tofetch-pack}
+
+\section{Internal helper commands}
+\cmdS{check-attr}	{Display gitattributes information}
+\cmdL{check-ref-format}	{Ensures that a reference name is well formed}
+\cmdL{fmt-merge-msg}	{Produce a merge commit message}
+\cmdS{mailinfo}	{Extracts patch and authorship from a single e-mail message}
+\cmdS{mailsplit}	{Simple UNIX mbox splitter program}
+\cmdL{merge-one-file}	{The standard helper program to use withmerge-index}
+\cmdS{patch-id}	{Compute unique ID for a patch}
+\cmdS{sh-setup}	{Common git shell script setup code}
+\cmdS{stripspace}	{Filter out empty lines}
+
+
+%% Footer
+\copyrightnotice
+
+% Ending
+\supereject
+\if L\lr \else\null\vfill\eject\fi
+\if L\lr \else\null\vfill\eject\fi
+\bye
+
+% EOF
