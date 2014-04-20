@@ -45,9 +45,11 @@ This TeXfile is based on Gabriel B. Burcas git-qrc.tex
 \font\tinyit=cmmi5
 
 \def\title#1{\hfil{\bf #1}\hfil\par\vskip 2pt\hrule}
-\def\section#1#2{\vskip 0.7cm {\bf#1}\vskip 1pt#2\vskip 5pt}
+\def\section#1#2{\vskip 0.7cm {\bf#1}\par\vskip 1pt\hrule\vskip 1pt#2\vskip 5pt}
 \def\subsection#1#2{\vskip 0.7cm {#1\/}\par\vskip 1pt\hrule\vskip 1pt#2\vskip 5pt}
-\def\subsubsection#1{\vskip 0.7cm \hskip 1em {- #1\/}\par\vskip 1pt\vskip 1pt}
+% \def\subsubsection#1#2{\vskip 0.7cm {#1\/}\par\vskip 1pt\hrule\vskip 1pt#2\vskip 5pt}
+\def\subsubsection#1{\vskip 0.7cm {#1\/}\par\vskip 1pt\vskip 1pt}
+% \def\subsubsection#1{\vskip 0.7cm \hskip 1em {- #1\/}\par\vskip 1pt\vskip 1pt}
 
 % Characters definitions
 \def\\{\hfil\break}

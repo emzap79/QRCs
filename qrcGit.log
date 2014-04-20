@@ -1,0 +1,147 @@
+This is pdfTeX, Version 3.1415926-2.5-1.40.14 (TeX Live 2013/Debian) (format=pdftex 2013.11.11)  20 APR 2014 23:44
+entering extended mode
+ restricted \write18 enabled.
+ %&-line parsing enabled.
+**qrcGit.tex
+(./qrcGit.tex
+\fullhsize=\dimen16
+\leftcolumn=\box16
+\midcolumn=\box17
+
+Underfull \hbox (badness 10000) detected at line 189
+  \tenit -f[] 
+
+\hbox(6.94444+1.94444)x68.28644, glue set 9.29268
+.\glue 3.33333 plus 1.66666 minus 1.11111
+.\glue 24.0
+.\tenit -
+.\tenit f
+.\hbox(0.0+0.0)x0.0
+.etc.
+
+
+Underfull \hbox (badness 10000) detected at line 194
+  \tenit -a[] 
+
+\hbox(4.30554+0.0)x68.28644, glue set 8.67934
+.\glue 3.33333 plus 1.66666 minus 1.11111
+.\glue 24.0
+.\tenit -
+.\tenit a
+.\hbox(0.0+0.0)x0.0
+.etc.
+
+
+Underfull \hbox (badness 10000) detected at line 195
+  \tenit -d[] 
+
+\hbox(6.94444+0.0)x68.28644, glue set 8.67934
+.\glue 3.33333 plus 1.66666 minus 1.11111
+.\glue 24.0
+.\tenit -
+.\tenit d
+.\hbox(0.0+0.0)x0.0
+.etc.
+
+
+Underfull \hbox (badness 10000) detected at line 196
+  \tenit -m[] 
+
+\hbox(4.30554+0.0)x68.28644, glue set 7.75934
+.\glue 3.33333 plus 1.66666 minus 1.11111
+.\glue 24.0
+.\tenit -
+.\tenit m
+.\hbox(0.0+0.0)x0.0
+.etc.
+
+
+Underfull \hbox (badness 10000) detected at line 197
+  \tenit -v[] 
+
+\hbox(4.30554+0.0)x68.28644, glue set 8.83267
+.\glue 3.33333 plus 1.66666 minus 1.11111
+.\glue 24.0
+.\tenit -
+.\tenit v
+.\hbox(0.0+0.0)x0.0
+.etc.
+
+
+Underfull \hbox (badness 10000) detected at line 200
+  \tenit -b[] 
+
+\hbox(6.94444+0.0)x68.28644, glue set 8.83267
+.\glue 3.33333 plus 1.66666 minus 1.11111
+.\glue 24.0
+.\tenit -
+.\tenit b
+.\hbox(0.0+0.0)x0.0
+.etc.
+
+
+Underfull \hbox (badness 10000) detected at line 206
+  \tenit -a[] 
+
+\hbox(4.30554+0.0)x68.28644, glue set 8.67934
+.\glue 3.33333 plus 1.66666 minus 1.11111
+.\glue 24.0
+.\tenit -
+.\tenit a
+.\hbox(0.0+0.0)x0.0
+.etc.
+
+
+Underfull \hbox (badness 10000) detected at line 207
+  \tenit -m[] 
+
+\hbox(4.30554+0.0)x68.28644, glue set 7.75934
+.\glue 3.33333 plus 1.66666 minus 1.11111
+.\glue 24.0
+.\tenit -
+.\tenit m
+.\hbox(0.0+0.0)x0.0
+.etc.
+
+
+Underfull \hbox (badness 10000) detected at line 228
+  \tenit -r[] 
+
+\hbox(4.30554+0.0)x68.28644, glue set 8.94768
+.\glue 3.33333 plus 1.66666 minus 1.11111
+.\glue 24.0
+.\tenit -
+.\tenit r
+.\hbox(0.0+0.0)x0.0
+.etc.
+
+
+Underfull \hbox (badness 10000) detected at line 249
+  \tenit -v[] 
+
+\hbox(4.30554+0.0)x68.28644, glue set 8.83267
+.\glue 3.33333 plus 1.66666 minus 1.11111
+.\glue 24.0
+.\tenit -
+.\tenit v
+.\hbox(0.0+0.0)x0.0
+.etc.
+
+[1{/var/lib/texmf/fonts/map/pdftex/updmap/pdftex.map}]
+Missing character: There is no â in font cmr10!
+Missing character: There is no € in font cmr10!
+Missing character: There is no ™ in font cmr10!
+ [2] [3] )</usr/share/texlive/texmf-dist/fonts/type1/public/amsfonts/cm/cmbx10.
+pfb></usr/share/texlive/texmf-dist/fonts/type1/public/amsfonts/cm/cmmi10.pfb></
+usr/share/texlive/texmf-dist/fonts/type1/public/amsfonts/cm/cmr10.pfb></usr/sha
+re/texlive/texmf-dist/fonts/type1/public/amsfonts/cm/cmr8.pfb></usr/share/texli
+ve/texmf-dist/fonts/type1/public/amsfonts/cm/cmsy10.pfb></usr/share/texlive/tex
+mf-dist/fonts/type1/public/amsfonts/cm/cmti10.pfb></usr/share/texlive/texmf-dis
+t/fonts/type1/public/amsfonts/cm/cmtt10.pfb>
+Output written on qrcGit.pdf (3 pages, 100940 bytes).
+PDF statistics:
+ 42 PDF objects out of 1000 (max. 8388607)
+ 29 compressed objects within 1 object stream
+ 0 named destinations out of 1000 (max. 500000)
+ 1 words of extra memory for PDF output out of 10000 (max. 10000000)
+
