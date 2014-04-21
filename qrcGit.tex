@@ -40,7 +40,6 @@ This TeXfile is based on Gabriel B. Burcas git-qrc.tex
 \def\title#1{\hfil{\bf #1}\hfil\par\vskip 2pt\hrule}
 \def\section#1{\vskip 0.7cm {\it#1\/}\par\vskip 1pt\hrule}
 
-
 % Characters definitions
 \def\\{\hfil\break}
 \def\bs{$\backslash$}
@@ -92,6 +91,31 @@ This TeXfile is based on Gabriel B. Burcas git-qrc.tex
 % GIT optimizations
 \def\cmd#1{{\tt#1}\null}	%\null so not an abbrev even if period follows
 
+% A short bold command
+\def\cmdSb#1#2{
+  \noindent
+  \hbox to \hsize {% This comment is needed to remove space at start of line
+    \vtop{
+      \hbox to 2.4cm {
+        \noindent\cmd{\bf#1}\dotfill
+      }
+      %\hrule
+    }% This comment is needed to remove space
+    \hfil	% absorb extra space b/w columns
+    \vtop{
+      \hsize=5.90cm
+      \hbox{\hfuzz = 15pt \vtop{
+      % Uncomment line below to right-align description
+      %\leftskip=0cm plus 150fil
+      {#2}
+      }}
+      %\hrule
+    }
+  }
+  %\hrule
+  \par
+  \vskip 0.14cm
+}
 % A short command
 \def\cmdS#1#2{
   \noindent

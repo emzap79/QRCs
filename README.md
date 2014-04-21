@@ -3,13 +3,12 @@ QRCs
 
 This is a collection of my quick reference cards on diverse code and linux
 related terminal commands. If copied, I provided a quick notice at the end of
-the file, where it's originally taken from.
-
-Please feel free to contact or sending me pull-requests!
+the file, where it's originally taken from. Please feel free to contact or
+sending me pull-requests!
 
 ## Content
 
-This repo contains qrc's of the following issues
+My repo contains qrc's of the following issues
 
 - Bash
 - VIM
