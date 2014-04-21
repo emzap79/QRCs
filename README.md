@@ -1,14 +1,14 @@
 QRCs
 ====
 
-This repo contains Quick Reference Cards of the following topics
+This repo contains Quick Reference Cards of the following issues
 
 - Bash
-- TeX
-- LaTeX
+- VIM
 - GIT
 - TIG
-- VIM
+- TeX
+- LaTeX
 
 compile them via: pdftex qrc.tex or use the included Makefile. Therefore change
 into directory where the QRC is located and type 'make ' eg. make vim. This
