@@ -1,5 +1,5 @@
 % VIM Quick Reference Card
-% Copyright (c) 2009 Michael Goerz.
+% Copyright (c) 2009 Jonas Petong.
 % TeX Format
 
 % compile as 'pdftex vimqrc.tex'
@@ -98,7 +98,7 @@
 \section{Jumps}
 \cmd{:jumps }{print the jump list}
 \cmd{:ta \ctrl[ }{jump to tag (under cursor)}
-\cmd{\ctrl O \ctrl I }{jump to older/newer location btw. buffers}
+    \cmd{\ctrl O \ctrl I }{jump to older/newer location btw\. buffers}
 \cmd{$n$g; $n$g, }{go to $n$ older/newer position in change list}
 \cmd{'. }{jump back on last edited line}
 \cmd{'' }{toggle back/forward to previous/next position}
@@ -126,8 +126,8 @@
 \cmd{:$r$d } {delete range $r$ lines}
 \cmd{:$r$d$x$ } {delete range $r$ lines into register $x$}
 \cmd{q$x$q}{empty register $x$}
-\cmd{:g/pattern/d $x$\\:let @+ = @x} {delete lines with pattern $c$ into
-Register $x$ and copy to clipboard (\tt{:let \dots @x})}
+\cmd{:g/pattern/d $x$ | let @+ = @x} {delete lines with pattern $c$ into
+Register $x$ and copy to clipboard afterwards.}
 
 \section{Insert/ Command Mode}
 \cmd{\ctrl V$c$ \ctrl V$n$ }{insert char $c$ literally, decimal value $n$}
@@ -146,34 +146,47 @@ Register $x$ and copy to clipboard (\tt{:let \dots @x})}
 
 %\vskip 0.4cm
 \section{Search \& Substitution}
-\cmd{/$s$\enter\ ?$s$\enter }{search forward, backward for $s$}
-\cmd{/$s$/$o$\enter\ ?$s$?$o$\enter }{search fwd, bwd for $s$ with offset $o$}
+\cmd{/$s$\enter~?$s$\enter }{search forward, backward for $s$}
+\cmd{/$s$/$o$\enter~?$s$?$o$\enter }{search fwd, bwd for $s$ with offset $o$}
 \cmd{n\or /\enter }{repeat forward last search}
-\cmd{N\or ?\enter }{repeat backward last search}
+\cmd{N\or~?\enter }{repeat backward last search}
 \cmd{\# * }{search backward, forward for word under cursor}
 \cmd{g\# g* }{same, but also find partial matches}
 \cmd{gd gD }{local, global definition of symbol under cursor}
 \cmd{:$r$s/$f$/$t$/$x$ } {substitute $f$ by $t$ in range $r$}
 \cnd{$x:$ {\tt g}---all occurrences, {\tt c}---confirm changes}
+\cmd{:$r$co\ $a$ :$r$m\ $a$ }{copy, move range $r$ below line $a$}
 \cmd{:$r$s $x$ } {repeat substitution with new $r$ \& $x$}
 \cmd{:$r$g/$p$/$c$ :$r$v/$p$/$c$ } {execute {\it Ex\/} $c$ on range $r$ where $p$ matches, not matches}
+\cmd{:$r$g/$p$/-1j }{join all lines in $r$ containing pattern $p$ with prev\. line}
+\cmd{:$r$g/$p$/s/$q$/$y$/g }{for every line in $r$ containing $p$, substitute $q$ with $y$}
+\cmd{:'$a$,'$b$g/$p$/j}{join any line containing the string $p$ to its subsequent line, if it lies between the $a$ and $b$ marks}
 
 \vskip -0.2cm
 \section{Misc Ex Commands (\enter)}
 \cmd{:help holy-grail }{show all Ex commands}
 \cmd{:e $f$ }{edit file $f$, reload current file if no $f$}
 \cmd{:$r$w $f$ }{write range $r$ to file $f$ (current file if no $f$)}
-\cmd{:$r$w$>$\kern-3pt$>$$f$ }{append range $r$ to file $f$}
+\cmd{:$rw>$\kern-3pt$>f$ }{append range $r$ to file $f$}
 \cmd{:q :q! }{quit and confirm, quit and discard changes}
 \cmd{:wq\or :x\or ZZ }{write to current file and exit}
 \cmd{:r $f$ }{insert content of file $f$ below cursor}
 \cmd{:r!\ $c$ }{insert output of command $c$ below cursor}
-\cmd{:$r$c\ $a$ :$r$m\ $a$ }{copy, move range $r$ below line $a$}
-\cmd{:$r$g/$p$/-1j }{join all lines in $r$ containing pattern $p$ with prev. line}
-\cmd{:$r$g/$p$/s/$q$/$y$/g }{for every line in $r$ containing $p$, substitute $q$ with $y$}
-\cmd{:'$a$,'$b$g/$p$/j}{join any line containing the string $p$ to its subsequent line, if it lies between the $a$ and $b$ marks}
 
-
+\section{Miscellaneous}
+\cmd{:$r$hardcopy $r$w!lp }{sending $r$ to printer (printout)}
+\cmd{:$r$hardcopy > file.ps }{print range to ps file}
+\cmd{:mkview $[f]$ :loadview $[f]$ }{save/load configuration}
+\cmd{:mks $[f]$ :so $[f]$ }{save/load session}
+\cmd{:set ff=dos } {convert file to dos eol format}
+\cmd{:e ++ff=unix } {reopen file in unix eol format}
+\cmd{:sh :!$c$ } {start shell, execute command $c$ in shell}
+\cmd{K }{run {\tt keywordprg} (manpage) on word under cursor}
+\cmd{\ctrl L }{redraw screen}
+\cmd{\ctrl R = 5*5}{insert 25 into text}
+\cmd{ga }{show A{\smallrm SCII} value of character under cursor}
+\cmd{gf }{open file which filename is under cursor}
+\cmd{vim -S $name$ }{reload vim-session $name$}
 
 \vskip -0.2cm
 \section{Ex Ranges}
@@ -182,9 +195,8 @@ Register $x$ and copy to clipboard (\tt{:let \dots @x})}
 \cmd{.\thinspace\thinspace\thinspace\$ }{the current line, the last line in file}
 \cmd{\% * }{entire file, visual area}
 \cmd{'$t$ }{position of mark $t$}
-\cmd{/$p$/ ?$p$? }{the next, previous line where $p$ matches}
-\cmd{+$n$ -$n$ }{$+n$, $-n$ to the preceding line number}
-
+\cmd{/$p$/~?$p$? }{the next, previous line where $p$ matches}
+\cmd{-$n$ +$n$ }{preceding/appending line number}
 
 
 %\vskip 0.4cm
@@ -194,14 +206,14 @@ Leave out $m$ for visual mode commands \\
 \cmd{:$r$ce $w$ } {center lines in range $r$ to width $w$}
 \cmd{:$r$ri $w$ } {rightalign lines in range $r$ to width $w$}
 \cmd{:$r$le $i$ } {left align lines in range with indent $i$}
-\cmd{!$m$$c$\enter }{filter lines of movement $m$ through command $c$}
+\cmd{!$mc$\enter }{filter lines of movement $m$ through command $c$}
 \cmd{$n$!!$c$\enter }{filter $n$ lines through command $c$}
 \cmd{:$r$!$c$ } {filter range $r$ lines through command $c$}
 \cmd{\tild }{switch case and advance cursor}
 \cmd{g\tild{$m$} gu$m$ gU$m$ }{switch case, lc, uc on movement $m$}
 \cmd{guu gUU}{lower-/uppercase line}
-\cmd{$<$$m$ $>$$m$ }{shift left, right text of movement $m$}
-\cmd{$n$$<$\kern-3pt$<$ $n$$>$\kern-3pt$>$ }{shift $n$ lines left, right}
+\cmd{$<m\enspace>m$ }{shift left, right text of movement $m$}
+\cmd{$n<\kern-3pt<\enspace n>\kern-3pt>$ }{shift $n$ lines left, right}
 \cmd{\ctrl A \ctrl X}{increment/decrement number under cursor}
 
 %\vskip 0.8cm
@@ -240,8 +252,8 @@ Leave out $m$ for visual mode commands \\
 \section{Patterns (differences to Perl)}
 \cmd{:help pattern } {show complete help on patterns}
 \cmd{\bs$<$ \bs$>$ }{start, end of word}
-\cmd{\bs i \bs k \bs I \bs K }{an identifier, keyword; excl. digits}
-\cmd{\bs f \bs p \bs F \bs P }{a file name, printable char.; excl. digits}
+\cmd{\bs i \bs k \bs I \bs K }{an identifier, keyword; excl\. digits}
+\cmd{\bs f \bs p \bs F \bs P }{a file name, printable char.; excl\. digits}
 \cmd{\bs e \bs t \bs r \bs b }{\key{esc}, \key{tab}, \key{\enter}, \key{$\gets$}}
 \cmd{\bs = * \bs + }{match $0..1$, $0..\infty$, $1..\infty$ of preceding atoms}
 \cmd{\bs$\{n,m\}$ }{match $n$ to $m$ occurrences}
@@ -282,7 +294,7 @@ Leave out $m$ for visual mode commands \\
 \cmd{:marks } {print the active marks list}
 \cmd{`$c$ `$C$ }{go to mark $c$ in current, $C$ in any file}
 \cmd{`$0..9$ }{go to last exit position}
-\cmd{`\/`  `\/" }{go to position before jump, at last edit}
+\cmd{``  `" }{go to position before jump, at last edit}
 \cmd{`[ `] }{go to start, end of previously operated text}
 \cmd{$n$\ctrl O }{go to $n^{th}$ older position in jump list}
 \cmd{$n$\ctrl I }{go to $n^{th}$ newer position in jump list}
@@ -305,7 +317,6 @@ Leave out $m$ for visual mode commands \\
 \section{Buffer Shortcuts}
 \cmd{:h ctrl-w }{complete list of all buffer commands}
 \cmd{:bd *.ext \ctrl A}{Deletes all Buffers with Extension `ext'}
-\cmd{:BufOnly [Plugin!]}{Deletes all other Buffers}
 \cmd{\ctrl \^{} }{toggle between the current and the last window}
 \cmd{\ctrl Wf gf }{open file under cursor in new/current window}
 \cmd{\ctrl Ww \ctrl W\ctrl W }{move to window below, above (wrap)}
@@ -319,6 +330,9 @@ Leave out $m$ for visual mode commands \\
 \cmd{\ctrl W = } {Make all windows equally high and wide}
 \cmd{\ctrl W $n\_$ }{set window height to $n$ (default: very high) }
 \cmd{\ctrl W $n|$ }{set current window width to $n$ }
+
+\section{Plugin Commands}
+\cmd{:BufOnly }{Deletes all other Buffers}
 
 \section{Tab Management}
 \cmd{:tabs }{list all tabs including their displayed windows}
@@ -378,46 +392,15 @@ Leave out $m$ for visual mode commands \\
 \cmd{$n\hskip -0.3em>>$ $n\hskip -0.3em<<$ }{indent/dedent $n$ lines}
 \cmd{G=gg}{auto (re)indent entire document}
 
-\section{Miscellaneous}
-\cmd{:$r$hardcopy $r$w!lp }{sending $r$ to printer (printout)}
-\cmd{:$r$hardcopy > file.ps }{print range to ps file}
-\cmd{:e ++ff=unix } {reopen file in unix eol format}
-\cmd{:$\ast$.ext \ctrl A}{delete all Buffers with $\ast$.ext}
-\cmd{:mkview $[f]$ :loadview $[f]$ }{save/load configuration}
-\cmd{:set cuc } {show cursor column visually}
-\cmd{:set ff=dos } {convert file to dos eol format}
-\cmd{:set hlsearch } {highlight searches}
-\cmd{:set ic/noic }{(un)ignore cases in substitute-command}
-\cmd{:set list }{show listchar characters (tabs etc.)}
-\cmd{:sh :!$c$ } {start shell, execute command $c$ in shell}
-\cmd{K }{run {\tt keywordprg} (manpage) on word under cursor}
-\cmd{\ctrl L }{redraw screen}
-\cmd{\ctrl R = 5*5}{insert 25 into text}
-\cmd{ga }{show A{\smallrm SCII} value of character under cursor}
-\cmd{gf }{open file which filename is under cursor}
-\cmd{:mks $name$ }{save session $name$}
-\cmd{vim -S $name$ }{reload vim-session $name$}
-
 \section{Vim Start-Options}
 \cmd{vimdiff $f_1$ $f_2$ }{diff $file_1$ + $file_2$ using synchronized split windows}
 \cmd{vim -o/-O $f_1$ $f_2$ }{open $files$ in horiz/vert split mode}
 \cmd{vim +$n$ $file$ }{open $file$ at $n$th line (eof if $n$ omitted)}
-
-\section{Search \& Replace Modifiers}
-\cmd{h }{Remove trailing components, leaving the head.  }
-\cmd{t }{Remove all leading file name components, leaving the tail. }
-\cmd{r }{Remove a trailing suffix, leaving the basename. }
-\cmd{e }{Remove all but the trailing suffix. }
-\cmd{p }{Print the new command but do not execute it. }
-\cmd{q }{Quote the substituted words, escaping further substitutions. }
-\cmd{x }{Quote the substituted words as with q, but break into words at blanks and newlines. }
-\cmd{\& }{Repeat the previous substitution. }
-\cmd{g }{Cause  changes  to  be applied over entire event line. }
-\cmd{G }{Apply the following `s' modifier once to each word in the event line. }
+\cmd{vim +/$s$ $file$ }{open $file$ and search for $string$ }
 
 \section{Most Common Digraphs}
 \cmd{:dig }{complete list of all digraphs}
-\cmd{\ctrl K$c_1$$c_2$\or $c_1$\kern-1pt\backspace$c_2$ }{enter digraph $\{c_1,c_2\}$}
+\cmd{\ctrl K$c_1c_2$\or $c_1$\kern-1pt\backspace$c_2$ }{enter digraph $\{c_1,c_2\}$}
 \cmd{Co }{Copyright }
 \cmd{Rg }{Registered Trademark }
 \cmd{!I }{!`: Inverteted Excl. Mark }
@@ -434,13 +417,15 @@ Leave out $m$ for visual mode commands \\
 {\smalltt http://stackoverflow.com/a/1220118}}\\\\
 {\smallrm This card may be freely distributed under
 the terms of the GNU general public licence ---
-Copyright \copyright\ {\oldstyle 2009} by Michael Goerz.
-{\smalltt http://www.physik.fu-berlin.de/\tild{goerz/}}. Based on original by
+Copyright \copyright\ {\oldstyle 2014} by Jonas Petong.
+{\smalltt https://github.com/emzap79/QRCs}. Based on original by
 Laurent Gr\'egoire  ({\smalltt http://tnerual.eriogerg.free.fr/})
+}
 % Ending
 \supereject
 \if L\lr \else\null\vfill\eject\fi
 \if L\lr \else\null\vfill\eject\fi
 \bye
 
+% BOF
 % EOF
