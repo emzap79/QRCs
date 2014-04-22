@@ -1,13 +1,13 @@
-% vim:ts=2:expandtab
+% vim:fdm=marker:filetype=tex:ts=2:expandtab
 % GIT Quick Reference Card
-% Copyright (c) 2011 Jonas Petong.
+% Copyright (c) 2014 Jonas Petong.
 % TeX Format - Based on VIM Quick Reference Card
 
 % compile as 'pdftex git-qrc.tex'
 
 \def\versionnumber{1.0}  % Version of this reference card
-\def\year{2011}
-\def\month{Sep}
+\def\year{2014}
+\def\month{Apr}
 \def\version{v\versionnumber\ \month\ \year}
 
 \def\shortcopyrightnotice{\smallskip
@@ -91,47 +91,21 @@ This TeXfile is based on Gabriel B. Burcas git-qrc.tex
 % GIT optimizations
 \def\cmd#1{{\tt#1}\null}	%\null so not an abbrev even if period follows
 
-% A short bold command
-\def\cmdSb#1#2{
+% A short command%{{{
+
+\def\cmdSB#1#2{
   \noindent
-  \hbox to \hsize {% This comment is needed to remove space at start of line
-    \vtop{
-      \hbox to 2.4cm {
-        \noindent\cmd{\bf#1}\dotfill
-      }
-      %\hrule
-    }% This comment is needed to remove space
-    \hfil	% absorb extra space b/w columns
-    \vtop{
-      \hsize=5.90cm
-      \hbox{\hfuzz = 15pt \vtop{
-      % Uncomment line below to right-align description
-      %\leftskip=0cm plus 150fil
-      {#2}
-      }}
-      %\hrule
-    }
-  }
-  %\hrule
-  \par
-  \vskip 0.14cm
-}
-% A short command
-\def\cmdS#1#2{
-  \noindent
-  \hbox to \hsize {% This comment is needed to remove space at start of line
+  \hbox to \hsize {%
     \vtop{
       \hbox to 2.4cm {
         \noindent\cmd{#1}\dotfill
       }
       %\hrule
-    }% This comment is needed to remove space
+    }%
     \hfil	% absorb extra space b/w columns
     \vtop{
       \hsize=5.90cm
       \hbox{\hfuzz = 15pt \vtop{
-      % Uncomment line below to right-align description
-      %\leftskip=0cm plus 150fil
       {#2}
       }}
       %\hrule
@@ -142,8 +116,96 @@ This TeXfile is based on Gabriel B. Burcas git-qrc.tex
   \vskip 0.14cm
 }
 
-% A short command + options
-\def\cmdOpt#1#2{
+%}}}
+% A short grayscale command%{{{
+
+\def\cmdS#1#2{
+    \pdfliteral{0.65 0.65 0.65 rg}
+    \hbox to \hsize {%
+        \vtop{
+            \hbox to 2.4cm {
+                \noindent\cmd{#1}\dotfill
+            }
+        }%
+        \hfil	% absorb extra space b/w columns
+        \vtop{
+            \hsize=5.90cm
+            \hbox{\hfuzz = 15pt \vtop{
+                    {#2}
+            }}
+        }
+    }
+    \pdfliteral{0 0 0 rg}
+    \par
+    \vskip 0.14cm
+}
+
+%}}}
+% A long command%{{{
+
+\def\cmdLB#1#2{
+  \hsize=8.5cm
+  \vbox {
+    \hbox{
+        \cmd{#1}\hfil
+    }%
+    %\vskip -0.2cm % adjusts space b/w command & description
+    \hskip 2.5cm  % indent for description
+    \hbox to 5.9cm {%
+      \hfuzz = 5pt
+      % Use the first one when right-aligned
+      %\vrule\hskip -0.05cm
+      %\vrule\hskip 0.05cm
+      \hfil
+      \hsize=5.9cm
+      \vtop{
+        %\hrule
+        % Uncomment line below to right-align description
+        %\leftskip=0cm plus 150fil
+        {#2}
+        }}
+  }%
+  %\hrule
+  \par
+  \vskip 0.14cm
+}
+
+%}}}
+% A long grayscale command%{{{
+
+\def\cmdL#1#2{
+    \pdfliteral{0.65 0.65 0.65 rg}
+    \hsize=8.5cm
+    \vbox {
+        \hbox{
+            \cmd{#1}\hfil
+        }%
+        %\vskip -0.2cm % adjusts space b/w command & description
+        \hskip 2.5cm  % indent for description
+        \hbox to 5.9cm {%
+            \hfuzz = 5pt
+            % Use the first one when right-aligned
+            %\vrule\hskip -0.05cm
+            %\vrule\hskip 0.05cm
+            \hfil
+            \hsize=5.9cm
+            \vtop{
+                %\hrule
+                % Uncomment line below to right-align description
+                %\leftskip=0cm plus 150fil
+                {#2}
+        }}
+    }%
+    %\hrule
+    \par
+    \vskip 0.14cm
+    \pdfliteral{0 0 0 rg}
+}
+
+%}}}
+% A short option-command%{{{
+
+\def\cmdOptB#1#2{
   \noindent
   \hbox to \hsize {% This comment is needed to remove space at start of line
     \vtop{
@@ -172,34 +234,105 @@ This TeXfile is based on Gabriel B. Burcas git-qrc.tex
   \vskip 0.14cm
 }
 
-% A long command
-\def\cmdL#1#2{
-  \hsize=8.5cm
-  \vbox {
-    \hbox{
-        \cmd{#1}\hfil
-    }%
-    %\vskip -0.2cm % adjusts space b/w command & description
-    \hskip 2.5cm  % indent for description
-    \hbox to 5.9cm {%
-      \hfuzz = 5pt
-      % Use the first one when right-aligned
-      %\vrule\hskip -0.05cm
-      %\vrule\hskip 0.05cm
+%}}}
+% A short grayscale optioncommand%{{{
+
+\def\cmdOpt#1#2{
+    \pdfliteral{0.65 0.65 0.65 rg}
+  \noindent
+  \hbox to \hsize {% This comment is needed to remove space at start of line
+    \vtop{
+      \hbox to 2.4cm {
+      %\hfuzz = 5pt
+      \hskip 24pt
+      %\hfil
+      %\hsize=5.9cm
+      \noindent\cmd{\it-#1}
+      }
+      %\hrule
+    }% This comment is needed to remove space
+    \hfil	% absorb extra space b/w columns
+    \vtop{
+      \hsize=5.90cm
+      \hbox{\hfuzz = 15pt \vtop{
+      % Uncomment line below to right-align description
+      %\leftskip=0cm plus 150fil
+      \it{#2}
+      }}
+      %\hrule
+    }
+  }
+  %\hrule
+  \par
+  \vskip 0.14cm
+  \pdfliteral{0 0 0 rg}
+}
+
+%}}}
+% A long option-command%{{{
+
+\def\cmdOptLB#1#2{
+  \noindent
+  \hbox to \hsize {% This comment is needed to remove space at start of line
+    \vtop{
+      \hbox to 2.4cm {
+      %\hfuzz = 5pt
+      %\hsize=5.9cm
+      \hskip 20pt
+      \noindent\cmd{\it{\tt--}#1}
       \hfil
-      \hsize=5.9cm
-      \vtop{
-        %\hrule
-        % Uncomment line below to right-align description
-        %\leftskip=0cm plus 150fil
-        {#2}
-        }}
-  }%
+      }
+      %\hrule
+    }% This comment is needed to remove space
+    \hfil	% absorb extra space b/w columns
+    \vtop{
+      \hsize=5.90cm
+      \hbox{\hfuzz = 15pt \vtop{
+      \it{#2}
+      }}
+      %\hrule
+    }
+  }
   %\hrule
   \par
   \vskip 0.14cm
 }
 
+%}}}
+% A long grayscale optioncommand%{{{
+
+\def\cmdOpt#1#2{
+    \pdfliteral{0.65 0.65 0.65 rg}
+  \noindent
+  \hbox to \hsize {% This comment is needed to remove space at start of line
+    \vtop{
+      \hbox to 2.4cm {
+      %\hfuzz = 5pt
+      %\hsize=5.9cm
+      \hskip 20pt
+      \noindent\cmd{\it{\tt--}#1}
+      \hfil
+      }
+      %\hrule
+    }% This comment is needed to remove space
+    \hfil	% absorb extra space b/w columns
+    \vtop{
+      \hsize=5.90cm
+      \hbox{\hfuzz = 15pt \vtop{
+      % Uncomment line below to right-align description
+      %\leftskip=0cm plus 150fil
+      \it{#2}
+      }}
+      %\hrule
+    }
+  }
+  %\hrule
+  \par
+  \vskip 0.14cm
+  \pdfliteral{0 0 0 rg}
+}
+
+%}}}
 
 % Card content
 % Header
@@ -208,52 +341,61 @@ This TeXfile is based on Gabriel B. Burcas git-qrc.tex
 \shortcopyrightnotice
 
 \section{Main commands}
-\cmdS{add}	{Add file contents to the index}
-\cmdOpt{A [:/]}	{adds all file changes including deletions to the staging area [for the whole tree]}
-\cmdOpt{f}	{Allow adding otherwise ignored files}
+\cmdSB{add}	{Add file contents to the index}
+\cmdOptB{A [:/]}	{adds all file changes including deletions to the staging area [for the whole tree]}
+\cmdOptB{f}	{Allow adding otherwise ignored files}
 \cmdS{am}	{Apply a series of patches from a mailbox}
 \cmdS{archive}	{Create an archive of files from a named tree}
 \cmdS{bisect}	{Find by binary search the change that introduced a bug}
-\cmdS{branch}	{List, create, or delete branches}
-\cmdOpt{a}	{lists all branches including the remote branches}
-\cmdOpt{d}	{delete {\tt \dots branch}}
-\cmdOpt{m}	{rename branch: \dots {\tt old\_name new\_name}}
-\cmdOpt{v}	{lists more information about the branches}
+\cmdSB{branch}	{List, create, or delete branches}
+\cmdOptB{a}	{lists all branches including the remote branches}
+\cmdOptB{d}	{delete {\tt \dots branch}}
+\cmdOptB{m}	{rename branch: \dots {\tt old\_name new\_name}}
+\cmdOptB{v}	{lists more information about the branches}
 \cmdS{bundle}	{Move objects and refs by archive}
-\cmdS{checkout}	{Checkout a branch or paths to the working tree}
-\cmdOpt{b}	{create a branch {\tt new\_name} and switch to it instantly}
+\cmdSB{checkout}	{Checkout a branch or paths to the working tree (prepend {\tt --} before path to avoid ambiguousity).}
+\cmdOptB{b}	{create a branch {\tt new\_name} and switch to it instantly}
 \cmdS{cherry-pick}	{Apply the change introduced by an existing commit}
 \cmdS{citool}	{Graphical alternative tocommit}
-\cmdS{clean}	{Remove untracked files from the working tree}
-\cmdS{clone}	{Clone a repository into a new directory}
-\cmdS{commit}	{Record changes to the repository}
-\cmdOpt{a}	{adding changes of files known by the Git repository to the commit}
-\cmdOpt{m}	{Set comment for commitment -- correcting it with adding {\tt --amend}}
+\cmdSB{clean}	{Remove untracked files from the working tree}
+\cmdOptB{f}	{force (required!)}
+\cmdOptB{x}	{include hidden files}
+\cmdOptB{d}	{directories as well}
+\cmdSB{clone}	{Clone a repository into a new directory}
+\cmdSB{commit}	{Record changes to the repository}
+\cmdOptB{a}	{adding changes of files known by the Git repository to the commit}
+\cmdOptB{m}	{Set comment for commitment -- correcting it with adding {\tt --amend}}
 \cmdS{describe}	{Show the most recent tag that is reachable from a commit}
-\cmdS{diff}	{Show changes between commits, commit and working tree, etc.}
+\cmdSB{diff}	{Show changes between commits, commit and working tree, etc.}
+\cmdOptLB{cached}	{compare working tree to index (stage area)}
 \cmdS{fetch}	{Download objects and refs from another repository}
 \cmdS{format-patch}	{Prepare patches for e-mail submission}
 \cmdS{gc}	{Cleanup unnecessary files and optimize the local repository}
 \cmdS{grep}	{Print lines matching a pattern}
 \cmdS{gui}	{A portable graphical interface to Git}
-\cmdS{init}	{Create an empty git repository or reinitialize an existing one}
-\cmdS{log}	{Show commit logs}
-\cmdS{merge}	{Join two or more development histories together}
+\cmdSB{init}	{Create an empty git repository or reinitialize an existing one}
+\cmdSB{log}	{Show commit logs (prepend {\tt --} before path to avoid ambiguousity)}
+\cmdOptB{p}	{see diffs of each commit}
+\cmdOptLB{stat}	{precies output with some stats}
+\cmdOptLB{follow}	{entire history including renames}
+\cmdSB{merge}	{Join two or more development histories together}
 \cmdS{mv}	{Move or rename a file, a directory, or a symlink}
 \cmdS{notes}	{Add/inspect commit notes}
-\cmdS{pull}	{Fetch from and merge with another re\-pository or a local branch}
-\cmdS{push}	{Update remote refs along with associated objects}
-\cmdS{rebase}	{Forward-port local commits to the updated upstream head}
-\cmdS{reset}	{Reset current HEAD to the specified state (Remove a {\it file} from
-staging area)}
+\cmdSB{pull}	{Fetch from and merge with another re\-pository or a local branch}
+\cmdSB{push}	{Update remote refs along with associated objects}
+\cmdSB{rebase}	{Forward-port local commits to the updated upstream head}
+\cmdSB{reset}	{Reset current HEAD to the specified state (Remove a {\it file} from staging area)}
+\cmdOptLB{soft}	{move HEAD pointer only}
+\cmdOptLB{mixed}	{resets staging area to new HEAD (default!)}
+\cmdOptLB{hard}	{resets staging area and working tree to new HEAD}
 \cmdS{revert}	{Revert an existing commit}
-\cmdS{rm}	{Remove files from the working tree and from the index}
-\cmdOpt{r}	{remove recursive -- for removing additionally from repo, add
+\cmdSB{rm}	{Remove files from the working tree and from the index}
+\cmdOptB{r}	{remove recursive -- for removing additionally from repo, add
 {\tt --cached *}}
 \cmdS{shortlog}	{Summarize git log output}
-\cmdS{show}	{Show various types of objects}
+\cmdSB{show}	{Show various types of objects}
 \cmdS{stash}	{Stash the changes in a dirty working directory away}
-\cmdS{status}	{Show the working tree status}
+\cmdSB{status}	{Show the working tree status}
 \cmdS{submodule}	{Initialize, update or inspect submodules}
 \cmdS{tag}	{Create, list, delete or verify a tag object signed with GPG}
 
@@ -366,7 +508,6 @@ staging area)}
 \cmdS{patch-id}	{Compute unique ID for a patch}
 \cmdS{sh-setup}	{Common git shell script setup code}
 \cmdS{stripspace}	{Filter out empty lines}
-
 
 %% Footer
 \copyrightnotice
