@@ -3,7 +3,7 @@ QRCs
 
 This is a collection of my quick reference cards on diverse code and linux
 related terminal commands. If copied, I provided a quick notice at the end of
-the file, where it's originally taken from.
+the file, where it's originally been taken from.
 
 ## Content
 
