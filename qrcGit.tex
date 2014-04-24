@@ -210,10 +210,10 @@ This TeXfile is based on Gabriel B. Burcas git-qrc.tex
   \hbox to \hsize {% This comment is needed to remove space at start of line
     \vtop{
       \hbox to 2.4cm {
-      %\hfuzz = 5pt
-      \hskip 24pt
-      %\hfil
-      %\hsize=5.9cm
+      % \hfuzz = 5pt
+      \hskip 34pt
+      \hfil
+      % \hsize=1.9cm
       \noindent\cmd{\it-#1}
       }
       %\hrule
@@ -376,7 +376,7 @@ This TeXfile is based on Gabriel B. Burcas git-qrc.tex
 \cmdSB{init}	{Create an empty git repository or reinitialize an existing one}
 \cmdSB{log}	{Show commit logs (prepend {\tt --} before path to avoid ambiguousity)}
 \cmdOptB{p}	{see diffs of each commit}
-\cmdOptLB{stat}	{precises output with some stats}
+\cmdOptLB{stat}	{precise output with some stats}
 \cmdOptLB{follow}	{entire history including renames}
 \cmdSB{merge}	{Join two or more development histories together}
 \cmdS{mv}	{Move or rename a file, a directory, or a symlink}
@@ -384,7 +384,7 @@ This TeXfile is based on Gabriel B. Burcas git-qrc.tex
 \cmdSB{pull}	{Fetch from and merge with another re\-pository or a local branch}
 \cmdSB{push}	{Update remote refs along with associated objects}
 \cmdSB{rebase}	{Forward-port local commits to the updated upstream head}
-\cmdSB{reset}	{Reset current HEAD to the specified state (Remove a {\it file} from staging area)}
+\cmdSB{reset}	{Reset current HEAD to the specified state (Remove a $file$ from staging area)}
 \cmdOptLB{soft}	{move HEAD pointer only}
 \cmdOptLB{mixed}	{resets staging area to new HEAD (default!)}
 \cmdOptLB{hard}	{resets staging area and working tree to new HEAD}
