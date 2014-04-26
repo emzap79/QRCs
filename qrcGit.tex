@@ -14,15 +14,19 @@
   \centerline{\smallrm \copyright\ \year\ Jonas Petong -
   Permissions on back. \version}}
 
+\def\shortintro{\smallskip
+\centerline{\smallrm QRC of most often used GIT commands -- Version \version}}
+
 \def\copyrightnotice{
-\vfill \hrule\smallskip\begingroup\smallrm
-\centerline{\version. Copyright \copyright\ \year\ Jonas Petong}
-
-Send comments or corrections to Jonas Petong:
-$\langle$emzap79@gmail.com$\rangle$
-
-\centerline{http://github.com/emzap79/QRCs/qrcGit.tex}
-This TeXfile is based on Gabriel B. Burcas git-qrc.tex
+\vfill
+Present qrc was originally created by Gabriel B. Burca
+\hrule\smallskip\begingroup\smallrm
+% \centerline{\version. Copyright \copyright\ \year\ Jonas Petong}
+\centerline{Send comments or corrections to Jonas Petong}
+\centerline{emzap79@gmail.com}
+\centerline{http://github.com/emzap79/QRCs}\\
+This TeXfile is based on Gabriel B. Burcas \copyright\ git-qrc.tex
+and was then modified to my own use.
 \endgroup}
 
 % \pdfoutput=1
@@ -336,7 +340,8 @@ This TeXfile is based on Gabriel B. Burcas git-qrc.tex
 % Header
 \title{GIT QUICK REFERENCE CARD}
 
-\shortcopyrightnotice
+% \shortcopyrightnotice
+\shortintro
 
 \section{Main commands}
 \cmdSB{add}	{Add file contents to the index}
