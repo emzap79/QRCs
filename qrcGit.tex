@@ -90,10 +90,12 @@ and has then been modified to my own use.
 
 % GIT optimizations
 \def\cmd#1{{\tt#1}\null}	%\null so not an abbrev even if period follows
+\def\gray#1{\pdfliteral{0.65 0.65 0.65 rg}#1\pdfliteral{0 0 0 rg}}
+\def\black#1{\pdfliteral{0 0 0 rg}#1\pdfliteral{0.65 0.65 0.65 rg}}
 
 % A short command%{{{
 
-\def\cmdSB#1#2{
+\def\cmdS#1#2{
   \noindent
   \hbox to \hsize {%
     \vtop{
@@ -117,33 +119,9 @@ and has then been modified to my own use.
 }
 
 %}}}
-% A short grayscale command%{{{
-
-\def\cmdS#1#2{
-    \pdfliteral{0.65 0.65 0.65 rg}
-    \hbox to \hsize {%
-        \vtop{
-            \hbox to 2.4cm {
-                \noindent\cmd{#1}\dotfill
-            }
-        }%
-        \hfil	% absorb extra space b/w columns
-        \vtop{
-            \hsize=5.90cm
-            \hbox{\hfuzz = 15pt \vtop{
-                    {#2}
-            }}
-        }
-    }
-    \pdfliteral{0 0 0 rg}
-    \par
-    \vskip 0.14cm
-}
-
-%}}}
 % A long command%{{{
 
-\def\cmdLB#1#2{
+\def\cmdL#1#2{
   \hsize=8.5cm
   \vbox {
     \hbox{
@@ -171,41 +149,9 @@ and has then been modified to my own use.
 }
 
 %}}}
-% A long grayscale command%{{{
-
-\def\cmdL#1#2{
-    \pdfliteral{0.65 0.65 0.65 rg}
-    \hsize=8.5cm
-    \vbox {
-        \hbox{
-            \cmd{#1}\hfil
-        }%
-        %\vskip -0.2cm % adjusts space b/w command & description
-        \hskip 2.5cm  % indent for description
-        \hbox to 5.9cm {%
-            \hfuzz = 5pt
-            % Use the first one when right-aligned
-            %\vrule\hskip -0.05cm
-            %\vrule\hskip 0.05cm
-            \hfil
-            \hsize=5.9cm
-            \vtop{
-                %\hrule
-                % Uncomment line below to right-align description
-                %\leftskip=0cm plus 150fil
-                {#2}
-        }}
-    }%
-    %\hrule
-    \par
-    \vskip 0.14cm
-    \pdfliteral{0 0 0 rg}
-}
-
-%}}}
 % A short option-command%{{{
 
-\def\cmdOptB#1#2{
+\def\cmdOpt#1#2{
   \noindent
   \hbox to \hsize {% This comment is needed to remove space at start of line
     \vtop{
@@ -232,40 +178,6 @@ and has then been modified to my own use.
   %\hrule
   \par
   \vskip 0.14cm
-}
-
-%}}}
-% A short grayscale optioncommand%{{{
-
-\def\cmdOpt#1#2{
-    \pdfliteral{0.65 0.65 0.65 rg}
-  \noindent
-  \hbox to \hsize {% This comment is needed to remove space at start of line
-    \vtop{
-      \hbox to 2.4cm {
-      %\hfuzz = 5pt
-      \hskip 24pt
-      %\hfil
-      %\hsize=5.9cm
-      \noindent\cmd{\it-#1}
-      }
-      %\hrule
-    }% This comment is needed to remove space
-    \hfil	% absorb extra space b/w columns
-    \vtop{
-      \hsize=5.90cm
-      \hbox{\hfuzz = 15pt \vtop{
-      % Uncomment line below to right-align description
-      %\leftskip=0cm plus 150fil
-      \it{#2}
-      }}
-      %\hrule
-    }
-  }
-  %\hrule
-  \par
-  \vskip 0.14cm
-  \pdfliteral{0 0 0 rg}
 }
 
 %}}}
@@ -299,37 +211,28 @@ and has then been modified to my own use.
 }
 
 %}}}
-% A long grayscale optioncommand%{{{
+% A very long option-command%{{{
 
-\def\cmdOpt#1#2{
-    \pdfliteral{0.65 0.65 0.65 rg}
-  \noindent
-  \hbox to \hsize {% This comment is needed to remove space at start of line
-    \vtop{
-      \hbox to 2.4cm {
-      %\hfuzz = 5pt
-      %\hsize=5.9cm
+\def\cmdOptLBl#1#2{
+    \hsize=8.5cm
+    \vbox {
+        \hbox{
       \hskip 20pt
       \noindent\cmd{\it{\tt--}#1}
       \hfil
-      }
-      %\hrule
-    }% This comment is needed to remove space
-    \hfil	% absorb extra space b/w columns
-    \vtop{
-      \hsize=5.90cm
-      \hbox{\hfuzz = 15pt \vtop{
-      % Uncomment line below to right-align description
-      %\leftskip=0cm plus 150fil
-      \it{#2}
-      }}
-      %\hrule
-    }
-  }
-  %\hrule
-  \par
-  \vskip 0.14cm
-  \pdfliteral{0 0 0 rg}
+        }%
+        \hskip 70pt  % indent for description
+        \hbox to 5.9cm {%
+            \hfuzz = 5pt
+            \hfil
+            \hsize=5.9cm
+            \vtop{
+                {\it#2}
+            }}
+    }%
+    %\hrule
+    \par
+    \vskip 0.14cm
 }
 
 %}}}
@@ -342,67 +245,69 @@ and has then been modified to my own use.
 \shortintro
 
 \section{Main commands}
-\cmdSB{add}	{Add file contents to the index}
-\cmdOptB{A [:/]}	{adds all file changes including deletions to the staging area [for the whole tree]}
-\cmdOptB{f}	{Allow adding otherwise ignored files}
-\cmdS{am}	{Apply a series of patches from a mailbox}
-\cmdS{archive}	{Create an archive of files from a named tree}
-\cmdS{bisect}	{Find by binary search the change that introduced a bug}
-\cmdSB{branch}	{List, create, or delete branches}
-\cmdOptB{a}	{lists all branches including the remote branches}
-\cmdOptB{d}	{delete {\tt \dots branch}}
-\cmdOptB{m}	{rename branch: \dots {\tt old\_name new\_name}}
-\cmdOptB{v}	{lists more information about the branches}
-\cmdS{bundle}	{Move objects and refs by archive}
-\cmdSB{checkout}	{Checkout a branch or paths to the working tree (prepend {\tt --} before path to avoid ambiguousity).}
-\cmdOptB{b}	{create a branch {\tt new\_name} and switch to it instantly}
-\cmdS{cherry-pick}	{Apply the change introduced by an existing commit}
-\cmdS{citool}	{Graphical alternative tocommit}
-\cmdSB{clean}	{Remove untracked files from the working tree}
-\cmdOptB{f}	{force (required!)}
-\cmdOptB{x}	{include hidden files}
-\cmdOptB{d}	{directories as well}
-\cmdSB{clone}	{Clone a repository into a new directory}
-\cmdSB{commit}	{Record changes to the repository}
-\cmdOptB{a}	{adding changes of files known by the Git repository to the commit}
-\cmdOptB{m}	{Set comment for commitment -- correct it with prepending {\tt --amend} to argument}
-\cmdS{describe}	{Show the most recent tag that is reachable from a commit}
-\cmdSB{diff}	{Show changes between commits, commit and working tree, etc.}
+\cmdS{add}	{Add file contents to the index}
+\cmdOpt{A [:/]}	{adds all file changes including deletions to the staging area [for the whole tree]}
+\cmdOpt{f}	{Allow adding otherwise ignored files}
+\gray{\cmdS{am}	{Apply a series of patches from a mailbox}}
+\gray{\cmdS{archive}	{Create an archive of files from a named tree}}
+\gray{\cmdS{bisect}	{Find by binary search the change that introduced a bug}}
+\cmdS{branch}	{List, create, or delete branches}
+\cmdOpt{a}	{lists all branches including the remote branches}
+\cmdOpt{d}	{delete {\tt \dots branch}}
+\cmdOpt{m}	{rename branch: \dots {\tt old\_name new\_name}}
+\cmdOpt{v}	{lists more information about the branches}
+\gray{\cmdS{bundle}	{Move objects and refs by archive}}
+\cmdS{checkout}	{Checkout a branch or paths to the working tree (prepend {\tt --} before path to avoid ambiguousity).}
+\cmdOpt{b}	{create a branch {\tt new\_name} and switch to it instantly}
+\gray{\cmdS{cherry-pick}	{Apply the change introduced by an existing commit}}
+\gray{\cmdS{citool}	{Graphical alternative tocommit}}
+\cmdS{clean}	{Remove untracked files from the working tree}
+\cmdOpt{f}	{force (required!)}
+\cmdOpt{x}	{include hidden files}
+\cmdOpt{d}	{directories as well}
+\cmdS{clone}	{Clone a repository into a new directory}
+\cmdS{commit}	{Record changes to the repository}
+\cmdOpt{a}	{adding changes of files known by the Git repository to the commit}
+\cmdOpt{m}	{Set comment for commitment -- correct it with prepending {\tt --amend} to argument}
+\gray{\cmdS{describe}	{Show the most recent tag that is reachable from a commit}}
+\cmdS{diff}	{Show changes between commits, commit and working tree, etc.}
 \cmdOptLB{cached}	{compare working tree to index (stage area)}
-\cmdS{fetch}	{Download objects and refs from another repository}
-\cmdS{format-patch}	{Prepare patches for e-mail submission}
-\cmdS{gc}	{Cleanup unnecessary files and optimize the local repository}
-\cmdS{grep}	{Print lines matching a pattern}
-\cmdS{gui}	{A portable graphical interface to Git}
-\cmdSB{init}	{Create an empty git repository or reinitialize an existing one}
-\cmdSB{log}	{Show commit logs (prepend {\tt --} before path to avoid ambiguousity)}
-\cmdOptB{p}	{show diffs of each commit}
+\gray{\cmdS{fetch}	{Download objects and refs from another repository}}
+\gray{\cmdS{format-patch}	{Prepare patches for e-mail submission}}
+\gray{\cmdS{gc}	{Cleanup unnecessary files and optimize the local repository}}
+\gray{\cmdS{grep}	{Print lines matching a pattern}}
+\gray{\cmdS{gui}	{A portable graphical interface to Git}}
+\cmdS{init}	{Create an empty git repository or reinitialize an existing one}
+\cmdS{log}	{Show commit logs (prepend {\tt --} before path to avoid ambiguousity)}
+\cmdOpt{p}	{show diffs of each commit}
 \cmdOptLB{stat}	{precise output with some stats}
+\cmdOptLBl{abbrev-commit}	{shortend (but unique) SHA-1 values for the commit objects }
+\cmdOptLB{oneline}	{show logs as shortened oneliner}
 \cmdOptLB{reverse}	{reverse log-history output}
 \cmdOptLB{follow}	{entire history including renames}
-\cmdSB{merge}	{Join two or more development histories together}
-\cmdS{mv}	{Move or rename a file, a directory, or a symlink}
-\cmdS{notes}	{Add/inspect commit notes}
-\cmdSB{pull}	{Fetch from and merge with another re\-pository or a local branch}
-\cmdSB{push}	{Update remote refs along with associated objects}
-\cmdSB{rebase}	{Forward-port local commits to the updated upstream head}
-\cmdSB{reset}	{Reset current HEAD to the specified state (Remove a $file$ from staging area)}
+\cmdS{merge}	{Join two or more development histories together}
+\gray{\cmdS{mv}	{Move or rename a file, a directory, or a symlink}}
+\gray{\cmdS{notes}	{Add/inspect commit notes}}
+\cmdS{pull}	{Fetch from and merge with another re\-pository or a local branch}
+\cmdS{push}	{Update remote refs along with associated objects}
+\cmdS{rebase}	{Forward-port local commits to the updated upstream head}
+\cmdS{reset}	{Reset current HEAD to the specified state (Remove a $file$ from staging area)}
 \cmdOptLB{soft}	{move HEAD pointer only}
 \cmdOptLB{mixed}	{resets staging area to new HEAD (default!)}
 \cmdOptLB{hard}	{resets staging area and working tree to new HEAD}
-\cmdS{revert}	{Revert an existing commit}
-\cmdSB{rm}	{Remove files from the working tree and from the index}
-\cmdOptB{r}	{remove recursive -- for removing additionally from repo, add
+\gray{\cmdS{revert}	{Revert an existing commit}}
+\cmdS{rm}	{Remove files from the working tree and from the index}
+\cmdOpt{r}	{remove recursive -- for removing additionally from repo, add
 {\tt --cached *}}
-\cmdS{shortlog}	{Summarize git log output}
-\cmdSB{show}	{Show various types of objects}
-\cmdS{stash}	{Stash the changes in a dirty working directory away}
-\cmdSB{status}	{Show the working tree status}
-\cmdS{submodule}	{Initialize, update or inspect submodules}
-\cmdS{tag}	{Create, list, delete or verify a tag object signed with GPG}
+\gray{\cmdS{shortlog}	{Summarize git log output}}
+\cmdS{show}	{Show various types of objects}
+\gray{\cmdS{stash}	{Stash the changes in a dirty working directory away}}
+\cmdS{status}	{Show the working tree status}
+\gray{\cmdS{submodule}	{Initialize, update or inspect submodules}}
+\gray{\cmdS{tag}	{Create, list, delete or verify a tag object signed with GPG}}
+\gray{\cmdS{gitk}	{The git repository browser}}
 
-\cmdS{gitk}	{The git repository browser}
-
+\pdfliteral{0.65 0.65 0.65 rg}
 \section{Manipulators}
 \cmdS{config}	{Get and set repository or global options}
 \cmdS{fast-export}	{Git data exporter}
@@ -413,11 +318,12 @@ and has then been modified to my own use.
 \cmdS{prune}	{Prune all unreachable objects from the object database}
 \cmdS{reflog}	{Manage reflog information}
 \cmdS{relink}	{Hardlink common objects in local repositories}
-\cmdSB{remote}	{Manage set of tracked repositories}
-\cmdOptB{v}	{show details about the remotes}
+\black{\cmdS{remote}	{Manage set of tracked repositories}}
+\cmdOpt{v}	{show details about the remotes}
 \cmdS{repack}	{Pack unpacked objects in a repository}
 \cmdS{replace}	{Create, list, delete refs to replace objects}
 
+\pdfliteral{0.65 0.65 0.65 rg}
 \section{Interrogators}
 \cmdS{annotate}	{Annotate file lines with commit information}
 \cmdS{blame}	{\emergencystretch=5pt Show what revision and author last modified each line of a file}
@@ -435,6 +341,7 @@ and has then been modified to my own use.
 \cmdS{verify-tag}	{Check the GPG signature of tags}
 \cmdS{whatchanged}	{Show logs with difference each commit introduces}
 
+\pdfliteral{0.65 0.65 0.65 rg}
 \section{Interacting with Others}
 \cmdS{archimport}	{Import an Arch repository into git}
 \cmdL{cvsexportcommit}	{Export a single commit to a CVS checkout}
@@ -446,6 +353,7 @@ and has then been modified to my own use.
 \cmdS{send-email}	{Send a collection of patches as emails}
 \cmdS{svn}	{Bidirectional operation between a Subversion repository and git}
 
+\pdfliteral{0.65 0.65 0.65 rg}
 \section{Manipulators (plumbing)}
 \cmdS{apply}	{Apply a patch to files and/or to the index}
 \cmdL{checkout-index}	{Copy files from the index to the working tree}
@@ -465,6 +373,7 @@ and has then been modified to my own use.
 \cmdS{update-ref}	{Update the object name stored in a ref safely}
 \cmdS{write-tree}	{Create a tree object from the current index}
 
+\pdfliteral{0.65 0.65 0.65 rg}
 \section{Interrogators (plumbing)}
 \cmdS{cat-file}	{Provide content or type and size information for repository objects}
 \cmdS{diff-files}	{Compares files in the working tree and the index}
@@ -484,6 +393,7 @@ and has then been modified to my own use.
 \cmdS{var}	{Show a git logical variable}
 \cmdS{verify-pack}	{Validate packed git archive files}
 
+\pdfliteral{0.65 0.65 0.65 rg}
 \section{Synching repositories}
 \cmdS{daemon}	{A really simple server for git repositories}
 \cmdS{fetch-pack}	{Receive missing objects from another repository}
@@ -491,6 +401,7 @@ and has then been modified to my own use.
 \cmdS{send-pack}	{Push objects over git protocol to another repository}
 \cmdL{update-server-info}	{Update auxiliary info file to help dumb servers}
 
+\pdfliteral{0.65 0.65 0.65 rg}
 \section{Helper commands}
 \cmdS{http-fetch}	{Download from a remote git repository via HTTP}
 \cmdS{http-push}	{Push objects over HTTP/DAV to another repository}
@@ -500,6 +411,7 @@ and has then been modified to my own use.
 \cmdL{upload-archive}	{Send archive back toarchive}
 \cmdS{upload-pack}	{Send objects packed back tofetch-pack}
 
+\pdfliteral{0.65 0.65 0.65 rg}
 \section{Internal helper commands}
 \cmdS{check-attr}	{Display gitattributes information}
 \cmdL{check-ref-format}	{Ensures that a reference name is well formed}
@@ -510,6 +422,7 @@ and has then been modified to my own use.
 \cmdS{patch-id}	{Compute unique ID for a patch}
 \cmdS{sh-setup}	{Common git shell script setup code}
 \cmdS{stripspace}	{Filter out empty lines}
+\pdfliteral{0 0 0 rg}
 
 %% Footer
 \copyrightnotice
