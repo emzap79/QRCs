@@ -183,7 +183,7 @@ and has then been modified to my own use.
 %}}}
 % A long option-command%{{{
 
-\def\cmdOptLB#1#2{
+\def\cmdOptL#1#2{
   \noindent
   \hbox to \hsize {% This comment is needed to remove space at start of line
     \vtop{
@@ -213,7 +213,7 @@ and has then been modified to my own use.
 %}}}
 % A very long option-command%{{{
 
-\def\cmdOptLBl#1#2{
+\def\cmdOptLl#1#2{
     \hsize=8.5cm
     \vbox {
         \hbox{
@@ -271,7 +271,7 @@ and has then been modified to my own use.
 \cmdOpt{m}	{Set comment for commitment -- correct it with prepending {\tt --amend} to argument}
 \gray{\cmdS{describe}	{Show the most recent tag that is reachable from a commit}}
 \cmdS{diff}	{Show changes between commits, commit and working tree, etc.}
-\cmdOptLB{cached}	{compare working tree to index (stage area)}
+\cmdOptL{cached}	{compare working tree to index (stage area)}
 \gray{\cmdS{fetch}	{Download objects and refs from another repository}}
 \gray{\cmdS{format-patch}	{Prepare patches for e-mail submission}}
 \gray{\cmdS{gc}	{Cleanup unnecessary files and optimize the local repository}}
@@ -280,11 +280,11 @@ and has then been modified to my own use.
 \cmdS{init}	{Create an empty git repository or reinitialize an existing one}
 \cmdS{log}	{Show commit logs (prepend {\tt --} before path to avoid ambiguousity)}
 \cmdOpt{p}	{show diffs of each commit}
-\cmdOptLB{stat}	{precise output with some stats}
-\cmdOptLBl{abbrev-commit}	{shortend (but unique) SHA-1 values for the commit objects }
-\cmdOptLB{oneline}	{show logs as shortened oneliner}
-\cmdOptLB{reverse}	{reverse log-history output}
-\cmdOptLB{follow}	{entire history including renames}
+\cmdOptL{stat}	{precise output with some stats}
+\cmdOptLl{abbrev-commit}	{shortend (but unique) SHA-1 values for the commit objects }
+\cmdOptL{oneline}	{show logs as shortened oneliner}
+\cmdOptL{reverse}	{reverse log-history output}
+\cmdOptL{follow}	{entire history including renames}
 \cmdS{merge}	{Join two or more development histories together}
 \gray{\cmdS{mv}	{Move or rename a file, a directory, or a symlink}}
 \gray{\cmdS{notes}	{Add/inspect commit notes}}
@@ -292,9 +292,9 @@ and has then been modified to my own use.
 \cmdS{push}	{Update remote refs along with associated objects}
 \cmdS{rebase}	{Forward-port local commits to the updated upstream head}
 \cmdS{reset}	{Reset current HEAD to the specified state (Remove a $file$ from staging area)}
-\cmdOptLB{soft}	{move HEAD pointer only}
-\cmdOptLB{mixed}	{resets staging area to new HEAD (default!)}
-\cmdOptLB{hard}	{resets staging area and working tree to new HEAD}
+\cmdOptL{soft}	{move HEAD pointer only}
+\cmdOptL{mixed}	{resets staging area to new HEAD (default!)}
+\cmdOptL{hard}	{resets staging area and working tree to new HEAD}
 \gray{\cmdS{revert}	{Revert an existing commit}}
 \cmdS{rm}	{Remove files from the working tree and from the index}
 \cmdOpt{r}	{remove recursive -- for removing additionally from repo, add
@@ -378,7 +378,8 @@ and has then been modified to my own use.
 \cmdS{cat-file}	{Provide content or type and size information for repository objects}
 \cmdS{diff-files}	{Compares files in the working tree and the index}
 \cmdS{diff-index}	{Compares content and mode of blobs between the index and repository}
-\cmdS{diff-tree}	{\emergencystretch=5pt Compares the content and mode of blobs found via two tree objects}
+\black{\cmdS{diff-tree}	{\emergencystretch=5pt Compares the content and mode of blobs found via two tree objects}}
+\black{\cmdOptLl{name-only}{show only names of files}}
 \cmdS{for-each-ref}	{Output information on each ref}
 \cmdS{ls-files}	{Show information about files in the index and the working tree}
 \cmdS{ls-remote}	{List references in a remote repository}
