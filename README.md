@@ -12,6 +12,7 @@ My repo contains qrc's of the following issues
 - VIM
 - GIT
 - TIG
+- Tmux
 - TeX
 - LaTeX
 

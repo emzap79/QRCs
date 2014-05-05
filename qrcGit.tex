@@ -5,9 +5,9 @@
 
 % compile as 'pdftex git-qrc.tex'
 
-\def\versionnumber{1.0}  % Version of this reference card
+\def\versionnumber{1.1}  % Version of this reference card
 \def\year{2014}
-\def\month{Apr}
+\def\month{May}
 \def\version{v\versionnumber\ \month\ \year}
 
 \def\shortcopyrightnotice{\smallskip
@@ -287,7 +287,7 @@ and has then been modified to my own use.
 \cmdOptL{reverse}	{reverse log-history output}
 \cmdOptL{follow}	{entire history including renames}
 \cmdS{merge}	{Join two or more development histories together}
-\cmdOpt{s}	{specify your merge strategy (see {\tt man git-merge})}
+\cmdOpt{s}	{specify your merge strategy (see {\tt man git-merge})}Apply the change introduced by an existing commit
 \cmdOpt{X}	{apply option to strategy}
 \cmdOptL{ff}	{only update the branch pointer, without creating a merge commit (default)}
 \gray{\cmdS{mv}	{Move or rename a file, a directory, or a symlink}}
@@ -295,7 +295,8 @@ and has then been modified to my own use.
 \cmdS{pull}	{Fetch from and merge with another re\-pository or a local branch}
 \cmdS{push}	{Update remote refs along with associated objects}
 \cmdS{rebase}	{Forward-port local commits to the updated upstream head}
-\cmdOptS{i}	{rebase interactively}
+\cmdOpt{i}	{rebase interactively}
+\cmdOptLl{autosquash}	{When the commit log message begins with "squash! ..." (or "fixup! ..."), automatically modify the todo list of {\tt rebase -i} }
 \cmdS{reset}	{Reset current HEAD to the specified state (Remove a $file$ from staging area)}
 \cmdOptL{soft}	{move HEAD pointer only}
 \cmdOptL{mixed}	{resets staging area to new HEAD (default!)}
@@ -308,7 +309,8 @@ and has then been modified to my own use.
 \cmdS{show}	{Show various types of objects}
 \gray{\cmdS{stash}	{Stash the changes in a dirty working directory away}}
 \cmdS{status}	{Show the working tree status}
-\gray{\cmdS{submodule}	{Initialize, update or inspect submodules}}
+\cmdS{submodule}	{Initialize, update, add or inspect submodules}
+\cmdOptLl{recurse-submodules}	{pull changes from main repo + submodules}
 \gray{\cmdS{tag}	{Create, list, delete or verify a tag object signed with GPG}}
 \gray{\cmdS{gitk}	{The git repository browser}}
 

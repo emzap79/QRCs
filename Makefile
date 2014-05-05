@@ -2,6 +2,10 @@ tex:
 	pdftex qrcTeX.tex
 	xdg-open qrcTeX.pdf &
 
+tmux:
+	pdftex qrcTmux.tex
+	xdg-open qrcTmux.pdf &
+
 bash:
 	pdftex qrcBash.tex
 	xdg-open qrcBash.pdf &
