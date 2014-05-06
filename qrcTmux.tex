@@ -49,7 +49,7 @@ and has then been modified to my own use.
 \def\backspace{$\leftarrow$}
 \def\ctrl{{\rm\char94}\kern-1pt}
 \def\enter{$\hookleftarrow$}
-\def\arrows{$\leftrightarrow$}
+\def\arrows{$\Leftrightarrow\Updownarrow$}
 \def\or{\thinspace{\tinyit{or}}\thinspace}
 \def\key#1{$\langle${\rm{\it#1\/}}$\rangle$}
 \def\rapos{\char125}
@@ -261,12 +261,12 @@ and has then been modified to my own use.
 \subsection{Sessions}{}
 \cmdS{\ctrl b?}	{show all available keybinds}
 \cmdS{\ctrl bd \ctrl bs}	{detach / reattach to session}
-\cmdS{\arrows}{bla}
 
 \subsection{Copy Mode}{{\tt vim} like movements}
 \cmdS{h j k l}{move left/down/up/right}
 \cmdS{\ctrl b\lbracket ~ q}	{enter / exit copy mode}
 \cmdS{\key{space} \enter}	{select / copy text under cursor}
+\cmdS{\ctrl b\rbracket}	{paste copied text to command line}
 
 \subsection{Windows}{}
 \cmdS{\ctrl bc \ctrl b,}	{create / rename window}
@@ -276,8 +276,8 @@ and has then been modified to my own use.
 \cmdS{\ctrl b\%  \ctrl b"}	{split pane vertic / horiz}
 \cmdS{\ctrl bx \or \ctrl d }	{delete pane}
 \cmdS{\ctrl b$n$}	{change to buffer $0 \ldots n$}
-\cmdS{\ctrl b\key{arrow}}	{select pane}
-\cmdL{\ctrl b\key{m-arrow} ~ \ctrl bz}	{resize / full-screen pane}
+\cmdS{\ctrl b\key{\arrows}}	{select pane}
+\cmdS{\ctrl b\key{m-\arrows} \ctrl bz}	{resize / full-screen pane}
 
 %% Footer
 \copyrightnotice
