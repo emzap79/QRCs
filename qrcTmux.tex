@@ -37,8 +37,11 @@ and has then been modified to my own use.
 \font\smalltt=cmtt8
 \font\tinyit=cmmi5
 
+% Title & Sections
 \def\title#1{\hfil{\bf #1}\hfil\par\vskip 2pt\hrule}
-\def\section#1{\vskip 0.7cm {\it#1\/}\par\vskip 1pt\hrule}
+\def\section#1#2{\vskip 0.7cm {\bf#1}\par\vskip 1pt\hrule\vskip 1pt#2\vskip 5pt}
+\def\subsection#1#2{\vskip 0.7cm {#1\/}\par\vskip 1pt\hrule\vskip 1pt#2\vskip 5pt}
+\def\subsubsection#1{\vskip 0.7cm {#1\/}\par\vskip 1pt\vskip 1pt}
 
 % Characters definitions
 \def\\{\hfil\break}
@@ -46,6 +49,7 @@ and has then been modified to my own use.
 \def\backspace{$\leftarrow$}
 \def\ctrl{{\rm\char94}\kern-1pt}
 \def\enter{$\hookleftarrow$}
+\def\arrows{$\leftrightarrow$}
 \def\or{\thinspace{\tinyit{or}}\thinspace}
 \def\key#1{$\langle${\rm{\it#1\/}}$\rangle$}
 \def\rapos{\char125}
@@ -244,7 +248,7 @@ and has then been modified to my own use.
 % \shortcopyrightnotice
 \shortintro
 
-\section{From Shell}
+\section{From Shell}{}
 
 \cmdL{create session}	{tmux new -s {\tt session-name}}
 \cmdL{kill session}	{tmux kill-session -t {\tt session-name}}
@@ -252,19 +256,28 @@ and has then been modified to my own use.
 \cmdL{rename session}	{tmux rename-session -t {\tt old-name} {\tt new-name}}
 \cmdL{list session}	{tmux ls}
 
-\section{Inside Session}
+\section{Inside Tmux}{Prefix key is set to {\tt \ctrl b} by default}
 
-\cmdS{\ctrl bc \ctrl b,}	{create/rename window}
+\subsection{Sessions}{}
+\cmdS{\ctrl b?}	{show all available keybinds}
+\cmdS{\ctrl bd \ctrl bs}	{detach / reattach to session}
+\cmdS{\arrows}{bla}
+
+\subsection{Copy Mode}{{\tt vim} like movements}
+\cmdS{h j k l}{move left/down/up/right}
+\cmdS{\ctrl b\lbracket ~ q}	{enter / exit copy mode}
+\cmdS{\key{space} \enter}	{select / copy text under cursor}
+
+\subsection{Windows}{}
+\cmdS{\ctrl bc \ctrl b,}	{create / rename window}
 \cmdS{\ctrl bn \ctrl bp \ctrl bl}	{navigate next/prev/last window}
-\cmdS{\ctrl b$n$}	{change to buffer \#$n$}
-\cmdS{\ctrl bd}	{detach session}
-\cmdS{\ctrl b?}	{help}
 
+\subsection{Panes/Buffers}{}
 \cmdS{\ctrl b\%  \ctrl b"}	{split pane vertic / horiz}
 \cmdS{\ctrl bx \or \ctrl d }	{delete pane}
+\cmdS{\ctrl b$n$}	{change to buffer $0 \ldots n$}
 \cmdS{\ctrl b\key{arrow}}	{select pane}
-\cmdS{\ctrl b\key{m-arrow}}	{resize pane}
-\cmdS{\ctrl bz}	{toggle pane full-screen}
+\cmdL{\ctrl b\key{m-arrow} ~ \ctrl bz}	{resize / full-screen pane}
 
 %% Footer
 \copyrightnotice

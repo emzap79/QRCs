@@ -37,9 +37,15 @@ and has then been modified to my own use.
 \font\smalltt=cmtt8
 \font\tinyit=cmmi5
 
-\def\title#1{\hfil{\bf #1}\hfil\par\vskip 2pt\hrule}
-\def\section#1{\vskip 0.7cm {\it#1\/}\par\vskip 1pt\hrule}
+% \def\title#1{\hfil{\bf #1}\hfil\par\vskip 2pt\hrule}
+% \def\section#1{\vskip 0.7cm {\it#1\/}\par\vskip 1pt\hrule}
 
+\def\title#1{\hfil{\bf #1}\hfil\par\vskip 2pt\hrule}
+\def\section#1#2{\vskip 0.7cm {\bf#1}\par\vskip 1pt\hrule\vskip 1pt#2\vskip 5pt}
+\def\subsection#1#2{\vskip 0.7cm {#1\/}\par\vskip 1pt\hrule\vskip 1pt#2\vskip 5pt}
+% \def\subsubsection#1#2{\vskip 0.7cm {#1\/}\par\vskip 1pt\hrule\vskip 1pt#2\vskip 5pt}
+\def\subsubsection#1{\vskip 0.7cm {#1\/}\par\vskip 1pt\vskip 1pt}
+% \def\subsubsection#1{\vskip 0.7cm \hskip 1em {- #1\/}\par\vskip 1pt\vskip 1pt}
 % Characters definitions
 \def\\{\hfil\break}
 \def\bs{$\backslash$}
@@ -244,7 +250,7 @@ and has then been modified to my own use.
 % \shortcopyrightnotice
 \shortintro
 
-\section{Main commands}
+\section{Main commands}{}
 \cmdS{add}	{Add file contents to the index}
 \cmdOpt{A [:/]}	{adds all file changes including deletions to the staging area [for the whole tree]}
 \cmdOpt{f}	{allow adding otherwise ignored files}
@@ -314,7 +320,7 @@ and has then been modified to my own use.
 \gray{\cmdS{tag}	{Create, list, delete or verify a tag object signed with GPG}}
 \gray{\cmdS{gitk}	{The git repository browser}}
 
-\section{Manipulators}
+\section{Manipulators}{}
 \gray{\cmdS{config}	{Get and set repository or global options}}
 \gray{\cmdS{fast-export}	{Git data exporter}}
 \gray{\cmdS{fast-import}	{Backend for fast Git data importers}}
@@ -329,7 +335,7 @@ and has then been modified to my own use.
 \gray{\cmdS{repack}	{Pack unpacked objects in a repository}}
 \gray{\cmdS{replace}	{Create, list, delete refs to replace objects}}
 
-\section{Interrogators}
+\section{Interrogators}{}
 \gray{\cmdS{annotate}	{Annotate file lines with commit information}}
 \gray{\cmdS{blame}	{\emergencystretch=5pt Show what revision and author last modified each line of a file}}
 \gray{\cmdS{cherry}	{Find commits not merged upstream}}
@@ -346,7 +352,7 @@ and has then been modified to my own use.
 \gray{\cmdS{verify-tag}	{Check the GPG signature of tags}}
 \gray{\cmdS{whatchanged}	{Show logs with difference each commit introduces}}
 
-\section{Interacting with Others}
+\section{Interacting with Others}{}
 \gray{\cmdS{archimport}	{Import an Arch repository into git}}
 \gray{\cmdL{cvsexportcommit}	{Export a single commit to a CVS checkout}}
 \gray{\cmdS{cvsimport}	{Salvage your data out of another SCM people love to hate}}
@@ -357,7 +363,7 @@ and has then been modified to my own use.
 \gray{\cmdS{send-email}	{Send a collection of patches as emails}}
 \gray{\cmdS{svn}	{Bidirectional operation between a Subversion repository and git}}
 
-\section{Manipulators (plumbing)}
+\section{Manipulators (plumbing)}{}
 \gray{\cmdS{apply}	{Apply a patch to files and/or to the index}}
 \gray{\cmdL{checkout-index}	{Copy files from the index to the working tree}}
 \gray{\cmdS{commit-tree}	{Create a new commit object}}
@@ -376,7 +382,7 @@ and has then been modified to my own use.
 \gray{\cmdS{update-ref}	{Update the object name stored in a ref safely}}
 \gray{\cmdS{write-tree}	{Create a tree object from the current index}}
 
-\section{Interrogators (plumbing)}
+\section{Interrogators (plumbing)}{}
 \gray{\cmdS{cat-file}	{Provide content or type and size information for repository objects}}
 \gray{\cmdS{diff-files}	{Compares files in the working tree and the index}}
 \gray{\cmdS{diff-index}	{Compares content and mode of blobs between the index and repository}}
@@ -396,14 +402,14 @@ and has then been modified to my own use.
 \gray{\cmdS{var}	{Show a git logical variable}}
 \gray{\cmdS{verify-pack}	{Validate packed git archive files}}
 
-\section{Synching repositories}
+\section{Synching repositories}{}
 \gray{\cmdS{daemon}	{A really simple server for git repositories}}
 \gray{\cmdS{fetch-pack}	{Receive missing objects from another repository}}
 \gray{\cmdS{http-backend}	{Server side implementation of Git over HTTP}}
 \gray{\cmdS{send-pack}	{Push objects over git protocol to another repository}}
 \gray{\cmdL{update-server-info}	{Update auxiliary info file to help dumb servers}}
 
-\section{Helper commands}
+\section{Helper commands}{}
 \gray{\cmdS{http-fetch}	{Download from a remote git repository via HTTP}}
 \gray{\cmdS{http-push}	{Push objects over HTTP/DAV to another repository}}
 \gray{\cmdS{parse-remote}	{Routines to help parsing remote repository access parameters}}
@@ -412,7 +418,7 @@ and has then been modified to my own use.
 \gray{\cmdL{upload-archive}	{Send archive back toarchive}}
 \gray{\cmdS{upload-pack}	{Send objects packed back tofetch-pack}}
 
-\section{Internal helper commands}
+\section{Internal helper commands}{}
 \gray{\cmdS{check-attr}	{Display gitattributes information}}
 \gray{\cmdL{check-ref-format}	{Ensures that a reference name is well formed}}
 \gray{\cmdL{fmt-merge-msg}	{Produce a merge commit message}}
