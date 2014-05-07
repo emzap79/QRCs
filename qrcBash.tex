@@ -96,6 +96,24 @@ and was then modified to my own use.
 % \def\cmdFooBar#1{{\tt#1}\null}	%\null so not an abbrev even if period follows
 
 %}}}
+\def\gray#1{\pdfliteral{0.35 0.35 0.35 rg}#1\pdfliteral{0 0 0 rg}}
+\def\black#1{\pdfliteral{0 0 0 rg}#1\pdfliteral{0.35 0.35 0.35 rg}}
+% add greyline%{{{
+
+% http://tug.org/pipermail/xetex/2012-February/022768.html
+\def\pdfliteral#1{\special{pdf: literal #1}}
+\def\greyline#1{
+    \setbox1\hbox to \hsize{#1}
+    \setbox0\vbox{
+        \pdfliteral{0.8 0.8 0.8 rg}
+        \hrule width \hsize height \ht0 depth \dp0
+        \pdfliteral{0 0 0 rg}
+    }
+    \wd0=0bp
+    \hbox{\box0\box1}
+}
+
+% add greyline%}}}
 % A short command%{{{
 
 \def\cmd#1#2{
@@ -155,10 +173,11 @@ and was then modified to my own use.
 % A example command%{{{
 
 \def\cmdExample#1#2{
+\pdfliteral{0.35 0.35 0.35 rg}
   \noindent
   \hbox to \hsize {% This comment is needed to remove space at start of line
     \vtop{
-      \hbox to 2.2cm {
+      \hbox to 3.2cm {
       % \hfuzz = 5pt
       \hskip 4pt
       \hfil
@@ -169,7 +188,7 @@ and was then modified to my own use.
     }% This comment is needed to remove space
     \hfil	% absorb extra space b/w columns
     \vtop{
-      \hsize=5.90cm
+      \hsize=4.90cm
       \hbox{\hfuzz = 15pt \vtop{
       % Uncomment line below to right-align description
       %\leftskip=0cm plus 150fil
@@ -181,7 +200,7 @@ and was then modified to my own use.
   %\hrule
   \par
   \vskip 1ex
-
+\pdfliteral{0 0 0 rg}
 }%}}}
 % An option command%{{{
 
@@ -254,6 +273,7 @@ and was then modified to my own use.
 
 }%}}}
 
+
 %}}}
 % card content%{{{
 
@@ -307,17 +327,18 @@ and was then modified to my own use.
 % \cmdExample{15G}{move to $15$th line}
 
 %}}}
-\subsection{History-Commands}{example command is: {\tt echo foo bar}}%{{{
+\subsection{History-Commands}{example command is: \gray{{\it cd foo/bar}}}%{{{
+
 
 \cmd{!!}{runs previous executed command (also known as `bang bang')}
-\cmdExample{sudo\ !!}{sudo echo foo bar}
+\cmdExample{sudo\ !!}{sudo cd foo/bar}
 \cmd{!\$ / \key{esc .\ }}{repeats last $arg$ of prev command}
 \cmd{!$n$\ / !-$n$}{executes command $n$/$n$th last command}
 \cmd{!$str$\ / !?$str$?}{runs last executed command, starting with/containing string or character $str$ (ending ? is optional)}
-\cmdExample{!echo}{echo foo bar}
-\cmdExample{!? sudo}{sudo echo foo bar}
-\cmd{!$n$:$d$}{executes first/last/specific/all $arg$'s of command $n$ (refers to prev command, in case $n$ is not given) $\rightarrow$ for meaning of designators $d$, see below!}
-\cmdExample{vim !sudo:*}{vim echo foo bar}
+\cmdExample{!cd}{cd foo/bar}
+\cmdExample{!?sudo?}{sudo cd foo/bar}
+\cmd{!!:$des$}{appends first/last/specific/all $arg$'s of last command (trailing :$des$ refers to below listed designators)}
+\cmdExample{echo !cd:q}{echo 'cd foo/bar'}
 \cmd{!\#}{refers to the entire command line typed so far}
 \subsubsection{Designators}%{{{
 
