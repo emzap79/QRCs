@@ -1,0 +1,281 @@
+% vim:fdm=marker
+% Intro %{{{
+
+% Font %{{{
+
+\font\bigbf=cmbx12
+\font\smallrm=cmr8
+\font\smalltt=cmtt8
+\font\tinyit=cmmi5
+
+% Font %}}}
+% Shortintro%{{{
+
+\def\shortintro{\smallskip
+\centerline{\smallrm QRC of most often used GIT commands -- Version \version}}
+
+\def\shortcopyrightnotice{\smallskip
+  \centerline{\smallrm \copyright\ \year\ Jonas Petong -
+  Permissions on back. \version}}
+
+% Shortintro%}}}
+% Copyrightnotice%{{{
+
+\def\copyrightnotice{
+\vfill
+\hrule\smallskip\begingroup\smallrm
+% \centerline{\version. Copyright \copyright\ \year\ Jonas Petong}
+\centerline{http://github.com/emzap79/QRCs}
+\centerline{emzap79@gmail.com}\\
+This TeXfile is based on Gabriel B. Burcas \copyright\ git-qrc.tex
+and has then been modified to my own use.
+\endgroup}
+
+% Copyrightnotice%}}}
+
+% Intro %}}}
+% Page Format%{{{
+
+% Document Size%{{{
+
+% \pdfoutput=1
+\pdfpageheight=21cm
+\pdfpagewidth=29.7cm
+
+% Document Size%}}}
+% Three columns definitions%{{{
+
+\parindent 0pt
+\nopagenumbers
+\hoffset=-1.56cm
+\voffset=-1.54cm
+\newdimen\fullhsize
+\fullhsize=27.9cm
+\hsize=8.5cm
+\vsize=19cm
+\def\fullline{\hbox to\fullhsize}
+\let\lr=L
+\newbox\leftcolumn
+\newbox\midcolumn
+\output={
+  \if L\lr
+    \global\setbox\leftcolumn=\columnbox
+    \global\let\lr=M
+  \else\if M\lr
+    \global\setbox\midcolumn=\columnbox
+    \global\let\lr=R
+  \else
+    \tripleformat
+    \global\let\lr=L
+  \fi\fi
+  \ifnum\outputpenalty>-20000
+  \else
+    \dosupereject
+  \fi}
+\def\tripleformat{
+  \shipout\vbox{\fullline{\box\leftcolumn\hfil\box\midcolumn\hfil\columnbox}}
+  \advancepageno}
+\def\columnbox{\leftline{\pagebody}}
+
+% Three columns definitions%}}}
+
+% Page Format%}}}
+% Other Commands%{{{
+
+% Title & Sections%{{{
+
+\def\title#1{\hfil{\bf #1}\hfil\par\vskip 2pt\hrule}
+\def\section#1#2{\vskip 0.7cm {\bf#1}\par\vskip 1pt\hrule\vskip 1pt#2\vskip 5pt}
+\def\subsection#1#2{\vskip 0.7cm {#1\/}\par\vskip 1pt\hrule\vskip 1pt#2\vskip 5pt}
+% \def\subsubsection#1#2{\vskip 0.7cm {#1\/}\par\vskip 1pt\hrule\vskip 1pt#2\vskip 5pt}
+\def\subsubsection#1{\vskip 0.7cm {#1\/}\par\vskip 1pt\vskip 1pt}
+% \def\subsubsection#1{\vskip 0.7cm \hskip 1em {- #1\/}\par\vskip 1pt\vskip 1pt}
+
+% Title & Sections%}}}
+% A short command%{{{
+
+\def\cmdS#1#2{
+  \noindent
+  \hbox to \hsize {%
+    \vtop{
+      \hbox to 2.4cm {
+        \noindent\cmd{#1}\dotfill
+      }
+      %\hrule
+    }%
+    \hfil	% absorb extra space b/w columns
+    \vtop{
+      \hsize=5.90cm
+      \hbox{\hfuzz = 15pt \vtop{
+      {#2}
+      }}
+      %\hrule
+    }
+  }
+  %\hrule
+  \par
+  \vskip 0.14cm
+}
+
+%}}}
+% A long command%{{{
+
+\def\cmdL#1#2{
+  \hsize=8.5cm
+  \vbox {
+    \hbox{
+        \cmd{#1}\hfil
+    }%
+    %\vskip -0.2cm % adjusts space b/w command & description
+    \hskip 2.5cm  % indent for description
+    \hbox to 5.9cm {%
+      \hfuzz = 5pt
+      % Use the first one when right-aligned
+      %\vrule\hskip -0.05cm
+      %\vrule\hskip 0.05cm
+      \hfil
+      \hsize=5.9cm
+      \vtop{
+        %\hrule
+        % Uncomment line below to right-align description
+        %\leftskip=0cm plus 150fil
+        {#2}
+        }}
+  }%
+  %\hrule
+  \par
+  \vskip 0.14cm
+}
+
+%}}}
+% A short option%{{{
+
+\def\cmdOpt#1#2{
+  \noindent
+  \hbox to \hsize {% This comment is needed to remove space at start of line
+    \vtop{
+      \hbox to 2.4cm {
+      % \hfuzz = 5pt
+      \hskip 24pt
+      \hfil
+      % \hsize=1.9cm
+      \noindent\cmd{\tt-#1}
+      }
+      %\hrule
+    }% This comment is needed to remove space
+    \hfil	% absorb extra space b/w columns
+    \vtop{
+      \hsize=5.90cm
+      \hbox{\hfuzz = 15pt \vtop{
+      % Uncomment line below to right-align description
+      %\leftskip=0cm plus 150fil
+      {#2}
+      }}
+      %\hrule
+    }
+  }
+  %\hrule
+  \par
+  \vskip 0.14cm
+}
+
+%}}}
+% A long option%{{{
+
+\def\cmdOptL#1#2{
+  \noindent
+  \hbox to \hsize {% This comment is needed to remove space at start of line
+    \vtop{
+      \hbox to 2.4cm {
+      %\hfuzz = 5pt
+      %\hsize=5.9cm
+      \hskip 15pt
+      \noindent\cmd{\tt--#1}
+      \hfil
+      }
+      %\hrule
+    }% This comment is needed to remove space
+    \hfil	% absorb extra space b/w columns
+    \vtop{
+      \hsize=5.90cm
+      \hbox{\hfuzz = 15pt \vtop{
+      {#2}
+      }}
+      %\hrule
+    }
+  }
+  %\hrule
+  \par
+  \vskip 0.14cm
+}
+
+%}}}
+% A very long option%{{{
+
+\def\cmdOptLl#1#2{
+    \hsize=8.5cm
+    \vbox {
+        \hbox{
+      \hskip 15pt
+      \noindent\cmd{\tt--#1}
+      \hfil
+        }%
+        \hskip 70pt  % indent for description
+        \hbox to 5.9cm {%
+            \hfuzz = 5pt
+            \hfil
+            \hsize=5.9cm
+            \vtop{
+                {#2}
+            }}
+    }%
+    %\hrule
+    \par
+    \vskip 0.14cm
+}
+
+%}}}
+% An example command%{{{
+
+\def\cmdExmpl#1#2{
+    \hbox to \hsize {
+        \hfuzz = 20pt
+        \hfil
+        \hsize=7.5cm
+        \vtop{
+            \vskip 0ex
+            \noindent\cmd{\tt e.g. {#2}: #1}
+            \vskip 3ex
+        }%
+    }
+}
+
+
+%}}}
+% Characters definitions%{{{
+
+\def\\{\hfil\break}
+\def\bs{$\backslash$}
+\def\backspace{$\leftarrow$}
+\def\ctrl{{\rm\char94}\kern-1pt}
+\def\enter{$\hookleftarrow$}
+\def\arrows{$\Leftrightarrow\Updownarrow$}
+\def\or{\thinspace{\tinyit{or}}\thinspace}
+\def\key#1{$\langle${\rm{\it#1\/}}$\rangle$}
+\def\rapos{\char125}
+\def\lapos{\char123}
+\def\bs{\char92}
+\def\tild{\char126}
+\def\lbracket{[}
+\def\rbracket{]}
+
+% Characters definitions%}}}
+% Optimizations%{{{
+
+\def\cmd#1{{\tt#1}\null}	%\null so not an abbrev even if period follows
+\def\gray#1{\pdfliteral{0.65 0.65 0.65 rg}#1\pdfliteral{0 0 0 rg}}
+\def\black#1{\pdfliteral{0 0 0 rg}#1\pdfliteral{0.65 0.65 0.65 rg}}
+
+% Optimizations%}}}
+
+% Other Commands%}}}
