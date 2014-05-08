@@ -15,7 +15,7 @@ latex:
 	xdg-open qrcLaTeX.pdf &
 
 r:
-	pdflatex qrcR.tex
+	pdftex qrcR.tex
 	xdg-open qrcR.pdf &
 
 git: 
