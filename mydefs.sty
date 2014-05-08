@@ -7,6 +7,7 @@
 \font\smallrm=cmr8
 \font\smalltt=cmtt8
 \font\tinyit=cmmi5
+\font\tinytt=cmtt5
 
 % Font %}}}
 % Shortintro%{{{
@@ -121,65 +122,26 @@ and has then been modified to my own use.
 % A long command%{{{
 
 \def\cmdL#1#2{
-  \hsize=8.5cm
   \vbox {
-    \hbox{
-        \cmd{#1}\hfil
+      \hbox to \hsize{
+          \cmd{#1}
+        \hfil
+        % \dotfill
+        % \hskip 20em
     }%
-    %\vskip -0.2cm % adjusts space b/w command & description
     \hskip 2.5cm  % indent for description
     \hbox to 5.9cm {%
       \hfuzz = 5pt
-      % Use the first one when right-aligned
-      %\vrule\hskip -0.05cm
-      %\vrule\hskip 0.05cm
       \hfil
       \hsize=5.9cm
       \vtop{
-        %\hrule
-        % Uncomment line below to right-align description
-        %\leftskip=0cm plus 150fil
         {#2}
         }}
   }%
-  %\hrule
   \par
   \vskip 0.14cm
 }
 
-%}}}
-% A short option%{{{
-
-\def\cmdOpt#1#2{
-  \noindent
-  \hbox to \hsize {% This comment is needed to remove space at start of line
-    \vtop{
-      \hbox to 2.4cm {
-      % \hfuzz = 5pt
-      \hskip 24pt
-      \hfil
-      % \hsize=1.9cm
-      \noindent\cmd{\tt-#1}
-      }
-      %\hrule
-    }% This comment is needed to remove space
-    \hfil	% absorb extra space b/w columns
-    \vtop{
-      \hsize=5.90cm
-      \hbox{\hfuzz = 15pt \vtop{
-      % Uncomment line below to right-align description
-      %\leftskip=0cm plus 150fil
-      {#2}
-      }}
-      %\hrule
-    }
-  }
-  %\hrule
-  \par
-  \vskip 0.14cm
-}
-
-%}}}
 % A long option%{{{
 
 \def\cmdOptL#1#2{
@@ -244,8 +206,8 @@ and has then been modified to my own use.
         \hsize=7.5cm
         \vtop{
             \vskip 0ex
-            \noindent\cmd{\tt e.g. {#2}: #1}
-            \vskip 0.5ex
+            \noindent\cmd{\tt {#2}: #1}
+            \vskip 1.0ex
         }%
     }
 }
@@ -259,7 +221,7 @@ and has then been modified to my own use.
   \hbox to \hsize {% This comment is needed to remove space at start of line
     \vtop{
       % \leftskip=0cm plus 150fil
-        \hbox to 2.9cm {
+        \hbox to 3.5cm {
       \hfil
       % \hfuzz = 5pt
       % \hskip 10pt
@@ -285,6 +247,40 @@ and has then been modified to my own use.
   \vskip 0.14cm
 
 }%}}}
+% An long operator command%{{{
+
+\def\cmdOperL#1#2{
+    \noindent
+    \vbox{
+        \hbox {% This comment is needed to remove space at start of line
+            % \leftskip=0cm plus 150fil
+            \hfil
+            % \hfuzz = 5pt
+            \hsize=10em
+            \noindent{#1}
+            \hfil
+            % \hskip 2ex
+            %\hrule
+        }% This comment is needed to remove space
+        \hfil	% absorb extra space b/w columns
+        % \hsize=4.90cm
+        \hskip 7em
+        \vtop{
+            \hbox{
+                % Uncomment line below to right-align description
+                %\leftskip=0cm plus 150fil
+                {#2}
+            }
+            %\hrule
+        }
+    }
+    %\hrule
+    \par
+    \vskip 0.14cm
+
+}
+
+% An long operator command%}}}
 % Optimizations%{{{
 
 \def\cmd#1{{\tt#1}\null}	%\null so not an abbrev even if period follows
@@ -312,8 +308,8 @@ and has then been modified to my own use.
 \def\rbracket{]}
 \def\ldots{$...$}
 \def\code{\tt}
-\def\F{\tt FALSE}
-\def\T{\tt TRUE}
+\def\F{{\tt FALSE} }
+\def\T{{\tt TRUE} }
 
 % Characters definitions%}}}
 % % latex%{{{

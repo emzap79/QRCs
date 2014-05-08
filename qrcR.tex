@@ -5,7 +5,7 @@
 
 % version
 \def\content{R}
-\def\versionnumber{0.1}  % Version of this reference card
+\def\versionnumber{1.0}  % Version of this reference card
 \def\year{2014}
 \def\month{May}
 \def\version{v\versionnumber\ \month\ \year}
@@ -20,10 +20,13 @@
 % \shortcopyrightnotice
 \shortintro
 
-by Tom Short, EPRI PEAC, tshort@epri-peac.com\\2004-10-21\\
-Granted to the public domain. See www.Rpad.org for the source and latest version.
-Includes material from {\it R for Beginners} by Emmanuel Paradis
-(with permission). Some additions by James McCreight.
+The original Reference Cheat was created by Tom Short, EPRI PEAC,
+tshort@epri-peac.com\\2004-10-21\\ All of it's content is preserved! All I did
+is to adapt it's structure so it fits to my other quick reference cheats.
+
+% Granted to the public domain. See www.Rpad.org for the source and latest version.
+% Includes material from {\it R for Beginners} by Emmanuel Paradis
+% (with permission). Some additions by James McCreight.
 
 \section{Help}{Most R functions have online documentation.}
 
@@ -63,7 +66,7 @@ Includes material from {\it R for Beginners} by Emmanuel Paradis
     the help for options on row naming, NA treatment, and others}
 \cmdL{read.csv("filename",header=T)}	{id. but with defaults set for reading comma-delimited files}
 \cmdL{read.delim("filename",header=T)}	{id. but with defaults set for reading tab-delimited files}
-\cmdL{read.fwf(file,widths,header=F,sep="\t",as.is=F)}	{
+\cmdL{read.fwf(file,widths,header=F,sep="\\t",as.is=F)}	{
     read a table of {\it f}ixed {\it w}idth {\it f}ormatted data into a
     \emergencystretch=3em 'data.frame'; {\tt widths} is an integer vector,
     giving the widths of the fixed-width fields}
@@ -73,7 +76,7 @@ Includes material from {\it R for Beginners} by Emmanuel Paradis
 \cmdL{cat(..., file="", sep=" ")}	{prints the arguments after
     coercing to character; {\tt sep} is the character separator between
     arguments}
-\cmdL{print(a, ...)}	{prints its arguments; generic, meaning it can
+\cmdS{print(a, \ldots)}	{prints its arguments; generic, meaning it can
     have different methods for different objects}
 \cmdL{format(x,...)}	{format an R object for pretty printing}
 \cmdL{{\smalltt write.table(x,file="",row.names=T,col.names=T, sep=" ")}}	{prints {\tt x} after converting to a data frame; if {\tt quote} is {\tt TRUE}, character or factor columns are surrounded by quotes
@@ -81,17 +84,18 @@ Includes material from {\it R for Beginners} by Emmanuel Paradis
     end-of-line separator; {\tt na} is the string for missing values;
     use {\tt col.names=NA} to add a blank column header to get the
     column headers aligned correctly for spreadsheet input}
-\cmdL{sink(file)}	{[output to {\tt file}, until {\tt sink()}] Most
+\cmdS{sink(file)}	{[output to {\tt file}, until {\tt sink()}] Most
     of the I/O functions have a {\tt file} argument. This can often be a
     character string naming a file or a connection.  {\tt file=""} means
     the standard input or output. Connections can include files, pipes,
     zipped files, and R variables.}
 
 On windows, the file connection can also be used with {\tt description =
-"clipboard"}. To read a table copied from Excel, use \\
-{\tt x <- read.delim("clipboard")}\\
-To write a table to the clipboard for Excel, use \\
-{\smalltt  \emergencystretch=-15em write.table(x,"clipboard",sep="\bs t",col.names=NA)}
+"clipboard"}.
+
+\cmdExmpl{\\ x <- read.delim("clipboard")}{To read a table copied from Excel, use}
+\cmdExmpl{\\ {\smalltt write.table(x,"clipboard",sep="\bs t",col.names=NA)}}{To write a table to the clipboard for Excel, use}
+
 
 For database interaction, see packages {\tt RODBC}, {\tt DBI},\\
 {\tt RMySQL}, {\tt RPgSQL}, and {\tt ROracle}. See packages {\tt XML},
@@ -102,15 +106,14 @@ For database interaction, see packages {\tt RODBC}, {\tt DBI},\\
 \cmdS{c(...)}	{generic function to combine arguments with the default forming a vector; with {\tt recursive=T} descends through lists combining all elements into one vector}
 \cmdS{from:to}	{generates a sequence; ``:'' has operator priority; 1:4 + 1 is ``2,3,4,5''}
 \cmdS{seq(from,to)}	{generates a sequence {\tt by=} specifies increment; {\tt length=} specifies desired length}
-\cmdS{seq(along=x)}	{generates {\tt 1, 2, ..., length(along)}; useful for {\tt for} loops}
+\cmdS{seq(along=x)}	{generates {\tt 1, 2, \ldots, length(along)};\\useful for {\tt for} loops}
 \cmdS{rep(x,times)}	{replicate {\tt x} {\tt times}; use {\tt each=} to repeat ``each'' element of {\tt x} {\tt each} times;}
 \cmdExmpl{1 2 3 1 2 3}{\tt rep(c(1,2,3),2)}
 \cmdExmpl{1 1 2 2 3 3}{\tt rep(c(1,2,3),each=2)}
-
 \cmdL{data.frame(...)}	{create a data frame of the named or unnamed arguments}
-\cmdExmpl{\tt\\ data.frame(v=1:4,ch=c("a","B","c","d"),n=10)}	{shorter vectors are recycled to the length of the longest}
+\cmdExmpl{\\ data.frame(v=1:4,ch=c("a","B","c","d"),n=10)}	{shorter vectors are recycled to the length of the longest}
 \cmdS{list(...)}	{create a list of the named or unnamed arguments }
-\cmdExmpl{\tt list(a=c(1,2),b="hi",c=3i)}{}
+\cmdExmpl{list(a=c(1,2),b="hi",c=3i)}{use}
 \cmdL{array(x,dim=)}	{array with data {\tt x}; specify dimensions like {\tt dim=c(3,4,2)}; elements of {\tt x} recycle if {\tt x} is not long enough}
 \cmdL{matrix(x,nrow=,ncol=)}	{matrix; elements of {\tt x} recycle}
 \cmdL{factor(x,levels=)}	{encodes a vector {\tt x} as a factor}
@@ -129,7 +132,7 @@ For database interaction, see packages {\tt RODBC}, {\tt DBI},\\
 \cmdOper{\tt x["name"] }	{element named {\tt "name"}}
 \cmdOper{\tt x[x > 3] }	{all elements greater than 3}
 \cmdOper{\tt x[x > 3 \& x < 5] }	{all elements between 3 and 5}
-\cmdOper{\tt x[x \%in\% c("a","and","the")] }	{elements in the given set}
+\cmdOperL{\tt x[x \%in\% c("a","and","the")] }	{elements in the given set}
 
 \subsection{Indexing lists}{}
 
@@ -152,9 +155,9 @@ For database interaction, see packages {\tt RODBC}, {\tt DBI},\\
 \cmdOper{\tt x[["name"]]}	{column named {\tt "name"}}
 \cmdOper{\tt x\$name}	{id.}
 
-\section{Variable information}{{\smalltt is.na(x), is.null(x), is.array(x), is.data.frame(x), \\is.complex(x), is.character(x), \ldots}}
+\section{Variable information}{{\smalltt is.na(x), is.null(x), is.array(x), is.data.frame(x), \ldots}}
 \cmdS{methods(is)}	{all available lists of typetests}
-\cmdS{methods(as)}	{list of variable conversion}
+\cmdS{methods(as)}	{list of all variable conversions}
 \cmdS{any(x)}	{any TRUE elements of {\tt x}?}
 \cmdS{all(x)}	{all TRUE elements of {\tt x}?}
 \cmdS{length(x)}	{ number of elements in {\tt x}}
@@ -173,7 +176,8 @@ For database interaction, see packages {\tt RODBC}, {\tt DBI},\\
 \cmdS{which.max(x)}	{ returns the index of the greatest element of $x$}
 \cmdS{which.min(x)}	{ returns the index of the smallest element of $x$}
 \cmdS{rev(x)}	{ reverses the elements of {\tt x}}
-\cmdS{sort(x)}	{sorts the elements of {\tt x} in increasing order; to sort in decreasing order: {\tt rev(sort(x))}}
+\cmdS{sort(x)}	{sorts the elements of {\tt x} in increasing order}
+\cmdS{\tt rev(sort(x))}	{to sort in decreasing order}
 \cmdL{cut(x,breaks)}	{divides {\tt x} into intervals (factors); {\tt breaks} is the number of cut intervals or a vector of cut points}
 \cmdS{x \%in\% y}	{logical vector indicating if there is a match or not for its left operand\\}
 \cmdS{match(x, y)}	{returns a vector of the same length than {\tt x}
@@ -189,7 +193,7 @@ logical)}
 \cmdS{na.fail(x)}	{returns an error message if {\tt x }contains at least one {\tt NA}}
 \cmdS{unique(x)}	{if {\tt x} is a vector or a data frame, returns a similar object but with the duplicate elements suppressed}
 \cmdS{table(x)}	{returns a table with the numbers of the differents values of {\tt x} (typically for integers or factors)}
-\cmdL{subset(x, ...)}	{returns a selection of {\tt x} with respect to criteria ({\tt ...}, typically comparisons: {\tt x\$V1 < 10}); if {\tt x} is a data frame, the option {\tt select} gives the variables to be kept or dropped using a minus sign}
+\cmdL{subset(x, \ldots)}	{returns a selection of {\tt x} with respect to criteria ({\tt \ldots}, typically comparisons: {\tt x\$V1 < 10}); if {\tt x} is a data frame, the option {\tt select} gives the variables to be kept or dropped using a minus sign}
 \cmdL{sample(x, size)}	{resample randomly and without replacement {\tt size}
 elements in the vector {\tt x}, the option {\tt replace = TRUE} allows to
 resample with replacement}
@@ -212,13 +216,12 @@ resample with replacement}
 \cmdS{get}	{get a value from a name}
 \cmdL{eval(parse(text='1+1'))}	{compute on the language!!}
 
-\section{Dates and Times}{}
-
+\section{Dates and Times}{
 The class {\tt Date} has dates without times.  {\tt POSIXct} has
 dates and times, including time zones. Comparisons (e.g. $>$),
 {\tt seq()}, and {\tt difftime()} are useful. {\tt Date} also allows
 $+$ and $-$. {\tt ?DateTimeClasses} gives more information. See also package
-{\tt chron}.
+{\tt chron}.}
 
 \cmdS{as.Date(s)}	{and}
 \cmdL{as.POSIXct(s)}	{convert to the respective class; {\tt format(dt)} converts to a string representation. The default string format is ``2001-02-21''. These accept a second argument to specify a format for conversion. Some common formats are:}
@@ -249,49 +252,51 @@ optional on input. See {\tt ?strftime}.
 {\tt as.POSIXct( strptime( , format= ) )\\
     format()}
 
-\section{Math}{}
+\section{Math}{{\tt sin,cos,tan,asin,acos,atan,atan2,log,log10,exp}}
 
-\cmdL{\%\%, \%/\%}	{modulo/quotient, remainder}
-{\tt sin,cos,tan,asin,acos,atan,atan2,log,log10,exp}
-\cmdL{max(x)}	{ maximum of the elements of {\tt x}}
-\cmdL{min(x)}	{ minimum of the elements of {\tt x}}
-\cmdL{range(x)}	{ id. then {\tt c(min(x), max(x))}}
-\cmdL{sum(x)}	{ sum of the elements of {\tt x}}
-\cmdL{diff(x)}	{ lagged and iterated differences of vector {\tt x}}
-\cmdL{prod(x)}	{ product of the elements of {\tt x}}
-\cmdL{mean(x)}	{ mean of the elements of {\tt x}}
-\cmdL{median(x)}	{ median of the elements of {\tt x}}
-\cmdL{quantile(x,probs=)}	{sample quantiles corresponding to the given probabilities (defaults to 0,.25,.5,.75,1)}
+\subsection{Basic Math Operations}{}
+\cmdS{\%\%, \%/\%}	{modulo/quotient, remainder}
+\cmdS{max(x)}	{ maximum of the elements of {\tt x}}
+\cmdS{min(x)}	{ minimum of the elements of {\tt x}}
+\cmdS{range(x)}	{ id. then {\tt c(min(x), max(x))}}
+\cmdS{sum(x)}	{ sum of the elements of {\tt x}}
+\cmdS{diff(x)}	{ lagged and iterated differences of vector {\tt x}}
+\cmdS{prod(x)}	{ product of the elements of {\tt x}}
+\cmdS{mean(x)}	{ mean of the elements of {\tt x}}
+\cmdS{median(x)}	{ median of the elements of {\tt x}}
+\cmdL{quantile(x,probs=)}	{sample quantiles corresponding to given
+    probabilities (default: 0,.25,.5,.75,1)}
 \cmdL{weighted.mean(x, w)}	{mean of {\tt x} with weights {\tt w}}
-\cmdL{rank(x)}	{ ranks of the elements of {\tt x}}
-\cmdL{var(x)}	{or {\tt cov(x)}  variance of the elements of {\tt x}
+\cmdS{rank(x)}	{ ranks of the elements of {\tt x}}
+\cmdS{var(x)}	{or {\tt cov(x)}  variance of the elements of {\tt x}
     (calculated on $n-1$); if {\tt x} is a matrix or a data frame, the
     variance-covariance matrix is calculated}
-\cmdL{sd(x)}	{standard deviation of {\tt x}}
-\cmdL{cor(x)}	{correlation matrix of {\tt x} if it is a matrix or a data frame (1 if {\tt x} is a vector)}
-\cmdL{var(x, y)}	{or {\tt cov(x, y)}  covariance between {\tt x} and {\tt y}, or between the columns of {\tt x} and those of {\tt y} if they are matrices or data frames}
-\cmdL{cor(x, y)}	{linear correlation between {\tt x} and {\tt y}, or correlation matrix if they are matrices or data frames}
-\cmdL{round(x, n)}	{rounds the elements of {\tt x} to {\tt n} decimals}
-\cmdL{log(x, base)}	{computes the logarithm of {\tt x} with base {\tt base}}
-\cmdL{scale(x)}	{if {\tt x} is a matrix, centers and reduces the data; to
+\cmdS{sd(x)}	{standard deviation of {\tt x}}
+\cmdS{cor(x)}	{correlation matrix of {\tt x} if it is a matrix or a data frame (1 if {\tt x} is a vector)}
+\cmdS{var(x, y)}	{or {\tt cov(x, y)}  covariance between {\tt x} and {\tt y}, or between the columns of {\tt x} and those of {\tt y} if they are matrices or data frames}
+\cmdS{cor(x, y)}	{linear correlation between {\tt x} and {\tt y}, or correlation matrix if they are matrices or data frames}
+\cmdS{round(x, n)}	{rounds the elements of {\tt x} to {\tt n} decimals}
+\cmdS{log(x, base)}	{computes the logarithm of {\tt x} with base {\tt base}}
+\cmdS{scale(x)}	{if {\tt x} is a matrix, centers and reduces the data; to
 center only use the option {\tt center=F}, to reduce only {\tt scale=F}
 (by default {\tt center=T, scale=T})}
-\cmdL{pmin(x,y,...)}	{ a vector which $i$th element is the minimum of {\tt x[i]}, {\tt y[i]}, \ldots}
-\cmdL{pmax(x,y,...)}	{ id. for the maximum}
-\cmdL{cumsum(x)}	{a vector which $i$th element is the sum from {\tt x[1]} to {\tt x[i]}}
-\cmdL{cumprod(x)}	{ id. for the product}
-\cmdL{cummin(x)}	{ id. for the minimum}
-\cmdL{cummax(x)}	{ id. for the maximum}
-{\tt{union(x,y)},~{\tt intersect(x,y)},~{\tt setdiff(x,y)},~{\tt setequal(x,y)},}
+\cmdS{pmin(x,y,\ldots)}	{ a vector which $i$th element is the minimum of {\tt x[i]}, {\tt y[i]}, \ldots}
+\cmdS{pmax(x,y,\ldots)}	{ id. for the maximum}
+\cmdS{cumsum(x)}	{a vector which $i$th element is the sum from {\tt x[1]} to {\tt x[i]}}
+\cmdS{cumprod(x)}	{ id. for the product}
+\cmdS{cummin(x)}	{ id. for the minimum}
+\cmdS{cummax(x)}	{ id. for the maximum}
+
+\subsection{Complex Numbers}{{\smalltt union(x,y),  intersect(x,y),  setdiff(x,y),  setequal(x,y)}}
 \cmdL{is.element(el,set)}	{``set'' functions}
-\cmdL{Re(x)}	{real part of a complex number}
-\cmdL{Im(x)}	{imaginary part}
-\cmdL{Mod(x)}	{modulus; {\tt abs(x)} is the same}
-\cmdL{Arg(x)}	{angle in radians of the complex number}
-\cmdL{Conj(x)}	{complex conjugate}
+\cmdS{Re(x)}	{real part of a complex number}
+\cmdS{Im(x)}	{imaginary part}
+\cmdS{Mod(x)}	{modulus; {\tt abs(x)} is the same}
+\cmdS{Arg(x)}	{angle in radians of the complex number}
+\cmdS{Conj(x)}	{complex conjugate}
 \cmdL{convolve(x,y)}	{compute the several kinds of convolutions of two sequences}
-\cmdL{fft(x)}	{Fast Fourier Transform of an array}
-\cmdL{mvfft(x)}	{FFT of each column of a matrix}
+\cmdS{fft(x)}	{Fast Fourier Transform of an array}
+\cmdS{mvfft(x)}	{FFT of each column of a matrix}
 \cmdL{filter(x,filter)}	{applies linear filtering to a univariate time series or to each series separately of a multivariate time series}
 
 Many math functions have a logical parameter {\tt na.rm=F} to
@@ -299,87 +304,81 @@ specify missing data (NA) removal.
 
 \section{Matrices}{}
 
-\cmdL{\%o\%, outer()}	{outer products on arrays}
-\cmdL{kronecker}	{kronecker products on arrays}
-\cmdL{t(x)}	{transpose}
-\cmdL{diag(x)}	{diagonal}
-\cmdL{\%*\%}	{matrix multiplication}
-\cmdL{solve(a,b)}	{solves {\tt a \%*\% x = b} for {\tt x}}
-\cmdL{solve(a)}	{matrix inverse of {\tt a}}
-\cmdL{rowsum(x)}	{sum of rows for a matrix-like object;}
-\cmdL{rowSums(x)}	{is a faster version}
-\cmdL{colsum(x)}	{sum of columns for a matrix-like object;}
-\cmdL{colSums(x)}	{id. for columns}
-\cmdL{rowMeans(x)}	{fast version of row means}
-\cmdL{colMeans(x)}	{id. for columns}
+\cmdS{\%o\%, outer()}	{outer products on arrays}
+\cmdS{kronecker}	{kronecker products on arrays}
+\cmdS{t(x)}	{transpose}
+\cmdS{diag(x)}	{diagonal}
+\cmdS{\%*\%}	{matrix multiplication}
+\cmdS{solve(a,b)}	{solves {\tt a \%*\% x = b} for {\tt x}}
+\cmdS{solve(a)}	{matrix inverse of {\tt a}}
+\cmdS{rowsum(x)}	{sum of rows for a matrix-like object;}
+\cmdS{rowSums(x)}	{is a faster version}
+\cmdS{colsum(x)}	{sum of columns for a matrix-like object;}
+\cmdS{colSums(x)}	{id. for columns}
+\cmdS{rowMeans(x)}	{fast version of row means}
+\cmdS{colMeans(x)}	{id. for columns}
 
-\section{Advanced data processing and HOFs}{}
-
-The base apply family of function is standardized and parallelized by the plyr package.
-
+% \section{Advanced data processing and HOFs}{}
+\subsection{Apply functions to elements}{The base apply family of function is
+    standardized and parallelized by the {\tt plyr} package.}
 \cmdL{apply(X,INDEX,FUN=)}	{a vector or array or list of values obtained by applying a function {\tt FUN} to margins ({\tt INDEX}) of {\tt X}}
 \cmdL{lapply(X,FUN)}	{apply {\tt FUN} to each element of the list {\tt X}}
 \cmdL{tapply(X,INDEX,FUN=)}	{apply {\tt FUN} to each cell of a ragged array given by {\tt X} with indexes {\tt INDEX}}
 \cmdL{by(data,INDEX,FUN)}	{apply {\tt FUN} to data frame {\tt data} subsetted by {\tt INDEX}}
-The 6 common higher-order functions:
 
-\cmdOper{Reduce(f, x, init, right = FALSE, accumulate = FALSE)}{}
-\cmdOper{Filter(f, x)}{}
-\cmdOper{Find(f, x, right = FALSE, nomatch = NULL)}{}
-\cmdOper{Map(f, ...)}{}
-\cmdOper{Negate(f)}{}
-\cmdOper{Position(f, x, right = FALSE, nomatch = NA\_integer\_)}{}
+\subsection{The 6 common higher-order functions}{}
+\cmdL{Reduce(f, x, init, right = F, accumulate = F)}{}
+\cmdL{Filter(f, x)}{}
+\cmdL{Find(f, x, right = F, nomatch = NULL)}{}
+\cmdL{Map(f, \ldots)}{}
+\cmdL{Negate(f)}{}
+\cmdL{Position(f,x,right = F,nomatch = NA\_integer\_)}{}
 
-Others
-
-\cmdL{optimise()}	{One Dimensional Optimization}
-\cmdL{merge(a,b)}	{merge two data frames by common columns or row names}
-\cmdL{xtabs(a~b,data=x)}	{a contingency table from cross-classifying factors}
+\subsection{Others}{}
+\cmdS{optimise()}	{One Dimensional Optimization}
+\cmdS{merge(a,b)}	{merge two data frames by com\-mon col\-umns or row names}
+\cmdL{xtabs(a~b,data=x)}	{a contingency table from cross-classi\-fy\-ing factors}
 \cmdL{aggregate(x,by,FUN)}	{splits the data frame {\tt x} into subsets, computes summary statistics for each, and returns the result in a convenient form; {\tt by} is a list of grouping elements, each as long as the variables in {\tt x}}
-\cmdL{stack(x, ...)}	{transform data available as separate columns in a data frame or list into a single column}
-\cmdL{unstack(x, ...)}	{inverse of {\tt stack()}}
-\cmdL{reshape(x, ...)}	{reshapes a data frame between 'wide' format
-    with repeated measurements in separate columns of the same record
-    and 'long' format with the repeated measurements in separate
-    records; use \code(direction="wide") or \code(direction="long")}
+\cmdS{stack(x, \ldots)}	{transform data available as se\-pa\-rate col\-umns in a data frame or list into a single column}
+\cmdL{unstack(x, \ldots)}	{inverse of {\tt stack()}}
+\cmdL{reshape(x, \ldots)}	{reshapes a data frame between 'wide' format
+    with re\-pea\-ted mea\-sure\-ments in separate
+    columns of the same record and 'long' format in separate records}
+\cmdExmpl{ \code(direction="wide") or\\ \code(direction="long")}	{use}
 
-\section{Optimization and model fitting}{}
-
-\cmdL{optim(par, fn, method = c("Nelder-Mead", "BFGS", "CG", "L-BFGS-B", "SANN")}	{general-purpose optimization; {\tt par} is initial values, {\tt fn} is function to optimize (normally minimize)}
-\cmdL{nlm(f,p)}	{minimize function {\tt f} using a Newton-type algorithm with starting values {\tt p}}
-\cmdL{lm(formula)}	{fit linear models; {\tt formula} is typically of the form {\tt response ~ termA + termB + ...}; use {\tt I(x*y) + I(x\^{}2)} for terms made of nonlinear components}
-\cmdL{glm(formula,family=)}	{fit generalized linear models, specified by giving a symbolic description of the linear predictor and a description of the error distribution; {\tt family} is a description of the error distribution and link function to be used in the model; see {\tt ?family}}
-\cmdL{nls(formula)}	{nonlinear least-squares estimates of the nonlinear model parameters}
-\cmdL{approx(x,y=)}	{linearly interpolate given data points; {\tt x} can be an xy plotting structure}
-\cmdL{spline(x,y=)}	{cubic spline interpolation}
+\section{Optimization and model fitting}{{\smalltt optim(par, fn, method = c("Nelder-Mead", "BFGS", \ldots)} general purpose optimization; {\tt par} is initial values, {\tt fn} is function to optimize (normally minimize)}
+\cmdS{nlm(f,p)}	{minimize function {\tt f} using a Newton-type algorithm with starting values {\tt p}}
+\cmdS{lm(formula)}	{fit linear models; {\tt formula} is typically of the form {\tt response ~ termA + termB + \ldots}; use {\tt I(x*y) + I(x\^{}2)} for terms made of nonlinear components}
+\cmdL{glm(formula,family=)}	{fit generalized linear models, specified by giving a symbolic description of the linear predictor and a description of the error distribution}
+\cmdExmpl{{\tt family} is a description of the error distribution and link
+    function to be used in the model}	{see {\tt ?family}}
+\cmdS{nls(formula)}	{nonlinear least-squares estimates of the nonlinear model parameters}
+\cmdS{approx(x,y=)}	{linearly interpolate given data points; {\tt x} can be an xy plotting structure}
+\cmdS{spline(x,y=)}	{cubic spline interpolation}
 \cmdL{loess(formula)}	{fit a polynomial surface using local fitting}
 
 Many of the formula-based modeling functions have several common
 arguments: {\tt data=} the data frame for the formula variables,
 {\tt subset=} a subset of variables used in the fit,
-{\tt na.action=} action for missing values: {\tt "na.fail"}, {\tt "na.omit"}, or
-a function. The following generics often apply to model fitting functions:
+{\tt na.action=} action for missing values:\\{\tt "na.fail"}, {\tt "na.omit"}, or
+a function.
 
-
+\section{Statistics}{help.search("test") gives you a range of validity tests such as {\tt t.test(), binom.test(), prop.test(),\\power.t.test(), pairwise.t.test(), \ldots}}
+\subsection{Model Analysis}	{The following generics often apply to model fitting functions}
 \cmdL{predict(fit,...)}	{predictions from {\tt fit} based on input data}
 \cmdL{df.residual(fit)}	{ returns the number of residual degrees of freedom}
-\cmdL{coef(fit)}	{ returns the estimated coefficients (sometimes with their standard-errors)}
+\cmdS{coef(fit)}	{ returns the estimated coefficients (sometimes with their standard-errors)}
 \cmdL{residuals(fit)}	{ returns the residuals}
 \cmdL{deviance(fit)}	{ returns the deviance}
-\cmdL{fitted(fit)}	{ returns the fitted values}
-\cmdL{logLik(fit)}	{ computes the logarithm of the likelihood and the number of parameters}
-\cmdL{AIC(fit)}	{ computes the Akaike information criterion or AIC}
+\cmdS{fitted(fit)}	{ returns the fitted values}
+\cmdS{logLik(fit)}	{ computes the logarithm of the likelihood and the number of parameters}
+\cmdS{AIC(fit)}	{ computes the Akaike information criterion or AIC}
 
-\section{Statistics}{}
-
-\cmdL{aov(formula)}	{analysis of variance model}
+\cmdS{aov(formula)}	{analysis of variance model}
 \cmdL{anova(fit,...)}	{analysis of variance (or deviance) tables for one or more fitted model objects}
-\cmdL{density(x)}	{kernel density estimates of {\tt x}}
-
-{\tt binom.test(), pairwise.t.test(), power.t.test(), prop.test(), t.test()}, ... use {\tt help.search("test")}
+\cmdS{density(x)}	{kernel density estimates of {\tt x}}
 
 \section{Distributions}{}
-
 \cmdL{rnorm(n, mean=0, sd=1)}	{Gaussian (normal)}
 \cmdL{rexp(n, rate=1)}	{exponential}
 \cmdL{rgamma(n, shape, scale=1)}	{gamma}
@@ -387,7 +386,7 @@ a function. The following generics often apply to model fitting functions:
 \cmdL{rweibull(n, shape, scale=1)}	{Weibull}
 \cmdL{rcauchy(n, location=0, scale=1)}	{Cauchy}
 \cmdL{rbeta(n, shape1, shape2)}	{beta}
-\cmdL{rt(n, df)}	{`Student' ($t$)}
+\cmdS{rt(n, df)}	{`Student' ($t$)}
 \cmdL{rf(n, df1, df2)}	{Fisher--Snedecor ($F$)  ($\chi^2$)}
 \cmdL{rchisq(n, df)}	{Pearson}
 \cmdL{rbinom(n, size, prob)}	{binomial}
@@ -401,140 +400,153 @@ a function. The following generics often apply to model fitting functions:
 
 All these functions can be used by replacing the letter {\tt r} with
 {\tt d}, {\tt p} or {\tt q} to get, respectively, the probability
-density ({\tt d{\it func}(x, ...)}), the cumulative probability
-density ({\tt p{\it func}(x, ...)}), and the value of quantile
-({\tt q{\it func}(p, ...)}, with 0 $<$ {\tt p} $<$ 1).
+density ({\tt d{\it func}(x, \ldots)}), the cumulative probability
+density ({\tt p{\it func}(x, \ldots)}), and the value of quantile
+({\tt q{\it func}(p, \ldots)}, with 0 $<$ {\tt p} $<$ 1).
 
-\section{Programming}{}
+\section{Programming}{ Use curly braces $\lbrace\rbrace$ around statements }
 
 {\tt function( arglist ) expr \# function definition\\ return(value) if(cond)
     expr\\ if(cond) cons.expr else  alt.expr\\ for(var in seq) expr\\
-    while(cond) expr\\ repeat expr\\ break\\ next\\\\ Use curly braces around
-    statements}
+    while(cond) expr\\ repeat expr\\ break\\ next\\ }
 
 
 \cmdL{ifelse(test, yes, no)}	{a value with the same shape as {\tt test} filled with elements from either {\tt yes} or {\tt no}}
 \cmdL{do.call(funname, args)}	{executes a function call from the name of the function and a list of arguments to be passed to it}
 
 \section{Plotting}{}
-
-
-\cmdL{plot(x)}	{plot of the values of {\tt x} (on the $y$-axis) ordered on the $x$-axis}
-\cmdL{plot(x, y)}	{bivariate plot of {\tt x} (on the $x$-axis) and {\tt y} (on the $y$-axis)}
-\cmdL{hist(x)}	{ histogram of the frequencies of {\tt x}}
-\cmdL{barplot(x)}	{histogram of the values of {\tt x}; use {\tt horiz=F} for horizontal bars}
-\cmdL{dotchart(x)}	{if {\tt x} is a data frame, plots a Cleveland dot plot (stacked plots line-by-line and column-by-column)}
-\cmdL{pie(x)}	{ circular pie-chart}
-\cmdL{boxplot(x)}	{ ``box-and-whiskers'' plot}
+\cmdS{plot(x)}	{plot of the values of {\tt x} (on the $y$-axis) ordered on the $x$-axis}
+\cmdS{plot(x, y)}	{bivariate plot of {\tt x} (on the $x$-axis) and {\tt y} (on the $y$-axis)}
+\cmdS{hist(x)}	{ histogram of the frequencies of {\tt x}}
+\cmdS{barplot(x)}	{histogram of the values of {\tt x}; use {\tt horiz=F} for horizontal bars}
+\cmdS{dotchart(x)}	{if {\tt x} is a data frame, plots a Cleveland dot plot (stacked plots line-by-line and column-by-column)}
+\cmdS{pie(x)}	{ circular pie-chart}
+\cmdS{boxplot(x)}	{ ``box-and-whiskers'' plot}
 \cmdL{sunflowerplot(x, y)}	{id. than {\tt plot()} but the points with similar coordinates are drawn as flowers which petal number represents the number of points}
-\cmdL{stripplot(x)}	{plot of the values of {\tt x} on a line (an alternative to {\tt boxplot()} for small sample sizes)}
+\cmdS{stripplot(x)}	{plot of the values of {\tt x} on a line (an alternative to {\tt boxplot()} for small sample sizes)}
 \cmdL{coplot(x\~{}$\mid$ z)}	{bivariate plot of {\tt x} and {\tt y} for each value or interval of values of {\tt z}}
 \cmdL{interaction.plot (f1, f2, y)}	{if {\tt f1} and {\tt f2} are factors, plots the means of {\tt y} (on the $y$-axis) with respect to the values of {\tt f1} (on the $x$-axis) and of {\tt f2} (different curves); the option {\tt fun} allows to choose the summary statistic of {\tt y} (by default {\tt fun=mean})}
-\cmdL{matplot(x,y)}	{bivariate plot of the first column of {\tt x} {\it vs.} the first one of {\tt y}, the second one of {\tt x} {\it vs.} the second one of {\tt y}, etc.}
+\cmdS{matplot(x,y)}	{bivariate plot of the first column of {\tt x} {\it vs.} the first one of {\tt y}, the second one of {\tt x} {\it vs.} the second one of {\tt y}, etc.}
 \cmdL{fourfoldplot(x)}	{visualizes, with quarters of circles, the association between two dichotomous variables for different populations ({\tt x} must be an array with {\tt dim=c(2, 2, k)}, or a matrix with {\tt dim=c(2, 2)} if $k=1$)}
-\cmdL{assocplot(x)}	{ Cohen--Friendly graph showing the deviations  from independence of rows and columns in a two dimensional contingency table}
+\cmdS{assocplot(x)}	{ Cohen--Friendly graph showing the deviations  from independence of rows and columns in a two dimensional contingency table}
 \cmdL{mosaicplot(x)}	{ `mosaic' graph of the residuals from a log-linear regression of a contingency table}
-\cmdL{pairs(x)}	{if {\tt x} is a matrix or a data frame, draws all possible bivariate plots between the columns of {\tt x}}
-\cmdL{plot.ts(x)}	{if {\tt x} is an object of class {\tt "ts"}, plot of {\tt x} with respect to time, {\tt x}  may be multivariate but the series must have the same frequency and dates}
-\cmdL{ts.plot(x)}	{id. but if {\tt x} is multivariate the series may have different dates and must have the same frequency}
-\cmdL{qqnorm(x)}	{quantiles of {\tt x} with respect to the values expected under a normal law}
-\cmdL{qqplot(x, y)}	{quantiles of {\tt y} with respect to the quantiles of {\tt x}}
+\cmdS{pairs(x)}	{if {\tt x} is a matrix or a data frame, draws all possible bivariate plots between the columns of {\tt x}}
+\cmdS{plot.ts(x)}	{if {\tt x} is an object of class {\tt "ts"}, plot of {\tt x} with respect to time, {\tt x}  may be multivariate but the series must have the same frequency and dates}
+\cmdS{ts.plot(x)}	{id. but if {\tt x} is multivariate the series may have different dates and must have the same frequency}
+\cmdS{qqnorm(x)}	{quantiles of {\tt x} with respect to the values expected under a normal law}
+\cmdS{qqplot(x, y)}	{quantiles of {\tt y} with respect to the quantiles of {\tt x}}
 \cmdL{contour(x, y, z)}	{contour plot (data are interpolated to draw the curves), {\tt x} and {\tt y} must be vectors and {\tt z} must be a matrix so that {\tt dim(z)=c(length(x), length(y))} ({\tt x} and {\tt y} may be omitted)}
 \cmdL{filled.contour(x, y, z)}	{ id. but the areas between the contours are coloured, and a legend of the colours is drawn as well}
 \cmdL{image(x, y, z)}	{ id. but with colours (actual data are plotted)}
 \cmdL{persp(x, y, z)}	{ id. but in perspective (actual data are plotted)}
-\cmdL{stars(x)}	{if {\tt x} is a matrix or a data frame, draws a graph with segments or a star where each row of {\tt x} is represented by a star and the columns are the lengths of the segments}
-\cmdL{symbols(x, y, ...)}	{draws, at the coordinates given by {\tt x} and {\tt y}, symbols (circles, squares, rectangles, stars, thermometres or ``boxplots'') which sizes, colours \ldots{} are specified by supplementary arguments}
+\cmdS{stars(x)}	{if {\tt x} is a matrix or a data frame, draws a graph with segments or a star where each row of {\tt x} is represented by a star and the columns are the lengths of the segments}
+\cmdL{symbols(x, y, \ldots)}	{draws, at the coordinates given by {\tt x} and {\tt y}, symbols (circles, squares, rectangles, stars, thermometres or ``boxplots'') which sizes, colours \ldots{} are specified by supplementary arguments}
 \cmdL{termplot(mod.obj)}	{ plot of the (partial) effects of a regression model ({\tt mod.obj})}
-The following parameters are common to many plotting functions:
 
-\cmdL{add=F}	{if \T superposes the plot on the previous one (if it exists)}
-\cmdL{axes=T}	{if \F does not draw the axes and the box}
-\cmdL{type="p"}	{ specifies the type of plot, {\tt "p"}: points, {\tt "l"}: lines, {\tt "b"}: points connected by lines, {\tt "o"}: id. but the lines are over the points, {\tt "h"}: vertical lines, {\tt "s"}: steps, the data are represented by the top of the vertical lines, {\tt "S"}: id. but the data are represented by the bottom of the vertical lines}
-\cmdL{xlim=, ylim=}	{specifies the lower and upper limits of the axes, for example with {\tt xlim=c(1, 10)} or {\tt xlim=range(x)}}
-\cmdL{xlab=, ylab=}	{ annotates the axes, must be variables of mode character}
-\cmdL{main=}	{ main title, must be a variable of mode character}
-\cmdL{sub=}	{ sub-title (written in a smaller font)}
+\subsection{Plot Modifiers}{The following parameters are common to many
+    plotting functions}
+
+\cmdOper{add=F}	{if \T superposes the plot on the previous one (if it exists)}
+\cmdOper{axes=T}	{if \F does not draw the axes and the box}
+\cmdOper{type="p"}	{ specifies the type of plot, {\tt "p"}: points, {\tt "l"}: lines, {\tt "b"}: points connected by lines, {\tt "o"}: id. but the lines are over the points, {\tt "h"}: vertical lines, {\tt "s"}: steps, the data are represented by the top of the vertical lines, {\tt "S"}: id. but the data are represented by the bottom of the vertical lines}
+\cmdOper{xlim=, ylim=}	{specifies the lower and upper limits of the axes, for example with {\tt xlim=c(1, 10)} or {\tt xlim=range(x)}}
+\cmdOper{xlab=, ylab=}	{ annotates the axes, must be variables of mode character}
+\cmdOper{main=}	{ main title, must be a variable of mode character}
+\cmdOper{sub=}	{ sub-title (written in a smaller font)}
+
 \section{Low-level plotting commands}{}
-
-\cmdL{dev.new()}	{open a new graphics device (typically a window). see similar in help.}
-\cmdL{points(x, y)}	{adds points (the option {\tt type=} can be used)}
-\cmdL{lines(x, y)}	{ id. but with lines}
+\cmdS{dev.new()}	{open a new graphics device (typically a window). see similar in help.}
+\cmdS{points(x, y)}	{adds points (the option {\tt type=} can be used)}
+\cmdS{lines(x, y)}	{ id. but with lines}
 \cmdL{text(x, y, labels...)}	{ adds text given by {\tt labels} at
     coordinates ({\tt x},{\tt y}); a typical use is: {\tt plot(x, y, type="n");
         text(x, y, names)}}
-\cmdL{mtext(text, side=3, line=0, ...)}	{adds text given by {\tt text} in the margin specified by {\tt side} (see {\tt axis()} below); {\tt line} specifies the line from the plotting area}
-\cmdL{segments(x0, y0, x1, y1)}	{ draws lines from points ({\tt x0},{\tt y0}) to points ({\tt x1},{\tt y1})}
+\cmdL{mtext(text, side=3, line=0, \ldots)}	{adds text given by {\tt text} in the margin specified by {\tt side} (see {\tt axis()} below); {\tt line} specifies the line from the plotting area}
+\cmdL{segments(x0, y0, x1, y1)}	{ draws lines from points ({\tt x0},{\tt y0})
+    to points ({\tt x1},{\tt y1})}
 \cmdL{arrows(x0, y0, x1, y1, angle= 30, code=2)}	{id. with arrows at points ({\tt x0},{\tt y0}) if {\tt code=2}, at points ({\tt x1},{\tt y1}) if {\tt code=1}, or both if {\tt code=3}; {\tt angle} controls the angle from the shaft of the arrow to the edge of the arrow head}
-\cmdL{abline(a,b)}	{draws a line of slope {\tt b} and intercept {\tt a}}
-\cmdL{abline(h=y)}	{ draws a horizontal line at ordinate {\tt y}}
-\cmdL{abline(v=x)}	{ draws a vertical line at abcissa {\tt x}}
-\cmdL{abline(lm.obj)}	{ draws the regression line given by {\tt lm.obj}}
+\cmdS{abline(a,b)}	{draws a line of slope {\tt b} and intercept {\tt a}}
+\cmdS{abline(h=y)}	{ draws a horizontal line at ordinate {\tt y}}
+\cmdS{abline(v=x)}	{ draws a vertical line at abcissa {\tt x}}
+\cmdL{abline(lm.obj)}	{ draws regression line given by {\tt lm.obj}}
 \cmdL{rect(x1, y1, x2, y2)}	{ draws a rectangle which left, right, bottom, and top limits are {\tt x1}, {\tt x2}, {\tt y1}, and {\tt y2}, respectively}
 \cmdL{polygon(x, y)}	{draws a polygon linking the points with coordinates given by {\tt x} and {\tt y}}
 \cmdL{legend(x, y, legend)}	{ adds the legend at the point ({\tt x},{\tt y}) with the symbols given by {\tt legend}}
-\cmdL{title()}	{ adds a title and optionally a sub-title}
+\cmdS{title()}	{ adds a title and optionally a sub-title}
 \cmdL{axis(side, vect)}	{adds an axis at the bottom ({\tt side=1}), on the left ({\tt 2}), at the top ({\tt 3}), or on the right ({\tt 4}); {\tt vect} (optional) gives the abcissa (or ordinates) where tick-marks are drawn}
-\cmdL{rug(x)}	{draws the data {\tt x} on the $x$-axis as small vertical lines}
-\cmdL{locator(n, type="n", ...)}	{returns the coordinates ($x,y$) after the user has clicked {\tt n} times on the plot with the mouse; also draws symbols ({\tt type="p"}) or lines ({\tt type="l"}) with respect to optional graphic parameters ({\tt ...}); by default nothing is drawn ({\tt type="n"})}
-\section{Graphical parameters}{}
+\cmdS{rug(x)}	{draws the data {\tt x} on the $x$-axis as small vertical lines}
+\cmdL{locator(n, type="n", \ldots)}	{returns the coordinates ($x,y$) after the
+    user has clicked {\tt n} times on the plot with the mouse; also draws
+    symbols ({\tt type="p"}) or lines ({\tt type="l"}) with respect to optional
+    graphic parameters ({\tt \ldots})}
+\cmdExmpl{type="n"}{by default nothing is drawn}
 
-These can be set globally with
+\section{Graphical parameters}{These can be set globally with
 {\tt par(...)}; many can be passed as
-parameters to plotting commands.
+parameters to plotting commands.}
 
 
-\cmdL{adj}	{controls text justification ({\tt 0} left-justified, {\tt 0.5} centred, {\tt 1} right-justified)}
-\cmdL{bg}	{specifies the colour of the background (ex. : {\tt bg="red"}, {\tt bg="blue"}, \ldots{} the list of the 657 available colours is displayed with {\tt colors()})}
-\cmdL{bty}	{controls the type of box drawn around the plot, allowed values are: {\tt "o"}, {\tt "l"}, {\tt "7"}, {\tt "c"}, {\tt "u"} ou {\tt "]"} (the box looks like the corresponding character); if {\tt bty="n"} the box is not drawn}
-\cmdL{cex}	{ a value controlling the size of texts and symbols with respect to the default; the following parameters have the same control for numbers on the axes, {\tt cex.axis}, the axis labels, {\tt cex.lab}, the title, {\tt cex.main}, and the sub-title, {\tt cex.sub}}
-\cmdL{col}	{controls the color of symbols and lines; use color names: {\tt "red"}, {\tt "blue"} see {\tt colors()} or as {\tt "\#RRGGBB"}; see {\tt rgb()}, {\tt hsv()}, {\tt gray()}, and {\tt rainbow()}; as for {\tt cex} there are: {\tt col.axis}, {\tt col.lab}, {\tt col.main}, {\tt col.sub}}
-\cmdL{font}	{an integer which controls the style of text ({\tt 1}: normal, {\tt 2}: italics, {\tt 3}: bold, {\tt 4}: bold italics); as for {\tt cex} there are: {\tt font.axis}, {\tt font.lab}, {\tt font.main}, {\tt font.sub}}
-\cmdL{las}	{ an integer which controls the orientation of the axis labels ({\tt 0}: parallel to the axes, {\tt 1}: horizontal, {\tt 2}: perpendicular to the axes, {\tt 3}: vertical)}
-\cmdL{lty}	{controls the type of lines, can be an integer or string ({\tt 1}: {\tt "solid"}, {\tt 2}: {\tt "dashed"}, {\tt 3}: {\tt "dotted"}, {\tt 4}: {\tt "dotdash"}, {\tt 5}: {\tt "longdash"}, {\tt 6}: {\tt "twodash"}, or a string of up to eight characters (between {\tt "0"} and {\tt "9"}) which specifies alternatively the length, in points or pixels, of the drawn elements and the blanks, for example {\tt lty="44"} will have the same effect than {\tt lty=2}}
-\cmdL{lwd}	{ a numeric which controls the width of lines, default {\tt 1}}
-\cmdL{mar}	{ a vector of 4 numeric values which control the space between the axes and the border of the graph of the form {\tt c(bottom, left, top, right)}, the default values are {\tt c(5.1, 4.1, 4.1, 2.1)}}
-\cmdL{mfcol}	{a vector of the form {\tt c(nr,nc)} which partitions the graphic window as a matrix of {\tt nr} lines and {\tt nc} columns, the plots are then drawn in columns}
-\cmdL{mfrow}	{ id. but the plots are drawn by row}
-\cmdL{pch}	{ controls the type of symbol, either an integer between 1 and 25, or any single character within {\tt ""}}
-% \samepage\includegraphics[width=8.5cm]{pch_symbol}
-% \samepage\includegraphics[draft]{pch_symbol}
+\cmdS{adj}	{controls text justification ({\tt 0} left-justified, {\tt 0.5} centred, {\tt 1} right-justified)}
+\cmdS{bg}	{specifies the colour of the background (ex. : {\tt bg="red"}, {\tt bg="blue"}, \ldots{} the list of the 657 available colours is displayed with {\tt colors()})}
+\cmdS{bty}	{controls the type of box drawn around the plot, allowed values
+    are: {\tt "o"}, {\tt "l"}, {\tt "7"}, {\tt "c"}, {\tt "u"} or {\tt "]"} (the box looks like the corresponding character)}
+\cmdExmpl{the box is not drawn}{if {\tt bty="n"}}
+\cmdS{cex}	{ a value controlling the size of texts and symbols with respect to the default; the following parameters have the same control for numbers on the axes,\\
+    {\tt cex.axis}, the axis labels, {\tt cex.lab}, the title, {\tt cex.main},
+    and the sub-title, {\tt cex.sub}}
+\cmdS{col}	{controls the color of symbols and lines; use color names e.g. "red", "blue" or as "\#RRGGBB"}
+\cmdExmpl{see colors(), rgb(), hsv(), gray() and rainbow()}{see}
+\cmdExmpl{col.axis, col.lab, col.main, col.sub}{as for {\tt cex} there are}
+\cmdS{font}	{an integer which controls the style of text ({\tt 1}: normal, {\tt 2}: italics, {\tt 3}: bold, {\tt 4}: bold italics)}
+\cmdExmpl{font.axis, font.lab, font.main, font.sub}{as for cex there are}
+\cmdS{las}	{ an integer which controls the orientation of the axis labels ({\tt 0}: parallel to the axes, {\tt 1}: horizontal, {\tt 2}: perpendicular to the axes, {\tt 3}: vertical)}
+\cmdS{lty}	{controls the type of lines, can be an integer or string ({\tt 1}: {\tt "solid"}, {\tt 2}: {\tt "dashed"}, {\tt 3}: {\tt "dotted"}, {\tt 4}: {\tt "dotdash"}, {\tt 5}: {\tt "longdash"}, {\tt 6}: {\tt "twodash"}, or a string of up to eight characters (between {\tt "0"} and {\tt "9"}) which specifies alternatively the length, in points or pixels, of the drawn elements and the blanks, for example {\tt lty="44"} will have the same effect than {\tt lty=2}}
+\cmdS{lwd}	{ a numeric which controls the width of lines, default {\tt 1}}
+\cmdS{mar}	{ a vector of 4 numeric values which control the space between the axes and the border of the graph of the form {\tt c(bottom, left, top, right)}, the default values are {\tt c(5.1, 4.1, 4.1, 2.1)}}
+\cmdS{mfcol}	{a vector of the form {\tt c(nr,nc)} which partitions the graphic window as a matrix of {\tt nr} lines and {\tt nc} columns, the plots are then drawn in columns}
+\cmdS{mfrow}	{ id. but the plots are drawn by row}
+\cmdS{pch}	{ controls the type of symbol, either an integer between 1 and 25, or any single character within {\tt ""}}
+% \sSmepage\includegraphics[width=8.5cm]{pch_symbol}
+% \sSmepage\includegraphics[draft]{pch_symbol}
 
-\cmdL{ps}	{ an integer which controls the size in points of texts and symbols}
-\cmdL{pty}	{ a character which specifies the type of the plotting region, {\tt "s"}: square, {\tt "m"}: maximal}
-\cmdL{tck}	{a value which specifies the length of tick-marks on the axes as a fraction of the smallest of the width or height of the plot; if {\tt tck=1} a grid is drawn}
-\cmdL{tcl}	{ a value which specifies the length of tick-marks on the axes as a fraction of the height of a line of text (by default {\tt tcl=-0.5})}
-\cmdL{xaxt}	{if {\tt xaxt="n"} the $x$-axis is set but not drawn (useful in conjonction with {\tt axis(side=1, ...)})}
-\cmdL{yaxt}	{if {\tt yaxt="n"} the $y$-axis is set but not drawn (useful in conjonction with {\tt axis(side=2, ...)})}
-\section{Lattice (Trellis) graphics}{}
+\cmdS{ps}	{ an integer which controls the size in points of texts and symbols}
+\cmdS{pty}	{ a character which specifies the type of the plotting region, {\tt "s"}: square, {\tt "m"}: maximal}
+\cmdS{tck}	{a value which specifies the length of tick-marks on the axes as a fraction of the smallest of the width or height of the plot; if {\tt tck=1} a grid is drawn}
+\cmdS{tcl}	{ a value which specifies the length of tick-marks on the axes as a fraction of the height of a line of text (by default {\tt tcl=-0.5})}
+\cmdS{xaxt}	{if {\tt xaxt="n"} the $x$-axis is set but not drawn (useful in
+    conjonction with\\
+    {\tt axis(side=1, \ldots)})}
+\cmdS{yaxt}	{if {\tt yaxt="n"} the $y$-axis is set but not drawn (useful in conjonction \\with {\tt axis(side=2, \ldots)})}
 
-\cmdL{xyplot(y\~{}x)}	{ bivariate plots (with many functionalities)}
+\section{Lattice (Trellis) graphics}{ Use {\tt panel=} to define a custom panel
+    function (see {\tt apropos("panel")} and {\tt ?llines}). Lattice functions
+    return an object of class trellis and have to be {\tt print}ed to produce
+    the graph. Use {\tt print(xyplot(...))} inside functions where automatic
+    printing doesn't work. Use {\tt lattice.theme} and {\tt lset} to change
+    Lattice defaults.}
+
+\cmdS{xyplot(y\~{}x)}	{ bivariate plots (with many functionalities)}
 \cmdL{barchart(y\~{}x)}	{  histogram of the values of {\tt y} with respect to those of {\tt x}}
-\cmdL{dotplot(y\~{}x)}	{ Cleveland dot plot (stacked plots line-by-line and column-by-column)}
+\cmdS{dotplot(y\~{}x)}	{ Cleveland dot plot (stacked plots line-by-line and column-by-column)}
 \cmdL{densityplot(\~{}x)}	{ density functions plot}
 \cmdL{histogram(\~{}x)}	{ histogram of the frequencies of {\tt x}}
-\cmdL{bwplot(y\~{}x)}	{ ``box-and-whiskers'' plot}
-\cmdL{qqmath(\~{}x)}	{  quantiles of {\tt x} with respect to the values expected under a theoretical distribution}
+\cmdS{bwplot(y\~{}x)}	{ ``box-and-whiskers'' plot}
+\cmdS{qqmath(\~{}x)}	{  quantiles of {\tt x} with respect to the values expected under a theoretical distribution}
 
 \cmdL{stripplot(y\~{}x)}	{  single dimension plot, {\tt x} must be numeric, {\tt y} may be a factor}
-\cmdL{qq(y\~{}x)}	{quantiles to compare two distributions, {\tt x} must be numeric, {\tt y} may be numeric, character, or factor but must have two `levels'}
-\cmdL{splom(\~{}x)}	{ matrix of bivariate plots}
-\cmdL{parallel(\~{}x)}	{ parallel coordinates plot}
+\cmdS{qq(y\~{}x)}	{quantiles to compare two distributions, {\tt x} must be numeric, {\tt y} may be numeric, character, or factor but must have two `levels'}
+\cmdS{splom(\~{}x)}	{ matrix of bivariate plots}
+\cmdS{parallel(\~{}x)}	{ parallel coordinates plot}
 \cmdL{levelplot(z\~{}x*y|g1*g2)}	{coloured plot of the values of {\tt z} at the coordinates given by {\tt x} and {\tt y} ({\tt x}, {\tt y} and {\tt z} are all of the same length)}
 \cmdL{wireframe(z\~{}x*y|g1*g2)}	{ 3d surface plot}
 \cmdL{cloud(z\~{}x*y|g1*g2)}	{ 3d scatter plot}
+
 In the normal Lattice formula, {\tt y~x|g1*g2} has
-combinations of optional conditioning variables {\tt g1}
-and {\tt g2} plotted on separate panels. Lattice functions
-take many of the same arguments as base
-graphics plus also {\tt data=} the data frame for the formula
-variables and {\tt subset=} for subsetting. Use {\tt panel=} to
-define a custom panel function (see {\tt apropos("panel")}
-and {\tt ?llines}). Lattice functions return an object of class
-trellis and have to be {\tt print}-ed to produce the graph. Use
-{\tt print(xyplot(...))} inside functions where automatic
-printing doesn't work. Use {\tt lattice.theme} and {\tt lset} to
-change Lattice defaults.
+combinations of optional conditioning variables {\tt g1} and {\tt g2} plotted
+on separate panels. Lattice functions take many of the same arguments as base
+graphics plus also {\tt data=} the data frame for the formula variables and
+{\tt subset=} for subsetting.
+
 
 
 %% Footer
