@@ -1,4 +1,5 @@
-^.fuse*
+.fuse*
+*.swp
 *.aux
 *.toc
 *.bbl
