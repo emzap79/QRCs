@@ -13,12 +13,7 @@
 % Shortintro%{{{
 
 \def\shortintro{\smallskip
-<<<<<<< HEAD
-\centerline{\smallrm Frequently used \content\ commands -- Version
-    \version}}
-=======
 \centerline{\smallrm Most frequently used \content\ commands -- Version \version}}
->>>>>>> foobar
 
 \def\shortcopyrightnotice{\smallskip
   \centerline{\smallrm \copyright\ \year\ Jonas Petong -
@@ -124,6 +119,7 @@ and has then been modified to my own use.
 }
 
 %}}}
+
 % A long command%{{{
 
 \def\cmdL#1#2{
@@ -143,10 +139,44 @@ and has then been modified to my own use.
         {#2}
         }}
   }%
+  %\hrule
   \par
   \vskip 0.14cm
 }
 
+%}}}
+% A short option%{{{
+
+\def\cmdOpt#1#2{
+  \noindent
+  \hbox to \hsize {% This comment is needed to remove space at start of line
+    \vtop{
+      \hbox to 2.4cm {
+      % \hfuzz = 5pt
+      \hskip 24pt
+      \hfil
+      % \hsize=1.9cm
+      \noindent\cmd{\tt-#1}
+      }
+      %\hrule
+    }% This comment is needed to remove space
+    \hfil	% absorb extra space b/w columns
+    \vtop{
+      \hsize=5.90cm
+      \hbox{\hfuzz = 15pt \vtop{
+      % Uncomment line below to right-align description
+      %\leftskip=0cm plus 150fil
+      {#2}
+      }}
+      %\hrule
+    }
+  }
+  %\hrule
+  \par
+  \vskip 0.14cm
+}
+
+% A long command%}}}
 % A long option%{{{
 
 \def\cmdOptL#1#2{
@@ -289,12 +319,12 @@ and has then been modified to my own use.
 % Optimizations%{{{
 
 \def\cmd#1{{\tt#1}\null}	%\null so not an abbrev even if period follows
-\def\gray#1{\pdfliteral{0.65 0.65 0.65 rg}#1\pdfliteral{0 0 0 rg}}
+\def\grey#1{\pdfliteral{0.65 0.65 0.65 rg}#1\pdfliteral{0 0 0 rg}}
 \def\black#1{\pdfliteral{0 0 0 rg}#1\pdfliteral{0.65 0.65 0.65 rg}}
 
 % Optimizations%}}}
 
-% Other Commands%}}}
+% Other Commands
 % Characters definitions%{{{
 
 \def\\{\hfil\break}
@@ -311,15 +341,10 @@ and has then been modified to my own use.
 \def\tild{\char126}
 \def\lbracket{[}
 \def\rbracket{]}
-<<<<<<< HEAD
-\def\lbrace{\char123}
-\def\rbrace{\char125}
-=======
 \def\ldots{$...$}
 \def\code{\tt}
 \def\F{{\tt FALSE} }
 \def\T{{\tt TRUE} }
->>>>>>> foobar
 
 % Characters definitions%}}}
 % % latex%{{{
@@ -404,3 +429,4 @@ and has then been modified to my own use.
 % % EOF
 
 % % latex%}}}
+

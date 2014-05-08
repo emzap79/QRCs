@@ -14,6 +14,10 @@ latex:
 	pdftex qrcLaTeX.tex
 	xdg-open qrcLaTeX.pdf &
 
+R:
+	pdftex qrcR.tex
+	xdg-open qrcR.pdf &
+
 r:
 	pdftex qrcR.tex
 	xdg-open qrcR.pdf &
