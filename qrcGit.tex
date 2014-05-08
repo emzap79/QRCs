@@ -23,8 +23,8 @@
 \cmdOpt{A [:/]}	{adds all file changes including deletions to the staging area [for the whole tree]}
 \cmdOpt{f}	{allow adding otherwise ignored files}
 \cmdOpt{p}	{choose hunks of patch between the index and the work tree and add them to the index}
-\gray{\cmdS{am}	{Apply a series of patches from a mailbox}}
-\gray{\cmdS{archive}	{Create an archive of files from a named tree}}
+\grey{\cmdS{am}	{Apply a series of patches from a mailbox}}
+\grey{\cmdS{archive}	{Create an archive of files from a named tree}}
 \cmdS{bisect}	{Find by binary search the change that introduced a bug}
 \cmdExmpl{bisect run test -f $file.txt$}	{search for existence of $file$ in last commits}
 \cmdS{branch}	{List, create, or delete branches}
@@ -32,13 +32,13 @@
 \cmdOpt{d}	{delete {\tt \dots branch}}
 \cmdOpt{m}	{rename branch: \dots {\tt old\_name new\_name}}
 \cmdOpt{v}	{lists more information about the branches}
-\gray{\cmdS{bundle}	{Move objects and refs by archive}}
+\grey{\cmdS{bundle}	{Move objects and refs by archive}}
 \cmdS{checkout}	{checkout a branch or paths to the working tree (prepend {\tt --} before path to avoid ambiguousity).}
 \cmdOpt{b}	{create a branch {\tt new\_name} and switch to it instantly}
 % \greyline{\cmdExmpl{checkout HEAD - - $dir$}	{restore working tree and reset index}}
 \cmdExmpl{checkout HEAD - - $dir$}	{restore working tree and reset index}
 \cmdS{cherry-pick}	{can be used to change order of commits}
-\gray{\cmdS{citool}	{Graphical alternative tocommit}}
+\grey{\cmdS{citool}	{Graphical alternative tocommit}}
 \cmdS{clean}	{Remove untracked files from the working tree}
 \cmdOpt{f}	{force (required!)}
 \cmdOpt{x}	{include hidden files}
@@ -47,14 +47,14 @@
 \cmdS{commit}	{Record changes to the repository}
 \cmdOpt{a}	{adding changes of files known by the Git repository to the commit}
 \cmdOpt{m}	{Set comment for commitment -- correct it with prepending {\tt --amend} to argument}
-\gray{\cmdS{describe}	{Show the most recent tag that is reachable from a commit}}
+\grey{\cmdS{describe}	{Show the most recent tag that is reachable from a commit}}
 \cmdS{diff}	{Show changes between commits, commit and working tree, etc.}
 \cmdOptL{cached}	{compare stage area with last commit}
-\gray{\cmdS{fetch}	{Download objects and refs from another repository}}
-\gray{\cmdS{format-patch}	{Prepare patches for e-mail submission}}
-\gray{\cmdS{gc}	{Cleanup unnecessary files and optimize the local repository}}
-\gray{\cmdS{grep}	{Print lines matching a pattern}}
-\gray{\cmdS{gui}	{A portable graphical interface to Git}}
+\grey{\cmdS{fetch}	{Download objects and refs from another repository}}
+\grey{\cmdS{format-patch}	{Prepare patches for e-mail submission}}
+\grey{\cmdS{gc}	{Cleanup unnecessary files and optimize the local repository}}
+\grey{\cmdS{grep}	{Print lines matching a pattern}}
+\grey{\cmdS{gui}	{A portable graphical interface to Git}}
 \cmdS{init}	{Create an empty git repository or reinitialize an existing one}
 \cmdS{log}	{Show commit logs (prepend {\tt --} before path to avoid ambiguousity)}
 \cmdOpt{p}	{show diffs of each commit}
@@ -67,8 +67,8 @@
 \cmdOpt{s}	{specify your merge strategy (see {\tt man git-merge})}
 \cmdOpt{X}	{apply option to strategy (eg. $ours$, $theirs$)}
 \cmdOptL{ff}	{only update the branch pointer, without creating a merge commit (default)}
-\gray{\cmdS{mv}	{Move or rename a file, a directory, or a symlink}}
-\gray{\cmdS{notes}	{Add/inspect commit notes}}
+\grey{\cmdS{mv}	{Move or rename a file, a directory, or a symlink}}
+\grey{\cmdS{notes}	{Add/inspect commit notes}}
 \cmdS{pull}	{Fetch from and merge with another re\-pository or a local branch}
 \cmdS{push}	{Update remote refs along with associated objects}
 \cmdExmpl{push origin :{\rm testbranch}}	{delete branch in remote repo called origin}
@@ -79,130 +79,130 @@
 \cmdOptL{soft}	{move HEAD pointer only}
 \cmdOptL{mixed}	{resets staging area to new HEAD (default!)}
 \cmdOptL{hard}	{resets staging area and working tree to new HEAD}
-\gray{\cmdS{revert}	{Revert an existing commit}}
+\grey{\cmdS{revert}	{Revert an existing commit}}
 \cmdS{rm}	{Remove files from the working tree and from the index}
 \cmdOpt{r}	{remove recursive -- for removing additionally from repo, add
 {\tt --cached *}}
-\gray{\cmdS{shortlog}	{Summarize git log output}}
+\grey{\cmdS{shortlog}	{Summarize git log output}}
 \cmdS{show}	{Show various types of objects}
-\gray{\cmdS{stash}	{Stash the changes in a dirty working directory away}}
+\grey{\cmdS{stash}	{Stash the changes in a dirty working directory away}}
 \cmdS{status}	{Show the working tree status}
 \cmdS{submodule}	{Initialize, update, add or inspect submodules}
 \cmdOptLl{recurse-submodules}	{pull changes from main repo + submodules}
-\gray{\cmdS{tag}	{Create, list, delete or verify a tag object signed with GPG}}
-\gray{\cmdS{gitk}	{The git repository browser}}
+\grey{\cmdS{tag}	{Create, list, delete or verify a tag object signed with GPG}}
+\grey{\cmdS{gitk}	{The git repository browser}}
 
 \section{Manipulators}{}
 \cmdS{config}	{Get and set repository or global options}
-\gray{\cmdS{fast-export}	{Git data exporter}}
-\gray{\cmdS{fast-import}	{Backend for fast Git data importers}}
-\gray{\cmdL{filter-branch}	{Rewrite branches}}
-\gray{\cmdS{mergetool}	{Run merge conflict resolution tools to resolve merge conflicts}}
-\gray{\cmdS{pack-refs}	{Pack heads and tags for efficient repository access}}
-\gray{\cmdS{prune}	{Prune all unreachable objects from the object database}}
-\gray{\cmdS{reflog}	{Manage reflog information}}
-\gray{\cmdS{relink}	{Hardlink common objects in local repositories}}
+\grey{\cmdS{fast-export}	{Git data exporter}}
+\grey{\cmdS{fast-import}	{Backend for fast Git data importers}}
+\grey{\cmdL{filter-branch}	{Rewrite branches}}
+\grey{\cmdS{mergetool}	{Run merge conflict resolution tools to resolve merge conflicts}}
+\grey{\cmdS{pack-refs}	{Pack heads and tags for efficient repository access}}
+\grey{\cmdS{prune}	{Prune all unreachable objects from the object database}}
+\grey{\cmdS{reflog}	{Manage reflog information}}
+\grey{\cmdS{relink}	{Hardlink common objects in local repositories}}
 \cmdS{remote}	{Manage set of tracked repositories}
 \cmdOpt{v}	{show details about the remotes}
 \cmdExmpl{remote update --prune}{remove all branches which are not in the remote anymore}
-\gray{\cmdS{repack}	{Pack unpacked objects in a repository}}
-\gray{\cmdS{replace}	{Create, list, delete refs to replace objects}}
+\grey{\cmdS{repack}	{Pack unpacked objects in a repository}}
+\grey{\cmdS{replace}	{Create, list, delete refs to replace objects}}
 
 \section{Interrogators}{}
-\gray{\cmdS{annotate}	{Annotate file lines with commit information}}
+\grey{\cmdS{annotate}	{Annotate file lines with commit information}}
 \cmdS{blame}	{\emergencystretch=5pt Show what revision and author last modified each line of a file}
-\gray{\cmdS{cherry}	{Find commits not merged upstream}}
-\gray{\cmdL{count-objects}	{Count unpacked number of objects and their disk consumption}}
-\gray{\cmdS{difftool}	{Show changes using common diff tools}}
-\gray{\cmdS{fsck}	{Verifies the connectivity and validity of the objects in the database}}
-\gray{\cmdL{get-tar-commit-id}	{Extract commit ID from an archive created usingarchive}}
-\gray{\cmdS{help}	{Display help information about git}}
-\gray{\cmdS{instaweb}	{Instantly browse your working repository in gitweb}}
-\gray{\cmdS{merge-tree}	{Show three-way merge without touching index}}
-\gray{\cmdS{rerere}	{Reuse recorded resolution of conflicted merges}}
-\gray{\cmdS{rev-parse}	{Pick out and massage parameters}}
-\gray{\cmdS{show-branch}	{Show branches and their commits}}
-\gray{\cmdS{verify-tag}	{Check the GPG signature of tags}}
-\gray{\cmdS{whatchanged}	{Show logs with difference each commit introduces}}
+\grey{\cmdS{cherry}	{Find commits not merged upstream}}
+\grey{\cmdL{count-objects}	{Count unpacked number of objects and their disk consumption}}
+\grey{\cmdS{difftool}	{Show changes using common diff tools}}
+\grey{\cmdS{fsck}	{Verifies the connectivity and validity of the objects in the database}}
+\grey{\cmdL{get-tar-commit-id}	{Extract commit ID from an archive created usingarchive}}
+\grey{\cmdS{help}	{Display help information about git}}
+\grey{\cmdS{instaweb}	{Instantly browse your working repository in gitweb}}
+\grey{\cmdS{merge-tree}	{Show three-way merge without touching index}}
+\grey{\cmdS{rerere}	{Reuse recorded resolution of conflicted merges}}
+\grey{\cmdS{rev-parse}	{Pick out and massage parameters}}
+\grey{\cmdS{show-branch}	{Show branches and their commits}}
+\grey{\cmdS{verify-tag}	{Check the GPG signature of tags}}
+\grey{\cmdS{whatchanged}	{Show logs with difference each commit introduces}}
 
 \section{Interacting with Others}{}
-\gray{\cmdS{archimport}	{Import an Arch repository into git}}
-\gray{\cmdL{cvsexportcommit}	{Export a single commit to a CVS checkout}}
-\gray{\cmdS{cvsimport}	{Salvage your data out of another SCM people love to hate}}
-\gray{\cmdS{cvsserver}	{A CVS server emulator for git}}
-\gray{\cmdS{imap-send}	{Send a collection of patches from stdin to an IMAP folder}}
-\gray{\cmdS{quiltimport}	{Applies a quilt patchset onto the current branch}}
-\gray{\cmdS{request-pull}	{Generates a summary of pending chan\-ges}}
-\gray{\cmdS{send-email}	{Send a collection of patches as emails}}
-\gray{\cmdS{svn}	{Bidirectional operation between a Subversion repository and git}}
+\grey{\cmdS{archimport}	{Import an Arch repository into git}}
+\grey{\cmdL{cvsexportcommit}	{Export a single commit to a CVS checkout}}
+\grey{\cmdS{cvsimport}	{Salvage your data out of another SCM people love to hate}}
+\grey{\cmdS{cvsserver}	{A CVS server emulator for git}}
+\grey{\cmdS{imap-send}	{Send a collection of patches from stdin to an IMAP folder}}
+\grey{\cmdS{quiltimport}	{Applies a quilt patchset onto the current branch}}
+\grey{\cmdS{request-pull}	{Generates a summary of pending chan\-ges}}
+\grey{\cmdS{send-email}	{Send a collection of patches as emails}}
+\grey{\cmdS{svn}	{Bidirectional operation between a Subversion repository and git}}
 
 \section{Manipulators (plumbing)}{}
-\gray{\cmdS{apply}	{Apply a patch to files and/or to the index}}
-\gray{\cmdL{checkout-index}	{Copy files from the index to the working tree}}
-\gray{\cmdS{commit-tree}	{Create a new commit object}}
-\gray{\cmdS{hash-object}	{Compute object ID and optionally creates a blob from a file}}
-\gray{\cmdS{index-pack}	{Build pack index file for an existing packed archive}}
-\gray{\cmdS{merge-file}	{Run a three-way file merge}}
-\gray{\cmdS{merge-index}	{Run a merge for files needing merging}}
-\gray{\cmdS{mktag}	{Creates a tag object}}
-\gray{\cmdS{mktree}	{Build a tree-object from ls-tree formatted text}}
-\gray{\cmdS{pack-objects}	{Create a packed archive of objects}}
-\gray{\cmdS{prune-packed}	{Remove extra objects that are already in pack files}}
-\gray{\cmdS{read-tree}	{Reads tree information into the index}}
-\gray{\cmdS{symbolic-ref}	{Read and modify symbolic refs}}
-\gray{\cmdL{unpack-objects}	{Unpack objects from a packed archive}}
-\gray{\cmdS{update-index}	{Register file contents in the working tree to the index}}
-\gray{\cmdS{update-ref}	{Update the object name stored in a ref safely}}
-\gray{\cmdS{write-tree}	{Create a tree object from the current index}}
+\grey{\cmdS{apply}	{Apply a patch to files and/or to the index}}
+\grey{\cmdL{checkout-index}	{Copy files from the index to the working tree}}
+\grey{\cmdS{commit-tree}	{Create a new commit object}}
+\grey{\cmdS{hash-object}	{Compute object ID and optionally creates a blob from a file}}
+\grey{\cmdS{index-pack}	{Build pack index file for an existing packed archive}}
+\grey{\cmdS{merge-file}	{Run a three-way file merge}}
+\grey{\cmdS{merge-index}	{Run a merge for files needing merging}}
+\grey{\cmdS{mktag}	{Creates a tag object}}
+\grey{\cmdS{mktree}	{Build a tree-object from ls-tree formatted text}}
+\grey{\cmdS{pack-objects}	{Create a packed archive of objects}}
+\grey{\cmdS{prune-packed}	{Remove extra objects that are already in pack files}}
+\grey{\cmdS{read-tree}	{Reads tree information into the index}}
+\grey{\cmdS{symbolic-ref}	{Read and modify symbolic refs}}
+\grey{\cmdL{unpack-objects}	{Unpack objects from a packed archive}}
+\grey{\cmdS{update-index}	{Register file contents in the working tree to the index}}
+\grey{\cmdS{update-ref}	{Update the object name stored in a ref safely}}
+\grey{\cmdS{write-tree}	{Create a tree object from the current index}}
 
 \section{Interrogators (plumbing)}{}
-\gray{\cmdS{cat-file}	{Provide content or type and size information for repository objects}}
-\gray{\cmdS{diff-files}	{Compares files in the working tree and the index}}
-\gray{\cmdS{diff-index}	{Compares content and mode of blobs between the index and repository}}
+\grey{\cmdS{cat-file}	{Provide content or type and size information for repository objects}}
+\grey{\cmdS{diff-files}	{Compares files in the working tree and the index}}
+\grey{\cmdS{diff-index}	{Compares content and mode of blobs between the index and repository}}
 % \cmdS{diff-tree}	{\emergencystretch=5pt Compares the content and mode of blobs found via two tree objects}
 \cmdS{diff-tree}	{show files which have been changed by last commit}
 \cmdOptLl{name-only}{show only names of files}
 \cmdOpt{r}{recursively}
-\gray{\cmdS{for-each-ref}	{Output information on each ref}}
-\gray{\cmdS{ls-files}	{Show information about files in the index and the working tree}}
-\gray{\cmdS{ls-remote}	{List references in a remote repository}}
-\gray{\cmdS{ls-tree}	{List the contents of a tree object}}
-\gray{\cmdS{merge-base}	{Find as good common ancestors as possible for a merge}}
-\gray{\cmdS{name-rev}	{Find symbolic names for given revs}}
-\gray{\cmdL{pack-redundant}	{Find redundant pack files}}
-\gray{\cmdS{rev-list}	{Lists commit objects in reverse chronological order}}
-\gray{\cmdS{show-index}	{Show packed archive index}}
-\gray{\cmdS{show-ref}	{List references in a local repository}}
-\gray{\cmdS{unpack-file}	{Creates a temporary file with a blob’s contents}}
-\gray{\cmdS{var}	{Show a git logical variable}}
-\gray{\cmdS{verify-pack}	{Validate packed git archive files}}
+\grey{\cmdS{for-each-ref}	{Output information on each ref}}
+\grey{\cmdS{ls-files}	{Show information about files in the index and the working tree}}
+\grey{\cmdS{ls-remote}	{List references in a remote repository}}
+\grey{\cmdS{ls-tree}	{List the contents of a tree object}}
+\grey{\cmdS{merge-base}	{Find as good common ancestors as possible for a merge}}
+\grey{\cmdS{name-rev}	{Find symbolic names for given revs}}
+\grey{\cmdL{pack-redundant}	{Find redundant pack files}}
+\grey{\cmdS{rev-list}	{Lists commit objects in reverse chronological order}}
+\grey{\cmdS{show-index}	{Show packed archive index}}
+\grey{\cmdS{show-ref}	{List references in a local repository}}
+\grey{\cmdS{unpack-file}	{Creates a temporary file with a blob’s contents}}
+\grey{\cmdS{var}	{Show a git logical variable}}
+\grey{\cmdS{verify-pack}	{Validate packed git archive files}}
 
 \section{Synching repositories}{}
-\gray{\cmdS{daemon}	{A really simple server for git repositories}}
-\gray{\cmdS{fetch-pack}	{Receive missing objects from another repository}}
-\gray{\cmdS{http-backend}	{Server side implementation of Git over HTTP}}
-\gray{\cmdS{send-pack}	{Push objects over git protocol to another repository}}
-\gray{\cmdL{update-server-info}	{Update auxiliary info file to help dumb servers}}
+\grey{\cmdS{daemon}	{A really simple server for git repositories}}
+\grey{\cmdS{fetch-pack}	{Receive missing objects from another repository}}
+\grey{\cmdS{http-backend}	{Server side implementation of Git over HTTP}}
+\grey{\cmdS{send-pack}	{Push objects over git protocol to another repository}}
+\grey{\cmdL{update-server-info}	{Update auxiliary info file to help dumb servers}}
 
 \section{Helper commands}{}
-\gray{\cmdS{http-fetch}	{Download from a remote git repository via HTTP}}
-\gray{\cmdS{http-push}	{Push objects over HTTP/DAV to another repository}}
-\gray{\cmdS{parse-remote}	{Routines to help parsing remote repository access parameters}}
-\gray{\cmdS{receive-pack}	{Receive what is pushed into the repository}}
-\gray{\cmdS{shell}	{Restricted login shell foronly SSH access}}
-\gray{\cmdL{upload-archive}	{Send archive back toarchive}}
-\gray{\cmdS{upload-pack}	{Send objects packed back tofetch-pack}}
+\grey{\cmdS{http-fetch}	{Download from a remote git repository via HTTP}}
+\grey{\cmdS{http-push}	{Push objects over HTTP/DAV to another repository}}
+\grey{\cmdS{parse-remote}	{Routines to help parsing remote repository access parameters}}
+\grey{\cmdS{receive-pack}	{Receive what is pushed into the repository}}
+\grey{\cmdS{shell}	{Restricted login shell foronly SSH access}}
+\grey{\cmdL{upload-archive}	{Send archive back toarchive}}
+\grey{\cmdS{upload-pack}	{Send objects packed back tofetch-pack}}
 
 \section{Internal helper commands}{}
-\gray{\cmdS{check-attr}	{Display gitattributes information}}
-\gray{\cmdL{check-ref-format}	{Ensures that a reference name is well formed}}
-\gray{\cmdL{fmt-merge-msg}	{Produce a merge commit message}}
-\gray{\cmdS{mailinfo}	{Extracts patch and authorship from a single e-mail message}}
-\gray{\cmdS{mailsplit}	{Simple UNIX mbox splitter program}}
-\gray{\cmdL{merge-one-file}	{The standard helper program to use withmerge-index}}
-\gray{\cmdS{patch-id}	{Compute unique ID for a patch}}
-\gray{\cmdS{sh-setup}	{Common git shell script setup code}}
-\gray{\cmdS{stripspace}	{Filter out empty lines}}
+\grey{\cmdS{check-attr}	{Display gitattributes information}}
+\grey{\cmdL{check-ref-format}	{Ensures that a reference name is well formed}}
+\grey{\cmdL{fmt-merge-msg}	{Produce a merge commit message}}
+\grey{\cmdS{mailinfo}	{Extracts patch and authorship from a single e-mail message}}
+\grey{\cmdS{mailsplit}	{Simple UNIX mbox splitter program}}
+\grey{\cmdL{merge-one-file}	{The standard helper program to use withmerge-index}}
+\grey{\cmdS{patch-id}	{Compute unique ID for a patch}}
+\grey{\cmdS{sh-setup}	{Common git shell script setup code}}
+\grey{\cmdS{stripspace}	{Filter out empty lines}}
 
 %% Footer
 \copyrightnotice
