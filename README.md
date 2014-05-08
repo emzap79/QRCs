@@ -10,7 +10,6 @@ My repo contains qrc's of the following issues
 
 - Bash
 - VIM
-- R
 - GIT
 - TIG
 - Tmux
