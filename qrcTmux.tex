@@ -4,7 +4,7 @@
 
 % version
 \def\content{TMUX}
-\def\versionnumber{0.1}  % Version of this reference card
+\def\versionnumber{0.2}  % Version of this reference card
 \def\year{2014}
 \def\month{May}
 \def\version{v\versionnumber\ \month\ \year}
@@ -14,11 +14,17 @@
 
 % Card content
 % Header
-\title{\content QUICK REFERENCE CARD}
+\title{\content\ QUICK REFERENCE CARD}
 
 % \shortcopyrightnotice
-\shortintro
+\shortintro\\
 
+Prefix key is set to {\tt \ctrl b} by default. You can
+change that behaviour to ctrl-a by adding the following
+commands to your \tild/.tmux.conf:\\\\
+{\tt :unbind C-b\\
+    :set -g prefix C-a\\
+    :bind C-a send-prefix\\}
 \section{From Shell}{}
 
 \cmdL{create session}	{tmux new -s {\tt session-name}}
@@ -27,13 +33,7 @@
 \cmdL{rename session}	{tmux rename-session -t {\tt old-name} {\tt new-name}}
 \cmdL{list session}	{tmux ls}
 
-\section{Inside Tmux}{Prefix key is set to {\tt \ctrl b} by default. You can
-    change that behaviour to ctrl-a by adding the following
-    commands in your \tild/.tmux.conf:\\\\
-: unbind C-b\\
-: set -g prefix C-a\\
-: bind C-a send-prefix\\
-}
+\section{Inside Tmux}{}
 
 \subsection{Sessions}{}
 \cmdS{\ctrl b?}	{show all available keybinds}
@@ -55,6 +55,7 @@
 \cmdS{\ctrl b$n$}	{change to buffer $0 \ldots n$}
 \cmdS{\ctrl b\key{m - \arrows} }	{resize pane}
 \cmdS{\ctrl b\key{\arrows} \ctrl bz}	{select / full-screen pane}
+\cmdS{\ctrl b\lbrace~\ctrl b\rbrace}	{swap with prev / next pane}
 
 %% Footer
 \copyrightnotice

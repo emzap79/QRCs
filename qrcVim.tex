@@ -111,8 +111,7 @@ Register $x$ and copy to clipboard afterwards.}
 \cmdS{:'$a$,'$b$g/$p$/j}{join any line containing the string $p$ to its subsequent line, if it lies between the $a$ and $b$ marks}
 
 \vskip -0.2cm
-\section{Misc Ex Commands (\enter)}{}
-\cmdL{:help holy-grail }{show all Ex commands}
+\section{Misc Ex Commands (\enter)}{:help holy-grail }
 \cmdS{:e $f$ }{edit file $f$, reload current file if no $f$}
 \cmdS{:$r$w $f$ }{write range $r$ to file $f$ (current file if no $f$)}
 \cmdS{:$rw>$\kern-3pt$>f$ }{append range $r$ to file $f$}
@@ -164,8 +163,7 @@ Leave out $m$ for visual mode commands \\
 \cmdS{\ctrl A \ctrl X}{increment/decrement number under cursor}
 
 %\vskip 0.8cm
-\section{Visual Mode}{}
-\cmdL{:h object-select}{Object selecting patterns}
+\section{Visual Mode}{:h object-select}
 \cmdS{v V \ctrl V }{start/stop highlighting characters, lines, block}
 \cmdS{o }{exchange cursor position with start of highlighting}
 \cmdS{gv }{start highlighting on previous visual area}
@@ -196,8 +194,7 @@ Leave out $m$ for visual mode commands \\
 
 
 
-\section{Patterns (differences to Perl)}{}
-\cmdL{:help pattern } {show complete help on patterns}
+\section{Patterns (differences to Perl)}{:help pattern }
 \cmdS{\bs$<$ \bs$>$ }{start, end of word}
 \cmdS{\bs i \bs k \bs I \bs K }{an identifier, keyword; excl\. digits}
 \cmdS{\bs f \bs p \bs F \bs P }{a file name, printable char.; excl\. digits}
@@ -261,8 +258,7 @@ Leave out $m$ for visual mode commands \\
 \cmdS{:badd f.txt }{load file into new buffer}
 \cmdS{:sb$n$ }{Split window and edit buffer $n$ from the bufflist}
 
-\section{Buffer Shortcuts}{}
-\cmdS{:h ctrl-w }{complete list of all buffer commands}
+\section{Buffer Shortcuts}{:h ctrl-w }
 \cmdS{:bd *.ext \ctrl A}{Deletes all Buffers with Extension `ext'}
 \cmdS{\ctrl \^{} }{toggle between the current and the last window}
 \cmdS{\ctrl Wf gf }{open file under cursor in new/current window}
