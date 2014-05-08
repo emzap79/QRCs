@@ -144,6 +144,39 @@ and has then been modified to my own use.
         {#2}
         }}
   }%
+  %\hrule
+  \par
+  \vskip 0.14cm
+}
+
+%}}}
+% A short option%{{{
+
+\def\cmdOpt#1#2{
+  \noindent
+  \hbox to \hsize {% This comment is needed to remove space at start of line
+    \vtop{
+      \hbox to 2.4cm {
+      % \hfuzz = 5pt
+      \hskip 24pt
+      \hfil
+      % \hsize=1.9cm
+      \noindent\cmd{\tt-#1}
+      }
+      %\hrule
+    }% This comment is needed to remove space
+    \hfil	% absorb extra space b/w columns
+    \vtop{
+      \hsize=5.90cm
+      \hbox{\hfuzz = 15pt \vtop{
+      % Uncomment line below to right-align description
+      %\leftskip=0cm plus 150fil
+      {#2}
+      }}
+      %\hrule
+    }
+  }
+  %\hrule
   \par
   \vskip 0.14cm
 }
