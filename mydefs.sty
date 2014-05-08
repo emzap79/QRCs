@@ -7,13 +7,18 @@
 \font\smallrm=cmr8
 \font\smalltt=cmtt8
 \font\tinyit=cmmi5
+\font\tinytt=cmtt5
 
 % Font %}}}
 % Shortintro%{{{
 
 \def\shortintro{\smallskip
+<<<<<<< HEAD
 \centerline{\smallrm Frequently used \content\ commands -- Version
     \version}}
+=======
+\centerline{\smallrm Most frequently used \content\ commands -- Version \version}}
+>>>>>>> foobar
 
 \def\shortcopyrightnotice{\smallskip
   \centerline{\smallrm \copyright\ \year\ Jonas Petong -
@@ -57,26 +62,26 @@ and has then been modified to my own use.
 \def\fullline{\hbox to\fullhsize}
 \let\lr=L
 \newbox\leftcolumn
-\newbox\midcolumn
-\output={
-  \if L\lr
-    \global\setbox\leftcolumn=\columnbox
-    \global\let\lr=M
-  \else\if M\lr
-    \global\setbox\midcolumn=\columnbox
-    \global\let\lr=R
-  \else
-    \tripleformat
-    \global\let\lr=L
-  \fi\fi
-  \ifnum\outputpenalty>-20000
-  \else
-    \dosupereject
-  \fi}
-\def\tripleformat{
-  \shipout\vbox{\fullline{\box\leftcolumn\hfil\box\midcolumn\hfil\columnbox}}
-  \advancepageno}
-\def\columnbox{\leftline{\pagebody}}
+    \newbox\midcolumn
+    \output={
+        \if L\lr
+        \global\setbox\leftcolumn=\columnbox
+            \global\let\lr=M
+            \else\if M\lr
+            \global\setbox\midcolumn=\columnbox
+            \global\let\lr=R
+            \else
+            \tripleformat
+            \global\let\lr=L
+            \fi\fi
+            \ifnum\outputpenalty>-20000
+            \else
+            \dosupereject
+            \fi}
+        \def\tripleformat{
+            \shipout\vbox{\fullline{\box\leftcolumn\hfil\box\midcolumn\hfil\columnbox}}
+                \advancepageno}
+            \def\columnbox{\leftline{\pagebody}}
 
 % Three columns definitions%}}}
 
@@ -122,65 +127,26 @@ and has then been modified to my own use.
 % A long command%{{{
 
 \def\cmdL#1#2{
-  \hsize=8.5cm
   \vbox {
-    \hbox{
-        \cmd{#1}\hfil
+      \hbox to \hsize{
+          \cmd{#1}
+        \hfil
+        % \dotfill
+        % \hskip 20em
     }%
-    %\vskip -0.2cm % adjusts space b/w command & description
     \hskip 2.5cm  % indent for description
     \hbox to 5.9cm {%
       \hfuzz = 5pt
-      % Use the first one when right-aligned
-      %\vrule\hskip -0.05cm
-      %\vrule\hskip 0.05cm
       \hfil
       \hsize=5.9cm
       \vtop{
-        %\hrule
-        % Uncomment line below to right-align description
-        %\leftskip=0cm plus 150fil
         {#2}
         }}
   }%
-  %\hrule
   \par
   \vskip 0.14cm
 }
 
-%}}}
-% A short option%{{{
-
-\def\cmdOpt#1#2{
-  \noindent
-  \hbox to \hsize {% This comment is needed to remove space at start of line
-    \vtop{
-      \hbox to 2.4cm {
-      % \hfuzz = 5pt
-      \hskip 24pt
-      \hfil
-      % \hsize=1.9cm
-      \noindent\cmd{\tt-#1}
-      }
-      %\hrule
-    }% This comment is needed to remove space
-    \hfil	% absorb extra space b/w columns
-    \vtop{
-      \hsize=5.90cm
-      \hbox{\hfuzz = 15pt \vtop{
-      % Uncomment line below to right-align description
-      %\leftskip=0cm plus 150fil
-      {#2}
-      }}
-      %\hrule
-    }
-  }
-  %\hrule
-  \par
-  \vskip 0.14cm
-}
-
-%}}}
 % A long option%{{{
 
 \def\cmdOptL#1#2{
@@ -245,14 +211,90 @@ and has then been modified to my own use.
         \hsize=7.5cm
         \vtop{
             \vskip 0ex
-            \noindent\cmd{\tt e.g. {#2}: #1}
-            \vskip 3ex
+            \noindent\cmd{\tt {#2}: #1}
+            \vskip 1.0ex
         }%
     }
 }
 
 
 %}}}
+% An operator command%{{{
+
+\def\cmdOper#1#2{
+  \noindent
+  \hbox to \hsize {% This comment is needed to remove space at start of line
+    \vtop{
+      % \leftskip=0cm plus 150fil
+        \hbox to 3.5cm {
+      \hfil
+      % \hfuzz = 5pt
+      % \hskip 10pt
+      \hsize=10em
+      \noindent{#1}
+      \hfil
+      }
+      %\hrule
+    }% This comment is needed to remove space
+    \hfil	% absorb extra space b/w columns
+    \vtop{
+      \hsize=4.90cm
+      \hbox{\hfuzz = 15pt \vtop{
+      % Uncomment line below to right-align description
+      %\leftskip=0cm plus 150fil
+      {#2}
+      }}
+      %\hrule
+    }
+  }
+  %\hrule
+  \par
+  \vskip 0.14cm
+
+}%}}}
+% An long operator command%{{{
+
+\def\cmdOperL#1#2{
+    \noindent
+    \vbox{
+        \hbox {% This comment is needed to remove space at start of line
+            % \leftskip=0cm plus 150fil
+            \hfil
+            % \hfuzz = 5pt
+            \hsize=10em
+            \noindent{#1}
+            \hfil
+            % \hskip 2ex
+            %\hrule
+        }% This comment is needed to remove space
+        \hfil	% absorb extra space b/w columns
+        % \hsize=4.90cm
+        \hskip 7em
+        \vtop{
+            \hbox{
+                % Uncomment line below to right-align description
+                %\leftskip=0cm plus 150fil
+                {#2}
+            }
+            %\hrule
+        }
+    }
+    %\hrule
+    \par
+    \vskip 0.14cm
+
+}
+
+% An long operator command%}}}
+% Optimizations%{{{
+
+\def\cmd#1{{\tt#1}\null}	%\null so not an abbrev even if period follows
+\def\gray#1{\pdfliteral{0.65 0.65 0.65 rg}#1\pdfliteral{0 0 0 rg}}
+\def\black#1{\pdfliteral{0 0 0 rg}#1\pdfliteral{0.65 0.65 0.65 rg}}
+
+% Optimizations%}}}
+
+% Other Commands%}}}
 % Characters definitions%{{{
 
 \def\\{\hfil\break}
@@ -269,16 +311,96 @@ and has then been modified to my own use.
 \def\tild{\char126}
 \def\lbracket{[}
 \def\rbracket{]}
+<<<<<<< HEAD
 \def\lbrace{\char123}
 \def\rbrace{\char125}
+=======
+\def\ldots{$...$}
+\def\code{\tt}
+\def\F{{\tt FALSE} }
+\def\T{{\tt TRUE} }
+>>>>>>> foobar
 
 % Characters definitions%}}}
-% Optimizations%{{{
+% % latex%{{{
 
-\def\cmd#1{{\tt#1}\null}	%\null so not an abbrev even if period follows
-\def\gray#1{\pdfliteral{0.65 0.65 0.65 rg}#1\pdfliteral{0 0 0 rg}}
-\def\black#1{\pdfliteral{0 0 0 rg}#1\pdfliteral{0.65 0.65 0.65 rg}}
+% % by Tom Short, tshort@epri-peac.com, EPRI PEAC
+% % granted to the public domain
 
-% Optimizations%}}}
+% %% edited/added to by james mccreight, mccreigh-*@*-gmail
 
-% Other Commands%}}}
+% \documentclass[10pt,landscape]{article}
+% %\documentclass[10pt,portrait]{article}
+% \usepackage{pslatex}
+% \usepackage{graphicx}
+% \usepackage{multicol}
+% \usepackage{calc}
+% \usepackage{color}
+% \usepackage{mydefs}
+
+% % Turn off header and footer
+% \pagestyle{empty}
+
+% %\setlength{\leftmargin}{0.75in}
+% \setlength{\oddsidemargin}{-0.75in}
+% \setlength{\evensidemargin}{-0.75in}
+% \setlength{\textwidth}{10.5in}
+
+
+% \setlength{\topmargin}{-0.2in}
+% \setlength{\textheight}{7.4in}
+% \setlength{\headheight}{0in}
+% \setlength{\headsep}{0in}
+
+% \pdfpageheight\paperheight
+% \pdfpagewidth\paperwidth
+
+% % Redefine section commands to use less space
+% \makeatletter
+% \renewcommand\section{\@startsection{section}{1}{0mm}%
+                                     % {-24pt}% \@plus -12pt \@minus -6pt}%
+                                     % {0.5ex}%
+                                % {\color{blue}\normalfont\large\bfseries}}
+% \makeatother
+
+% % Don't print section numbers
+% \setcounter{secnumdepth}{0}
+
+% \setlength{\parindent}{0pt}
+% \setlength{\parskip}{0pt}
+
+% \newcommand{\code}{\texttt}
+% \newcommand{\bcode}[1]{\texttt{\textbf{#1}}
+% }
+% \newcommand\F{\code{FALSE}}
+% \newcommand\T{\code{TRUE}}
+
+% %\newcommand{\hangpara}[2]{\hangindent#1\hangafter#2\noindent}
+% %\newenvironment{hangparas}[2]{\setlength{\parindent}{\z@}\everypar={\hangpara{#1}{#2}}
+% %}
+
+% \newcommand{\describe}[1]{\begin{description}{#1}\end{description}}
+
+
+% % -----------------------------------------------------------------------
+
+% \begin{document}
+
+% %\raggedright
+% \footnotesize
+% \begin{multicols*}{3}
+
+% % multicol parameters
+% % These lengths are set only within the two main columns
+% %\setlength{\columnseprule}{0.25pt}
+% \setlength{\premulticols}{1pt}
+% \setlength{\postmulticols}{1pt}
+% \setlength{\multicolsep}{1pt}
+% \setlength{\columnsep}{2pt}
+
+
+% \end{multicols*}
+% \end{document}
+% % EOF
+
+% % latex%}}}
