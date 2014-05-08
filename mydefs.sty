@@ -95,60 +95,56 @@ and has then been modified to my own use.
 % A short command%{{{
 
 \def\cmdS#1#2{
-    \noindent
-    \hbox to \hsize {%
-        \vtop{
-            \hbox to 2.4cm {
-                \noindent\cmd{#1}\dotfill
-            }
-            %\hrule
-        }%
-        \hfil	% absorb extra space b/w columns
-        \vtop{
-            \hsize=6.90cm
-            \hbox {
-                \hfuzz = 25pt
-                \vtop{
-                    #2
-                }
-            }
-            %\hrule
-        }
+  \noindent
+  \hbox to \hsize {%
+    \vtop{
+      \hbox to 2.4cm {
+        \noindent\cmd{#1}\dotfill
+      }
+      %\hrule
+    }%
+    \hfil	% absorb extra space b/w columns
+    \vtop{
+      \hsize=5.90cm
+      \hbox{\hfuzz = 15pt \vtop{
+      {#2}
+      }}
+      %\hrule
     }
-    %\hrule
-    \par
-    \vskip 0.14cm
+  }
+  %\hrule
+  \par
+  \vskip 0.14cm
 }
 
 %}}}
 % A long command%{{{
 
 \def\cmdL#1#2{
-    \hsize=8.5cm
-    \vbox {
-        \hbox{
-            \cmd{#1}\hfil
-        }%
-        %\vskip -0.2cm % adjusts space b/w command & description
-        \hskip 2.5cm  % indent for description
-        \hbox to 5.9cm {%
-            \hfuzz = 5pt
-            % Use the first one when right-aligned
-            %\vrule\hskip -0.05cm
-            %\vrule\hskip 0.05cm
-            \hfil
-            \hsize=5.9cm
-            \vtop{
-                %\hrule
-                % Uncomment line below to right-align description
-                %\leftskip=0cm plus 150fil
-                {#2}
-            }
-        }
+  \hsize=8.5cm
+  \vbox {
+    \hbox{
+        \cmd{#1}\hfil
     }%
-    %\hrule
-    \par
-    \vskip 0.14cm
+    %\vskip -0.2cm % adjusts space b/w command & description
+    \hskip 2.5cm  % indent for description
+    \hbox to 5.9cm {%
+      \hfuzz = 5pt
+      % Use the first one when right-aligned
+      %\vrule\hskip -0.05cm
+      %\vrule\hskip 0.05cm
+      \hfil
+      \hsize=5.9cm
+      \vtop{
+        %\hrule
+        % Uncomment line below to right-align description
+        %\leftskip=0cm plus 150fil
+        {#2}
+        }}
+  }%
+  %\hrule
+  \par
+  \vskip 0.14cm
 }
 
 %}}}
