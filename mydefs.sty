@@ -139,8 +139,7 @@ and has then been modified to my own use.
         {#2}
         }}
   }%
-  %\hrule
-  \par
+  % \par
   \vskip 0.14cm
 }
 
@@ -235,16 +234,18 @@ and has then been modified to my own use.
 % An example command%{{{
 
 \def\cmdExmpl#1#2{
-    \hbox to \hsize {
-        \hfuzz = 20pt
-        \hfil
-        \hsize=7.5cm
-        \vtop{
-            \vskip 0ex
-            \noindent\cmd{\tt {#2}: #1}
-            \vskip 1.0ex
-        }%
+\vskip -0.2ex
+\hbox to \hsize {
+    $\Rightarrow$
+    \hfuzz = 20pt
+    \hfil
+    \hsize=7.5cm
+    \hskip .5em
+    \vtop{
+        \noindent\cmd{\tt {#2}: #1}
     }
+}
+\vskip 1.0ex
 }
 
 
@@ -312,7 +313,6 @@ and has then been modified to my own use.
     %\hrule
     \par
     \vskip 0.14cm
-
 }
 
 % An long operator command%}}}
@@ -347,86 +347,3 @@ and has then been modified to my own use.
 \def\T{{\tt TRUE} }
 
 % Characters definitions%}}}
-% % latex%{{{
-
-% % by Tom Short, tshort@epri-peac.com, EPRI PEAC
-% % granted to the public domain
-
-% %% edited/added to by james mccreight, mccreigh-*@*-gmail
-
-% \documentclass[10pt,landscape]{article}
-% %\documentclass[10pt,portrait]{article}
-% \usepackage{pslatex}
-% \usepackage{graphicx}
-% \usepackage{multicol}
-% \usepackage{calc}
-% \usepackage{color}
-% \usepackage{mydefs}
-
-% % Turn off header and footer
-% \pagestyle{empty}
-
-% %\setlength{\leftmargin}{0.75in}
-% \setlength{\oddsidemargin}{-0.75in}
-% \setlength{\evensidemargin}{-0.75in}
-% \setlength{\textwidth}{10.5in}
-
-
-% \setlength{\topmargin}{-0.2in}
-% \setlength{\textheight}{7.4in}
-% \setlength{\headheight}{0in}
-% \setlength{\headsep}{0in}
-
-% \pdfpageheight\paperheight
-% \pdfpagewidth\paperwidth
-
-% % Redefine section commands to use less space
-% \makeatletter
-% \renewcommand\section{\@startsection{section}{1}{0mm}%
-                                     % {-24pt}% \@plus -12pt \@minus -6pt}%
-                                     % {0.5ex}%
-                                % {\color{blue}\normalfont\large\bfseries}}
-% \makeatother
-
-% % Don't print section numbers
-% \setcounter{secnumdepth}{0}
-
-% \setlength{\parindent}{0pt}
-% \setlength{\parskip}{0pt}
-
-% \newcommand{\code}{\texttt}
-% \newcommand{\bcode}[1]{\texttt{\textbf{#1}}
-% }
-% \newcommand\F{\code{FALSE}}
-% \newcommand\T{\code{TRUE}}
-
-% %\newcommand{\hangpara}[2]{\hangindent#1\hangafter#2\noindent}
-% %\newenvironment{hangparas}[2]{\setlength{\parindent}{\z@}\everypar={\hangpara{#1}{#2}}
-% %}
-
-% \newcommand{\describe}[1]{\begin{description}{#1}\end{description}}
-
-
-% % -----------------------------------------------------------------------
-
-% \begin{document}
-
-% %\raggedright
-% \footnotesize
-% \begin{multicols*}{3}
-
-% % multicol parameters
-% % These lengths are set only within the two main columns
-% %\setlength{\columnseprule}{0.25pt}
-% \setlength{\premulticols}{1pt}
-% \setlength{\postmulticols}{1pt}
-% \setlength{\multicolsep}{1pt}
-% \setlength{\columnsep}{2pt}
-
-
-% \end{multicols*}
-% \end{document}
-% % EOF
-
-% % latex%}}}
-

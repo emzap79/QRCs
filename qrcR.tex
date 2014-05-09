@@ -17,11 +17,11 @@
 \title{\content\ QUICK REFERENCE CARD}
 
 % \shortcopyrightnotice
-\shortintro\\
+\shortintro\vskip 2ex
 
-{\smalltt The original Reference Cheat was created by Tom Short, EPRI PEAC, in
+{The Reference Cheat was first created by Tom Short, EPRI PEAC, in
     2004-10-21. I modified the original document so it fits my other reference
-    cards, all of its content has been preserved!}
+    cards on GitHub; all of its original content has been preserved!}
 
 % Granted to the public domain. See www.Rpad.org for the source and latest version.
 % Includes material from {\it R for Beginners} by Emmanuel Paradis
@@ -57,11 +57,11 @@
 \cmdS{data(x)}	{loads specified data set}
 \cmdS{library(x)}	{load add-on packages}
 \cmdL{read.table(file)}	{reads a file in table format and creates a data frame
-    from it; the default separator {\tt sep=""} is any whitespace; use {\tt
-        header=T} to read the first line as a header of column names; use {\tt
-        as.is=T} to prevent character vectors from being converted to factors;\\
+    from it; the default separator {\tt sep=""} is any whitespace;\\\\use {\tt
+        header=T} to read the first line as a header of column names;\\\\use {\tt
+        as.is=T} to prevent character vectors from being converted to factors;\\\\
     use {\tt comment.char=""} to prevent {\tt "\#"} from being interpreted as a
-    comment; use {\tt skip=n} to skip {\tt n} lines before reading data; see
+    comment;\\\\use {\tt skip=n} to skip {\tt n} lines before reading data;\\\\see
     the help for options on row naming, NA treatment, and others}
 \cmdL{read.csv("filename",header=T)}	{id. but with defaults set for reading comma-delimited files}
 \cmdL{read.delim("filename",header=T)}	{id. but with defaults set for reading tab-delimited files}
@@ -110,7 +110,7 @@ For database interaction, see packages {\tt RODBC}, {\tt DBI},\\
 \cmdExmpl{1 2 3 1 2 3}{\tt rep(c(1,2,3),2)}
 \cmdExmpl{1 1 2 2 3 3}{\tt rep(c(1,2,3),each=2)}
 \cmdL{data.frame(...)}	{create a data frame of the named or unnamed arguments}
-\cmdExmpl{\\ data.frame(v=1:4,ch=c("a","B","c","d"),n=10)}	{shorter vectors are recycled to the length of the longest}
+\cmdExmpl{\\d\ldots ame(v=1:4,ch=c("a","B","c","d"),n=10)}	{shorter vectors are recycled to the length of the longest}
 \cmdS{list(...)}	{create a list of the named or unnamed arguments }
 \cmdExmpl{list(a=c(1,2),b="hi",c=3i)}{use}
 \cmdL{array(x,dim=)}	{array with data {\tt x}; specify dimensions like {\tt dim=c(3,4,2)}; elements of {\tt x} recycle if {\tt x} is not long enough}
@@ -131,7 +131,7 @@ For database interaction, see packages {\tt RODBC}, {\tt DBI},\\
 \cmdOper{\tt x["name"] }	{element named {\tt "name"}}
 \cmdOper{\tt x[x > 3] }	{all elements greater than 3}
 \cmdOper{\tt x[x > 3 \& x < 5] }	{all elements between 3 and 5}
-\cmdOperL{\tt x[x \%in\% c("a","and","the")] }	{elements in the given set}
+\cmdExmpl{\\\tt x[x \%in\% c("a","and","the")] }	{elements in the given set}
 
 \subsection{Indexing lists}{}
 
@@ -154,8 +154,8 @@ For database interaction, see packages {\tt RODBC}, {\tt DBI},\\
 \cmdOper{\tt x[["name"]]}	{column named {\tt "name"}}
 \cmdOper{\tt x\$name}	{id.}
 
-\section{Variable information}{{\smalltt is.na(x), is.null(x), is.array(x), is.data.frame(x), \ldots}}
-\cmdS{methods(is)}	{all available lists of typetests}
+\section{Variable information}{is.na(x), is.null(x), is.array(x), is.data.frame(x), \ldots}
+\cmdS{methods(is)}	{list all available typetests}
 \cmdS{methods(as)}	{list of all variable conversions}
 \cmdS{any(x)}	{any TRUE elements of {\tt x}?}
 \cmdS{all(x)}	{all TRUE elements of {\tt x}?}
@@ -201,7 +201,8 @@ resample with replacement}
 \section{Characters (Strings)}{}
 
 \cmdS{paste(...)}	{concatenate vectors after converting to character; {\tt sep=} is the string to separate terms (a single space is the default); {\tt collapse=} is an optional string to separate ``collapsed'' results}
-\cmdL{substr(x,start,stop)}	{substrings in a character vector; can also assign, as\\ {\tt substr(x, start, stop) <- value}}
+\cmdL{substr(x,start,stop)}	{substrings in a character vector}
+\cmdExmpl{\\substr(x, start, stop) <- value}	{can also assign, as}
 \cmdL{strsplit(x,split)}	{split {\tt x} according to the substring {\tt split}}
 \cmdL{grep(pattern,x)}	{searches for matches to {\tt pattern} within {\tt x}; see {\tt ?regex}}
 \cmdL{gsub(pattern,replacement,x)}	{replacement of matches determined by regular expression matching {\tt sub()} is the same but only replaces the first occurrence.}

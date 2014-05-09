@@ -22,3 +22,5 @@
 *.lof
 *.fls
 qrcFoo.*
+qrcTeX.*
+qrcLaTeX.*
