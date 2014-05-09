@@ -62,6 +62,9 @@
 \cmdOptL{oneline}	{show logs as shortened oneliner}
 \cmdOptL{reverse}	{reverse log-history output}
 \cmdOptL{follow}	{entire history including renames}
+\cmdOptL{graph}	{show visual timeline}
+\cmdExmpl{git log --pretty=format: --name-status | cut -f2- | sort -u}{show all
+    files that ever existed in HEAD}  % http://superuser.com/a/429694
 \cmdS{merge}	{Join two or more development histories together}
 \cmdOpt{s}	{specify your merge strategy (see {\tt man git-merge})}
 \cmdOpt{X}	{apply option to strategy (eg. $ours$, $theirs$)}
@@ -163,9 +166,10 @@
 \cmdOptLl{name-only}{show only names of files}
 \cmdOpt{r}{recursively}
 \grey{\cmdS{for-each-ref}	{Output information on each ref}}
-\grey{\cmdS{ls-files}	{Show information about files in the index and the working tree}}
-\grey{\cmdS{ls-remote}	{List references in a remote repository}}
-\grey{\cmdS{ls-tree}	{List the contents of a tree object}}
+\cmdS{ls-files}	{Show information about files in the index and the working tree}
+\cmdS{ls-remote}	{List references in a remote repository}
+\cmdS{ls-tree}	{List the contents of a tree object}
+\cmdExmpl{ls-tree -r master --name-only}{list all files for specific branch}
 \grey{\cmdS{merge-base}	{Find as good common ancestors as possible for a merge}}
 \grey{\cmdS{name-rev}	{Find symbolic names for given revs}}
 \grey{\cmdL{pack-redundant}	{Find redundant pack files}}
