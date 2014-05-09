@@ -9,12 +9,11 @@ the file, where it's originally been taken from.
 My repo contains qrc's of the following issues
 
 - Bash
-- VIM
+- R
 - GIT
 - TIG
 - Tmux
-- TeX
-- LaTeX
+- VIM
 
 ## Create PDF
 
