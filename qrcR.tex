@@ -19,11 +19,12 @@
 % \shortcopyrightnotice
 \shortintro\vskip 2ex
 
-{The Reference Cheat was first created by Tom Short, EPRI PEAC, in
-    2004-10-21. I modified the original document so it fits my other reference
-    cards on GitHub; all of its original content has been preserved!}
+{A first version of this qrc was created by Tom Short, EPRI PEAC, in
+    2004-10-21. I modified the document so it fits my other reference cards;
+    all of its original content has been preserved (in some cases expanded)!}
 
-% Granted to the public domain. See www.Rpad.org for the source and latest version.
+% Granted to the public domain. See www.Rpad.org for the source and latest
+% version.
 % Includes material from {\it R for Beginners} by Emmanuel Paradis
 % (with permission). Some additions by James McCreight.
 
@@ -64,9 +65,10 @@
     comment;\\\\use {\tt skip=n} to skip {\tt n} lines before reading data;\\\\see
     the help for options on row naming, NA treatment, and others}
 \cmdL{read.csv("filename",header=T)}	{id. but with defaults set for reading comma-delimited files}
+\cmdL{read.csv2("filename",header=T)}	{id. but with defaults set for reading semicolon-delimited files and {\tt dec=","}}
 \cmdL{read.delim("filename",header=T)}	{id. but with defaults set for reading tab-delimited files}
-\cmdL{read.fwf(file,widths,header=F,sep="\\t",as.is=F)}	{
-    read a table of {\it f}ixed {\it w}idth {\it f}ormatted data into a
+\cmdL{{\smalltt read.fwf(file,widths,header=F,sep="\bs t",as.is=F)}}	{
+    read a table of [{\tt f}]ixed [{\tt w}]idth [{\tt f}]or\-mat\-ted data into a
     \emergencystretch=3em 'data.frame'; {\tt widths} is an integer vector,
     giving the widths of the fixed-width fields}
 \cmdL{save(file,...)}	{saves the specified objects (...) in the XDR
@@ -102,7 +104,7 @@ For database interaction, see packages {\tt RODBC}, {\tt DBI},\\
 
 \section{Data creation}{}
 
-\cmdS{c(...)}	{generic function to combine arguments with the default forming a vector; with {\tt recursive=T} descends through lists combining all elements into one vector}
+\cmdS{c(...)}	{generic function to concatenate arguments with the default forming a vector; with {\tt recursive=T} descends through lists combining all elements into one vector}
 \cmdS{from:to}	{generates a sequence; ``:'' has operator priority; 1:4 + 1 is ``2,3,4,5''}
 \cmdS{seq(from,to)}	{generates a sequence {\tt by=} specifies increment; {\tt length=} specifies desired length}
 \cmdS{seq(along=x)}	{generates {\tt 1, 2, \ldots, length(along)};\\useful for {\tt for} loops}
@@ -110,7 +112,7 @@ For database interaction, see packages {\tt RODBC}, {\tt DBI},\\
 \cmdExmpl{1 2 3 1 2 3}{\tt rep(c(1,2,3),2)}
 \cmdExmpl{1 1 2 2 3 3}{\tt rep(c(1,2,3),each=2)}
 \cmdL{data.frame(...)}	{create a data frame of the named or unnamed arguments}
-\cmdExmpl{\\d\ldots ame(v=1:4,ch=c("a","B","c","d"),n=10)}	{shorter vectors are recycled to the length of the longest}
+\cmdExmpl{\\d\ldots ame(v=1:4,ch=c("a","B","c","d"),n=10)}	{shorter vectors are being recycled to the length of the longest}
 \cmdS{list(...)}	{create a list of the named or unnamed arguments }
 \cmdExmpl{list(a=c(1,2),b="hi",c=3i)}{use}
 \cmdL{array(x,dim=)}	{array with data {\tt x}; specify dimensions like {\tt dim=c(3,4,2)}; elements of {\tt x} recycle if {\tt x} is not long enough}

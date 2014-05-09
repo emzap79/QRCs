@@ -17,10 +17,10 @@
 \title{\content\ QUICK REFERENCE CARD}
 
 % \shortcopyrightnotice
-\shortintro\\
+\shortintro\vskip 2ex
 
-Prefix key is set to {\tt \ctrl b} by default. You can
-change that behaviour to ctrl-a by adding the following
+Prefix key is set to \key{ctrl-b} by default. You can
+change that behaviour to e.g. \key{ctrl-a} by adding the following
 commands to your \tild/.tmux.conf:\\\\
 {\tt :unbind C-b\\
     :set -g prefix C-a\\
@@ -33,7 +33,7 @@ commands to your \tild/.tmux.conf:\\\\
 \cmdL{rename session}	{tmux rename-session -t {\tt old-name} {\tt new-name}}
 \cmdL{list session}	{tmux ls}
 
-\section{Inside Tmux}{}
+\section{Inside Tmux}{\key{M} denotes the meta key, usually bound to \key{ALT}}
 
 \subsection{Sessions}{}
 \cmdS{\ctrl b?}	{show all available keybinds}
@@ -49,13 +49,21 @@ commands to your \tild/.tmux.conf:\\\\
 \cmdS{\ctrl bc \ctrl b,}	{create / rename window}
 \cmdS{\ctrl bn \ctrl bp \ctrl bl}	{navigate next/prev/last window}
 
-\subsection{Panes/Buffers}{}
-\cmdS{\ctrl b\%  \ctrl b"}	{split pane vertic / horiz}
+\subsection{Panes}{}
+\subsubsection{Open / Switch / Resize Panes}{}
 \cmdS{\ctrl bx \or \ctrl d }	{delete pane}
+\cmdS{\ctrl b\key{\arrows}}	{switch panes}
 \cmdS{\ctrl b$n$}	{change to buffer $0 \ldots n$}
-\cmdS{\ctrl b\key{m - \arrows} }	{resize pane}
-\cmdS{\ctrl b\key{\arrows} \ctrl bz}	{select / full-screen pane}
+\cmdL{\ctrl b\key{M - \arrows } \ctrl bz}	{resize / full-screen pane}
 \cmdS{\ctrl b$\lbrace$~\ctrl b$\rbrace$}	{swap with prev / next pane}
+
+\subsubsection{Split Panes}{}
+\cmdS{\ctrl b\%  \ctrl b"}	{split pane vertic / horiz}
+\cmdS{\ctrl b \key{M-1}}	{vertical split, all panes same width}
+\cmdS{\ctrl b \key{M-2}}	{horizontal split, all panes same height}
+\cmdS{\ctrl b \key{M-3}}	{horizontal split, main pane on top, other panes on bottom, vertically split, all same width}
+\cmdS{\ctrl b \key{M-4}}	{vertical split, main pane left, other panes right, horizontally split, all same height}
+\cmdS{\ctrl b \key{M-5}}	{tile, new panes on bottom, same height before same width}
 
 %% Footer
 \copyrightnotice
