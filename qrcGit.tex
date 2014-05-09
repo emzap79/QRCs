@@ -96,6 +96,10 @@
 
 \section{Manipulators}{}
 \cmdS{config}	{Get and set repository or global options}
+\cmdOptL{global}{write to global {\tt \tild/.gitconfig} file}
+\cmdOptL{system}{write to system-wide configuration}
+\cmdOptL{local}{to repository's configuration {\tt .git/config}}
+\cmdExmpl{config --global alias.staged 'diff --cached'}{set alias for staged file prompt}
 \grey{\cmdS{fast-export}	{Git data exporter}}
 \grey{\cmdS{fast-import}	{Backend for fast Git data importers}}
 \grey{\cmdL{filter-branch}	{Rewrite branches}}
