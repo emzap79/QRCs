@@ -4,7 +4,7 @@
 
 % version
 \def\content{TMUX}
-\def\versionnumber{0.2}  % Version of this reference card
+\def\versionnumber{1.0}  % Version of this reference card
 \def\year{2014}
 \def\month{May}
 \def\version{v\versionnumber\ \month\ \year}
@@ -19,12 +19,12 @@
 % \shortcopyrightnotice
 \shortintro\vskip 2ex
 
-Prefix key is set to \key{ctrl-b} by default. You can
-change that behaviour to e.g. \key{ctrl-a} by adding the following
-commands to your \tild/.tmux.conf:\\\\
-{\tt :unbind C-b\\
-    :set -g prefix C-a\\
-    :bind C-a send-prefix\\}
+Prefix key is set to \key{ctrl-b} by default. You can change that
+behaviour to e.g. \key{ctrl-a} by adding the following commands to your
+\tild/.tmux.conf:\\
+
+{\tt :unbind C-b\\ :set -g prefix C-a\\ :bind C-a send-prefix\\}
+
 \section{From Shell}{}
 
 \cmdL{create session}	{tmux new -s {\tt session-name}}
@@ -47,19 +47,22 @@ commands to your \tild/.tmux.conf:\\\\
 
 \subsection{Windows}{}
 \cmdS{\ctrl bc \ctrl b,}	{create / rename window}
+\cmdS{\ctrl bf~\ctrl bw}	{find / list windows}
 \cmdS{\ctrl bn \ctrl bp \ctrl bl}	{navigate next/prev/last window}
 
 \subsection{Panes \or\ Buffers}{}
 \subsubsection{Open / Switch / Resize}{}
 \cmdS{\ctrl bx \or \ctrl d }	{delete pane}
-\cmdS{\ctrl b!}	{close all panes but this one}
-\cmdS{\ctrl b\key{\arrows}}	{switch panes}
-\cmdS{\ctrl b$n$}	{change to buffer $0 \ldots n$}
+\cmdS{\ctrl b!}	{close all other panes}
+\cmdS{\ctrl bt \ctrl bq}	{show time / numeric values of panes}
+\cmdS{\ctrl b\key{\arrows} \or\ctrl bo}	{switch to (next) pane}
+\cmdS{\ctrl b$n$}	{switch to buffer $0 \ldots n$}
 \cmdL{\ctrl b\key{M - \arrows } \ctrl bz}	{resize / full-screen pane}
-\cmdS{\ctrl b$\lbrace$~\ctrl b$\rbrace$}	{swap with prev / next pane}
+\cmdS{\ctrl b$\rbrace$}	{swap position with next pane}
+\cmdS{\ctrl b$\lbrace$ \or\ \ctrl b\ctrl o}	{swap with previous pane}
 
 \subsubsection{Split Panes}{}
-\cmdS{\ctrl b\%  \ctrl b"}	{split pane vertic / horiz}
+\cmdS{\ctrl b\%  \ctrl b"}	{split pane vertically / horizontally}
 \cmdS{\ctrl b \key{M-1}}	{vertical split, all panes same width}
 \cmdS{\ctrl b \key{M-2}}	{horizontal split, all panes same height}
 \cmdS{\ctrl b \key{M-3}}	{horizontal split, main pane on top, other panes on bottom, vertically split, all same width}
@@ -71,7 +74,6 @@ commands to your \tild/.tmux.conf:\\\\
 
 % Ending
 \supereject
-\if L\lr \else\null\vfill\eject\fi
 \if L\lr \else\null\vfill\eject\fi
 \bye
 
