@@ -1,4 +1,4 @@
-% vim:fdm=marker:filetype=tex:ts=2:expandtab
+% vim:fdm=syntax:filetype=tex:ts=2:expandtab
 % TMUX Quick Reference Card
 % Copyright (c) 2014 Jonas Petong.
 
@@ -49,9 +49,10 @@ commands to your \tild/.tmux.conf:\\\\
 \cmdS{\ctrl bc \ctrl b,}	{create / rename window}
 \cmdS{\ctrl bn \ctrl bp \ctrl bl}	{navigate next/prev/last window}
 
-\subsection{Panes}{}
-\subsubsection{Open / Switch / Resize Panes}{}
+\subsection{Panes \or\ Buffers}{}
+\subsubsection{Open / Switch / Resize}{}
 \cmdS{\ctrl bx \or \ctrl d }	{delete pane}
+\cmdS{\ctrl b!}	{close all panes but this one}
 \cmdS{\ctrl b\key{\arrows}}	{switch panes}
 \cmdS{\ctrl b$n$}	{change to buffer $0 \ldots n$}
 \cmdL{\ctrl b\key{M - \arrows } \ctrl bz}	{resize / full-screen pane}
