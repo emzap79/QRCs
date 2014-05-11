@@ -12,7 +12,6 @@ My repo contains qrc's of the following issues
 - Bash
 - R
 - GIT
-- TIG
 - Tmux
 - VIM
 
