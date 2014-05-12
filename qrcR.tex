@@ -64,7 +64,8 @@
     comment;\\\\use {\tt skip=n} to skip {\tt n} lines before reading data;\\\\see
     the help for options on row naming, NA treatment, and others}
 \cmdL{read.csv("filename",header=T)}	{id. but with defaults set for reading comma-delimited files}
-\cmdL{read.csv2("filename",header=T)}	{id. but with defaults set for reading semicolon-delimited files and {\tt dec=","}}
+\cmdL{read.csv2("filename",header=T,fill=T)}	{id. but with defaults set for reading semicolon-delimited files and {\tt dec=","}; if {\tt fill} is
+{\tt TRUE} then in case the rows have unequal length, blank fields are implicitly added; if {\tt blank.lines.skip} is {\tt T} then blank lines in the input are ignored.}
 \cmdL{read.delim("filename",header=T)}	{id. but with defaults set for reading tab-delimited files}
 \cmdL{{\smalltt read.fwf(file,widths,header=F,sep="\bs t",as.is=F)}}	{
     read a table of [{\tt f}]ixed [{\tt w}]idth [{\tt f}]or\-mat\-ted data into a

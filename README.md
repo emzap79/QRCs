@@ -27,12 +27,11 @@ the repo first, sure enough:
 Now change into the directory where the QRC is located (`cd $gitdir`) and run
 `make <name>` eg. `make tmux`. It will compile the tex-file, showing the
 result in a pdf-reader of your choice; since all of my qrc's use the same
-stylesheet, most probably it shows some `Over-/Underfull` Boxes. Please feel
-free to contact me or sending me pull-requests! I'll try to get rid of them in
-the nearer future, anyways.
+stylesheet, most probably it shows some `Over-/Underfull` Boxes.
 
-You can indeed use the PDF version of my files, without the need to compile the
-TeX-file by yourself!
+Please feel free to contact me or sending me pull-requests! I'll try to get rid
+of them in the nearer future, anyways. You can indeed use the PDF version of my
+files, without the need to compile the TeX-file by yourself!
 
 ## License Agreement
 
