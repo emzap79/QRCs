@@ -18,7 +18,7 @@ My repo contains qrc's of the following issues
 ## Create PDF
 
 Compile them via: `pdftex qrc.tex` or use the provided Makefile. You must clone
-the repo first, sure enough:
+the repo first, as you'd probably have imagined:
 
     gitdir="$HOME/.gitclones/qrc"
     mkdir -p $gitdir
