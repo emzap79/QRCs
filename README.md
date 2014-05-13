@@ -24,6 +24,10 @@ the repo first, as you'd probably have imagined:
     mkdir -p $gitdir
     git clone https://github.com/emzap79/QRCs $gitdir
 
+(And for the lazy :relaxed:)
+
+    gitdir="$HOME/.gitclones/qrc" && mkdir -p $gitdir && git clone https://github.com/emzap79/QRCs $gitdir
+
 Now change into the directory where the QRC is located (`cd $gitdir`) and run
 `make <name>` eg. `make tmux`. It will compile the tex-file, showing the
 result in a pdf-reader of your choice; since all of my qrc's use the same
