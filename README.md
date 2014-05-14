@@ -1,18 +1,18 @@
 # QRCs
 
 This is a collection of my quick reference cards ("cheat sheets") on diverse
-code and linux related terminal commands. Most of them existed before I took my
-'final shape' on them, so please have a look on the regarding copyrightnotice
-before you consider distributing them in any or another context.
+code and linux related terminal commands. In all cases they existed before I
+took my 'final shape' on them, so please have a look on the regarding
+copyrightnotice before you consider to distribute or forking them.
 
 ## Content
 
 My repo contains qrc's of the following issues
 
-- Bash
 - R
 - GIT
-- Tmux
+- TMUX
+- CLI (*Bash*)
 - VIM
 
 ## Create PDF
@@ -22,11 +22,11 @@ the repo first, as you probably'd have imagined:
 
     gitdir="$HOME/.gitclones/qrc"
     mkdir -p $gitdir && cd $gitdir
-    git clone https://github.com/emzap79/QRCs .
+    git clone https://github.com/emzap79/QRCs.git .
 
 (And for the lazy :relaxed:)
 
-    gitdir="$HOME/.gitclones/qrc" && mkdir -p $gitdir && cd $gitdir && git clone https://github.com/emzap79/QRCs .
+    gitdir="$HOME/.gitclones/qrc" && mkdir -p $gitdir && cd $gitdir && git clone https://github.com/emzap79/QRCs.git .
 
 Now change into the directory where the QRC is located (`cd $gitdir`) and run
 `make <name>` eg. `make tmux`. It will compile the tex-file, showing the
