@@ -40,6 +40,9 @@ and has then been modified to my own use.
 
 % Document Size%{{{
 
+% supressing black boxes at eol
+\overfullrule=0pt
+
 % \pdfoutput=1
 \pdfpageheight=21cm
 \pdfpagewidth=29.7cm
@@ -87,11 +90,9 @@ and has then been modified to my own use.
 % Title & Sections%{{{
 
 \def\title#1{\hfil{\bf #1}\hfil\par\vskip 2pt\hrule}
-\def\section#1#2{\vskip 0.7cm {\bf#1}\par\vskip 1pt\hrule\vskip 1pt#2\vskip 5pt}
-\def\subsection#1#2{\vskip 0.7cm {#1\/}\par\vskip 1pt\hrule\vskip 1pt#2\vskip 5pt}
-% \def\subsubsection#1#2{\vskip 0.7cm {#1\/}\par\vskip 1pt\hrule\vskip 1pt#2\vskip 5pt}
-\def\subsubsection#1{\vskip 0.7cm {#1\/}\par\vskip 1pt\vskip 1pt}
-% \def\subsubsection#1{\vskip 0.7cm \hskip 1em {- #1\/}\par\vskip 1pt\vskip 1pt}
+\def\section#1#2{\vskip 5ex {\bf#1}\par\vskip 1pt\hrule\vskip 1pt#2\vskip 5pt}
+\def\subsection#1#2{\vskip 2ex {#1\/}\par\vskip 1pt\hrule\vskip 1pt#2\vskip 5pt}
+\def\subsubsection#1{\vskip 1ex {\hskip 2em #1\/}\par\vskip 1ex}
 
 % Title & Sections%}}}
 % A short command%{{{

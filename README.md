@@ -18,15 +18,15 @@ My repo contains qrc's of the following issues
 ## Create PDF
 
 Compile them via: `pdftex qrc.tex` or use the provided Makefile. You must clone
-the repo first, as you'd probably have imagined:
+the repo first, as you probably'd have imagined:
 
     gitdir="$HOME/.gitclones/qrc"
-    mkdir -p $gitdir
-    git clone https://github.com/emzap79/QRCs $gitdir
+    mkdir -p $gitdir && cd $gitdir
+    git clone https://github.com/emzap79/QRCs .
 
 (And for the lazy :relaxed:)
 
-    gitdir="$HOME/.gitclones/qrc" && mkdir -p $gitdir && git clone https://github.com/emzap79/QRCs $gitdir
+    gitdir="$HOME/.gitclones/qrc" && mkdir -p $gitdir && cd $gitdir && git clone https://github.com/emzap79/QRCs .
 
 Now change into the directory where the QRC is located (`cd $gitdir`) and run
 `make <name>` eg. `make tmux`. It will compile the tex-file, showing the

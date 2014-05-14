@@ -1,4 +1,4 @@
-% vim:ts=2:fdm=marker:expandtab
+% vim:ts=2:fdm=syntax:expandtab
 % GIT Quick Reference Card
 % Copyright (c) 2011 Jonas Petong.
 % TeX Format - Based on VIM Quick Reference Card
@@ -6,170 +6,17 @@
 % compile as 'pdftex qrcBash.tex'
 % preamble%{{{
 
-\overfullrule=0pt %supressing black boxes at eol
+\def\content{CLI}
 \def\versionnumber{1.1}  % Version of this reference card
-\def\key#1{$\langle${\rm{\it#1\/}}$\rangle$}
 \def\year{2014}
 \def\month{May}
 \def\version{v\versionnumber\ \month\ \year}
 
-\def\shortintro{\smallskip
-\centerline{\smallrm QRC of most often used Bash commands -- Version \version}}
+\input mydefs.sty
 
-\def\copyrightnotice{
-\vfill
-\hrule\smallskip\begingroup\smallrm
-\centerline{Send comments or corrections to Jonas Petong}
-\centerline{emzap79@gmail.com}
-\centerline{http://github.com/emzap79/QRCs}\\
-This TeXfile is based on Michael Goerz (github.com/zapster)
-and was then modified to my own use.
-\endgroup}
-
-% \pdfoutput=1
-\pdfpageheight=21cm
-\pdfpagewidth=30.2cm  % 29.7cm
-
-% Font definitions
-\font\bigbf=cmbx12
-\font\smallrm=cmr8
-\font\smalltt=cmtt8
-\font\tinyit=cmmi5
-
-\def\title#1{\hfil{\bf #1}\hfil\par\vskip 2pt\hrule}
-\def\section#1#2{\vskip 0.7cm {\bf#1}\par\vskip 1pt\hrule\vskip 1pt#2\vskip 5pt}
-\def\subsection#1#2{\vskip 0.7cm {#1\/}\par\vskip 1pt\hrule\vskip 1pt#2\vskip 5pt}
-% \def\subsubsection#1#2{\vskip 0.7cm {#1\/}\par\vskip 1pt\hrule\vskip 1pt#2\vskip 5pt}
-\def\subsubsection#1{\vskip 0.7cm {#1\/}\par\vskip 1pt\vskip 1pt}
-% \def\subsubsection#1{\vskip 0.7cm \hskip 1em {- #1\/}\par\vskip 1pt\vskip 1pt}
-
-% Characters definitions
-\def\\{\hfil\break}
-\def\bs{$\backslash$}
-\def\backspace{$\leftarrow$}
-\def\ctrl{{\rm\char94}\kern-1pt}
-\def\enter{$\hookleftarrow$}
-\def\or{\thinspace{\tinyit{or}}\thinspace}
-\def\key#1{$\langle${\rm{\it#1\/}}$\rangle$}
-\def\rapos{\char125}
-\def\lapos{\char123}
-\def\bs{\char92}
-\def\tild{\char126}
-\def\lbracket{[}
-\def\rbracket{]}
-
-% Three columns definitions
-\parindent 0pt
-\nopagenumbers
-\hoffset=-1.56cm
-\voffset=-1.54cm
-\newdimen\fullhsize
-\fullhsize=27.9cm
-\hsize=8.5cm
-\vsize=19cm
-\def\fullline{\hbox to\fullhsize}
-\let\lr=L
-\newbox\leftcolumn
-\newbox\midcolumn
-\output={
-  \if L\lr
-    \global\setbox\leftcolumn=\columnbox
-    \global\let\lr=M
-  \else\if M\lr
-    \global\setbox\midcolumn=\columnbox
-    \global\let\lr=R
-  \else
-    \tripleformat
-    \global\let\lr=L
-  \fi\fi
-  \ifnum\outputpenalty>-20000
-  \else
-    \dosupereject
-  \fi}
-\def\tripleformat{
-  \shipout\vbox{\fullline{\box\leftcolumn\hfil\box\midcolumn\hfil\columnbox}}
-  \advancepageno}
-\def\columnbox{\leftline{\pagebody}}
-
-% cmd optimizations%{{{
-
-% \def\cmdFooBar#1{{\tt#1}\null}	%\null so not an abbrev even if period follows
-
-%}}}
-\def\gray#1{\pdfliteral{0.35 0.35 0.35 rg}#1\pdfliteral{0 0 0 rg}}
-\def\black#1{\pdfliteral{0 0 0 rg}#1\pdfliteral{0.35 0.35 0.35 rg}}
-% add greyline%{{{
-
-% http://tug.org/pipermail/xetex/2012-February/022768.html
-\def\pdfliteral#1{\special{pdf: literal #1}}
-\def\greyline#1{
-    \setbox1\hbox to \hsize{#1}
-    \setbox0\vbox{
-        \pdfliteral{0.8 0.8 0.8 rg}
-        \hrule width \hsize height \ht0 depth \dp0
-        \pdfliteral{0 0 0 rg}
-    }
-    \wd0=0bp
-    \hbox{\box0\box1}
-}
-
-% add greyline%}}}
-% A short command%{{{
-
-\def\cmd#1#2{
-  \noindent
-  \hbox to \hsize {% This comment is needed to remove space at start of line
-    \vtop{
-      \hbox to 3.0cm {
-        \noindent{#1}\dotfill
-      }
-      %\hrule
-    }% This comment is needed to remove space
-    \hfil	% absorb extra space b/w columns
-    \vtop{
-      \hsize=5.20cm
-      \hbox{\hfuzz = 25pt \vtop{%The \hfuzz setting specifies the maximum amount
-              %of box-overflow before a warning message will be issued.
-      {#2}
-      \hfil
-      }}
-      %\hrule
-    }
-  }
-  %\hrule
-  \par
-  \vskip 0.14cm
-
-}%}}}
-% A long command%{{{
-
-\def\cmdL#1#2{
-  \hsize=8.5cm
-  \vbox {
-    \hbox{
-        {#1}\hfil
-    }%
-    %\vskip -0.2cm % adjusts space b/w command & description
-    \hskip 2.5cm  % indent for description
-    \hbox to 5.9cm {%
-      \hfuzz = 5pt
-      % Use the first one when right-aligned
-      %\vrule\hskip -0.05cm
-      %\vrule\hskip 0.05cm
-      \hfil
-      \hsize=5.9cm
-      \vtop{
-        %\hrule
-        % Uncomment line below to right-align description
-        %\leftskip=0cm plus 150fil
-        {#2}
-        }}
-  }%
-  %\hrule
-  \par
-  \vskip 0.14cm
-
-}%}}}
+% Card content
+% Header
+\title{\uppercase{\content\ quick reference card}}
 % A example command%{{{
 
 \def\cmdExample#1#2{
@@ -182,7 +29,7 @@ and was then modified to my own use.
       \hskip 4pt
       \hfil
       %\hsize=5.9cm
-      \noindent{\it#1}
+      \noindent{\tt#1}
       }
       %\hrule
     }% This comment is needed to remove space
@@ -192,7 +39,7 @@ and was then modified to my own use.
       \hbox{\hfuzz = 15pt \vtop{
       % Uncomment line below to right-align description
       %\leftskip=0cm plus 150fil
-      \it{#2}
+      \tt{#2}
       }}
       %\hrule
     }
@@ -204,142 +51,69 @@ and was then modified to my own use.
 }%}}}
 % An option command%{{{
 
-\def\cmdOpt#1#2{
-  \noindent
-  \hbox to \hsize {% This comment is needed to remove space at start of line
-    \vtop{
-      % \leftskip=0cm plus 150fil
-        \hbox to 3.0cm {
-      % \hfuzz = 5pt
-      % \hskip 10pt
-      % \hsize=2.9cm
-      \hfil
-      \hfil
-      \noindent{#1}
-      \hfil
-      }
-      %\hrule
-    }% This comment is needed to remove space
-    \hfil	% absorb extra space b/w columns
-    \vtop{
-      \hsize=5.00cm
-      \hbox{
-          \hfuzz = 15pt
-      % \dotfill
-          \vtop{
-      % Uncomment line below to right-align description
-      %\leftskip=0cm plus 150fil
-      {#2}
-      }}
-      %\hrule
-    }
-  }
-  %\hrule
-  \par
-  \vskip 0.14cm
-
-}%}}}
-% An operator command%{{{
-
-\def\cmdOper#1#2{
-  \noindent
-  \hbox to \hsize {% This comment is needed to remove space at start of line
-    \vtop{
-      % \leftskip=0cm plus 150fil
-        \hbox to 1.9cm {
-      \hfil
-      % \hfuzz = 5pt
-      % \hskip 10pt
-      \hsize=5em
-      \noindent{#1}
-      \hfil
-      }
-      %\hrule
-    }% This comment is needed to remove space
-    \hfil	% absorb extra space b/w columns
-    \vtop{
-      \hsize=5.90cm
-      \hbox{\hfuzz = 15pt \vtop{
-      % Uncomment line below to right-align description
-      %\leftskip=0cm plus 150fil
-      {#2}
-      }}
-      %\hrule
-    }
-  }
-  %\hrule
-  \par
-  \vskip 0.14cm
-
-}%}}}
-
-
-%}}}
-% card content%{{{
-
-% Header%{{{
-
-\title{BASH QUICK REFERENCE CARD}
-
+% \shortcopyrightnotice
 \shortintro
 
-%}}}
+% card content%{{{
+
 \section{Basic Operations}{}%{{{
 
-\cmd{cd $path$}{change directory}
+\cmdS{cd $path$}{change directory}
+\subsubsection{Possible Values for \key{path}}{}
 \cmdOper{\ ..}{move one folder up}
 \cmdOper{--}{change to last visited directory}
 \cmdOper{\key{None}}{change to homedir ($\sim$)}
-\cmd{mkdir $fold$}{create new folder in current $path$}
+\cmdS{mkdir $fold$}{create new folder in current $path$}
 
 %}}}
 \section{Movements}{for \key{esc} you can use either \key{esc} and \key{alt}-key}%{{{
 
-\cmd{\ctrl a\ \ctrl e}{jump to beginning/end of the line}
-\cmd{\key{esc f}\ /\ \key{esc b}}{jump one word forward/backward}
-\cmd{\ctrl c}{cancel current command}
-\cmd{\ctrl y}{paste most recently cut out text}
-\cmd{\key{esc d}\ /\ \key{esc $\leftarrow$}}{cut one word forward/backward}
-\cmd{\ctrl w}{cut text backward until space}
-\cmd{\ctrl u\ /\ \ctrl k}{cut from current position to the beginning/end of line}
-\cmd{\ctrl \#}{prepend hashtag on command, then jump to next line (... and reedit later)}
+\cmdS{\ctrl a\ \ctrl e}{jump to begin / end of the line}
+\cmdL{\key{esc f}\ /\ \key{esc b}}{jump one word forward/backward}
+\cmdS{\ctrl s~\ctrl c}{pause / cancel current command}
+\cmdS{\ctrl q}	{resume previous paused process}
+\cmdS{\ctrl y}{paste most recently cut out text}
+\cmdL{\key{esc d}\ /\ \key{esc $\leftarrow$}}{cut one word forward/backward}
+\cmdS{\ctrl w}{cut text backward until space}
+\cmdS{\ctrl u\ /\ \ctrl k}{cut from current position to the beginning/end of line}
+\cmdS{\ctrl \#}{prepend hashtag on command, then jump to next line (... and reedit later)}
 
 %}}}
 \section{History}{clearing your entire history event line: {\tt history -c}}%{{{
 
 \subsection{Shortcuts}{}
-\cmd{\ctrl p}{fetch the previous command from the history list}
-% \cmd{\ctrl n}{fetch the next command from the history list}
-\cmd{\ctrl r}{search history backward (incremental search)}
-\cmd{\key{esc -\ }}{running last executed command}
-% \cmd{\ctrl r}{search history backward for a command matching \it{string}}
-% \cmd{\ctrl s}{search history forward (incremental search)}
-% \cmd{\ctrl s}{search history forward for a command matching \it{string}}
-\cmd{\key{esc p}}{search backward using non-incre\-mental search}
-\cmd{\key{esc n}}{search forward using non-incremental search}
-\cmd{\key{esc $<$}}{move to the first line in the history}
-\cmd{\key{esc $>$}}{move to the end of the history list (current entry)}
-% \cmd{k}{fetch the previous command from the history list}
-% \cmd{j}{fetch the next command from the history list}
-% \cmd{n}{repeat search in the same direction as previous}
-% \cmd{N}{repeat search in the opposite direction as previous}
-% \cmd{G}{move to the N-th history line}
+\cmdS{\ctrl p}{fetch the previous command from the history list}
+% \cmdS{\ctrl n}{fetch the next command from the history list}
+\cmdS{\ctrl r}{search history backward (incremental search)}
+\cmdS{\key{esc -\ }}{running last executed command}
+% \cmdS{\ctrl r}{search history backward for a command matching \it{string}}
+% \cmdS{\ctrl s}{search history forward (incremental search)}
+% \cmdS{\ctrl s}{search history forward for a command matching \it{string}}
+\cmdS{\key{esc p}}{search backward using non-incre\-mental search}
+\cmdS{\key{esc n}}{search forward using non-incremental search}
+\cmdS{\key{esc $<$}}{move to the first line in the history}
+\cmdS{\key{esc $>$}}{move to the end of the history list (current entry)}
+% \cmdS{k}{fetch the previous command from the history list}
+% \cmdS{j}{fetch the next command from the history list}
+% \cmdS{n}{repeat search in the same direction as previous}
+% \cmdS{N}{repeat search in the opposite direction as previous}
+% \cmdS{G}{move to the N-th history line}
 % \cmdExample{15G}{move to $15$th line}
 
 %}}}
-\subsection{History-Commands}{example command is: \gray{{\it cd foo/bar}}}%{{{
+\subsection{History-Commands}{example command is: {\tt cd foo/bar}}%{{{
 
 
-\cmd{!!}{runs previous executed command (also known as `bang bang')}
+\cmdS{!!}{runs previous executed command (also known as `bang bang')}
 \cmdExample{sudo\ !!}{sudo cd foo/bar}
-\cmd{!\$ / \key{esc .\ }}{repeats last $arg$ of prev command}
-\cmd{!$n$\ / !-$n$}{executes command $n$/$n$th last command}
-\cmd{!$str$\ / !?$str$?}{runs last executed command, starting with/containing string or character $str$ (ending ? is optional)}
+\cmdS{!\$ / \key{esc .\ }}{repeats last $arg$ of prev command}
+\cmdS{!$n$\ / !-$n$}{executes command $n$/$n$th last command}
+\cmdS{!$str$\ / !?$str$?}{runs last executed command, starting with/containing string or character $str$ (ending ? is optional)}
 \cmdExample{!cd}{cd foo/bar}
 \cmdExample{!?sudo?}{sudo cd foo/bar}
-\cmd{!!:$des$}{appends first/last/specific/all $arg$'s of last command (trailing :$des$ refers to below listed designators)}
+\cmdS{!!:$des$}{appends first/last/specific/all $arg$'s of last command (trailing :$des$ refers to below listed designators)}
 \cmdExample{echo !cd:q}{echo 'cd foo/bar'}
-\cmd{!\#}{refers to the entire command line typed so far}
+\cmdS{!\#}{refers to the entire command line typed so far}
 \subsubsection{Designators}%{{{
 
 \cmdOper{0}{the zeroth (first) word in a line (usually command name)}
@@ -357,7 +131,7 @@ and was then modified to my own use.
 %}}}
 \subsection{Substitutions \& Replacements}{}%{{{
 
-\cmd{\^{}$str_1$\^{}$str_2$\^{}}{quick substitution. Repeats the last command, replacing $str_1$ with $str_2$}
+\cmdS{\^{}$str_1$\^{}$str_2$\^{}}{quick substitution. Repeats the last command, replacing $str_1$ with $str_2$}
 \cmdL{$mod\,$s/old/new/}{substitutes new for old (for meaning of $mod$ see below)}
 
 %}}}
@@ -378,22 +152,22 @@ and was then modified to my own use.
 %}}}
 \subsection{Variables}{append {\tt export <setting>=<value>} to your$\,\sim$/.bashrc}%{{{
 
-\cmd{HISTFILE}{if set to /dev/null history file is rejected (Default:$\,\sim$/.bash\_history)}
+\cmdS{HISTFILE}{if set to /dev/null history file is rejected (Default:$\,\sim$/.bash\_history)}
 \cmdL{HISTFILESIZE}{controls how many history commands to keep in HISTFILE (Default: 500)}
-\cmd{HISTSIZE}{controls how many history commands to keep in the history list of current session (Default: 500)}
+\cmdS{HISTSIZE}{controls how many history commands to keep in the history list of current session (Default: 500)}
 \cmdL{HISTCONTROL}{modality of how to save commands on the history list.}
-\cmdOpt{ignorespace}{if the list of values includes ignorespace, lines which begin with a space character are not saved in the history list.}
-\cmdOpt{ignoredups}{a value of ignoredups causes lines matching the previous history  entry  to  not  be saved.}
-\cmdOpt{ignoreboth}{a value of ignoreboth is shorthand for ignorespace and ignoredups.}
-\cmdOpt{erasedups}{a value of erasedups causes all previous lines matching the current line to be removed from the history list before that line is saved.}
+\cmdOptLl{ignorespace}{if the list of values includes ignorespace, lines which begin with a space character are not saved in the history list.}
+\cmdOptLl{ignoredups}{a value of ignoredups causes lines matching the previous history  entry  to  not  be saved.}
+\cmdOptLl{ignoreboth}{a value of ignoreboth is shorthand for ignorespace and ignoredups.}
+\cmdOptLl{erasedups}{a value of erasedups causes all previous lines matching the current line to be removed from the history list before that line is saved.}
 \cmdL{HISTIGNORE}{controls which commands to ignore and not save to the history list.}
 
 %}}}
-\subsection{Shopt Option}{shopt options can be set by a {\tt shopt -s option} and can be unset by a {\tt shopt -u option} shell com\-mand.}
-\cmd{histappend}{setting the variable appends current session history to HISTFILE. Unsetting overwrites the file each time}
-\cmd{histreedit}{if set, puts a failed history substitution back on the command line for re-editing}
-\cmd{histverify}{if set, puts the command to be executed after a substitution on command line as if you had typed it}
-
+\subsection{Shopt Option}{shopt options can be set by a {\tt shopt -s option} and can be unset by a {\tt shopt -u option} shell com\-mand.}%{{{
+\cmdS{histappend}{setting the variable appends current session history to HISTFILE. Unsetting overwrites the file each time}
+\cmdS{histreedit}{if set, puts a failed history substitution back on the command line for re-editing}
+\cmdS{histverify}{if set, puts the command to be executed after a substitution on command line as if you had typed it}
+%}}}
 %% Footer
 \copyrightnotice
 

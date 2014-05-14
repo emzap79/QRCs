@@ -2,13 +2,17 @@ tex:
 	pdftex qrcTeX.tex
 	xdg-open qrcTeX.pdf &
 
-tmux:
-	pdftex qrcTmux.tex
-	xdg-open qrcTmux.pdf &
+cli:
+	pdftex qrcBash.tex
+	xdg-open qrcBash.pdf &
 
 bash:
 	pdftex qrcBash.tex
 	xdg-open qrcBash.pdf &
+
+tmux:
+	pdftex qrcTmux.tex
+	xdg-open qrcTmux.pdf &
 
 latex:
 	pdftex qrcLaTeX.tex
@@ -22,19 +26,19 @@ r:
 	pdftex qrcR.tex
 	xdg-open qrcR.pdf &
 
-git: 
+git:
 	pdftex qrcGit.tex
 	xdg-open qrcGit.pdf &
 
-tig: 
+tig:
 	pdftex qrcTig.tex
 	xdg-open qrcTig.pdf &
 
-vim: 
+vim:
 	pdftex qrcVim.tex
 	xdg-open qrcVim.pdf &
 
-viml: 
+viml:
 	pdftex qrcVimLatex.tex
 	xdg-open qrcVimLatex.pdf &
 
