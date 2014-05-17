@@ -14,7 +14,9 @@
 
 \input mydefs.sty
 
-% Card content
+% preamble%}}}
+% Card content%{{{
+
 % Header
 \title{\uppercase{\content\ quick reference card}}
 % A example command%{{{
@@ -48,6 +50,7 @@
   \par
   \vskip 1ex
 \pdfliteral{0 0 0 rg}
+
 }%}}}
 % An option command%{{{
 
@@ -103,7 +106,6 @@
 %}}}
 \subsection{History-Commands}{example command is: {\tt cd foo/bar}}%{{{
 
-
 \cmdS{!!}{runs previous executed command (also known as `bang bang')}
 \cmdExample{sudo\ !!}{sudo cd foo/bar}
 \cmdS{!\$ / \key{esc .\ }}{repeats last $arg$ of prev command}
@@ -150,7 +152,7 @@
 \cmdOper{G}{apply the following `s' modifier just once to each word in the event line.}
 
 %}}}
-\section{Bashrc}{The prompt of your {\tt shell} can be adjusted while changing {\tt PS1=<expr>} in your {\tt \tild.bashrc}}
+\section{Bashrc}{The prompt of your {\tt shell} can be adjusted throug changing {\tt PS1=<expr>} in your {\tt \tild.bashrc}}
 \subsection{History Modifying Settings}{append {\tt export <setting>=<value>} to your$\,\sim$/.bashrc}%{{{
 
 \cmdS{HISTFILE}{if set to /dev/null history file is rejected (Default:$\,\sim$/.bash\_history)}
@@ -165,9 +167,11 @@
 
 %}}}
 \subsection{Shopt Option}{shopt options can be set by a {\tt shopt -s option} and can be unset by a {\tt shopt -u option} shell com\-mand.}%{{{
+
 \cmdS{histappend}{setting the variable appends current session history to HISTFILE. Unsetting overwrites the file each time}
 \cmdS{histreedit}{if set, puts a failed history substitution back on the command line for re-editing}
 \cmdS{histverify}{if set, puts the command to be executed after a substitution on command line as if you had typed it}
+
 %}}}
 %% Footer
 \copyrightnotice
@@ -179,3 +183,5 @@
 \bye
 
 % EOF
+
+% Card content%}}}
