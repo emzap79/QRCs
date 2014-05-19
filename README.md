@@ -24,7 +24,7 @@ the repo first, as you probably'd have imagined:
     mkdir -p $gitdir && cd $gitdir
     git clone https://github.com/emzap79/QRCs.git .
 
-(And for the lazy :relaxed:)
+(Here the easy copy, paste oneliner for the lazy :relaxed:)
 
     gitdir="$HOME/.gitclones/qrc" && mkdir -p $gitdir && cd $gitdir && git clone https://github.com/emzap79/QRCs.git .
 
