@@ -24,7 +24,7 @@ the repo first, as you probably'd have imagined:
     mkdir -p $gitdir && cd $gitdir
     git clone https://github.com/emzap79/QRCs.git .
 
-(Same commands as easy copy, paste oneliner :relaxed:)
+(same commands as easy copy + paste oneliner :relaxed:)
 
     gitdir="$HOME/.gitclones/qrc" && mkdir -p $gitdir && cd $gitdir && git clone https://github.com/emzap79/QRCs.git .
 
