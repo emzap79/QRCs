@@ -35,7 +35,7 @@
 \grey{\cmdS{bundle}	{Move objects and refs by archive}}
 \cmdS{checkout}	{checkout a branch or paths to the working tree (prepend {\tt --} before path to avoid ambiguousity).}
 \cmdOpt{b}	{create a branch {\tt new\_name} and switch to it instantly}
-\cmdExmpl{\\checkout HEAD - - $dir$}	{restore working tree and reset index}
+\cmdExmpl{\\checkout HEAD -- $dir$}	{restore working tree and reset index}
 \cmdS{cherry-pick}	{can be used to change order of commits}
 \grey{\cmdS{citool}	{Graphical alternative tocommit}}
 \cmdS{clean}	{Remove untracked files from the working tree}
@@ -79,9 +79,9 @@
 \cmdOptLl{autosquash}	{When the commit log message begins with "squash! ..." (or "fixup! ..."), automatically modify the todo list of {\tt rebase -i} }
 \cmdS{reset}	{Reset current HEAD to the specified state (Remove a $file$ from staging area)}
 \cmdOptL{soft}	{move HEAD pointer only}
-\cmdOptL{mixed}	{resets staging area to new HEAD (default!)}
-\cmdOptL{hard}	{resets staging area and working tree to new HEAD}
-\grey{\cmdS{revert}	{Revert an existing commit}}
+\cmdOptL{mixed}	{resets staging area to HEAD (default!)}
+\cmdOptL{hard}	{resets staging area and working tree to HEAD}
+\cmdS{revert}	{creates a new commit that undoes the changes from a previous commit (adds new history to Project)}
 \cmdS{rm}	{Remove files from the working tree and from the index}
 \cmdOpt{r}	{remove recursive -- for removing additionally from repo, add
 {\tt --cached *}}
