@@ -29,7 +29,7 @@ behaviour to e.g. \key{ctrl-a} by adding the following commands to your
 
 \cmdL{create session}	{tmux new -s {\tt session-name}}
 \cmdL{kill session}	{tmux kill-session -t {\tt session-name}}
-\cmdL{attach session}	{tmux attach -t {\tt session-name}}
+\cmdL{attach session}	{tmux a[ttach] -t {\tt session-name}\\\or\ tmux a \#}
 \cmdL{rename session}	{tmux rename-session -t {\tt old-name} {\tt new-name}}
 \cmdL{list session}	{tmux ls}
 
@@ -50,8 +50,7 @@ behaviour to e.g. \key{ctrl-a} by adding the following commands to your
 \cmdS{\ctrl bf~\ctrl bw}	{find / list windows}
 \cmdS{\ctrl bn \ctrl bp \ctrl bl}	{navigate next/prev/last window}
 
-\subsection{Panes \or\ Buffers}{}
-\subsubsection{Open / Switch / Resize}{}
+\subsection{Open / Switch / Resize Panes}{}
 \cmdS{\ctrl bx \or \ctrl d }	{delete pane}
 \cmdS{\ctrl b!}	{close all other panes}
 \cmdS{\ctrl bt \ctrl bq}	{show time / numeric values of panes}
@@ -61,7 +60,7 @@ behaviour to e.g. \key{ctrl-a} by adding the following commands to your
 \cmdS{\ctrl b$\rbrace$}	{swap position with next pane}
 \cmdS{\ctrl b$\lbrace$ \or\ \ctrl b\ctrl o}	{swap with previous pane}
 
-\subsubsection{Split Panes}{}
+\subsection{Split Panes \or Buffers}{}
 \cmdS{\ctrl b\%  \ctrl b"}	{split pane vertically / horizontally}
 \cmdS{\ctrl b \key{M-1}}	{vertical split, all panes same width}
 \cmdS{\ctrl b \key{M-2}}	{horizontal split, all panes same height}
