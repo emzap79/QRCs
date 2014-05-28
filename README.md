@@ -39,4 +39,4 @@ files, without the need to compile the TeX-file by yourself!
 
 ## Author
 
-< empzap79 `at` gmail `dot` com >
+< empzap79 [at] gmail [dot] com >

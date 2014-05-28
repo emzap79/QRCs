@@ -38,6 +38,7 @@ behaviour to e.g. \key{ctrl-a} by adding the following commands to your
 \subsection{Sessions}{}
 \cmdS{\ctrl b?}	{show all available keybinds}
 \cmdS{\ctrl bd \ctrl bs}	{detach / reattach to session}
+\cmdS{\ctrl bs}	{list all sessions}
 
 \subsection{Copy Mode}{{\tt vim} like movements}
 \cmdS{h j k l}{move left/down/up/right}
@@ -45,22 +46,23 @@ behaviour to e.g. \key{ctrl-a} by adding the following commands to your
 \cmdS{\key{space} \enter}	{select / copy text under cursor}
 \cmdS{\ctrl b\rbracket}	{paste copied text to command line}
 
-\subsection{Windows}{}
+\subsection{Windows \or\ Buffers}{}
 \cmdS{\ctrl bc \ctrl b,}	{create / rename window}
 \cmdS{\ctrl bf~\ctrl bw}	{find / list windows}
 \cmdS{\ctrl bn \ctrl bp \ctrl bl}	{navigate next/prev/last window}
+\cmdS{\ctrl b$n$}	{switch to buffer $0 \ldots n$}
 
 \subsection{Open / Switch / Resize Panes}{}
 \cmdS{\ctrl bx \or \ctrl d }	{delete pane}
-\cmdS{\ctrl b!}	{close all other panes}
+\cmdS{\ctrl b!}	{push all other panes to next window}
 \cmdS{\ctrl bt \ctrl bq}	{show time / numeric values of panes}
 \cmdS{\ctrl b\key{\arrows} \or\ctrl bo}	{switch to (next) pane}
-\cmdS{\ctrl b\#~\ctrl b$n$}	{show / switch to buffers $0 \ldots n$}
+\cmdS{\ctrl b\#}	{show buffers}
 \cmdL{\ctrl b\key{M - \arrows } \ctrl bz}	{resize / full-screen pane}
 \cmdS{\ctrl b$\rbrace$}	{swap position with next pane}
 \cmdS{\ctrl b$\lbrace$ \or\ \ctrl b\ctrl o}	{swap with previous pane}
 
-\subsection{Split Panes \or Buffers}{}
+\subsection{Split Panes}{}
 \cmdS{\ctrl b\%  \ctrl b"}	{split pane vertically / horizontally}
 \cmdS{\ctrl b\key{M-1}}	{vertical split, all panes same width}
 \cmdS{\ctrl b\key{M-2}}	{horizontal split, all panes same height}
