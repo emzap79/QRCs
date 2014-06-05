@@ -1,0 +1,81 @@
+% VIM Quick Reference Card
+% Copyright (c) 2009 Jonas Petong.
+% http://stackoverflow.com/a/2606127/3569509
+% TeX Format
+
+% version
+\def\content{VIMPERATOR}
+\def\versionnumber{0.1}  % Version of this reference card
+\def\year{2014}
+\def\month{Jun}
+\def\version{v\versionnumber\ \month\ \year}
+
+% include definitions
+\input mydefs.sty
+
+% Card content
+% Header
+%\hrule\vskip 3pt
+
+\title{\uppercase{\content\ quick reference card}}
+
+\shortintro
+
+\vskip 0.5cm
+
+% http://www.linuxjournal.com/article/10636
+\section{Movements}{}
+\cmdS{hjkl}	{move left/down/up/right}
+\cmdS{gg~G}	{move to top/bottom of page}
+\cmdS{/}	{enter search mode}
+\cmdS{\space~\shift\space}	{move down/up one page}
+
+\section{Windows \& Tabs}{}
+\cmdS{gt~\ctrl n}	{go to next tab}
+\cmdS{gT~\ctrl p}	{go to previous tab}
+\cmdS{gh~gH}	{go to your homepage (in new tab)}
+\cmdS{H~L}	{go to previous/next page in history}
+\cmdS{zi~zI}	{zoom in by 25/100 \% on page in focus}
+\cmdS{zo~zO}	{zoom out by 25 /100 \% on focused page}
+\cmdS{$n$zz}	{zoom page to $n$\% (100 if $n$ is omitted)}
+\cmdS{ZZ~ZQ}	{exit Firefox and save/clear session history}
+
+\section{Modes}{exit modes by $I$ or (re)enter with \key{esc}}
+\subsection{QuickHint Mode ($f$)}{add numbered label to every link on webpage}
+\cmdS{a~$n$}	{browse to that link}
+\cmdS{A~$n$}	{open link $n$ in new background tab}
+\subsection{ExtendedHint ( ; )}{lets you copy labeled links to clipboard}
+\cmdS{y~Y}	{copy URL/label description to clipboard}
+
+\section{Exe commands}{}
+\cmdS{:history}	{pull up most recent 10 online \& local pages}
+\cmdOper{;o}	{follow hint in history}
+\cmdOper{\space~d~j}	{move screen/page/line down}
+\cmdOper{b~u~k}	{move screen/page/line up}
+\cmdOper{g~G}	{jump to top/bottom of buffer}
+\cmdOper{esc~q}	{close buffer}
+\cmdS{:pc\grey{lose}}	{close preview window, eg. history}
+\cmdL{:bmadd~:bmdel $url$}	{add/delete bookmark (be cautious!)}
+\cmdS{:bm~:bm!}	{display/open all bookmarks}
+\cmdS{:q~d}	{close tab}
+\cmdS{:restart}	{restart Firefox immediately}
+
+% Footer
+\vfill
+{\smalltt https://github.com/emzap79/QRCs}
+\hrule
+\smallskip
+{\smallrm This card may be freely distributed under
+    the terms of the GNU general public licence ---
+        Copyright \copyright\ {\oldstyle 2014} by Jonas Petong.
+        Based on original by {\smalltt http://michaelgoerz.net/refcards/}
+}
+
+% Ending
+\vfil
+\supereject
+\if L\lr \else\null\vfill\eject\fi
+\if L\lr \else\null\vfill\eject\fi
+\bye
+
+% EOF

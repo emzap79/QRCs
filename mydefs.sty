@@ -14,21 +14,23 @@
 % Shortintro%{{{
 
 \def\shortintro{\smallskip
-\centerline{\smallrm Most frequently used \content\ commands -- Version \version}}
-
-\def\shortcopyrightnotice{\smallskip
-  \centerline{\smallrm \copyright\ \year\ Jonas Petong -
-  Permissions on back. \version}}
+\centerline{\smallrm Frequently used \content\ commands -- Version \version}}
 
 % Shortintro%}}}
 % Copyrightnotice%{{{
 
+% short
+\def\shortcopyrightnotice{\smallskip
+  \centerline{\smallrm \copyright\ \year\ Jonas Petong -
+  Permissions on back. \version}}
+
+% long
 \def\copyrightnotice{
 \vfill
+\centerline{github.com/emzap79/QRCs}
 \hrule\smallskip\begingroup\smallrm
-% \centerline{\version. Copyright \copyright\ \year\ Jonas Petong}
-\centerline{http://github.com/emzap79/QRCs}
-\centerline{emzap79@gmail.com}\\
+    \centerline{emzap79@gmail.com}
+\smallskip
 This TeXfile is based on Gabriel B. Burcas \copyright\ git-qrc.tex
 and has then been modified to my own requirements.
 \endgroup}
@@ -336,10 +338,15 @@ and has then been modified to my own requirements.
 \def\arrows{$\Leftrightarrow\Updownarrow$}
 \def\or{\thinspace{\tinyit{or}}\thinspace}
 \def\key#1{$\langle${\rm{\it#1\/}}$\rangle$}
+\def\shift{$\Uparrow$}
+\def\space{\key{space}}
 \def\rapos{\char125}
 \def\lapos{\char123}
 \def\bs{\char92}
 \def\tild{\char126}
+\def\tab{\key{tab}}
+\def\langlebr{\char60}
+\def\ranglebr{\char62}
 \def\lbracket{[}
 \def\rbracket{]}
 \def\ldots{$...$}

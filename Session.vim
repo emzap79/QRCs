@@ -79,8 +79,8 @@ nnoremap  pp :RunSilent gnome-open /tmp/vim-pandoc-out.pdf
 nnoremap  cp :RunSilent pandoc -o /tmp/vim-pandoc-out.pdf %
 vnoremap  cx :XeLatexCompilePDF
 nnoremap  cx :XeLatexCompilePDF
-vmap  cl <Plug>NERDCommenterAlignLeft
-nmap  cl <Plug>NERDCommenterAlignLeft
+vnoremap  cl :LatexCompilePDF
+nnoremap  cl :LatexCompilePDF
 vnoremap  ct :TexCompilePDF
 nnoremap  cr :RnwCompilePDF
 nnoremap  ct :TexCompilePDF
@@ -1337,6 +1337,7 @@ nnoremap <F1> :lcd %:p:h:echo expand('%:p')
 imap S <Plug>ISurround
 imap s <Plug>Isurround
 imap  <Plug>Isurround
+inoremap <silent>  K =(ExpandPossibleShorterSnippet() == 0? '': UltiSnips#ExpandSnippet())
 inoremap <silent> $$ $$=UltiSnips#Anon(':latex:\$1\', '$$')
 inoremap <silent> (( ((=UltiSnips#Anon('(${1:${VISUAL}})', '((', '', 'i')
 imap ,qq <Plug>RClose
@@ -1371,10 +1372,11 @@ set backspace=indent,eol,start
 set backupskip=/tmp/*,$TMPDIR/*,$TMP/*,$TEMP/*,*test*,*temp*,*tmp*,*tst*,*~,*bak
 set cmdheight=3
 set cmdwinheight=3
-set comments=s1:/*,mb:*,ex:*/,://,b:#,:%,:XCOMM,n:>,fb:-,s2:/*,b:-
+set comments=sO:%\ -,mO:%\ \ ,eO:%%,:%,s2:/*,mb:*,ex:*/,://,b:#,:XCOMM,n:>,b:-
 set complete=.,w,b,u,t,i,k
 set confirm
 set copyindent
+set cpoptions=aABceFsmq
 set dictionary=~/.aspell.de.pws,~/.vim/spell
 set expandtab
 set fileencodings=ucs-bom,utf-8,default,latin1
@@ -1434,12 +1436,12 @@ if expand('%') == '' && !&modified && line('$') <= 1 && getline(1) == ''
   let s:wipebuf = bufnr('%')
 endif
 set shortmess=aoO
-badd +189 qrcVim.tex
-badd +0 fugitive:///home/zapata/Dokumente/Linux/QRCs/.git//0/qrcVim.tex
+badd +0 qrcVim.tex
+badd +0 fugitive:///home/zapata/Dokumente/Linux/QRCs/.git//eeaa4fe9a27a4a641e3a1b54c9d289c69f6d982c/qrcVim.tex
 argglobal
 silent! argdel *
 argadd qrcVim.tex
-edit fugitive:///home/zapata/Dokumente/Linux/QRCs/.git//0/qrcVim.tex
+edit fugitive:///home/zapata/Dokumente/Linux/QRCs/.git//eeaa4fe9a27a4a641e3a1b54c9d289c69f6d982c/qrcVim.tex
 set splitbelow splitright
 wincmd _ | wincmd |
 vsplit
@@ -1465,7 +1467,7 @@ setlocal cinkeys=0{,0},0),:,0#,!^F,o,O,e
 setlocal cinoptions=
 setlocal cinwords=if,else,while,do,for,switch
 setlocal colorcolumn=
-setlocal comments=sO:%\ -,mO:%\ \ ,eO:%%,:%
+setlocal comments=sO:%\ -,mO:%\ \ ,eO:%%,:%,s2:/*,mb:*,ex:*/,://,b:#,:XCOMM,n:>,b:-
 setlocal commentstring=%%s
 setlocal complete=.,w,b,u,t,i,k
 setlocal concealcursor=
@@ -1488,12 +1490,12 @@ if &filetype != 'plaintex'
 setlocal filetype=plaintex
 endif
 set foldcolumn=4
-setlocal foldcolumn=2
+setlocal foldcolumn=4
 setlocal foldenable
 setlocal foldexpr=0
 setlocal foldignore=#
 set foldlevel=1
-setlocal foldlevel=0
+setlocal foldlevel=1
 setlocal foldmarker={{{,}}}
 setlocal foldmethod=diff
 setlocal foldminlines=1
@@ -1510,10 +1512,10 @@ setlocal imsearch=2
 setlocal include=\\\\input
 setlocal includeexpr=
 setlocal indentexpr=
-setlocal indentkeys=0{,0},:,0#,!^F,o,O,e
+setlocal indentkeys=0{,0},:,0#,!^F,o,O,e,},\\item,\\bibitem,\\else,\\fi,\\or,\\]
 setlocal noinfercase
 setlocal iskeyword=@,48-57,_,192-255,.
-setlocal keywordprg=
+setlocal keywordprg=trs\ {es=@es+de}
 set linebreak
 setlocal linebreak
 setlocal nolisp
@@ -1523,17 +1525,17 @@ setlocal list
 setlocal makeprg=
 setlocal matchpairs=(:),{:},[:],<:>
 setlocal modeline
-setlocal modifiable
+setlocal nomodifiable
 setlocal nrformats=octal,hex
 set number
 setlocal number
 setlocal numberwidth=4
 setlocal omnifunc=syntaxcomplete#Complete
-setlocal path=~/Dokumente/Linux/QRCs/**,~/Unimaterialien
+setlocal path=
 setlocal nopreserveindent
 setlocal nopreviewwindow
 setlocal quoteescape=\\
-setlocal noreadonly
+setlocal readonly
 set relativenumber
 setlocal relativenumber
 setlocal norightleft
@@ -1564,14 +1566,12 @@ setlocal nowinfixheight
 setlocal nowinfixwidth
 setlocal nowrap
 setlocal wrapmargin=0
-1
-normal! zo
-let s:l = 342 - ((5 * winheight(0) + 9) / 18)
+let s:l = 282 - ((12 * winheight(0) + 9) / 18)
 if s:l < 1 | let s:l = 1 | endif
 exe s:l
 normal! zt
-342
-normal! 022|
+282
+normal! 0
 wincmd w
 argglobal
 edit qrcVim.tex
@@ -1611,12 +1611,12 @@ if &filetype != 'plaintex'
 setlocal filetype=plaintex
 endif
 set foldcolumn=4
-setlocal foldcolumn=2
+setlocal foldcolumn=4
 setlocal foldenable
 setlocal foldexpr=0
 setlocal foldignore=#
 set foldlevel=1
-setlocal foldlevel=0
+setlocal foldlevel=1
 setlocal foldmarker={{{,}}}
 setlocal foldmethod=diff
 setlocal foldminlines=1
@@ -1687,14 +1687,12 @@ setlocal nowinfixheight
 setlocal nowinfixwidth
 setlocal nowrap
 setlocal wrapmargin=0
-1
-normal! zo
-let s:l = 342 - ((5 * winheight(0) + 9) / 18)
+let s:l = 279 - ((9 * winheight(0) + 9) / 18)
 if s:l < 1 | let s:l = 1 | endif
 exe s:l
 normal! zt
-342
-normal! 022|
+279
+normal! 0
 wincmd w
 exe 'vert 1resize ' . ((&columns * 84 + 84) / 168)
 exe 'vert 2resize ' . ((&columns * 83 + 84) / 168)

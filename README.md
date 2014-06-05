@@ -14,6 +14,7 @@ My repo contains qrc's of the following issues
 - TMUX
 - CLI (*Bash*)
 - VIM
+- VIMPERATOR (*Firefox Extension*)
 
 ## Create PDF
 

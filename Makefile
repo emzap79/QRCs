@@ -38,6 +38,10 @@ vim:
 	pdftex qrcVim.tex
 	xdg-open qrcVim.pdf &
 
+vimp:
+	pdftex qrcVimperator.tex
+	xdg-open qrcVimperator.pdf &
+
 viml:
 	pdftex qrcVimLatex.tex
 	xdg-open qrcVimLatex.pdf &
