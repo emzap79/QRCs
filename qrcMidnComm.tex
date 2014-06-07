@@ -1,0 +1,33 @@
+% TeX Format
+
+% version
+\def\content{MC}
+\def\versionnumber{1.0}  % Version of this reference card
+\def\version{v\versionnumber\ \month\ \year}
+
+% include definitions
+\input mydefs.sty
+
+% Card content
+% Header
+%\hrule\vskip 3pt
+
+\title{\uppercase{\content\ quick reference card}}
+
+\shortintro
+
+\vskip 0.5cm
+
+\section{Commands}{}
+
+% Footer
+\copyrightnotice
+
+% Ending
+\vfil
+\supereject
+\if L\lr \else\null\vfill\eject\fi
+\if L\lr \else\null\vfill\eject\fi
+\bye
+
+% EOF

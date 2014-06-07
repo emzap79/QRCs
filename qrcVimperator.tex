@@ -1,13 +1,10 @@
-% VIM Quick Reference Card
-% Copyright (c) 2009 Jonas Petong.
-% http://stackoverflow.com/a/2606127/3569509
 % TeX Format
 
 % version
 \def\content{VIMPERATOR}
-\def\versionnumber{0.1}  % Version of this reference card
-\def\year{2014}
-\def\month{Jun}
+\def\versionnumber{1.0}  % Version of this reference card
+
+
 \def\version{v\versionnumber\ \month\ \year}
 
 % include definitions
@@ -27,10 +24,8 @@
 \section{Page \& Tab Movements}{}
 \cmdS{hjkl}	{move left/down/up/right}
 \cmdS{gg~G}	{move to top/bottom of page}
-\cmdOper{\space~d~j}	{move screen/page/line down}
-\cmdOper{b~u~k}	{move screen/page/line up}
-\cmdOper{g~G}	{jump to top/bottom of buffer}
-\cmdOper{esc~q}	{close buffer}
+\cmdS{\ctrl f~\ctrl d~\ctrl j}	{move screen/page/line down}
+\cmdS{\ctrl b~\ctrl u~\ctrl k}	{move screen/page/line up}
 \cmdS{/~?}	{search in page (backwards)}
 \cmdS{gt~\ctrl n}	{go to next tab}
 \cmdS{gT~\ctrl p}	{go to previous tab}
@@ -53,22 +48,30 @@
 \cmdS{$n$zz}	{zoom page to $n$\% (100 if $n$ is omitted)}
 \cmdS{ZZ~ZQ}	{exit broweser and save/clear history}
 
-\section{Modes}{You can always exit to normal mode with \key{esc}. To open link
-in new tab change to uppercase, eg. $F$ but $f$.}
-\cmdS{a~A $n$}	{open link $n$ (in new background tab)}
-\cmdS{y~Y}	{copy URL/label description to clipboard}
-\cmdS{s~S}	{save destination of a link}
-\subsection{QuickHint Mode ($f$)}{add numbered label to every link on webpage}
-\subsection{ExtendedHint Mode ( ; )}{only highlight labels of links}
+\vfill
 
-\section{Exe commands}{works with tab completion}
+\section{Exe commands}{Works with tab completion}
 \cmdS{:his\grey{tory}}	{pull up recent 10 online \& local pages}
 \cmdS{:pc\grey{lose}}	{close preview window, eg. history}
 \cmdL{:bm\grey{ark}~:delb\grey{marks} $url$}	{add/delete bookmark}
 \cmdS{:res\grey{tart}}	{restart Firefox immediately}
 \cmdS{:ad\grey{dons}}	{show addons in current window}
 \cmdS{:pr\grey{eferences}}	{show preferences}
-\cmdOper{;o}	{follow hint in history}
+
+\section{Modes}{Hints are the way in which Vimperator allows you to follow links on a page. By
+    providing each link with a suitable hint, you can access all links with a
+        similar amount of minimal effort }
+        \subsection{QuickHint Mode ($f$)}{Simulates mouseselection with labeled
+            links on web page. To run new tab in background change to uppercase $F$.}
+            \subsection{ExtendedHint Mode ( ; )}{This mode is useful for
+                performing operations on hinted elements other than the default
+                    left mouse click. If you want to yank the location of hint 24, press ;y to start this hint
+                    mode. Then press 24 to copy the hint location.}
+                    \cmdL{:h\grey{elp} extended-hints}	{Open list of all extended mode commands}
+                    here are a few \ldots\\
+                        \cmdS{a~A $n$}	{open link $n$ (in new background tab)}
+                        \cmdS{y~Y}	{copy URL/label description to clipboard}
+                        \cmdS{s~S}	{save destination of a link}
 
 % Footer
 \copyrightnotice
