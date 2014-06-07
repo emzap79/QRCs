@@ -24,46 +24,51 @@
 \vskip 0.5cm
 
 % http://www.linuxjournal.com/article/10636
-\section{Movements}{}
+\section{Page \& Tab Movements}{}
 \cmdS{hjkl}	{move left/down/up/right}
 \cmdS{gg~G}	{move to top/bottom of page}
-\cmdS{/~?}	{search in page (backwards)}
-\cmdS{\space~\shift\space}	{move down/up one page}
-
-\section{Windows \& Tabs}{}
-\cmdS{gt~\ctrl n}	{go to next tab}
-\cmdS{gT~\ctrl p}	{go to previous tab}
-\cmdS{gh~gH}	{go to your homepage (in new tab)}
-\cmdS{gu~gU}	{move up one path/all to root}
-\cmdExmpl{http://www.reddit.com/r/IAmA/comments moves up to www.redd\ldots /r/IAmA}	{gu}
-\cmdS{t~T}	{open tab (with smart completion)}
-\cmdS{d~u}	{close/undo tab}
-\cmdS{H~L}	{go to previous/next page in history}
-\cmdS{i~I}	{ignores all/specific VIMPRTR keybinds}
-\cmdS{o~O}	{}
-\cmdS{zi~zI}	{zoom in by 25/100 \% on page in focus}
-\cmdS{zo~zO}	{zoom out by 25 /100 \% on focused page}
-\cmdS{$n$zz}	{zoom page to $n$\% (100 if $n$ is omitted)}
-\cmdS{ZZ~ZQ}	{exit Firefox and save/clear session history}
-
-\section{Modes}{exit mode with \key{esc}. To open link in new tab change to uppercase, eg. $F$ instead of $f$.}
-\cmdS{a~A$n$}	{open link $n$ (in new background tab)}
-\cmdS{y~Y}	{copy URL/label description to clipboard}
-\cmdS{s~S}	{save destination of a link}
-\subsection{QuickHint Mode ($f$)}{add numbered label to every link on webpage}
-\subsection{ExtendedHint ( ; )}{lets you copy labeled links to clipboard}
-
-\section{Exe commands}{}
-\cmdS{:history}	{pull up most recent 10 online \& local pages}
-\cmdOper{;o}	{follow hint in history}
 \cmdOper{\space~d~j}	{move screen/page/line down}
 \cmdOper{b~u~k}	{move screen/page/line up}
 \cmdOper{g~G}	{jump to top/bottom of buffer}
 \cmdOper{esc~q}	{close buffer}
+\cmdS{/~?}	{search in page (backwards)}
+\cmdS{gt~\ctrl n}	{go to next tab}
+\cmdS{gT~\ctrl p}	{go to previous tab}
+\cmdS{g0~g\$}	{go to first/last tab}
+\cmdS{gh~gH}	{go to your homepage (in new tab)}
+\cmdS{go\lbrack aA-zZ0-9\rbrack}	{jump to previously marked web page}
+\cmdS{gu~gU}	{move up one path/all to root}
+\cmdExmpl{http://www.reddit.com/r/IAmA/comments moves up to www.redd\ldots /r/IAmA}	{gu}
+
+\section{General Keybinds}{}
+\cmdS{t~T}	{open tab (with smart completion)}
+\cmdS{d~u}	{close/undo tab}
+\cmdS{p~P}	{paste from clipboard (in a new tab)}
+\cmdS{H~L}	{go to previous/next page in history}
+\cmdS{a~A}	{add/toggle bookmark}
+\cmdS{i~I}	{ignores all/specific VIMPRTR keybinds}
+\cmdS{o~b \or .~}	{open page/buffer}
+\cmdS{\lbracket\lbracket~\rbracket\rbracket}	{switch to previous/next page on multipage websites}
+\cmdS{+~-}	{zoom in/out by 25 \% on page in focus}
+\cmdS{$n$zz}	{zoom page to $n$\% (100 if $n$ is omitted)}
+\cmdS{ZZ~ZQ}	{exit broweser and save/clear history}
+
+\section{Modes}{You can always exit to normal mode with \key{esc}. To open link
+in new tab change to uppercase, eg. $F$ but $f$.}
+\cmdS{a~A $n$}	{open link $n$ (in new background tab)}
+\cmdS{y~Y}	{copy URL/label description to clipboard}
+\cmdS{s~S}	{save destination of a link}
+\subsection{QuickHint Mode ($f$)}{add numbered label to every link on webpage}
+\subsection{ExtendedHint Mode ( ; )}{only highlight labels of links}
+
+\section{Exe commands}{works with tab completion}
+\cmdS{:his\grey{tory}}	{pull up recent 10 online \& local pages}
 \cmdS{:pc\grey{lose}}	{close preview window, eg. history}
-\cmdL{:bm\grey{ark}~:delbm\grey{marks} $url$}	{add/delete bookmark}
-\cmdS{:his\grey{tory}}	{open history}
+\cmdL{:bm\grey{ark}~:delb\grey{marks} $url$}	{add/delete bookmark}
 \cmdS{:res\grey{tart}}	{restart Firefox immediately}
+\cmdS{:ad\grey{dons}}	{show addons in current window}
+\cmdS{:pr\grey{eferences}}	{show preferences}
+\cmdOper{;o}	{follow hint in history}
 
 % Footer
 \copyrightnotice
