@@ -27,51 +27,53 @@
 \cmdS{\ctrl f~\ctrl d~\ctrl j}	{move screen/page/line down}
 \cmdS{\ctrl b~\ctrl u~\ctrl k}	{move screen/page/line up}
 \cmdS{/~?}	{search in page (backwards)}
-\cmdS{gt~\ctrl n}	{go to next tab}
-\cmdS{gT~\ctrl p}	{go to previous tab}
+\cmdS{n~N}	{jump to next/previous search result}
+\cmdS{gt\ \or\ \ctrl n}	{go to next tab}
+\cmdS{gT\ \or\ \ctrl p}	{go to previous tab}
 \cmdS{g0~g\$}	{go to first/last tab}
 \cmdS{gh~gH}	{go to your homepage (in new tab)}
 \cmdS{go\lbrack aA-zZ0-9\rbrack}	{jump to previously marked web page}
 \cmdS{gu~gU}	{move up one path/all to root}
-\cmdExmpl{http://www.reddit.com/r/IAmA/comments moves up to www.redd\ldots /r/IAmA}	{gu}
+\cmdExmpl{moves up to http://ww\ldots tor.org/system}	{gu http://www.vimperator.org/system/app/}
 
 \section{General Keybinds}{}
-\cmdS{t~T}	{open tab (with smart completion)}
+\cmdS{o~b}	{open page/buffer}
 \cmdS{d~u}	{close/undo tab}
+\cmdS{t~T}	{open new tab (with smart completion)}
 \cmdS{p~P}	{paste from clipboard (in a new tab)}
 \cmdS{H~L}	{go to previous/next page in history}
 \cmdS{a~A}	{add/toggle bookmark}
-\cmdS{i~I}	{ignores all/specific VIMPRTR keybinds}
-\cmdS{o~b \or .~}	{open page/buffer}
+\cmdS{i~I}	{ignore any/specific {\tt vimperator} keybinds}
 \cmdS{\lbracket\lbracket~\rbracket\rbracket}	{switch to previous/next page on multipage websites}
 \cmdS{+~-}	{zoom in/out by 25 \% on page in focus}
 \cmdS{$n$zz}	{zoom page to $n$\% (100 if $n$ is omitted)}
-\cmdS{ZZ~ZQ}	{exit broweser and save/clear history}
-
-\vfill
-
+\cmdS{ZZ~ZQ}	{exit browser and save/clear history}
+%
+\\
+%
 \section{Exe commands}{Works with tab completion}
+\cmdL{:bm\grey{ark}~:delb\grey{marks} $url$}	{add/delete bookmark}
+\cmdS{:ad\grey{dons}}	{show addons in current window}
+\cmdS{:em\grey{enu}}	{command-line access to Firefox menubar}
 \cmdS{:his\grey{tory}}	{pull up recent 10 online \& local pages}
 \cmdS{:pc\grey{lose}}	{close preview window, eg. history}
-\cmdL{:bm\grey{ark}~:delb\grey{marks} $url$}	{add/delete bookmark}
-\cmdS{:res\grey{tart}}	{restart Firefox immediately}
-\cmdS{:ad\grey{dons}}	{show addons in current window}
 \cmdS{:pr\grey{eferences}}	{show preferences}
+\cmdS{:res\grey{tart}}	{restart Firefox immediately}
 
 \section{Modes}{Hints are the way in which Vimperator allows you to follow links on a page. By
-    providing each link with a suitable hint, you can access all links with a
-        similar amount of minimal effort }
+    providing each link with a suitable hint, you can access them with minimal effort. }
         \subsection{QuickHint Mode ($f$)}{Simulates mouseselection with labeled
             links on web page. To run new tab in background change to uppercase $F$.}
             \subsection{ExtendedHint Mode ( ; )}{This mode is useful for
                 performing operations on hinted elements other than the default
                     left mouse click. If you want to yank the location of hint 24, press ;y to start this hint
                     mode. Then press 24 to copy the hint location.}
-                    \cmdL{:h\grey{elp} extended-hints}	{Open list of all extended mode commands}
+                    \cmdL{:h\grey{elp} extended-hints}	{list all extended mode commands}
                     here are a few \ldots\\
                         \cmdS{a~A $n$}	{open link $n$ (in new background tab)}
+                        \cmdS{s~S}	{save link/object}
+                        \cmdS{i~I}	{open media object (in new tab)}
                         \cmdS{y~Y}	{copy URL/label description to clipboard}
-                        \cmdS{s~S}	{save destination of a link}
 
 % Footer
 \copyrightnotice
