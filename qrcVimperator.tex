@@ -2,8 +2,7 @@
 
 % version
 \def\content{VIMPERATOR}
-\def\versionnumber{1.0}  % Version of this reference card
-
+\def\versionnumber{1.1}  % Version of this reference card
 
 \def\version{v\versionnumber\ \month\ \year}
 
@@ -32,7 +31,6 @@
 \cmdS{gT\ \or\ \ctrl p}	{go to previous tab}
 \cmdS{g0~g\$}	{go to first/last tab}
 \cmdS{gh~gH}	{go to your homepage (in new tab)}
-\cmdS{go\lbrack aA-zZ0-9\rbrack}	{jump to previously marked web page}
 \cmdS{gu~gU}	{move up one path/all to root}
 \cmdExmpl{moves up to http://ww\ldots tor.org/system}	{gu http://www.vimperator.org/system/app/}
 
@@ -42,8 +40,10 @@
 \cmdS{t~T}	{open new tab (with smart completion)}
 \cmdS{p~P}	{paste from clipboard (in a new tab)}
 \cmdS{H~L}	{go to previous/next page in history}
+\cmdS{m~M}	{Set local/global mark at cursor/url}
+\cmdS{go\lbrack aA-zZ0-9\rbrack}	{jump to previously marked web page}
 \cmdS{a~A}	{add/toggle bookmark}
-\cmdS{i~I}	{ignore any/specific {\tt vimperator} keybinds}
+\cmdS{i~I}	{ignore any/specific {\tt vimperator} keybind}
 \cmdS{\lbracket\lbracket~\rbracket\rbracket}	{switch to previous/next page on multipage websites}
 \cmdS{+~-}	{zoom in/out by 25 \% on page in focus}
 \cmdS{$n$zz}	{zoom page to $n$\% (100 if $n$ is omitted)}
@@ -60,20 +60,20 @@
 \cmdS{:pr\grey{eferences}}	{show preferences}
 \cmdS{:res\grey{tart}}	{restart Firefox immediately}
 
-\section{Modes}{Hints are the way in which Vimperator allows you to follow links on a page. By
-    providing each link with a suitable hint, you can access them with minimal effort. }
-        \subsection{QuickHint Mode ($f$)}{Simulates mouseselection with labeled
-            links on web page. To run new tab in background change to uppercase $F$.}
-            \subsection{ExtendedHint Mode ( ; )}{This mode is useful for
-                performing operations on hinted elements other than the default
-                    left mouse click. If you want to yank the location of hint 24, press ;y to start this hint
-                    mode. Then press 24 to copy the hint location.}
-                    \cmdL{:h\grey{elp} extended-hints}	{list all extended mode commands}
-                    here are a few \ldots\\
-                        \cmdS{a~A $n$}	{open link $n$ (in new background tab)}
-                        \cmdS{s~S}	{save link/object}
-                        \cmdS{i~I}	{open media object (in new tab)}
-                        \cmdS{y~Y}	{copy URL/label description to clipboard}
+\section{Hint-Modes}{Hints are the way in which Vimperator allows you to follow links on a page. By
+providing each link with a suitable hint, you can access them via a set of hotkeys. }
+\subsection{QuickHint Mode ($f$)}{Simulates mouseselection with labeled
+links on web page. To run new tab in background change to uppercase $F$.}
+\subsection{ExtendedHint Mode ( ; )}{This mode is useful for
+performing operations on hinted elements other than the default
+left mouse click. If you want to yank the location of hint 24, press ;y to start this hint
+mode. Then press 24 to copy the hint location.}
+\cmdL{:h\grey{elp} extended-hints}	{list all extended mode commands}
+here are a few \ldots\\
+\cmdS{;~}	{imitates hovering over link-object}
+\cmdS{s~S}	{save link/object}
+\cmdS{i~I}	{open media object (in new tab)}
+\cmdS{y~Y}	{copy URL/label description to clipboard}
 
 % Footer
 \copyrightnotice
