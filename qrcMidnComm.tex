@@ -2,7 +2,7 @@
 
 % version
 \def\content{MC}
-\def\versionnumber{1.0}  % Version of this reference card
+\def\versionnumber{0.1}  % Version of this reference card
 \def\version{v\versionnumber\ \month\ \year}
 
 % include definitions
@@ -19,6 +19,47 @@
 \vskip 0.5cm
 
 \section{Commands}{}
+\cmdS{\ctrl r}	{refresh active panel}
+\cmdS{\ctrl c~\ctrl o}	{opens chmod/chown for marked file}
+\cmdS{\alt ?}	{opens search dialog}
+\cmdS{\ctrl a}	{open vfs list}
+\cmdExmpl{}	{If a ftp session times out, you can use this to free the open vfs so you can log in again}
+
+% section % commands (end)
+
+\section{Panel Functions}{}
+\cmdS{\tab}	{switch focus between left/right panel}
+\cmdS{\key{insert}}	{marks or removes mark on files}
+\cmdS{\alt g~\alt j}	{marks first/last file or dir in panel}
+\cmdS{\alt r}	{marks middle file in active panel}
+\cmdS{\alt s}	{incremental search}
+\cmdS{$\ast$}	{marks \or removes marks for all files}
+\cmdS{+~\bs}	{(un)mark files by regular expression}
+\cmdS{\ctrl p~\ctrl n}	{moves up-/downwards in panel}
+
+% section % panel_functions (end)
+
+\section{Shell Functions}{}
+
+\cmdS{\alt \enter}	{copies selected filename in command line}
+\cmdS{\ctrl \shift \enter}	{copies full path of selected file to cliboard}
+\cmdS{\alt h}	{command line history}
+
+% section %  (end)
+
+\section{Function Keys}{}
+\cmdS{F1}	{Help}
+\cmdS{F2}	{Opens user menu}
+\cmdS{F3}	{View selected file content}
+\cmdS{F4}	{Opens file in internal text editor}
+\cmdS{F5}	{Copies selected file. Default is to another panel, but it asks first.}
+\cmdS{F6}	{Moving file. Default is to another panel, but it asks first.}
+\cmdS{F7}	{Make directory.}
+\cmdS{F8}	{Delete file or directory.}
+\cmdS{F9}	{Opens main menu at the top of the screen.}
+\cmdS{F10}	{Ends current action; editor, viewer, dialog window or ends mc program.}
+
+% section % function_keys (end)
 
 % Footer
 \copyrightnotice

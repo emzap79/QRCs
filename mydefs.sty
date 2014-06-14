@@ -334,15 +334,15 @@ and has then been modified to my own requirements.
 
 \def\\{\hfil\break}
 \def\bs{$\backslash$}
+% \def\bs{\char92}
 \def\backspace{$\leftarrow$}
 \def\ctrl{{\rm\char94}\kern-1pt}
 \def\enter{$\hookleftarrow$}
 \def\arrows{$\Leftrightarrow\Updownarrow$}
-\def\or{\thinspace{\tinyit{or}}\thinspace}
+\def\or{\thinspace{\tinyit{or}}\enspace}
 \def\key#1{$\langle${\rm{\it#1\/}}$\rangle$}
 \def\shift{$\Uparrow$}
 \def\space{\key{space}}
-\def\bs{\char92}
 \def\tild{\char126}
 \def\tab{\key{tab}}
 \def\langlebr{\char60}
@@ -353,7 +353,11 @@ and has then been modified to my own requirements.
 \def\lapos{\char123}
 \def\ldots{$...$}
 \def\code{\tt}
+% \def\ast{$\ast$}
 \def\F{{\tt FALSE} }
 \def\T{{\tt TRUE} }
+\def\alt#1{$\langle${\rm{\it M-#1\/}}$\rangle$}
+\def\esc#1{$\langle${\rm{\it M-#1\/}}$\rangle$}
+\def\meta#1{$\langle${\rm{\it M-#1\/}}$\rangle$}
 
 % Characters definitions%}}}

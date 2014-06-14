@@ -1,3 +1,7 @@
+mc:
+	pdftex qrcMidnComm.tex
+	xdg-open qrcMidnComm.pdf &
+
 tex:
 	pdftex qrcTeX.tex
 	xdg-open qrcTeX.pdf &

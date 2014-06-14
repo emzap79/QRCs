@@ -1,4 +1,3 @@
-
 % version
 \def\content{R}
 \def\versionnumber{1.0}  % Version of this reference card
@@ -160,6 +159,7 @@ For database interaction, see packages {\tt RODBC}, {\tt DBI},\\
 \cmdS{any(x)}	{any TRUE elements of {\tt x}?}
 \cmdS{all(x)}	{all TRUE elements of {\tt x}?}
 \cmdS{length(x)}	{ number of elements in {\tt x}}
+\cmdS{rle(x)}	{length of consecutive elements in {\tt x}}
 \cmdS{dim(x)}	{Retrieve or set the dimension of an object; {\tt dim(x) <- c(3,2)}}
 \cmdS{dimnames(x)}	{Retrieve or set the dimension names of an object}
 \cmdS{nrow(x)}	{number of rows; {\tt NROW(x)} is the same but treats a vector as a one-row matrix}
@@ -196,7 +196,7 @@ logical)}
 \cmdL{sample(x, size)}	{resample randomly and without replacement {\tt size}
 elements in the vector {\tt x}, the option {\tt replace = TRUE} allows to
 resample with replacement}
-\cmdL{prop.table($x,margin=$)}	{table entries as fraction of marginal table}
+\cmdL{prop.table(x,margin=)}	{table entries as fraction of marginal table}
 
 \section{Characters (Strings)}{}
 
@@ -346,7 +346,7 @@ specify missing data (NA) removal.
     columns of the same record and 'long' format in separate records}
 \cmdExmpl{ \code(direction="wide") or\\ \code(direction="long")}	{use}
 
-\section{Optimization and model fitting}{{\smalltt optim(par, fn, method = c("Nelder-Mead", "BFGS", \ldots)} general purpose optimization; {\tt par} is initial values, {\tt fn} is function to optimize (normally minimize)}
+\section{Optimization and model fitting}{{\smalltt optim(par, fn, method = c("Nelder-Mead", "BFGS", \ldots)}: general purpose optimization; {\tt par} is initial values, {\tt fn} is function to optimize (normally minimize)}
 \cmdS{nlm(f,p)}	{minimize function {\tt f} using a Newton-type algorithm with starting values {\tt p}}
 \cmdS{lm(formula)}	{fit linear models; {\tt formula} is typically of the form {\tt response ~ termA + termB + \ldots}; use {\tt I(x*y) + I(x\^{}2)} for terms made of nonlinear components}
 \cmdL{glm(formula,family=)}	{fit generalized linear models, specified by giving a symbolic description of the linear predictor and a description of the error distribution}

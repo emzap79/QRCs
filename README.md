@@ -15,7 +15,7 @@ My repo contains qrc's of the following issues
 - CLI (*Bash*)
 - VIM
 - VIMPERATOR (*Firefox Extension*)
-- Midnight Commander (*coming next*)
+- Midnight Commander
 
 ## Create PDF
 
