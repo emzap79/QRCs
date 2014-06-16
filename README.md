@@ -34,3 +34,12 @@ the *Raw File*. Please feel free to contact me or sending me pull-requests.
 ## Author
 
 < empzap79 [at] gmail [dot] com >
+
+## Licence Agreement
+
+Copyright 2014 Jonas Petong
+
+Licensed under the "THE BEER-WARE LICENSE" (Revision 42):
+emzap79 wrote this file. As long as you retain this notice you
+can do whatever you want with this stuff. If we meet some day, and you think
+this stuff is worth it, you can buy me a beer or coffee in return
