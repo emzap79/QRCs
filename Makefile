@@ -42,13 +42,17 @@ vim:
 	pdftex qrcVim.tex
 	xdg-open qrcVim.pdf &
 
+vimperator:
+	pdftex qrcVimperator.tex
+	xdg-open qrcVimperator.pdf &
+
 vimp:
 	pdftex qrcVimperator.tex
 	xdg-open qrcVimperator.pdf &
 
-viml:
-	pdftex qrcVimLatex.tex
-	xdg-open qrcVimLatex.pdf &
+# viml:
+# 	pdftex qrcVimLatex.tex
+# 	xdg-open qrcVimLatex.pdf &
 
 images:
 	for datei in $$(ls *pnm | cut -d \. -f 1) ; do make $$datei.ps ; done

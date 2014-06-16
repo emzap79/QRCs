@@ -1,13 +1,12 @@
 # About
 
-This is a collection of my quick reference cards ("cheat sheets") on diverse
-code and linux related terminal commands. In all cases they existed before I
-took my 'final shape' on them, so please have a look on the regarding
-copyrightnotice before you consider to distribute or forking them.
+This is a collection of my Quick Reference Cards ("QRCs") on diverse
+code and linux related terminal commands. Please have a look on the regarding
+copyrightnotice before you consider their use for commercial purpose.
 
 ## Content
 
-My repo contains qrc's of the following issues
+My repo contains qrc's based on the following issues
 
 - R
 - GIT
@@ -19,25 +18,18 @@ My repo contains qrc's of the following issues
 
 ## Create PDF
 
-Compile them via: `pdftex qrc.tex` or use the provided Makefile. You must clone
-the repo first, as you probably'd have imagined:
+Compile them via: `pdftex qrc.tex` (or execute the provided Makefile). Clone this repo like so:
 
-    gitdir="$HOME/.gitclones/qrc"
-    mkdir -p $gitdir && cd $gitdir
-    git clone https://github.com/emzap79/QRCs.git .
+    gitdir="$HOME/.gitclones/qrc" && mkdir -p $gitdir
+    git clone https://github.com/emzap79/QRCs.git $gitdir
 
-(same commands as easy copy + paste oneliner :relaxed:)
+Now change into the new created directory (`cd $gitdir`) and run `make <name>`,
+eg. `make tmux`. It will compile the tex-file, showing its result in your
+systems default pdf-reader.
 
-    gitdir="$HOME/.gitclones/qrc" && mkdir -p $gitdir && cd $gitdir && git clone https://github.com/emzap79/QRCs.git .
-
-Now change into the directory where the QRC is located (`cd $gitdir`) and run
-`make <name>` eg. `make tmux`. It will compile the tex-file, showing the
-result in a pdf-reader of your choice; since all of my qrc's use the same
-stylesheet, most probably it shows some `Over-/Underfull` Boxes.
-
-Please feel free to contact me or sending me pull-requests! I'll try to get rid
-of them in the nearer future, anyways. You can indeed use the PDF version of my
-files, without the need to compile the TeX-file by yourself!
+You may as well use the PDF version of my Cheat Sheets, without the need of
+producing them by yourself! In that case, guide yourself to the direct link of
+the *Raw File*. Please feel free to contact me or sending me pull-requests.
 
 ## Author
 
