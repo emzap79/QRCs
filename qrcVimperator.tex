@@ -2,7 +2,7 @@
 
 % version
 \def\content{VIMPERATOR}
-\def\versionnumber{1.1}  % Version of this reference card
+\def\versionnumber{1.2}  % Version of this reference card
 
 \def\version{v\versionnumber\ \month\ \year}
 
@@ -30,6 +30,7 @@
 \cmdS{gt\ \or\ \ctrl n}	{go to next tab}
 \cmdS{gT\ \or\ \ctrl p}	{go to previous tab}
 \cmdS{g0~g\$}	{go to first/last tab}
+% \cmdS{g@}	{switch to first app tab}
 \cmdS{gh~gH}	{go to your homepage (in new tab)}
 \cmdS{gu~gU}	{move up one path/all to root}
 \cmdExmpl{moves up to http://ww\ldots tor.org/system}	{gu http://www.vimperator.org/system/app/}
@@ -59,6 +60,19 @@
 \cmdS{:pc\grey{lose}}	{close preview window, eg. history}
 \cmdS{:pr\grey{eferences}}	{show preferences}
 \cmdS{:res\grey{tart}}	{restart Firefox immediately}
+\cmdS{:tabo\grey{nly}}	{close all other tabs}
+
+\section{Panorama Mode (Tab Group Management)}{Start tabgroup management with {\tt :tabgroup subcom}}
+Some subcommands \ldots \\
+\cmdOper{add}	{create new {\tt tab group}}
+\cmdOper{list}	{list current {\tt tab groups}}
+\cmdOper{rm}	{remove group with {\tt group}name}
+\cmdOper{pull- \or pushtab}	{pull tab from \or move to {\tt group}}
+\cmdOper{switch}	{switch to {\tt group}name}
+
+
+
+% subsect %%  (end)
 
 \section{Hint-Modes}{Hints are the way in which Vimperator allows you to follow links on a page. By
 providing each link with a suitable hint, you can access them via a set of hotkeys. }
@@ -68,7 +82,7 @@ links on web page. To run new tab in background change to uppercase $F$.}
 performing operations on hinted elements other than the default
 left mouse click. If you want to yank the location of hint 24, press ;y to start this hint
 mode. Then press 24 to copy the hint location.}
-\cmdL{:h\grey{elp} extended-hints}	{list all extended mode commands}
+\cmdL{:h extended-hints}	{list all extended mode commands}
 here are a few \ldots\\
 \cmdS{;~}	{imitates hovering over link-object}
 \cmdS{s~S}	{save link/object}
@@ -77,6 +91,8 @@ here are a few \ldots\\
 
 % Footer
 \copyrightnotice
+%
+
 
 % Ending
 \vfil
