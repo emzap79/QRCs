@@ -462,25 +462,26 @@ density ({\tt p{\it func}(x, \ldots)}), and the value of quantile
 \cmdL{text(x, y, labels...)}	{ adds text given by {\tt labels} at
     coordinates ({\tt x},{\tt y}); a typical use is: {\tt plot(x, y, type="n");
         text(x, y, names)}}
-\cmdL{mtext(text, side=3, line=0, \ldots)}	{adds text given by {\tt text} in the margin specified by {\tt side} (see {\tt axis()} below); {\tt line} specifies the line from the plotting area}
+        \cmdL{mtext(text, side=3, line=0, \ldots)}	{adds text given by {\tt text} in the margin specified by {\tt side} (see {\tt axis()} below); {\tt line} specifies the line from the plotting area}
 \cmdL{segments(x0, y0, x1, y1)}	{ draws lines from points ({\tt x0},{\tt y0})
     to points ({\tt x1},{\tt y1})}
-\cmdL{arrows(x0, y0, x1, y1, angle= 30, code=2)}	{id. with arrows at points ({\tt x0},{\tt y0}) if {\tt code=2}, at points ({\tt x1},{\tt y1}) if {\tt code=1}, or both if {\tt code=3}; {\tt angle} controls the angle from the shaft of the arrow to the edge of the arrow head}
-\cmdS{abline(a,b)}	{draws a line of slope {\tt b} and intercept {\tt a}}
-\cmdS{abline(h=y)}	{ draws a horizontal line at ordinate {\tt y}}
-\cmdS{abline(v=x)}	{ draws a vertical line at abcissa {\tt x}}
-\cmdL{abline(lm.obj)}	{ draws regression line given by {\tt lm.obj}}
-\cmdL{rect(x1, y1, x2, y2)}	{ draws a rectangle which left, right, bottom, and top limits are {\tt x1}, {\tt x2}, {\tt y1}, and {\tt y2}, respectively}
-\cmdL{polygon(x, y)}	{draws a polygon linking the points with coordinates given by {\tt x} and {\tt y}}
-\cmdL{legend(x, y, legend)}	{ adds the legend at the point ({\tt x},{\tt y}) with the symbols given by {\tt legend}}
-\cmdS{title()}	{ adds a title and optionally a sub-title}
-\cmdL{axis(side, vect)}	{adds an axis at the bottom ({\tt side=1}), on the left ({\tt 2}), at the top ({\tt 3}), or on the right ({\tt 4}); {\tt vect} (optional) gives the abcissa (or ordinates) where tick-marks are drawn}
-\cmdS{rug(x)}	{draws the data {\tt x} on the $x$-axis as small vertical lines}
-\cmdL{locator(n, type="n", \ldots)}	{returns the coordinates ($x,y$) after the
-    user has clicked {\tt n} times on the plot with the mouse; also draws
-    symbols ({\tt type="p"}) or lines ({\tt type="l"}) with respect to optional
-    graphic parameters ({\tt \ldots})}
-\cmdExmpl{type="n"}{by default nothing is drawn}
+    \cmdL{arrows(x0, y0, x1, y1, angle= 30, code=2)}	{id. with arrows at points ({\tt x0},{\tt y0}) if {\tt code=2}, at points ({\tt x1},{\tt y1}) if {\tt code=1}, or both if {\tt code=3}; {\tt angle} controls the angle from the shaft of the arrow to the edge of the arrow head}
+    \cmdS{abline(a,b)}	{draws a line of slope {\tt b} and intercept {\tt a}}
+    \cmdS{abline(h=y)}	{ draws a horizontal line at ordinate {\tt y}}
+    \cmdS{abline(v=x)}	{ draws a vertical line at abcissa {\tt x}}
+    \cmdL{abline(lm.obj)}	{ draws regression line given by {\tt lm.obj}}
+    \cmdL{rect(x1, y1, x2, y2)}	{ draws a rectangle which left, right, bottom, and top limits are {\tt x1}, {\tt x2}, {\tt y1}, and {\tt y2}, respectively}
+    \cmdL{polygon(x, y)}	{draws a polygon linking the points with coordinates given by {\tt x} and {\tt y}}
+\cmdL{legend(x, y, legend)}	{ adds the legend at the point ({\tt x,y})
+    with the symbols given by {\tt legend}. You may as well add {\tt "bottom", "topleft"} etc. in place of coordinates {\tt x,y} manually}
+        \cmdS{title()}	{ adds a title and optionally a sub-title}
+        \cmdL{axis(side, vect)}	{adds an axis at the bottom ({\tt side=1}), on the left ({\tt 2}), at the top ({\tt 3}), or on the right ({\tt 4}); {\tt vect} (optional) gives the abcissa (or ordinates) where tick-marks are drawn}
+        \cmdS{rug(x)}	{draws the data {\tt x} on the $x$-axis as small vertical lines}
+        \cmdL{locator(n, type="n", \ldots)}	{returns the coordinates ($x,y$) after the
+            user has clicked {\tt n} times on the plot with the mouse; also draws
+                symbols ({\tt type="p"}) or lines ({\tt type="l"}) with respect to optional
+                graphic parameters ({\tt \ldots})}
+                \cmdExmpl{type="n"}{by default nothing is drawn}
 
 \section{Graphical parameters}{These can be set globally with
 {\tt par(...)}; many can be passed as

@@ -43,31 +43,31 @@ behaviour to e.g. \key{ctrl-a} by adding the following commands to your
 \cmdS{\key{space} \enter}	{select / copy text under cursor}
 \cmdS{\ctrl b\rbracket}	{paste copied text to command line}
 
-\subsection{Windows \or\ Buffers}{}
-\cmdS{\ctrl bc \ctrl b,}	{create / rename window}
-\cmdS{\ctrl bf~\ctrl bw}	{find / list windows}
-\cmdS{\ctrl b\&}	{close current window}
-\cmdS{\ctrl bn \ctrl bp \ctrl bl}	{navigate next/prev/last window}
+\subsection{Windows (Buffers)}{}
 \cmdS{\ctrl b$n$}	{switch to buffer $0 \ldots n$}
+\cmdS{\ctrl bf~\ctrl bw}	{find / list windows}
+\cmdS{\ctrl bc~\ctrl b,~\ctrl b\&}	{create/rename/close window}
+\cmdS{\ctrl bp \ctrl bn \ctrl bl}	{go to prev/next/last window}
 
-\subsection{Open / Switch / Resize Panes}{}
-\cmdS{\ctrl bx \or \ctrl d }	{delete pane}
-\cmdS{\ctrl b!}	{push all other panes to next window}
-\cmdS{\ctrl bt \ctrl bq}	{show time / numeric values of panes}
-\cmdS{\ctrl b\key{\arrows} \or\ctrl bo}	{switch to (next) pane}
-\cmdS{\ctrl b\#}	{show buffers}
-\cmdL{\ctrl b\key{M - \arrows } \ctrl bz}	{resize / full-screen pane}
-\cmdS{\ctrl b$\rbrace$}	{swap position with next pane}
-\cmdS{\ctrl b$\lbrace$ \or\ \ctrl b\ctrl o}	{swap with previous pane}
-
-\subsection{Split Panes}{}
+\subsection{Open / Switch / Delete Panes}{Resize panes with $\ctrl b$\esc\ plus arrow keys}
+\cmdS{\ctrl bt \ctrl bq}	{show time/numeric values of panes}
+\cmdS{\ctrl b\arrows}	{switch to left/right/top/bottom pane}
+\cmdS{\ctrl b$\lbrace$ \ctrl b$\rbrace$}	{swap position with previous/next pane}
+\cmdS{\ctrl bx \or\ctrl d }	{delete pane}
 \cmdS{\ctrl b\%  \ctrl b"}	{split pane vertically / horizontally}
+
+% \cmdS{\ctrl b\#~\ctrl bo}	{show/switch buffers}
+% \cmdS{\ctrl b\ctrl o}	{swap with previous pane}
+% \cmdS{\ctrl b\key{M - \arrows }}	{resize pane left/right/up/down}
+% \cmdS{\ctrl b!}	{push all other panes to next window}
+
+\subsection{Panes Position}{}
+\cmdS{\ctrl b\key{space}}	{toggle through all layouts}
 \cmdS{\ctrl b\key{M-1}}	{vertical split, all panes same width}
 \cmdS{\ctrl b\key{M-2}}	{horizontal split, all panes same height}
 \cmdS{\ctrl b\key{M-3}}	{horizontal split, main pane on top, other panes on bottom, vertically split, all same width}
 \cmdS{\ctrl b\key{M-4}}	{vertical split, main pane left, other panes right, horizontally split, all same height}
 \cmdS{\ctrl b\key{M-5}}	{tile, new panes on bottom, same height before same width}
-\cmdS{\ctrl b\key{space}}	{toggle through all layouts}
 
 %% Footer
 \copyrightnotice
