@@ -4,7 +4,7 @@
 % preamble%{{{
 
 \def\content{CLI}
-\def\versionnumber{1.1}  % Version of this reference card
+\def\versionnumber{1.2}  % Version of this reference card
 
 
 \def\version{v\versionnumber\ \month\ \year}
@@ -59,14 +59,14 @@
 \section{Basic Operations}{}%{{{
 
 \cmdS{cd $path$}{change directory}
-\subsubsection{possible values for \key{path}}{}
-\cmdOper{\ ..}{move one folder up}
+\subsubsection{possible values for $path$}{}
+\cmdOper{..}{move one folder up}
 \cmdOper{--}{change to last visited directory}
 \cmdOper{\key{None}}{change to homedir ($\sim$)}
-\cmdS{mkdir $fold$}{create new folder in current $path$}
+\cmdS{mkdir $dir$}{create new $dir$ectory in current path}
 
 %}}}
-\section{Movements}{for \key{esc} you can use either \key{esc} and \key{alt}-key}%{{{
+\section{Movements}{For \key{esc} you can use either \key{esc} and \key{alt}-key}%{{{
 
 \cmdS{\ctrl a\ \ctrl e}{jump to begin / end of the line}
 \cmdL{\key{esc f}\ /\ \key{esc b}}{jump one word forward/backward}
@@ -75,12 +75,12 @@
 \cmdS{\ctrl y}{paste most recently cut out text}
 \cmdL{\key{esc d}\ /\ \key{esc $\leftarrow$}}{cut one word forward/backward}
 \cmdS{\ctrl w}{cut text backward until space}
-\cmdS{\ctrl u\ /\ \ctrl k}{cut from current position to the beginning/end of line}
+\cmdS{\ctrl u~\ctrl k}{cut to beginning/end of the line}
 \cmdS{\ctrl \#}{prepend hashtag on command, then jump to next line (... and reedit later)}
-\cmdS{\ctrl xe}{open command in default \$EDITOR}
+\cmdS{\ctrl xe}{edit command in default \$EDITOR}
 
 %}}}
-\section{History}{clearing your entire history event line: {\tt history -c}}%{{{
+\section{History}{Clearing your entire history event line: {\tt history -c}}%{{{
 
 \subsection{Shortcuts}{}
 \cmdS{\ctrl p}{fetch the previous command from the history list}
@@ -102,17 +102,17 @@
 % \cmdExample{15G}{move to $15$th line}
 
 %}}}
-\subsection{History-Commands}{example command is: {\tt cd foo/bar}}%{{{
+\subsection{History-Commands}{Example command is: {\tt cd foo/bar}}%{{{
 
 \cmdS{!!}{runs previous executed command (also known as `bang bang')}
-\cmdExample{sudo\ !!}{sudo cd foo/bar}
+\cmdExmpl{sudo cd foo/bar}{sudo\ !!}
 \cmdS{!\$ / \key{esc .\ }}{repeats last $arg$ of prev command}
 \cmdS{!$n$\ / !-$n$}{executes command $n$/$n$th last command}
 \cmdS{!$str$\ / !?$str$?}{runs last executed command, starting with/containing string or character $str$ (ending ? is optional)}
-\cmdExample{!cd}{cd foo/bar}
-\cmdExample{!?sudo?}{sudo cd foo/bar}
+\cmdExmpl{cd foo/bar}{!cd}
+\cmdExmpl{sudo cd foo/bar}{!?sudo?}
 \cmdS{!!:$des$}{appends first/last/specific/all $arg$'s of last command (trailing :$des$ refers to below listed designators)}
-\cmdExample{echo !cd:q}{echo 'cd foo/bar'}
+\cmdExmpl{echo 'cd foo/bar'}{echo !cd:q}
 \cmdS{!\#}{refers to the entire command line typed so far}
 \subsubsection{Designators}%{{{
 
@@ -151,7 +151,7 @@
 
 %}}}
 \section{Bashrc}{The prompt of your {\tt shell} can be adjusted throug changing {\tt PS1=<expr>} in your {\tt \tild.bashrc}}
-\subsection{History Modifying Settings}{append {\tt export <setting>=<value>} to your$\,\sim$/.bashrc}%{{{
+\subsection{History Modifying Settings}{Append {\tt export <setting>=<value>} to your$\,\sim$/.bashrc}%{{{
 
 \cmdS{HISTFILE}{if set to /dev/null history file is rejected (Default:$\,\sim$/.bash\_history)}
 \cmdL{HISTFILESIZE}{controls how many history commands to keep in HISTFILE (Default: 500)}
@@ -164,13 +164,15 @@
 \cmdL{HISTIGNORE}{controls which commands to ignore and not save to the history list.}
 
 %}}}
-\subsection{Shopt Option}{shopt options can be set by a {\tt shopt -s option} and can be unset by a {\tt shopt -u option} shell com\-mand.}%{{{
+\subsection{Shopt Option}{Shopt options can be set by a {\tt shopt -s option} and can be unset by a {\tt shopt -u option} shell com\-mand.}%{{{
 
 \cmdS{histappend}{setting the variable appends current session history to HISTFILE. Unsetting overwrites the file each time}
 \cmdS{histreedit}{if set, puts a failed history substitution back on the command line for re-editing}
 \cmdS{histverify}{if set, puts the command to be executed after a substitution on command line as if you had typed it}
 
 %}}}
+%%
+\\\\\\
 %% Footer
 \copyrightnotice
 

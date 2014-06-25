@@ -21,7 +21,7 @@
 *.lot
 *.lof
 *.fls
-*latexmk$
+*_latexmk
 foo.bar
 qrcFoo.*
 qrcTeX.*

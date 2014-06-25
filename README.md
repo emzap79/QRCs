@@ -14,7 +14,7 @@ My repo contains qrc's based on the following issues
 - CLI (*Bash*)
 - VIM
 - VIMPERATOR (*Firefox Extension*)
-- Midnight Commander
+- MIDNIGHT COMMANDER
 
 ## Create PDF
 
@@ -24,11 +24,11 @@ Compile them via: `pdftex qrc.tex` (or execute the provided Makefile). Clone thi
     git clone https://github.com/emzap79/QRCs.git $gitdir
 
 Now change into the new created directory (`cd $gitdir`) and run `make <name>`,
-eg. `make tmux`. It will compile the tex-file, showing its result in your
+eg. `make tmux`. It will run on the tex-file, showing its result in your
 systems default pdf-reader.
 
 You may as well use the PDF version of my Cheat Sheets, without the need of
-producing them by yourself! In that case, guide yourself to the direct link of
+compiling them by yourself! In that case, guide yourself to the direct link of
 the *Raw File*. Please feel free to contact me or sending me pull-requests.
 
 ## Author

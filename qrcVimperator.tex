@@ -2,7 +2,7 @@
 
 % version
 \def\content{VIMPERATOR}
-\def\versionnumber{1.2}  % Version of this reference card
+\def\versionnumber{1.3}  % Version of this reference card
 
 \def\version{v\versionnumber\ \month\ \year}
 
@@ -17,50 +17,56 @@
 
 \shortintro
 
-\vskip 0.5cm
-
-% http://www.linuxjournal.com/article/10636
-\section{Page \& Tab Movements}{}
+\section{Page \& Tab Movements}{Short introduction to Vimperator can be found
+at:\\http://www.linuxjournal.com/article/10636}
+\subsection{Page Movements}{Move commands work as you would expect them to do
+from VIM. See {\tt :h motion} for detailed documentation.}
 \cmdS{hjkl}	{move left/down/up/right}
 \cmdS{gg~G}	{move to top/bottom of page}
 \cmdS{\ctrl f~\ctrl d~\ctrl j}	{move screen/page/line down}
 \cmdS{\ctrl b~\ctrl u~\ctrl k}	{move screen/page/line up}
 \cmdS{/~?}	{search in page (backwards)}
 \cmdS{n~N}	{jump to next/previous search result}
-\cmdS{gt\ \or\ \ctrl n}	{go to next tab}
-\cmdS{gT\ \or\ \ctrl p}	{go to previous tab}
+
+% subsect %% page_movements (end)
+
+\subsection{Tab \& Buffer Movements}{}
+\cmdS{b$n$}	{switch to open buffer $n$ from list}
+\cmdS{gt\ \or\ctrl n}	{go to next tab}
+\cmdS{gT\ \or\ctrl p}	{go to previous tab}
 \cmdS{g0~g\$}	{go to first/last tab}
 % \cmdS{g@}	{switch to first app tab}
-\cmdS{gh~gH}	{go to your homepage (in new tab)}
+\cmdS{gh~gH}	{open own defined homepage (new tab)}
 \cmdS{gu~gU}	{move up one path/all to root}
-\cmdExmpl{moves up to http://ww\ldots tor.org/system}	{gu http://www.vimperator.org/system/app/}
+\cmdExmpl{moves up to http\ldots or.org/system}	{gu http://www.vimperator.org/system/app/}
+\cmdS{go\lbrack aA-zZ0-9\rbrack}	{jump to previously marked web page}
+
+% subsect %%  (end)
 
 \section{General Keybinds}{}
-\cmdS{o~b}	{open page/buffer}
-\cmdS{d~u}	{close/undo tab}
-\cmdS{t~T}	{open new tab (with smart completion)}
+\cmdS{o~t}	{open url in current/new tab}
+\cmdS{d~u}	{close current/undo last tab}
+\cmdS{y~Y}	{copy current url/selection to clipboard}
 \cmdS{p~P}	{paste from clipboard (in a new tab)}
 \cmdS{H~L}	{go to previous/next page in history}
 \cmdS{m~M}	{Set local/global mark at cursor/url}
-\cmdS{go\lbrack aA-zZ0-9\rbrack}	{jump to previously marked web page}
 \cmdS{a~A}	{add/toggle bookmark}
 \cmdS{i~I}	{ignore any/specific {\tt vimperator} keybind}
 \cmdS{\lbracket\lbracket~\rbracket\rbracket}	{switch to previous/next page on multipage websites}
 \cmdS{+~-}	{zoom in/out by 25 \% on page in focus}
 \cmdS{$n$zz}	{zoom page to $n$\% (100 if $n$ is omitted)}
 \cmdS{ZZ~ZQ}	{exit browser and save/clear history}
-%
-\\
-%
+
 \section{Exe commands}{Works with tab completion}
-\cmdS{:ad\grey{dons}}	{show addons in current window}
-\cmdL{:bm\grey{ark}~:delb\grey{marks} $url$}	{add/delete bookmark}
-\cmdS{:em\grey{enu}}	{command-line access to Firefox menubar}
+\cmdS{:addo\grey{ns}}	{show addons in current window}
+\cmdL{:bmark~:delb\grey{marks} $url$}	{add/delete bookmark}
+\cmdS{:em\grey{enu} \tab}	{command-line access to Firefox menubar}
 \cmdS{:hist\grey{ory}}	{pull up recent 10 online \& local pages}
 \cmdS{:pc\grey{lose}}	{close preview window, eg. history}
-\cmdS{:pr\grey{eferences}}	{show preferences}
+\cmdS{:pref\grey{erences}}	{show preferences}
 \cmdS{:res\grey{tart}}	{restart Firefox immediately}
 \cmdS{:tabo\grey{nly}}	{close all other tabs}
+\cmdS{:sav\grey{eas}}	{save current web page to disk.}
 
 \section{Panorama Mode (Tab Group Management)}{Start tabgroup management with {\tt :tabgroup subcom}}
 Some subcommands \ldots \\

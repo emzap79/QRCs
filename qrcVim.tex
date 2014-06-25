@@ -2,7 +2,7 @@
 
 % version
 \def\content{VIM}
-\def\versionnumber{1.1}  % Version of this reference card
+\def\versionnumber{1.2}  % Version of this reference card
 
 
 \def\version{v\versionnumber\ \month\ \year}
@@ -339,6 +339,10 @@ Leave out $m$ for visual mode commands \\
 \section{Most Common Digraphs}{}
 \cmdL{:digraphs\ \or\ :h digraph-table}{complete list of all digraphs}
 \cmdL{\ctrl K$c_1c_2$\or $c_1$\kern-1pt\backspace$c_2$ }{enter digraph $\{c_1,c_2\}$}
+
+\section{Usefull Helpsections}{}
+% http://stevereads.com/weblog/2007/03/26/vim-and-negative-lookaheadlookbehindlookaround/
+\cmdL{:h /zero-width}{matches with `zero-width' pattern}
 
 \section{Plugin Commands}{}
 \cmdS{:BufOnly }{Deletes all other Buffers}
