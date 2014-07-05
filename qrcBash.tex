@@ -6,7 +6,6 @@
 \def\content{CLI}
 \def\versionnumber{1.2}  % Version of this reference card
 
-
 \def\version{v\versionnumber\ \month\ \year}
 
 \input mydefs.sty
@@ -63,7 +62,9 @@
 \cmdOper{..}{move one folder up}
 \cmdOper{--}{change to last visited directory}
 \cmdOper{\key{None}}{change to homedir ($\sim$)}
-\cmdS{mkdir $dir$}{create new $dir$ectory in current path}
+\cmdS{pushd $dir$}	{save $dir$ to index}   % http://www.linuxuser.co.uk/tutorials/14-command-line-tips-tricks
+\cmdS{popd}	{switch to last saved $dir$ from index}
+\cmdS{mkdir $dir$}{create new $dir$ectory in (current) path}
 
 %}}}
 \section{Movements}{For \key{esc} you can use either \key{esc} and \key{alt}-key}%{{{
