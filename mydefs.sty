@@ -332,6 +332,7 @@ and has then been modified to my own requirements.
 % Other Commands
 % Characters definitions%{{{
 
+% ASCII-Codes: http://www.theasciicode.com.ar/ascii-printable-characters/tilde-swung-dash-ascii-code-126.html
 \def\\{\hfil\break}
 \def\bs{$\backslash$}
 % \def\bs{\char92}
@@ -339,11 +340,11 @@ and has then been modified to my own requirements.
 \def\ctrl{{\rm\char94}\kern-1pt}
 \def\enter{$\hookleftarrow$}
 \def\arrows{$\Leftrightarrow\Updownarrow$}
-\def\or{\thinspace{\tinyit{or}}\enspace}
+\def\or{\enspace{\tinyit{or}}\enspace}
 \def\key#1{$\langle${\rm{#1\/}}$\rangle$}
 \def\shift{$\Uparrow$}
 \def\space{\key{space}}
-\def\tild{\char126}
+\def\tild{{\char126}\kern-1pt}
 \def\tab{\key{tab}}
 \def\langlebr{\char60}
 \def\ranglebr{\char62}
@@ -359,5 +360,15 @@ and has then been modified to my own requirements.
 \def\esc{$\langle${\rm{esc}}$\rangle$}
 \def\alt{$\langle${\rm{alt}}$\rangle$}
 \def\meta#1{$\langle${\rm{\it M-#1\/}}$\rangle$}
+% \def\pot{{\char94}}
+
+% mathematical definitions%{{{
+
+\def\expon{{\rm\char94}\kern-1pt}       % ^
+\def\lthan{{\char60}}                   % <
+\def\gthan{{\rm\char62}\kern-1pt}       % >
+\def\logor{{\rm\char179}\kern-1pt}      % |
+
+% mathematical definitions%}}}
 
 % Characters definitions%}}}

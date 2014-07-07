@@ -1,8 +1,6 @@
 % version
 \def\content{R}
-\def\versionnumber{1.0}  % Version of this reference card
-
-
+\def\versionnumber{1.1}  % Version of this reference card
 \def\version{v\versionnumber\ \month\ \year}
 
 % include definitions
@@ -225,27 +223,27 @@ $+$ and $-$. {\tt ?DateTimeClasses} gives more information. See also package
 {\tt chron}.}
 
 \cmdS{as.Date(s)}	{and}
+
+% POSIXlt vs. POSIXct vs. strptime: http://stackoverflow.com/a/10700025/3569509
 \cmdL{as.POSIXct(s)}	{convert to the respective class; {\tt format(dt)} converts to a string representation. The default string format is ``2001-02-21''. These accept a second argument to specify a format for conversion. Some common formats are:}
-
-
-    \cmdOper{{\tt \%a}, {\tt \%A}}	{Abbreviated and full \\weekday name.}
-    \cmdOper{{\tt \%b}, {\tt \%B}}	{Abbreviated and full month name.}
-    \cmdOper{{\tt \%d}}	{Day of the month (01--31).}
-    \cmdOper{{\tt \%H}}	{Hours (00--23).}
-    \cmdOper{{\tt \%I}}	{Hours (01--12).}
-    \cmdOper{{\tt \%j}}	{Day of year (001--366).}
-    \cmdOper{{\tt \%m}}	{Month (01--12).}
-    \cmdOper{{\tt \%M}}	{Minute (00--59).}
-    \cmdOper{{\tt \%p}}	{AM/PM indicator. }
-    \cmdOper{{\tt \%S}}	{Second as decimal number (00--61).}
-    \cmdOper{{\tt \%U}}	{Week (00--53); the first Sunday as day 1 of week 1.}
-    \cmdOper{{\tt \%w}}	{Weekday (0--6, Sunday is 0).}
-    \cmdOper{{\tt \%W}}	{Week (00--53); the first Monday as day 1 of week 1.}
-    \cmdOper{{\tt \%y}}	{Year without century (00--99).\\Don't use (!)}
-    \cmdOper{{\tt \%Y}}	{Year with century.}
-    \cmdOper{{\tt \%z}}	{(output only.) Offset from Greenwich; {\tt -0800} is 8 hours west of.}
-    \cmdOper{{\tt \%Z}}	{(output only.) Time zone as a character
-      string (empty if not available).}
+\cmdOper{{\tt \%a}, {\tt \%A}}	{Abbreviated and full \\weekday name.}
+\cmdOper{{\tt \%b}, {\tt \%B}}	{Abbreviated and full month name.}
+\cmdOper{{\tt \%d}}	{Day of the month (01--31).}
+\cmdOper{{\tt \%H}}	{Hours (00--23).}
+\cmdOper{{\tt \%I}}	{Hours (01--12).}
+\cmdOper{{\tt \%j}}	{Day of year (001--366).}
+\cmdOper{{\tt \%m}}	{Month (01--12).}
+\cmdOper{{\tt \%M}}	{Minute (00--59).}
+\cmdOper{{\tt \%p}}	{AM/PM indicator. }
+\cmdOper{{\tt \%S}}	{Second as decimal number (00--61).}
+\cmdOper{{\tt \%U}}	{Week (00--53); the first Sunday as day 1 of week 1.}
+\cmdOper{{\tt \%w}}	{Weekday (0--6, Sunday is 0).}
+\cmdOper{{\tt \%W}}	{Week (00--53); the first Monday as day 1 of week 1.}
+\cmdOper{{\tt \%y}}	{Year without century (00--99).\\Don't use (!)}
+\cmdOper{{\tt \%Y}}	{Year with century.}
+\cmdOper{{\tt \%z}}	{(output only.) Offset from Greenwich; {\tt -0800} is 8 hours west of.}
+\cmdOper{{\tt \%Z}}	{(output only.) Time zone as a character
+    string (empty if not available).}
 
 Where leading zeros are shown they will be used on output but are
 optional on input. See {\tt ?strftime}.
@@ -287,6 +285,23 @@ center only use the option {\tt center=F}, to reduce only {\tt scale=F}
 \cmdS{cumprod(x)}	{ id. for the product}
 \cmdS{cummin(x)}	{ id. for the minimum}
 \cmdS{cummax(x)}	{ id. for the maximum}
+
+\subsection{Arithmetic \& Boolean Operator}{}
+\cmdOper{\tt x + y}	{addition}
+\cmdOper{\tt x - y}	{subtraction}
+\cmdOper{\tt x * y}	{multiplication}
+\cmdOper{\tt x / y}	{division}
+\cmdOper{\tt x \expon\ y}	{exponentiation}
+\cmdOper{\tt x \%\% y}	{modular arithmetic}
+\cmdOper{\tt x \%/\% y}	{integer division}
+\cmdOper{\tt x == y}	{test for equality}
+\cmdOper{\tt x <= y}	{test for less-than-or-equal}
+\cmdOper{\tt x >= y}	{test for greater-than-or-equal}
+\cmdOper{\tt x \&\& y}	{boolean and for scalars}
+\cmdOper{\tt x || y}	{boolean or for scalars}
+\cmdOper{\tt x \& y}	{boolean and for vectors (vector x,y,result)}
+\cmdOper{\tt x | y}	{boolean or for vectors\\(vector x,y,result)}
+\cmdOper{\tt !x}	{boolean negation}
 
 \subsection{Complex Numbers}{{\smalltt union(x,y),  intersect(x,y),  setdiff(x,y),  setequal(x,y)}}
 \cmdL{is.element(el,set)}	{``set'' functions}
@@ -498,7 +513,7 @@ parameters to plotting commands.}
     {\tt cex.axis}, the axis labels, {\tt cex.lab}, the title, {\tt cex.main},
     and the sub-title, {\tt cex.sub}}
 \cmdS{col}	{controls the color of symbols and lines; use color names e.g. "red", "blue" or as "\#RRGGBB"}
-\cmdExmpl{see colors(), rgb(), hsv(), gray() and rainbow()}{see}
+\cmdExmpl{colors(), rgb(), hsv(), gray() and rainbow()}{see}
 \cmdExmpl{col.axis, col.lab, col.main, col.sub}{as for {\tt cex} there are}
 \cmdS{font}	{an integer which controls the style of text ({\tt 1}: normal, {\tt 2}: italics, {\tt 3}: bold, {\tt 4}: bold italics)}
 \cmdExmpl{font.axis, font.lab, font.main, font.sub}{as for cex there are}
