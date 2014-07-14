@@ -25,29 +25,30 @@ from VIM. See {\tt :h motion} for detailed documentation.}
 \cmdS{gg~G}	{move to top/bottom of page}
 \cmdS{\ctrl f~\ctrl d~\ctrl j}	{move screen/page/line down}
 \cmdS{\ctrl b~\ctrl u~\ctrl k}	{move screen/page/line up}
-\cmdS{/~?}	{search in page (backwards)}
+\cmdS{/~?}	{search in page, backwards}
 \cmdS{n~N}	{jump to next/previous search result}
 
 % subsect %% page_movements (end)
 
 \subsection{Tab \& Buffer Movements}{}
 \cmdS{b$n$}	{switch to open buffer $n$ from list}
-\cmdS{gt\ \or\ctrl n}	{go to next tab}
-\cmdS{gT\ \or\ctrl p}	{go to previous tab}
+\cmdS{gt\\or\ctrl n}	{go to next tab}
+\cmdS{gT\\or\ctrl p}	{go to previous tab}
 \cmdS{g0~g\$}	{go to first/last tab}
 % \cmdS{g@}	{switch to first app tab}
-\cmdS{gh~gH}	{open own defined homepage (new tab)}
+\cmdS{gh~gH}	{open own defined homepage, new tab}
 \cmdS{gu~gU}	{move up one path/all to root}
 \cmdExmpl{moves up to http\ldots or.org/system}	{gu http://www.vimperator.org/system/app/}
 \cmdS{go\lbrack aA-zZ0-9\rbrack}	{jump to previously marked web page}
 
 % subsect %%  (end)
 
-\section{General Keybinds}{}
+\section{General Keybinds}{see: {\tt :h :open}}
 \cmdS{o~t}	{open url in current/new tab}
 \cmdS{d~u}	{close current/undo last tab}
 \cmdS{y~Y}	{copy current url/selection to clipboard}
-\cmdS{p~P}	{paste from clipboard (in a new tab)}
+\cmdS{p~P}	{paste from clipboard, in a new tab}
+\cmdS{t~T}	{open new tab, with current url}
 \cmdS{H~L}	{go to previous/next page in history}
 \cmdS{m~M}	{Set local/global mark at cursor/url}
 \cmdS{a~A}	{add/toggle bookmark}
@@ -55,7 +56,7 @@ from VIM. See {\tt :h motion} for detailed documentation.}
 \cmdS{\lbracket\lbracket~\rbracket\rbracket}	{switch to previous/next page on multipage websites}
 \cmdS{+~-}	{zoom in/out by 25 \% on page in focus}
 \cmdS{$n$zz}	{zoom page to $n$\% (100 if $n$ is omitted)}
-\cmdS{ZZ~ZQ}	{exit browser and save/clear history}
+\cmdS{ZZ~ZQ}	{exit browser, clear history before}
 
 \section{Exe commands}{Works with tab completion}
 \cmdS{:addo\grey{ns}}	{show addons in current window}
@@ -73,7 +74,7 @@ Some subcommands \ldots \\
 \cmdOper{add}	{create new {\tt tab group}}
 \cmdOper{list}	{list current {\tt tab groups}}
 \cmdOper{rm}	{remove group with {\tt group}name}
-\cmdOper{pull- \or pushtab}	{pull tab from \or move to {\tt group}}
+\cmdOper{pull-\or pushtab}	{pull tab from\or move to {\tt group}}
 \cmdOper{switch}	{switch to {\tt group}name}
 
 
@@ -90,7 +91,7 @@ left mouse click. If you want to yank the location of hint 24, press ;y to start
 mode. Then press 24 to copy the hint location.}
 \cmdL{:h extended-hints}	{list all extended mode commands}
 here are a few \ldots\\
-\cmdS{;~}	{imitates hovering over link-object}
+\cmdS{;~}	{imitates mouse-hovering a link object}
 \cmdS{s~S}	{save link/object}
 \cmdS{i~I}	{open media object (in new tab)}
 \cmdS{y~Y}	{copy URL/label description to clipboard}

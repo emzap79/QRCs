@@ -1,7 +1,7 @@
 
 % version
 \edef\content{TMUX}
-\def\versionnumber{1.0}  % Version of this reference card
+\def\versionnumber{1.1}  % Version of this reference card
 
 
 \def\version{v\versionnumber\ \month\ \year}
@@ -17,10 +17,10 @@
 \shortintro\vskip 2ex
 
 Prefix key is set to \key{ctrl-b} by default. You can change that
-behaviour to e.g. \key{ctrl-a} by adding the following commands to your
+behaviour to e.g. \key{ctrl-s} by adding the following commands to your
 \tild/.tmux.conf:\\
 
-{\tt :unbind C-b\\ :set -g prefix C-a\\ :bind C-a send-prefix\\}
+{\tt :unbind C-b\\ :set -g prefix C-s\\ :bind C-s send-prefix\\}
 
 \section{From Shell}{}
 
@@ -32,9 +32,9 @@ behaviour to e.g. \key{ctrl-a} by adding the following commands to your
 
 \section{Inside Tmux}{\key{M} denotes the meta key, usually bound to \key{ALT}}
 
-\subsection{Sessions}{to create a new session from within tmux you must execute \ctrl b :new}
+\subsection{Sessions}{to create a new session from within tmux you must execute \ctrl b :new -s \key{name}}
 \cmdS{\ctrl b?}	{show all available keybinds}
-\cmdS{\ctrl bd \ctrl bs}	{detach from/list all sessions}
+\cmdS{\ctrl bd \ctrl bs}	{detach from / list all sessions}
 
 \subsection{Copy Mode}{{\tt vim} like movements}
 \cmdS{h j k l}{move left/down/up/right}
