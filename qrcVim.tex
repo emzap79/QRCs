@@ -2,7 +2,7 @@
 
 % version
 \def\content{VIM}
-\def\versionnumber{1.4}  % Version of this reference card
+\def\versionnumber{1.5}  % Version of this reference card
 \def\version{v\versionnumber\ \month\ \year}
 
 % include definitions
@@ -15,12 +15,12 @@
 \title{\uppercase{\content\ quick reference card}}
 
 \shortintro
+\shortintroVim
 
-\vskip 0.5cm
-\cmdS{:viusage }	{Show a summary of all commands }
+\vskip 1.5ex
 
-\section{Movements}	{see {\tt :h motion.txt}}
-\subsection{Basic Movements}{}
+\section{Movements}	{{\tt :viusage } show a summary of all commands }
+\subsection{Basic Movements}{refer to helpsection {\tt :h motion.txt}}
 \cmdS{h l k j }	{character left, right; line up, down }
 \cmdS{b w }	{word/token left, right }
 \cmdS{ge e }	{end of word/token left, right}
@@ -123,7 +123,7 @@
 \cmdS{zH zL }	{scroll half a screen to the right, left}
 
 %\vskip 0.4cm
-\section{Search\or Substitute}	{see {\tt :h search-commands} and {\tt :h :sub}, respectively}
+\section{Search \& Substitute}	{refer to {\tt :h search-commands} and {\tt :h :sub}, respectively}
 \subsection{Forward \& Backward Searches}	{}
 \cmdS{/$s$\enter~?$s$\enter }	{search forward, backward for $s$}
 \cmdL{/$s$/$o$\enter~?$s$?$o$\enter }	{search fwd, bwd for $s$ with offset $o$}
@@ -143,7 +143,7 @@ for appending $flags$ like $g$, $c$, $l$ etc, see subsection below!}
 \cmdL{:$r$g/$o$/s/$q$/$y$/g }	{for every line in $r$ containing $o$, substitute $p$ with $q$}
 \cmdS{:'$a$,'$b$g/$o$/j}	{join any line containing the string $o$ to its subsequent line, if it lies between the $a$ and $b$ marks}
 
-\subsection{Patterns (differences to Perl)}	{see {\tt :h pattern} and {\tt :h zero-width} }
+\subsection{Patterns (differences to Perl)}	{refer to {\tt :h pattern} and {\tt :h zero-width} }
 \cmdOper{\bs$<$ \bs$>$ }	{start, end of word}
 \cmdOper{\bs i \bs k \bs I \bs K }	{an identifier, keyword; excl\. digits}
 \cmdOper{\bs f \bs p \bs F \bs P }	{a file name, printable char.; excl\. digits}
@@ -155,12 +155,15 @@ for appending $flags$ like $g$, $c$, $l$ etc, see subsection below!}
 \cmdOper{\bs( \bs) }	{group patterns into an atom}
 \cmdOper{\bs \& \bs{}1 }	{the whole matched pattern, $1^{st}$ {\tt()} group}
 % http://vim.wikia.com/wiki/Search_patterns
-\cmdExmpl{.*red\bs\&.*blue}	{the following pattern finds all lines that contain both "red" and "blue", in any order}
+\cmdExmpl{/.*red\bs\&.*blue}	{the following pattern finds all lines that contain both "red" and "blue", in any order}
 \cmdOper{\bs u \bs l }	{upper, lowercase character}
 \cmdOper{\bs c \bs C }	{ignore, match case on next pattern}
 \cmdOper{\bs \%x }	{match hex character}
 \cmdOper{\bs @= \bs @! }	{\tt $char$(?=pattern) $char$(?!pattern)\rm}
 \cmdOper{\bs @$<$= \bs @$<$! }	{\tt (?=pattern)$char$ (?!pattern)$char$\rm}
+% http://unix.stackexchange.com/a/91472
+\cmdExmpl{\\:\%s/\bs(#.*\bs)\bs@<=pattern/saturn/g}	{ everything which comes before the
+comment sign `#' gets ignored (special atom \bs@<= to assert a match `before')}
 % \cOperdS{\bs @$<$= \bs @$<$! }	{\tt (?$<$=pattern) (?$<$!pattern)\rm}
 \cmdOper{\bs @$>$ }	{\tt (?$>$pattern)\rm }
 \cmdOper{\bs\_\^{} \bs\_\$ }	{start-of-line/end-of-line, anywhere in pattern}
@@ -174,7 +177,7 @@ for appending $flags$ like $g$, $c$, $l$ etc, see subsection below!}
 \cmdOper{\bs\%$[$ $]$ }	{sequence of optionally matched atoms}
 \cmdOper{\bs{}v }	{very magic: patterns almost like perl}
 
-\subsection{Substitute Flags}	{see {\tt :h :s\_flags}}
+\subsection{Substitute Flags}	{refer to {\tt :h :s\_flags}}
 \cmdOper{c}	{Confirm each substitution}
 \cmdOper{e}	{ do not issue error messages and continue as if no error occurred}
 \cmdOper{g}	{Replace all occurrences in the line}
@@ -186,7 +189,7 @@ for appending $flags$ like $g$, $c$, $l$ etc, see subsection below!}
 \cmdOper{n}	{Report the number of matches, do not actually substitute.  (The [c] flag is ignored.) }
 
 \vskip -0.2cm
-\section{Ex Commands (\enter)}	{see {\tt :help holy-grail} for list of all {\it Ex\/} commands}
+\section{Ex Commands (\enter)}	{refer to {\tt :help holy-grail} for list of all {\it Ex\/} commands}
 \subsection{Reading from \& writing to files}	{}
 \cmdS{:e $f$ }	{edit file $f$, reload current file if no $f$}
 \cmdS{:$r$w $f$ }	{write range $r$ to file $f$ (this file if no $f$)}
@@ -277,7 +280,7 @@ for appending $flags$ like $g$, $c$, $l$ etc, see subsection below!}
 \cmdS{'. }	{jump back on last edited line}
 \cmdS{'' }	{toggle back/forward to previous/next position}
 
-\section{Multiple Files / Buffers / Tabs (\enter)}	{}
+\section{Multiple Files, Buffers, Tabs (\enter)}	{}
 \subsection{Generic Buffer Commands}	{}
 \cmdS{:tab ball }	{show buffers as tablist}
 \cmdS{:buffers }	{show list of buffers}
@@ -344,7 +347,7 @@ for appending $flags$ like $g$, $c$, $l$ etc, see subsection below!}
 \cmdS{vim +/$s$ $file$ }	{open $file$ and search for $string$ }
 \cmdS{vim -S $name$ }	{reload vim-session $name$}
 
-\subsection{Special operations}	{Usefull (and not so usefull) operations which don't fit any other section}
+\subsection{Special operations}	{Usefull (and not so usefull) operations which don't fit any other section :-)}
 \cmdS{K }	{run {\tt keywordprg} (manpage) on word under cursor}
 \cmdS{\ctrl A \ctrl X}	{increment/decrement number under cursor}
 \cmdS{\ctrl L }	{redraw screen}
@@ -361,8 +364,6 @@ for appending $flags$ like $g$, $c$, $l$ etc, see subsection below!}
 % \section{Plugin Commands}	{}
 % \cmdS{:BufOnly }	{Deletes all other Buffers}
 
-%%
-\\\\\\
 %% Footer
 \copyrightnotice
 

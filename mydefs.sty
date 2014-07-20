@@ -18,6 +18,51 @@
 \def\year{2014}
 \def\month{July}
 
+% % intro: qrcR
+% % cran.r-project.org/doc/contrib/Short-refcard.pdf
+% \def\shortintroR{\smallskip
+% {\smallrm A first version of this qrc was created by Tom Short, EPRI PEAC, in
+% 2004-10-21. I modified the document so that it fits my other reference cards;
+% all of its original content has been preserved and, in some cases only,
+% expanded.}}
+
+% intro: qrcVim
+% http://michaelgoerz.net/
+\def\shortintroR{
+    \vskip 0.5ex
+    \hbox to \hsize {
+        % \hfuzz = 20pt
+        % \hfil
+        \hsize=7.0cm
+        % \hskip .5em
+        \vtop{
+            \noindent{\smallrm A first version of this qrc was created by Tom Short, EPRI PEAC, in
+2004-10-21. I modified the document so that it fits my other reference cards;
+all of its original content has been preserved and, in some cases only,
+expanded.}
+        }
+    }
+    % \vskip 0.5ex
+}
+
+
+% intro: qrcVim
+% http://michaelgoerz.net/
+\def\shortintroVim{
+    \vskip 0.5ex
+    \hbox to \hsize {
+        % \hfuzz = 20pt
+        % \hfil
+        \hsize=7.0cm
+        % \hskip .5em
+        \vtop{
+            \noindent{\smallrm Vim cheatsheet based on the version by Michael Goerz}
+        }
+    }
+    % \vskip 0.5ex
+}
+
+
 % Shortintro%}}}
 % Copyrightnotice%{{{
 
@@ -91,10 +136,18 @@ and has then been modified to my own requirements.
 % Page Format%}}}
 % Other Commands%{{{
 
+% Hlinewidth%{{{
+
+% http://www.volkerschatz.com/tex/halign.html
+\def\hlinewd{
+    \hrule width45.75ex depth.15ex
+}
+
+% Hlinewidth%}}}
 % Title & Sections%{{{
 
 \def\title#1{\hfil{\bf #1}\hfil\par\vskip 2pt\hrule}
-\def\section#1#2{\vskip 5ex {\bf#1}\par\vskip 1pt\hrule\vskip 1pt#2\vskip 5pt}
+\def\section#1#2{\vskip 5ex {\bf#1}\par\vskip 1pt\hlinewd\vskip 1pt#2\vskip 5pt}
 \def\subsection#1#2{\vskip 2ex {#1\/}\par\vskip 1pt\hrule\vskip 1pt#2\vskip 5pt}
 \def\subsubsection#1{\vskip 1ex {\hskip 2em #1\/}\par\vskip 1ex}
 

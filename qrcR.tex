@@ -12,18 +12,15 @@
 
 % \shortcopyrightnotice
 \shortintro\vskip 2ex
-
-% cran.r-project.org/doc/contrib/Short-refcard.pdf
-{A first version of this qrc was created by Tom Short, EPRI PEAC, in
-2004-10-21. I modified the document so it fits my other reference cards; all of
-its original content has been preserved and, in some cases only, expanded.}
+\shortintroR\vskip 2ex
 
 % Granted to the public domain. See www.Rpad.org for the source and latest
 % version.
 % Includes material from {\it R for Beginners} by Emmanuel Paradis
 % (with permission). Some additions by James McCreight.
 
-\section{Help}{Most R functions have online documentation.}
+\section{Basic Operations}{}
+\subsection{Help}{Most R functions have online documentation.}
 \cmdS{help(topic)}	{documentation on {\tt topic}}
 \cmdS{?topic}	{id.}
 \cmdL{help.search("topic")}	{search the help system}
@@ -31,7 +28,7 @@ its original content has been preserved and, in some cases only, expanded.}
     matching the regular ex\-pres\-sion "to\-pic"}
 \cmdS{help.start()}	{start the HTML version of help}
 
-\section{Fundamentals}{}
+\subsection{Fundamentals}{}
 \cmdS{<-}	{assign to an object, equivalent to =(?)}
 \cmdS{<<-}	{lexical assignment (*NOT* global assignment)}
 \cmdS{getwd()}	{get the working directory}
@@ -47,7 +44,7 @@ its original content has been preserved and, in some cases only, expanded.}
 \cmdS{methods(a)}	{shows S3 methods of {\tt a}}
 \cmdL{methods(class=class(a))}	{lists all the methods to handle objects of class a}
 
-\section{Input and output}{}
+\subsection{Input and output}{}
 \cmdS{load()}	{load the datasets written with {\tt save}}
 \cmdS{data(x)}	{loads specified data set}
 \cmdS{library(x)}	{load add-on packages}
@@ -97,7 +94,7 @@ For database interaction, see packages {\tt RODBC}, {\tt DBI},\\
 {\tt RMySQL}, {\tt RPgSQL}, and {\tt ROracle}. See packages {\tt XML},
 {\tt hdf5}, {\tt netCDF} for reading other file formats.
 
-\section{Data creation}{}
+\subsection{Data creation}{}
 
 \cmdS{c(...)}	{generic function to concatenate arguments with the default forming a vector; with {\tt recursive=T} descends through lists combining all elements into one vector}
 \cmdS{from:to}	{generates a sequence; ``:'' has operator priority; 1:4 + 1 is ``2,3,4,5''}
@@ -117,8 +114,8 @@ For database interaction, see packages {\tt RODBC}, {\tt DBI},\\
 \cmdL{expand.grid()}	{a data frame from all combinations of the supplied vectors or factors}
 \cmdS{rbind(...)}	{combine arguments by rows for matrices, data frames, and others}
 \cmdS{cbind(...)}	{id. by columns}
-\section{Slicing and extracting data}{}
 
+\section{Slicing and extracting data}{}
 \subsection{Indexing vectors}{}
 \cmdOper{\tt x[n] }	{ $ n^{th} $ element}
 \cmdOper{\tt x[-n] }	{all {\it but} the $ n^{th} $ element}
@@ -320,8 +317,7 @@ center only use the option {\tt center=F}, to reduce only {\tt scale=F}
 Many math functions have a logical parameter {\tt na.rm=F} to
 specify missing data (NA) removal.
 
-\section{Matrices}{}
-
+\subsection{Matrices}{}
 \cmdS{\%o\%, outer()}	{outer products on arrays}
 \cmdS{kronecker}	{kronecker products on arrays}
 \cmdS{t(x)}	{transpose}
