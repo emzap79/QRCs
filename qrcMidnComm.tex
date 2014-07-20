@@ -61,6 +61,32 @@
 
 % section % function_keys (end)
 
+\section{File Operations}{}
+\cmdS{Enter}	{if  there  is  some text in the command line (the one at the
+bottom of the panels), then that command is executed. If there is no text in
+the command line then if the selection bar is over a directory the Midnight
+Commander does a chdir(2) to the selected directory and reloads  the
+information  on the panel; if the selection is an executable file then it is
+executed. Finally, if the extension of the selected file name matches one of
+the extensions in the extensions file then the corresponding command is
+executed.}
+\cmdS{\ctrl{l}}	{repaint all the information in the Midnight Commander.}
+\cmdS{\ctrl{x} c}	{run the Chmod command on a file or on the tagged files.}
+\cmdS{\ctrl{x} o}	{run the Chown command on the current file or on the tagged files.}
+\cmdS{\ctrl{x} l}	{run the hard link command.}
+\cmdS{\ctrl{x} s}	{run the absolute symbolic link command.}
+\cmdS{\ctrl{x} v}	{run the relative symbolic link command. See the File Menu section for more information about symbolic links.}
+\cmdS{\ctrl{x} i}	{set the other panel display mode to information.}
+\cmdS{\ctrl{x} q}	{set the other panel display mode to quick view.}
+\cmdS{\ctrl{x} !}	{execute the External panelize command.}
+\cmdS{\ctrl{x} h}	{run the add directory to hotlist command.}
+\cmdS{\alt !}	{executes the Filtered view command, described in the view command.}
+\cmdS{\alt ?}	{executes the Find file command.}
+\cmdS{\alt c}	{pops up the quick cd dialog.}
+\cmdS{\ctrl{o}}	{when the program is being run in the Linux or FreeBSD console or under an xterm, it will show you the output of the previous command.   When  ran  on the Linux console, the Midnight Commander uses an external program (cons.saver) to handle saving and restoring of information on the screen.}
+
+% section %  (end)
+
 % Footer
 \copyrightnotice
 

@@ -240,6 +240,7 @@ $+$ and $-$. {\tt ?DateTimeClasses} gives more information. See also package
 \cmdOper{{\tt \%U}}	{Week (00--53); the first Sunday as day 1 of week 1.}
 \cmdOper{{\tt \%w}}	{Weekday (0--6, Sunday is 0).}
 \cmdOper{{\tt \%W}}	{Week (00--53); the first Monday as day 1 of week 1.}
+\cmdOper{{\tt \%X}}	{Same as ``\%Y-\%m-\%d''}
 \cmdOper{{\tt \%y}}	{Year without century (00--99).\\Don't use (!)}
 \cmdOper{{\tt \%Y}}	{Year with century.}
 \cmdOper{{\tt \%z}}	{(output only.) Offset from Greenwich; {\tt -0800} is 8 hours west of.}
@@ -287,7 +288,7 @@ center only use the option {\tt center=F}, to reduce only {\tt scale=F}
 \cmdS{cummin(x)}	{ id. for the minimum}
 \cmdS{cummax(x)}	{ id. for the maximum}
 
-\subsection{Arithmetic \& Boolean Operator}{}
+\subsection{Arithmetic \& Boolean Operators}{}
 \cmdOper{\tt x + y}	{addition}
 \cmdOper{\tt x - y}	{subtraction}
 \cmdOper{\tt x * y}	{multiplication}
@@ -298,10 +299,10 @@ center only use the option {\tt center=F}, to reduce only {\tt scale=F}
 \cmdOper{\tt x == y}	{test for equality}
 \cmdOper{\tt x <= y}	{test for less-than-or-equal}
 \cmdOper{\tt x >= y}	{test for greater-than-or-equal}
-\cmdOper{\tt x \&\& y}	{boolean and for scalars}
-\cmdOper{\tt x || y}	{boolean or for scalars}
-\cmdOper{\tt x \& y}	{boolean and for vectors (vector x,y,result)}
-\cmdOper{\tt x | y}	{boolean or for vectors\\(vector x,y,result)}
+\cmdOper{\tt x \&\& y}	{boolean {\tt and} for scalars}
+\cmdOper{\tt x || y}	{boolean {\tt or} for scalars}
+\cmdOper{\tt x \& y}	{boolean {\tt and} for vectors (vector x,y,result)}
+\cmdOper{\tt x | y}	{boolean {\tt or} for vectors\\(vector x,y,result)}
 \cmdOper{\tt !x}	{boolean negation}
 
 \subsection{Complex Numbers}{{\smalltt union(x,y),  intersect(x,y),  setdiff(x,y),  setequal(x,y)}}
@@ -344,8 +345,8 @@ specify missing data (NA) removal.
 \cmdL{tapply(X,INDEX,FUN=)}	{apply {\tt FUN} to each cell of a ragged array given by {\tt X} with indexes {\tt INDEX}}
 \cmdL{by(data,INDEX,FUN)}	{apply {\tt FUN} to data frame {\tt data} subsetted by {\tt INDEX}}
 \subsubsection{Options for INDEX}
-\cmdOper{1}	{apply FUN to arrays rows}
-\cmdOper{2}	{apply FUN to columns}
+\cmdOper{1}	{apply FUN to rows}
+\cmdOper{2}	{apply FUN to array's columns}
 
 \subsection{The 6 common higher-order functions}{}
 \cmdL{Reduce(f, x, init, right = F, accumulate = F)}{}
