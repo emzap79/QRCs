@@ -40,7 +40,8 @@
 \cmdS{f$c$ F$c$ }	{next, previous occurence of character $c$}
 \cmdS{t$c$ T$c$ }	{before next, previous occurence of $c$}
 
-\subsection{Insertion \& Replace $\to$ insert mode}	{}
+\section{Insert, Command \& Visual Mode}	{}
+\subsection{Insertion, Replace $\to$ insert mode}	{}
 \cmdS{i a }	{insert before, after cursor}
 \cmdS{I A }	{insert at beginning, end of line}
 \cmdS{gi gI }	{insert text on last edited line / first column}
@@ -54,22 +55,41 @@
 \cmdS{cc\or S }	{change current line}
 \cmdS{C }	{change to the end of line}
 
-\subsection{Insert/ Command Mode}	{}
+\subsection{Insert, Command Mode}	{}
 \cmdS{\ctrl V$c$ \ctrl V$n$ }	{insert char $c$ literally, decimal value $n$}
 \cmdS{\ctrl A }	{insert previously inserted text}
 \cmdS{\ctrl @ }	{same as {\tt\ctrl A} and stop insert $\to$ command mode}
-\cmdS{\ctrl R$x$ \ctrl R\ctrl R$x$ }	{insert content of register $x$, literally}
-\cmdS{\ctrl R\ctrl W}	{content under cursor to command mode}
 \cmdS{\ctrl N \ctrl P }	{text completion before, after cursor}
 \cmdS{\ctrl W }	{delete word before cursor}
 \cmdS{\ctrl U }	{delete to start of current line}
 \cmdS{\ctrl D \ctrl T }	{shift left, right one shift width}
 \cmdS{\ctrl O$c$ }	{execute $c$ in temporary command mode}
-\cmdS{\ctrl X\ctrl E \ctrl X\ctrl Y }	{scroll up, down}
 \cmdS{\key{esc}\or\ctrl\rbracket}	{abandon edition $\to$ command mode}
 
-\section{Copying, Deleting to Registers}	{}
+\subsection{Insert, Command Mode Completion}	{}
+\subsubsection{CTRL-R}{}
+\cmdS{\ctrl R\ctrl A}	{content under cursor to command mode}
+\cmdS{\ctrl R$x$ \ctrl R\ctrl R$x$ }	{insert content of register $x$, literally}
+\subsubsection{CTRL-X}{}
+\cmdS{\ctrl{}X\ctrl{}L}	{whole lines}
+\cmdS{\ctrl{}X\ctrl{}N \ctrl{}X\ctrl{}I}	{keywords in current file, plus included files}
+\cmdS{\ctrl{}X\ctrl{}K \ctrl{}X\ctrl{}N}	{keywords in dictionary, thesaurus}
+\cmdS{\ctrl{}X\ctrl{}]}	{tags}
+\cmdS{\ctrl{}X\ctrl{}F}	{file names}
+\cmdS{\ctrl{}X\ctrl{}D}	{definitions or macros}
+\cmdS{\ctrl{}X\ctrl{}V}	{vim command line}
+\cmdS{\ctrl{}X\ctrl{}U}	{user defined completion}
+\cmdS{\ctrl{}X\ctrl{}O}	{omni completion}
 
+\subsection{Visual Mode}	{:h object-select}
+\cmdS{v V \ctrl V }	{start/stop highlighting characters, lines, block}
+\cmdS{o }	{exchange cursor position with start of highlighting}
+\cmdS{gv }	{start highlighting on previous visual area}
+\cmdS{aw as ap }	{select a word, a sentence, a paragraph}
+\cmdS{ab aB }	{select a block ( ), a block {\tt\lapos}	{\tt\rapos}}
+\cmdS{g\ctrl G}	{Count words, character lines and bytes of selection}
+
+\section{Delete, Copy to Registers}	{}
 \subsection{Deletion}	{}
 \cmdS{x X }	{delete character under, before cursor}
 \cmdS{d$m$ }	{delete text of movement command $m$}
@@ -99,14 +119,7 @@
 \cmdS{:@$c$ }	{execute register $c$ as an {\it Ex\/} command}
 \cmdS{q:~@: }	{list all, repeat previous {\it Ex\/} command(s)}
 
-\section{Visual Mode \& Advanced Operations}{}
-\subsection{Visual Mode}	{:h object-select}
-\cmdS{v V \ctrl V }	{start/stop highlighting characters, lines, block}
-\cmdS{o }	{exchange cursor position with start of highlighting}
-\cmdS{gv }	{start highlighting on previous visual area}
-\cmdS{aw as ap }	{select a word, a sentence, a paragraph}
-\cmdS{ab aB }	{select a block ( ), a block {\tt\lapos}	{\tt\rapos}}
-\cmdS{g\ctrl G}	{Count words, character lines and bytes of selection}
+\section{Advanced Operations}{}
 
 \subsection{Join lines / change cases}{}
 \cmdS{J gJ }	{join current line with next, without space}
@@ -122,7 +135,6 @@
 \cmdS{zh zl }	{scroll one character to the right, left}
 \cmdS{zH zL }	{scroll half a screen to the right, left}
 
-%\vskip 0.4cm
 \section{Search \& Substitute}	{refer to {\tt :h search-commands} and {\tt :h :sub}, respectively}
 \subsection{Forward \& Backward Searches}	{}
 \cmdS{/$s$\enter~?$s$\enter }	{search forward, backward for $s$}
@@ -133,8 +145,9 @@
 \cmdS{g\# g* }	{same, but also find partial matches}
 \cmdS{gd gD }	{local, global definition of symbol under cursor}
 
-\subsection{Substitutions}	{substitutions work like {\tt:s/$p$/$q$/$flag$} --
-for appending $flags$ like $g$, $c$, $l$ etc, see subsection below!}
+\vskip 5ex
+\subsection{Substitutions}	{substitutions work as {\tt:s/$p$/$q$/$flag$} --
+for appending $flags$ like $g$, $c$, $l$ etc, see flaglist below!}
 \cmdS{:$r$s/$p$/$q$/g }	{substitute all $p$ by $q$ in range $r$}
 % \cnd{$x:$ {\tt g}---all occurrences, {\tt c}---confirm changes}
 \cmdS{:$r$s $x$ }	{repeat substitution with new $r$ \& $x$}
@@ -162,8 +175,8 @@ for appending $flags$ like $g$, $c$, $l$ etc, see subsection below!}
 \cmdOper{\bs @= \bs @! }	{\tt $char$(?=pattern) $char$(?!pattern)\rm}
 \cmdOper{\bs @$<$= \bs @$<$! }	{\tt (?=pattern)$char$ (?!pattern)$char$\rm}
 % http://unix.stackexchange.com/a/91472
-\cmdExmpl{\\:\%s/\bs(#.*\bs)\bs@<=pattern/saturn/g}	{ everything which comes before the
-comment sign `#' gets ignored (special atom \bs@<= to assert a match `before')}
+\cmdExmpl{\\:\%s/\bs(\#.*\bs)\bs@<=pattern/saturn/g}	{everything which comes before the
+comment sign `\#' gets ignored (special atom \bs@<=, to assert a match `before')}
 % \cOperdS{\bs @$<$= \bs @$<$! }	{\tt (?$<$=pattern) (?$<$!pattern)\rm}
 \cmdOper{\bs @$>$ }	{\tt (?$>$pattern)\rm }
 \cmdOper{\bs\_\^{} \bs\_\$ }	{start-of-line/end-of-line, anywhere in pattern}
@@ -202,19 +215,12 @@ comment sign `#' gets ignored (special atom \bs@<= to assert a match `before')}
 \cmdS{$n$!!$c$\enter }	{filter $n$ lines through command $c$}
 \cmdS{:$r$!$c$ }	{filter range $r$ lines through command $c$}
 
-\subsection{Insert\or Move Content}	{}
+\subsection{Insert, Move Content}	{}
 \cmdS{:r $f$ }	{insert content of file $f$ below cursor}
 \cmdS{:r!\ $c$ }	{insert output of command $c$ below cursor}
 \cmdS{:$r$co\ $a$ :$r$m\ $a$ }	{copy, move range $r$ below line $a$}
 \cmdL{:$r$hardcopy $r$w!lp }	{sending $r$ to printer (printout)}
 \cmdL{:$r$hardcopy > file.ps }	{print range to ps file}
-
-\subsection{Misc :exe Commands}	{}
-\cmdL{:mkview $[f]$ :loadview $[f]$ }	{save/load configuration}
-\cmdL{:mks $[f]$ :so $[f]$ }	{save/load session}
-\cmdS{:set ff=dos }	{convert file to dos eol format}
-\cmdS{:e ++ff=unix }	{reopen file in unix eol format}
-\cmdS{:sh :!$c$ }	{start shell, execute command $c$ in shell}
 
 \subsection{Ex Ranges}	{both {\tt ,} and {\tt ;} seperate line numbers. They differ in interpretation though (see also {\tt :h cmdline-ranges}).}
 \cmdOper{, }	{cursor position interpreted from current line (this line)}
@@ -226,7 +232,7 @@ comment sign `#' gets ignored (special atom \bs@<= to assert a match `before')}
 \cmdOper{/$p$/~?$p$? }	{the next, previous line where $p$ matches}
 \cmdOper{-$n$ +$n$ }	{preceding/appending line number}
 
-\subsection{Compiling}	{}
+\subsection{Compile}	{}
 \cmdS{:compiler $c$ }	{set/show compiler plugins}
 \cmdS{:make }	{run {\tt makeprg}, jump to first error}
 \cmdS{:cope }	{navigate errors from make}
@@ -301,7 +307,7 @@ comment sign `#' gets ignored (special atom \bs@<= to assert a match `before')}
 \cmdS{\ctrl Wt \ctrl Wb }	{move to top/bottom window}
 \cmdS{\ctrl Wc \ctrl Wo }	{close current/all other window(s)}
 \cmdS{\ctrl Ws \ctrl Wv }	{split window in two (vert.)}
-\cmdS{\ctrl Wx }	{swap open buffer windows }
+\cmdS{\ctrl Wx\or \ctrl W\ctrl R}	{swap open buffer windows }
 \cmdS{\ctrl W$n$+ \ctrl W$n$- }	{increase/decrease window size by $n$ lines}
 \cmdS{\ctrl W$n>$ \ctrl W$n<$ }	{increase/decrease window width}
 \cmdS{\ctrl W = }	{Make all windows equally high and wide}
@@ -328,17 +334,6 @@ comment sign `#' gets ignored (special atom \bs@<= to assert a match `before')}
 \cmdS{zug zuG}	{undo the addition of a word to the dictionary}
 \cmdS{zw zW }	{mark bad word (to internal word list)}
 \cmdS{z= }	{suggest corrections}
-
-\subsection{Completion}	{}
-\cmdS{\ctrl{}X\ctrl{}L}	{whole lines}
-\cmdS{\ctrl{}X\ctrl{}N \ctrl{}X\ctrl{}I}	{keywords in current file, plus included files}
-\cmdS{\ctrl{}X\ctrl{}K \ctrl{}X\ctrl{}N}	{keywords in dictionary, thesaurus}
-\cmdS{\ctrl{}X\ctrl{}]}	{tags}
-\cmdS{\ctrl{}X\ctrl{}F}	{file names}
-\cmdS{\ctrl{}X\ctrl{}D}	{definitions or macros}
-\cmdS{\ctrl{}X\ctrl{}V}	{vim command line}
-\cmdS{\ctrl{}X\ctrl{}U}	{user defined completion}
-\cmdS{\ctrl{}X\ctrl{}O}	{omni completion}
 
 \subsection{Vim Start-Options}	{}
 \cmdL{vimdiff $f_1$ $f_2$ }	{diff $file_1$ + $file_2$ using synchronized split windows}
