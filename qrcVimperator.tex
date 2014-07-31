@@ -17,14 +17,14 @@
 
 \shortintro
 
-\section{Page \& Tab Movements}{Short introduction to Vimperator can be found
+\section{Page \& Tab Movements}{short introduction to vimperator can be found
 at:\\http://www.linuxjournal.com/article/10636}
-\subsection{Page Movements}{Move commands work as you would expect them to do
+\subsection{Page Movements}{move commands work as you would expect them to do
 from VIM. See {\tt :h motion} for detailed documentation.}
 \cmdS{hjkl}	{move left/down/up/right}
 \cmdS{gg~G}	{move to top/bottom of page}
-\cmdS{\ctrl f~\ctrl d~\ctrl j}	{move screen/page/line down}
-\cmdS{\ctrl b~\ctrl u~\ctrl k}	{move screen/page/line up}
+\cmdS{\ctrl f~\ctrl d~\ctrl e}	{move screen/page/line down}
+\cmdS{\ctrl b~\ctrl u~\ctrl y}	{move screen/page/line up}
 \cmdS{/~?}	{search in page, backwards}
 \cmdS{n~N}	{jump to next/previous search result}
 
@@ -43,7 +43,8 @@ from VIM. See {\tt :h motion} for detailed documentation.}
 
 % subsect %%  (end)
 
-\section{General Keybinds}{see: {\tt :h :open}}
+\section{Basic Commands}{}
+\subsection{General Keybinds}	{refer to {\tt :h :open}}
 \cmdS{o~t}	{open url in current/new tab}
 \cmdS{d~u}	{close current/undo last tab}
 \cmdS{y~Y}	{copy current url/selection to clipboard}
@@ -58,7 +59,7 @@ from VIM. See {\tt :h motion} for detailed documentation.}
 \cmdS{$n$zz}	{zoom page to $n$\% (100 if $n$ is omitted)}
 \cmdS{ZZ~ZQ}	{exit browser, clear history before}
 
-\section{Exe commands}{Works with tab completion}
+\subsection{Basic Exe commands}{works with tab completion}
 \cmdS{:addo\grey{ns}}	{show addons in current window}
 \cmdL{:bmark~:delb\grey{marks} $url$}	{add/delete bookmark}
 \cmdS{:em\grey{enu} \tab}	{command-line access to Firefox menubar}
@@ -70,33 +71,36 @@ from VIM. See {\tt :h motion} for detailed documentation.}
 \cmdS{:sav\grey{eas}}	{save current web page to disk.}
 \cmdL{:se\grey{t} (no)apptab}	{set, unset current tab as app window}
 
-\section{Panorama Mode (Tab Group Management)}{Start tabgroup management with {\tt :tabgroup subcom}}
-Some subcommands \ldots \\
+\section{Modes}{}
+\subsection{Panorama Mode (Tab Group Management)}{start tabgroup management with {\tt :tabgroup \key{subcom}}}
+\subsubsection{Most important subcommands \ldots}{}
 \cmdOper{add}	{create new {\tt tab group}}
 \cmdOper{list}	{list current {\tt tab groups}}
 \cmdOper{rm}	{remove group with {\tt group}name}
 \cmdOper{pull-\or pushtab}	{pull tab from\or move to {\tt group}}
 \cmdOper{switch}	{switch to {\tt group}name}
-
-
+\cmdOper{stash}	{move current tab to {\tt group}name}
 
 % subsect %%  (end)
 
-\section{Hint-Modes}{Hints are the way in which Vimperator allows you to follow links on a page. By
-providing each link with a suitable hint, you can access them via a set of hotkeys. }
-\subsection{QuickHint Mode ($f$)}{Simulates mouseselection with labeled
-links on web page. To run new tab in background change to uppercase $F$.}
+\vskip 5ex
+
+\subsection{QuickHint Mode ($f$)}{Hints are the way in which Vimperator allows you to follow links on a page. By
+providing each link with a suitable hint, you can access them via a set of hotkeys.
+Pressing $f$ once triggers {\it QuickHint Mode} and simulates a mouseselection with
+labeled links on a web page.}
 \subsection{ExtendedHint Mode ( ; )}{This mode is useful for
 performing operations on hinted elements other than the default
 left mouse click. If you want to yank the location of hint 24, press ;y to start this hint
 mode. Then press 24 to copy the hint location.}
-\cmdL{:h extended-hints}	{list all extended mode commands}
+\subsection{ExtendedHint Commands}{list all extended mode commands {\tt :h extended-hints}}
 here are a few \ldots\\
 \cmdS{;~}	{imitates mouse-hovering a link object}
 \cmdS{s~S}	{save link/object}
 \cmdS{i~I}	{open media object (in new tab)}
 \cmdS{y~Y}	{copy URL/label description to clipboard}
 
+\section{Plugins}{huge list: https://github.com/vimpr/vimperator-plugins}
 % Footer
 \copyrightnotice
 %

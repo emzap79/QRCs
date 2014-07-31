@@ -94,9 +94,8 @@
 \cmdS{x X }	{delete character under, before cursor}
 \cmdS{d$m$ }	{delete text of movement command $m$}
 \cmdS{dd D }	{delete current line, to the end of line}
-\cmdS{dgn }	{delete the next search pattern match}
-\cmdS{:$r$d~:$r$d$x$ }	{delete range $r$ lines, into register $x$}
 \cmdS{u U }	{undo last command, restore last changed line}
+\cmdS{.\thinspace\thinspace\ctrl R }	{repeat last $n$ changes, redo last undo}
 
 \subsection{Copying}	{}
 \cmdS{"$x$ }	{use register $x$ for next delete, yank, put}
@@ -106,34 +105,18 @@
 \cmdS{\rbracket p \lbracket p }	{like {\tt p}, {\tt P} with indent adjusted}
 \cmdS{gp gP }	{like {\tt p}, {\tt P} leaving cursor after new text}
 
-\subsection{Registers}{}
-\cmdS{.\thinspace\thinspace\ctrl R }	{repeat last changes, redo last undo}
-\cmdS{:reg~:reg $x$ }	{show the content of all, specific register $x$}
-\cmdS{$n$.\ }	{repeat last changes with count replaced by $n$ }
-\cmdS{q$c$ q$C$ }	{record, append typed characters in register $c$}
-\cmdS{q }	{stop recording}
+\subsection{Registers \& Macros}{show content of all registers: $:reg$ }
+% \cmdS{$n$.\ }	{repeat last changes with count replaced by $n$ }
+\cmdL{:$r$d\grey{elete}~:$r$d\grey{elete} $x$ }	{delete range $r$ lines, into register $x$}
+\cmdS{:@$x$ }	{execute register $x$ as an {\it Ex\/} command}
+\cmdS{:reg\grey{ister} $x$ }	{show content of single register $x$}
+\cmdS{q$x$ q$X$ q}	{record, append, stop recording typed characters as macro in register $x$}
+% \cmdS{q }	{stop recording macro}
+\cmdS{@$x$ }	{execute macro of register $x$}
+\cmdS{@@ }	{repeat previous recorded macro}
 \cmdS{q$x$q}	{empty register $x$}
-\cmdExmpl{:g/$c$/d $x$ | let @+ = @x}	{delete lines with pattern $c$ into Register $x$ and copy to clipboard afterwards}
-\cmdS{@$c$ }	{execute the content of register $c$}
-\cmdS{@@ }	{repeat previous {\tt @} command}
-\cmdS{:@$c$ }	{execute register $c$ as an {\it Ex\/} command}
+\cmdExmpl{:g/$x$/d $x$ | let @+ = @x}	{delete lines with pattern $x$ into Register $x$ and copy to clipboard afterwards}
 \cmdS{q:~@: }	{list all, repeat previous {\it Ex\/} command(s)}
-
-\section{Advanced Operations}{}
-
-\subsection{Join lines / change cases}{}
-\cmdS{J gJ }	{join current line with next, without space}
-\cmdS{\tild~g\tild{$m$}}	{switch case and advance cursor, on movement $m$ }
-\cmdS{gu$m$ gU$m$ }	{switch case, lc, uc on movement $m$}
-\cmdS{guu gUU}	{lower-/uppercase line}
-
-\subsection{Advanced Scrolling}	{}
-\cmdS{$n$\ctrl Y $n$\ctrl E}	{Scroll window $n$ lines up-/downwards}
-\cmdS{\ctrl D \ctrl U }	{scroll half a page up, down}
-\cmdS{\ctrl F \ctrl B }	{scroll page up, down}
-\cmdS{zt zz zb }	{current line to top, center, bottom of win.}
-\cmdS{zh zl }	{scroll one character to the right, left}
-\cmdS{zH zL }	{scroll half a screen to the right, left}
 
 \section{Search \& Substitute}	{refer to {\tt :h search-commands} and {\tt :h :sub}, respectively}
 \subsection{Forward \& Backward Searches}	{}
@@ -201,13 +184,30 @@ comment sign `\#' gets ignored (special atom \bs@<=, to assert a match `before')
 \cmdExmpl{:\&r\  (same as \\:s//$c$\or:\tild)}	{Repeat last search\or substitution with same substitute string}
 \cmdOper{n}	{Report the number of matches, do not actually substitute.  (The [c] flag is ignored.) }
 
-\vskip -0.2cm
+\vskip 12ex
+\section{Advanced Operations}{}
+\subsection{Special Text Operations}{}
+\cmdS{cgn dgn }	{change, delete the next search pattern match (repeat change, deletion with \key{.})}
+\cmdS{J gJ }	{join current line with next, without space}
+\cmdS{\tild~g\tild{$m$}}	{switch case and advance cursor, on movement $m$ }
+\cmdS{gu$m$ gU$m$ }	{switch case, lc, uc on movement $m$}
+\cmdS{guu gUU}	{lower-/uppercase line}
+
+\subsection{Advanced Scrolling}	{}
+\cmdS{$n$\ctrl Y $n$\ctrl E}	{Scroll window $n$ lines up-/downwards}
+\cmdS{\ctrl D \ctrl U }	{scroll half a page up, down}
+\cmdS{\ctrl F \ctrl B }	{scroll page up, down}
+\cmdS{zt zz zb }	{current line to top, center, bottom of win.}
+\cmdS{zh zl }	{scroll one character to the right, left}
+\cmdS{zH zL }	{scroll half a screen to the right, left}
+
 \section{Ex Commands (\enter)}	{refer to {\tt :help holy-grail} for list of all {\it Ex\/} commands}
 \subsection{Reading from \& writing to files}	{}
-\cmdS{:e $f$ }	{edit file $f$, reload current file if no $f$}
-\cmdS{:$r$w $f$ }	{write range $r$ to file $f$ (this file if no $f$)}
-\cmdS{:$rw>$\kern-3pt$>f$ }	{append range $r$ to file $f$}
-\cmdS{:q :q! }	{quit and confirm, quit and discard changes}
+\cmdS{:e\grey{dit} $f$ }	{edit file $f$, reload current file if no $f$}
+\cmdS{:ar\grey{gs} $f_1 \ldots f_n$}	{load files to buffer in background}
+\cmdS{:$r$w\grey{rite} $f$ }	{write range $r$ to file $f$ (this file if no $f$)}
+\cmdS{:$r$w\grey{rite}\kern2pt$>>f$ }	{append range $r$ to file $f$}
+\cmdS{:q\grey{uit} :q\grey{uit}! }	{quit and confirm, quit and discard changes}
 \cmdL{:wq\or :x\or ZZ}	{write to current file and exit}
 
 \subsection{Filter Lines}{}
@@ -218,9 +218,9 @@ comment sign `\#' gets ignored (special atom \bs@<=, to assert a match `before')
 \subsection{Insert, Move Content}	{}
 \cmdS{:r $f$ }	{insert content of file $f$ below cursor}
 \cmdS{:r!\ $c$ }	{insert output of command $c$ below cursor}
-\cmdS{:$r$co\ $a$ :$r$m\ $a$ }	{copy, move range $r$ below line $a$}
-\cmdL{:$r$hardcopy $r$w!lp }	{sending $r$ to printer (printout)}
-\cmdL{:$r$hardcopy > file.ps }	{print range to ps file}
+\cmdL{:$r$co\grey{py}\ $a$ :$r$m\grey{ove}\ $a$ }	{copy, move range $r$ below line $a$}
+\cmdL{:$r$ha\grey{rdcopy} > file.ps }	{print range to ps file}
+\cmdS{:$r$ha $r$w!lp }	{sending $r$ to printer (printout)}
 
 \subsection{Ex Ranges}	{both {\tt ,} and {\tt ;} seperate line numbers. They differ in interpretation though (see also {\tt :h cmdline-ranges}).}
 \cmdOper{, }	{cursor position interpreted from current line (this line)}
@@ -233,11 +233,11 @@ comment sign `\#' gets ignored (special atom \bs@<=, to assert a match `before')
 \cmdOper{-$n$ +$n$ }	{preceding/appending line number}
 
 \subsection{Compile}	{}
-\cmdS{:compiler $c$ }	{set/show compiler plugins}
-\cmdS{:make }	{run {\tt makeprg}, jump to first error}
-\cmdS{:cope }	{navigate errors from make}
-\cmdS{:cn :cp }	{display the next, previous error}
-\cmdS{:cl :cf }	{list all errors, read errors from file}
+\cmdL{:cl\grey{ist} :cf\grey{ile} }	{list all errors, read errors from file}
+\cmdL{:cn\grey{ext} :cp\grey{revious} }	{display the next, previous error}
+\cmdS{:comp\grey{iler} $c$ }	{set/show compiler plugins}
+\cmdS{:cope\grey{n} }	{navigate errors from make}
+\cmdS{:mak\grey{e} }	{run {\tt makeprg}, jump to first error}
 
 \section{Standard Mode Formatting/ Filtering}	{leave out $m$ for visual mode commands}
 
@@ -246,7 +246,6 @@ comment sign `\#' gets ignored (special atom \bs@<=, to assert a match `before')
 \cmdS{$n\hskip -0.3em>$ $n\hskip -0.3em<$ $=$ }	{indent/unindent $n$ levels, reindent}
 \cmdS{$n<\kern-3pt<\enspace n>\kern-3pt>$ }	{shift $n$ lines left, right}
 %\cmdS{:,2s/\ze #/\=repeat(' ',32) }	{indent comments ' #' to column 32}
-\cmdS{G=gg}	{auto (re)indent entire document}
 
 \subsection{Alignment}{}
 \cmdS{gq$m$ gqgq }	{format movement $m$/current paragraph}
@@ -256,7 +255,7 @@ comment sign `\#' gets ignored (special atom \bs@<=, to assert a match `before')
 
 \subsection{Folds}	{}
 \cmdS{zf$m$ }	{create fold of movement $m$}
-\cmdS{:$r$fo }	{create fold for range $r$}
+\cmdS{:$r$fo\grey{ld} }	{create fold for range $r$}
 \cmdS{zd zE }	{delete fold at cursor, all in window}
 \cmdS{zo zc zO zC }	{open, close one fold; recursively}
 \cmdS{[z ]z }	{move to start, end of current open fold}
@@ -264,7 +263,7 @@ comment sign `\#' gets ignored (special atom \bs@<=, to assert a match `before')
 \cmdS{zm zM }	{fold more, close all folds}
 \cmdS{zr zR }	{fold less, open all folds}
 \cmdS{zn zN zi }	{fold non, fold normal, invert folding}
-\cmdL{:set foldcolumn=$n$ }	{show foldcolumn $n$}
+\cmdS{:set fdc=$n$ }	{show foldcolumn to level $n$}
 
 \section{Tags, marks \& jumps}{{\tt :tags} print tag list, {\tt :marks} print the active marks list}
 \subsection{Marks, Motions, and Tags}	{}
@@ -276,11 +275,11 @@ comment sign `\#' gets ignored (special atom \bs@<=, to assert a match `before')
 \cmdS{$n$\ctrl O }	{go to $n^{th}$ older position in jump list}
 \cmdS{$n$\ctrl I }	{go to $n^{th}$ newer position in jump list}
 \cmdS{\ctrl ] \ctrl T }	{jump to the tag under cursor, return from tag}
-\cmdS{:ts $t$ }	{list matching tags and select one for jump}
-\cmdS{:tj $t$ }	{jump to tag or select one if multiple matches}
+\cmdS{:ts\grey{elect} $t$ }	{list matching tags and select one for jump}
+\cmdS{:tj\grey{ump} $t$ }	{jump to tag or select one if multiple matches}
 
 \subsection{Jumps}	{print the jump list with {\tt :jumps}}
-\cmdS{:ta \ctrl[ }	{jump to tag (under cursor)}
+\cmdS{:ta\grey{g} \ctrl[ }	{jump to tag (under cursor)}
 \cmdS{\ctrl O \ctrl I }	{jump to older/newer location btw\. buffers}
 \cmdS{$n$g; $n$g, }	{go to $n$ older/newer position in change list}
 \cmdS{'. }	{jump back on last edited line}
@@ -295,11 +294,11 @@ comment sign `\#' gets ignored (special atom \bs@<=, to assert a match `before')
 \cmdS{:b$n$ }	{switch to buffer $n$}
 \cmdL{:bn :bp :bf :bl }	{buffer movement next, prev, first, last}
 \cmdS{:bd$n$ }	{delete buffer $n$ (also with filename)}
+\cmdExmpl{:bd *.ext \ctrl A}	{Delete all Buffers with Extension `ext'}
 \cmdS{:badd f.txt }	{load file into new buffer}
 \cmdS{:sb$n$ }	{Split window and edit buffer $n$ from the bufflist}
 
 \subsection{Buffer Shortcuts}	{:h ctrl-w }
-\cmdS{:bd *.ext \ctrl A}	{Deletes all Buffers with Extension `ext'}
 \cmdS{\ctrl \^{} }	{toggle between the current and the last window}
 \cmdS{\ctrl Wf gf }	{open file under cursor in new/current window}
 \cmdS{\ctrl Ww \ctrl W\ctrl W }	{move to window below, above (wrap)}
@@ -316,12 +315,12 @@ comment sign `\#' gets ignored (special atom \bs@<=, to assert a match `before')
 
 \subsection{Tab Management}	{}
 \cmdS{:tabs }	{list all tabs including their displayed windows}
-\cmdS{:tabfirst }	{go to first tab}
-\cmdS{:tablast }	{go to last tab}
+\cmdS{:tabfi\grey{rst} }	{go to first tab}
+\cmdS{:tabl\grey{ast} }	{go to last tab}
 \cmdS{:tabnew }	{open a new empty tab page}
-\cmdS{:tabc }	{close current tab page}
+\cmdS{:tabc\grey{lose} }	{close current tab page}
 \cmdS{:wqa :qa }	{(save and) quit all tabs}
-\cmdS{:tabo }	{close all other tabs}
+\cmdS{:tabo\grey{nly} }	{close all other tabs}
 \cmdS{gt gT }	{go to next/previous Tab}
 \cmdS{$n$gt }	{goto tab in position $n$ }
 
@@ -337,12 +336,12 @@ comment sign `\#' gets ignored (special atom \bs@<=, to assert a match `before')
 
 \subsection{Vim Start-Options}	{}
 \cmdL{vimdiff $f_1$ $f_2$ }	{diff $file_1$ + $file_2$ using synchronized split windows}
-\cmdL{vim -o/-O $f_1$ $f_2$ }	{open $files$ in horiz/vert split mode}
+\cmdL{vim -o/-O $f_1$ $f_2 \ldots f_n$ }	{open $files$ in horiz, vert split mode}
 \cmdS{vim +$n$ $file$ }	{open $file$ at $n$th line (eof if $n$ omitted)}
 \cmdS{vim +/$s$ $file$ }	{open $file$ and search for $string$ }
 \cmdS{vim -S $name$ }	{reload vim-session $name$}
 
-\subsection{Special operations}	{Usefull (and not so usefull) operations which don't fit any other section :-)}
+\subsection{Special operations}	{Usefull (and not so usefull) operations which don't fit to any other section :-)}
 \cmdS{K }	{run {\tt keywordprg} (manpage) on word under cursor}
 \cmdS{\ctrl A \ctrl X}	{increment/decrement number under cursor}
 \cmdS{\ctrl L }	{redraw screen}
