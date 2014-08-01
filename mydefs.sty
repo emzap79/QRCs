@@ -13,55 +13,58 @@
 % Font %}}}
 % Shortintro%{{{
 
+%% Intro Definitions%{{{
+
+% mytitle
+\def\mytitle{
+    \title{\uppercase{\content\ quick reference card}}
+}
+
+% shortintro
 \def\shortintro{\smallskip
-\centerline{\smallrm Frequently used \content\ commands -- Version \version}}
+\centerline{\smallrm Frequently used \shortcontent\ commands -- Version \version}}
 \def\year{2014}
 \def\month{August}
 
-% % intro: qrcR
-% % cran.r-project.org/doc/contrib/Short-refcard.pdf
-% \def\shortintroR{\smallskip
-% {\smallrm A first version of this qrc was created by Tom Short, EPRI PEAC, in
-% 2004-10-21. I modified the document so that it fits my other reference cards;
-% all of its original content has been preserved and, in some cases only,
-% expanded.}}
+% specific-intro:
+\def\shortintrospec#1{
+    \vskip 2.5ex
+    \hbox to \hsize {
+        \hsize=7.0cm
+        \vtop{#1}
+    }
+    \vskip 1.5ex
+}
+
+%% Intro Definitions%}}}
+%% Specific Intros%{{{
+
+
+% intro qrcTmux
+\def\shortintroTmux{\shortintrospec{\noindent 
+        Prefix key is set to \key{ctrl-b} by default. You can change that
+        behaviour to e.g. \key{ctrl-s} by adding the following commands to your
+        \tild/.tmux.conf\\:unbind C-b\\ :set -g prefix C-s\\ :bind C-s send-prefix}
+}
+
+% intro qrcVimpr
+\def\shortintroVimpr{\shortintrospec{\noindent A short introduction into vimperator may be found at: www.linuxjournal.com/article/10636}}
+
+% intro qrcR: http://michaelgoerz.net/
+\def\shortintroR{\shortintrospec{
+        \noindent\smallrm
+        A first version of this qrc was created by Tom Short, EPRI PEAC, in
+        2004-10-21. I modified the document so that it fits my other reference cards;
+        all of its original content has been preserved and, in some cases only,
+        expanded.
+    }
+}
 
 % intro: qrcVim
 % http://michaelgoerz.net/
-\def\shortintroR{
-    \vskip 0.5ex
-    \hbox to \hsize {
-        % \hfuzz = 20pt
-        % \hfil
-        \hsize=7.0cm
-        % \hskip .5em
-        \vtop{
-            \noindent{\smallrm A first version of this qrc was created by Tom Short, EPRI PEAC, in
-2004-10-21. I modified the document so that it fits my other reference cards;
-all of its original content has been preserved and, in some cases only,
-expanded.}
-        }
-    }
-    % \vskip 0.5ex
-}
+\def\shortintroVim{\shortintrospec{\smallrm Vim cheatsheet based on the version by Michael Goerz}}
 
-
-% intro: qrcVim
-% http://michaelgoerz.net/
-\def\shortintroVim{
-    \vskip 0.5ex
-    \hbox to \hsize {
-        % \hfuzz = 20pt
-        % \hfil
-        \hsize=7.0cm
-        % \hskip .5em
-        \vtop{
-            \noindent{\smallrm Vim cheatsheet based on the version by Michael Goerz}
-        }
-    }
-    % \vskip 0.5ex
-}
-
+%% Specific Intros%}}}
 
 % Shortintro%}}}
 % Copyrightnotice%{{{
@@ -311,7 +314,6 @@ and has then been modified to my own requirements, with permission!
 }
 \vskip 1.0ex
 }
-
 
 %}}}
 % An operator command%{{{

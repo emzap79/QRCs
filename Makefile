@@ -43,12 +43,12 @@ vim:
 	xdg-open qrcVim.pdf &
 
 vimperator:
-	pdftex qrcVimperator.tex
-	xdg-open qrcVimperator.pdf &
+	pdftex qrcVimpr.tex
+	xdg-open qrcVimpr.pdf &
 
-vimp:
-	pdftex qrcVimperator.tex
-	xdg-open qrcVimperator.pdf &
+vimpr:
+	pdftex qrcVimpr.tex
+	xdg-open qrcVimpr.pdf &
 
 # viml:
 # 	pdftex qrcVimLatex.tex

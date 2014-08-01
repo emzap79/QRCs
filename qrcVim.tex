@@ -1,24 +1,25 @@
+%%%%%%%%%%%%%%
+%  preamble  %
+%%%%%%%%%%%%%%
 % TeX Format
 
 % version
-\def\content{VIM}
-\def\versionnumber{1.5}  % Version of this reference card
+\def\content{\uppercase{vim}}
+\def\shortcontent{\content}
+\def\versionnumber{1.2}  % Version of this reference card
 \def\version{v\versionnumber\ \month\ \year}
 
-% include definitions
+% include stylefile
 \input mydefs.sty
+\mytitle
 
-% Card content
-% Header
-%\hrule\vskip 3pt
-
-\title{\uppercase{\content\ quick reference card}}
-
+% shortcopyrightnotice
 \shortintro
 \shortintroVim
 
-\vskip 1.5ex
-
+%%%%%%%%%%%%%%%%%%
+%  card content  %
+%%%%%%%%%%%%%%%%%%
 \section{Movements}	{{\tt :viu\grey{sage} } show a summary of all commands }
 \subsection{Basic Movements}{refer to helpsection {\tt :h motion.txt}}
 \cmdS{h l k j }	{character left, right; line up, down }
@@ -42,35 +43,30 @@
 
 \section{Insert, Command \& Visual Mode}	{}
 \subsection{Insertion, Replace $\to$ insert mode}	{}
-\cmdS{i a }	{insert before, after cursor}
-\cmdS{I A }	{insert at beginning, end of line}
-\cmdS{gi gI }	{insert text on last edited line / first column}
-\cmdS{o O }	{open a new line below, above the current line}
-\cmdS{r$c$ }	{replace character under cursor with $c$}
-\cmdS{gr$c$ }	{like {\tt r}, but without affecting layout}
-\cmdS{R }	{replace characters starting at the cursor}
-\cmdS{gR }	{like {\tt R}, but without affecting layout}
-\cmdS{s$c$}	{substitute char. $c$ under cursor}
 \cmdS{c$m$ }	{change text of movement command $m$}
 \cmdS{cc\or S }	{change current line}
 \cmdS{C }	{change to the end of line}
+\cmdS{i a }	{insert before, after cursor}
+\cmdS{o O }	{open a new line below, above the current line}
+\cmdS{I A }	{insert at beginning, end of line}
+\cmdS{gi gI }	{insert text on last edited line, first column}
+\cmdS{r$c$ gr$c$ }	{replace character under cursor, without affecting layout}
+\cmdS{R gR }	{replace characters starting at the cursor, without affecting layout}
+\cmdS{s$c$}	{substitute character $c$ under cursor $\to$ insert mode}
 
-\subsection{Insert, Command Mode}	{}
+\subsection{Command Mode CTRL-Keys}	{}
 \cmdS{\ctrl V$c$ \ctrl V$n$ }	{insert char $c$ literally, decimal value $n$}
-\cmdS{\ctrl A }	{insert previously inserted text}
-\cmdS{\ctrl @ }	{same as {\tt\ctrl A} and stop insert $\to$ command mode}
+\cmdS{\ctrl A \ctrl @}	{insert previously inserted text, stop insert $\to$ command mode}
 \cmdS{\ctrl N \ctrl P }	{text completion before, after cursor}
-\cmdS{\ctrl W }	{delete word before cursor}
-\cmdS{\ctrl U }	{delete to start of current line}
+\cmdS{\ctrl W \ctrl U }	{delete word before cursor, to start of line}
 \cmdS{\ctrl D \ctrl T }	{shift left, right one shift width}
 \cmdS{\ctrl O$c$ }	{execute $c$ in temporary command mode}
 \cmdS{\key{esc}\or\ctrl\rbracket}	{abandon edition $\to$ command mode}
-
-\subsection{Insert, Command Mode Completion}	{}
 \subsubsection{CTRL-R}{}
 \cmdS{\ctrl R\ctrl A}	{content under cursor to command mode}
+\cmdS{\ctrl R = 5*5}	{insert 25 into text}
 \cmdS{\ctrl R$x$ \ctrl R\ctrl R$x$ }	{insert content of register $x$, literally}
-\subsubsection{CTRL-X}{}
+\subsubsection{CTRL-X (Command Mode Completions)}
 \cmdS{\ctrl{}X\ctrl{}L}	{whole lines}
 \cmdS{\ctrl{}X\ctrl{}N \ctrl{}X\ctrl{}I}	{keywords in current file, plus included files}
 \cmdS{\ctrl{}X\ctrl{}K \ctrl{}X\ctrl{}N}	{keywords in dictionary, thesaurus}
@@ -116,12 +112,12 @@
 \cmdS{@$x$ }	{execute macro of register $x$}
 \cmdS{@@ }	{repeat previous recorded macro}
 \cmdS{q$x$q}	{empty register $x$}
-\cmdExmpl{:g/$x$/d $x$ | let @+ = @x}	{delete lines with pattern $x$ into Register $x$ and copy to clipboard afterwards}
+\cmdExmpl{:g/$p$/d $x$ | let @+ = @x}	{delete lines with pattern $p$ into Register $x$ and copy to clipboard afterwards}
 \cmdS{q:~@: }	{list all, repeat macro}
 
 \section{Search \& Substitute}	{
 substitutions work like {\tt:s/$p$/$q$/$flag$}, you may limit your search to
-an area between $r$anges -- for appending $flags$ like $g$, $c$, $l$ etc, see
+an area between $r$anges ({\tt Ex ranges)} -- for appending $flags$ such as $g$, $c$, $l$ etc, see
 flaglist below!}
 \subsection{Forward \& Backward Searches}	{refer to {\tt :h search-commands}}
 \cmdS{/$s$\enter~?$s$\enter }	{search forward, backward for $s$}
@@ -135,15 +131,16 @@ flaglist below!}
 \subsection{Substitutions}	{refer to {\tt :h :sub}}
 \cmdS{:$r$s/$p$/$q$/g }	{substitute all $p$ by $q$ in range $r$}
 % \cnd{$x:$ {\tt g}---all occurrences, {\tt c}---confirm changes}
-\cmdS{:$r$s $x$ }	{repeat substitution with new $r$ \& $x$}
-\cmdL{:$r$g/$p$/$c$ :$r$v/$p$/$c$ }	{execute {\it Ex\/} $c$ on range $r$ where $p$ mat\-ches, not matches}
-\cmdS{:$r$g/$p$/-1j }	{join all lines in $r$ containing pattern $p$ with prev\. line}
-\cmdL{:$r$g/$o$/s/$q$/$y$/g }	{for every line in $r$ containing $o$, substitute $p$ with $q$}
-\cmdS{:'$a$,'$b$g/$o$/j}	{join any line containing the string $o$ to its subsequent line, if it lies between the $a$ and $b$ marks}
+\cmdS{:$r$s $q$ }	{repeat substitution with new $r$ \& $q$}
+\cmdL{:$r$g/$x$/$e$ :$r$v/$x$/$e$ }	{execute $e$ on range $r$ where $x$ mat\-ches, not matches}
+\cmdExmpl{:'$a$,'$b$g/$x$/-1j}	{join any line containing the string $x$ with
+previous line, if it lies between the $a$ and $b$ marks}
+\cmdL{:$r$g/$x$/s/$p$/$q$/g }	{for every line in $r$ containing $x$, substitute $p$ with $q$}
+\cmdS{:$r$\&\or:$r$\tild}	{repeat last search, substitution on range $r$, but without flags}
 
 \subsection{Ex Ranges}	{refer to {\tt :h cmdline-ranges}}
 \cmdOper{, }	{cursor position interpreted from current line}
-\cmdOper{;\ }	{the cursor position will be set to line of last search, substitution}
+\cmdOper{;\ }	{the cursor position will be set to line of last search\or substitution}
 \cmdExmpl{, (this line) and ; (that line)}	{both {\tt ,} and {\tt ;} seperate line numbers. they differ in interpretation though}
 \cmdOper{$n$ }	{an absolute line number $n$}
 \cmdOper{.\thinspace\thinspace\thinspace\$ }	{the current, last line in file}
@@ -152,7 +149,7 @@ flaglist below!}
 \cmdOper{/$p$/~?$p$? }	{the next, previous line where $p$ matches}
 \cmdOper{-$n$ +$n$ }	{preceding, appending line $n$}
 
-\subsection{Patterns (differences to Perl)}	{refer to {\tt :h pattern} and {\tt :h zero-width} }
+\subsection{Patterns (differences to Perl)}	{refer to {\tt :h pattern} and {\tt :h /zero-width} }
 \cmdOper{\bs$<$ \bs$>$ }	{start, end of word}
 \cmdOper{\bs i \bs k \bs I \bs K }	{an identifier, keyword; excl\. digits}
 \cmdOper{\bs f \bs p \bs F \bs P }	{a file name, printable char.; excl\. digits}
@@ -167,15 +164,16 @@ flaglist below!}
 % http://vim.wikia.com/wiki/Search_patterns
 \cmdExmpl{/.*red\bs\&.*blue}	{the following pattern finds all lines that contain both "red" and "blue", in any order}
 \cmdOper{\bs u \bs l }	{upper, lowercase character}
-\cmdOper{\bs c \bs C }	{ignore, match case on next pattern}
+\cmdOper{\bs U \bs L }	{id., whole pattern}
+\cmdOper{\bs c \bs C }	{ignore, match case on pattern}
 \cmdOper{\bs \%x }	{match hex character}
 \cmdOper{\bs @= \bs @! }	{\tt $char$(?=pattern) $char$(?!pattern)\rm}
 \cmdOper{\bs @$<$= \bs @$<$! }	{\tt (?=pattern)$char$ (?!pattern)$char$\rm}
 % http://unix.stackexchange.com/a/91472
-\cmdExmpl{/\/\bs(\#.*\bs)\bs@<=pattern}	{everything which comes before the
-comment sign `\#' gets ignored by pattern}
-% \cOperdS{\bs @$<$= \bs @$<$! }	{\tt (?$<$=pattern) (?$<$!pattern)\rm}
+\cmdExmpl{/\/\bs(\#.*\bs)\bs@<=pattern}	{everything before the
+comment `\#' is excluded from pattern}
 \cmdOper{\bs @$>$ }	{\tt (?$>$pattern)\rm }
+% http://vim.wikia.com/wiki/Search_across_multiple_lines
 \cmdOper{\bs\_\^{} \bs\_\$ }	{start-of-line, end-of-line, anywhere in pattern}
 \cmdOper{\bs\_. }	{any single char, including end-of-line}
 \cmdOper{\bs zs \bs ze }	{set start, end of pattern}
@@ -194,7 +192,6 @@ comment sign `\#' gets ignored by pattern}
 \cmdOper{i I}	{ignore, mind case for the pattern (overwrites 'ignorecase' and 'smartcase' options)}
 \cmdOper{p~\#~l}	{print the line containing the last substitute, like {\tt :list} , prepend line number afterwards}
 \cmdOper{\&}	{must be the first one: keep flags from the previous substitute}
-\cmdExmpl{:\&r\  (same as \\:s//$c$\or:\tild)}	{repeat last search, substitution with same pattern string}
 \cmdOper{n}	{report the number of matches, do not actually substitute.  (the [c] flag is ignored.) }
 
 \section{Advanced Operations}{}
@@ -239,7 +236,7 @@ comment sign `\#' gets ignored by pattern}
 \cmdS{:ar\grey{gs} $f_1 \ldots f_n$}	{load files to buffer in background}
 \cmdS{:$r$w\grey{rite} $f$ }	{write range $r$ to file $f$ (this file if no $f$)}
 \cmdS{:$r$w\grey{rite}\kern2pt$>>f$ }	{append range $r$ to file $f$}
-\cmdS{:q\grey{uit} :q\grey{uit}! }	{quit and confirm, quit and discard changes}
+\cmdS{:q\grey{uit} :q\grey{uit}! }	{quit and confirm, discard changes}
 \cmdL{:wq\or :x\or ZZ}	{write to current file and exit}
 \cmdL{:$r$d\grey{elete}~:$r$d\grey{elete} $x$ }	{delete range $r$ lines, into register $x$}
 
@@ -345,7 +342,6 @@ comment sign `\#' gets ignored by pattern}
 \cmdS{K }	{run {\tt keywordprg} (manpage) on word under cursor}
 \cmdS{\ctrl A \ctrl X}	{increment, decrement number under cursor}
 \cmdS{\ctrl L }	{redraw screen}
-\cmdS{\ctrl R = 5*5}	{insert 25 into text}
 \cmdS{ga }	{show A{\smallrm SCII} value of character under cursor}
 \cmdS{gf }	{open filename under cursor}
 \cmdL{\ctrl K$c_1c_2$\or$c_1$\kern-1pt\backspace$c_2$ }	{enter digraph $\{c_1,c_2\}$}

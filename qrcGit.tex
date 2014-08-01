@@ -1,20 +1,24 @@
-% TeX Format - Based on VIM Quick Reference Card
+%%%%%%%%%%%%%%
+%  preamble  %
+%%%%%%%%%%%%%%
+% TeX Format
 
-\def\content{GIT}
-\def\versionnumber{1.1}  % Version of this reference card
-
-
+% version
+\def\content{\uppercase{git}}
+\def\shortcontent{\content}
+\def\versionnumber{1.2}  % Version of this reference card
 \def\version{v\versionnumber\ \month\ \year}
 
+% include stylefile
 \input mydefs.sty
+\mytitle
 
-% Card content
-% Header
-\title{\uppercase{\content\ quick reference card}}
-
-% \shortcopyrightnotice
+% shortcopyrightnotice
 \shortintro
 
+%%%%%%%%%%%%%%%%%%
+%  card content  %
+%%%%%%%%%%%%%%%%%%
 \section{Main commands}{}
 \cmdS{add}	{Add file contents to the index}
 \cmdOpt{A [:/]}	{adds all file changes including deletions to the staging area [for the whole tree]}

@@ -1,27 +1,25 @@
+%%%%%%%%%%%%%%
+%  preamble  %
+%%%%%%%%%%%%%%
+% TeX Format
 
 % version
-\edef\content{TMUX}
-\def\versionnumber{1.1}  % Version of this reference card
-
-
+\def\content{\uppercase{tmux}}
+\def\shortcontent{\content}
+\def\versionnumber{1.2}  % Version of this reference card
 \def\version{v\versionnumber\ \month\ \year}
 
-% include definitions
+% include stylefile
 \input mydefs.sty
+\mytitle
 
-% Card content
-% Header
-\title{\uppercase{\content\ quick reference card}}
+% shortcopyrightnotice
+\shortintro
+\shortintroTmux
 
-% \shortcopyrightnotice
-\shortintro\vskip 2ex
-
-Prefix key is set to \key{ctrl-b} by default. You can change that
-behaviour to e.g. \key{ctrl-s} by adding the following commands to your
-\tild/.tmux.conf:\\
-
-{\tt :unbind C-b\\ :set -g prefix C-s\\ :bind C-s send-prefix\\}
-
+%%%%%%%%%%%%%%%%%%
+%  card content  %
+%%%%%%%%%%%%%%%%%%
 \section{From Shell}{}
 
 \cmdL{create session}	{tmux new -s {\tt session-name}}

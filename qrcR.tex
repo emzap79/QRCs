@@ -1,24 +1,30 @@
+%%%%%%%%%%%%%%
+%  preamble  %
+%%%%%%%%%%%%%%
+% TeX Format
+
 % version
-\def\content{R}
-\def\versionnumber{1.1}  % Version of this reference card
+\def\content{\uppercase{r}}
+\def\shortcontent{\content}
+\def\versionnumber{1.2}  % Version of this reference card
 \def\version{v\versionnumber\ \month\ \year}
 
-% include definitions
+% include stylefile
 \input mydefs.sty
+\mytitle
 
-% Card content
-% Header
-\title{\uppercase{\content\ quick reference card}}
-
-% \shortcopyrightnotice
-\shortintro\vskip 2ex
-\shortintroR\vskip 2ex
+% shortcopyrightnotice
+\shortintro
+\shortintroR
 
 % Granted to the public domain. See www.Rpad.org for the source and latest
 % version.
 % Includes material from {\it R for Beginners} by Emmanuel Paradis
 % (with permission). Some additions by James McCreight.
 
+%%%%%%%%%%%%%%%%%%
+%  card content  %
+%%%%%%%%%%%%%%%%%%
 \section{Basic Operations}{}
 \subsection{Help}{Most R functions have online documentation.}
 \cmdS{help(topic)}	{documentation on {\tt topic}}

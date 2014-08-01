@@ -1,62 +1,25 @@
-% TeX Format - Based on VIM Quick Reference Card
+%%%%%%%%%%%%%%
+%  preamble  %
+%%%%%%%%%%%%%%
+% TeX Format
 
-% compile as 'pdftex qrcBash.tex'
-% preamble%{{{
-
-\def\content{CLI}
+% version
+\def\content{\uppercase{shell}}
+\def\shortcontent{\content}
 \def\versionnumber{1.2}  % Version of this reference card
-
 \def\version{v\versionnumber\ \month\ \year}
 
+% include stylefile
 \input mydefs.sty
+\mytitle
 
-% preamble%}}}
-% Card content%{{{
-
-% Header
-\title{\uppercase{\content\ quick reference card}}
-% A example command%{{{
-
-\def\cmdExample#1#2{
-\pdfliteral{0.35 0.35 0.35 rg}
-  \noindent
-  \hbox to \hsize {% This comment is needed to remove space at start of line
-    \vtop{
-      \hbox to 3.2cm {
-      % \hfuzz = 5pt
-      \hskip 4pt
-      \hfil
-      %\hsize=5.9cm
-      \noindent{\tt#1}
-      }
-      %\hrule
-    }% This comment is needed to remove space
-    \hfil	% absorb extra space b/w columns
-    \vtop{
-      \hsize=4.90cm
-      \hbox{\hfuzz = 15pt \vtop{
-      % Uncomment line below to right-align description
-      %\leftskip=0cm plus 150fil
-      \tt{#2}
-      }}
-      %\hrule
-    }
-  }
-  %\hrule
-  \par
-  \vskip 1ex
-\pdfliteral{0 0 0 rg}
-
-}%}}}
-% An option command%{{{
-
-% \shortcopyrightnotice
+% shortcopyrightnotice
 \shortintro
 
-% card content%{{{
-
-\section{Basic Operations}{}%{{{
-
+%%%%%%%%%%%%%%%%%%
+%  card content  %
+%%%%%%%%%%%%%%%%%%
+\section{Basic Operations}{}
 \cmdS{cd $path$}{change directory}
 \subsubsection{possible values for $path$}{}
 \cmdOper{..}{move one folder up}
@@ -66,9 +29,7 @@
 \cmdS{popd}	{switch to last saved $dir$ from index}
 \cmdS{mkdir $dir$}{create new $dir$ectory in (current) path}
 
-%}}}
-\section{Movements}{For \key{esc} you can use either \key{esc} and \key{alt}-key}%{{{
-
+\section{Movements}{For \key{esc} you can use either \key{esc} and \key{alt}-key}
 \cmdS{\ctrl a\ \ctrl e}{jump to begin / end of the line}
 \cmdL{\key{esc f}\ /\ \key{esc b}}{jump one word forward/backward}
 \cmdS{\ctrl s~\ctrl c}{pause / cancel current command}
@@ -80,9 +41,7 @@
 \cmdS{\ctrl \#}{prepend hashtag on command, then jump to next line (... and reedit later)}
 \cmdS{\ctrl xe}{edit command in default \$EDITOR}
 
-%}}}
-\section{History}{Clearing your entire history event line: {\tt history -c}}%{{{
-
+\section{History}{Clearing your entire history event line: {\tt history -c}}
 \subsection{Shortcuts}{}
 \cmdS{\ctrl p}{fetch the previous command from the history list}
 % \cmdS{\ctrl n}{fetch the next command from the history list}
@@ -102,9 +61,7 @@
 % \cmdS{G}{move to the N-th history line}
 % \cmdExample{15G}{move to $15$th line}
 
-%}}}
-\subsection{History-Commands}{Example command is: {\tt cd foo/bar}}%{{{
-
+\subsection{History-Commands}{Example command is: {\tt cd foo/bar}}
 \cmdS{!!}{runs previous executed command (also known as `bang bang')}
 \cmdExmpl{sudo cd foo/bar}{sudo\ !!}
 \cmdS{!\$ / \key{esc .\ }}{repeats last $arg$ of prev command}
@@ -115,8 +72,8 @@
 \cmdS{!!:$des$}{appends first/last/specific/all $arg$'s of last command (trailing :$des$ refers to below listed designators)}
 \cmdExmpl{echo 'cd foo/bar'}{echo !cd:q}
 \cmdS{!\#}{refers to the entire command line typed so far}
-\subsubsection{Designators}%{{{
 
+\subsubsection{Designators}{}
 \cmdOper{0}{the zeroth (first) word in a line (usually command name)}
 \cmdOper{n}{the $n$th word in a line}
 \cmdOper{\^{}}{the first $arg$ (the second word) in a line}
@@ -127,17 +84,11 @@
 \cmdOper{$m$*}{synonymous with $m$-\$}
 \cmdOper{$m$-}{from $arg$ $m$ to end, ommitting last word}
 
-%}}}
-
-%}}}
-\subsection{Substitutions \& Replacements}{}%{{{
-
+\subsection{Substitutions \& Replacements}{}
 \cmdS{\^{}$str_1$\^{}$str_2$\^{}}{quick substitution. Repeats the last command, replacing $str_1$ with $str_2$}
 \cmdL{$mod\,$s/old/new/}{substitutes new for old (for meaning of $mod$ifiers see below)}
 
-%}}}
-\subsubsection{Modifiers}%{{{
-
+\subsubsection{Modifiers}{}
 % http://www.softpanorama.org/Scripting/Shellorama/bash_command_history_reuse.shtml#Modifiers
 \cmdOper{h}{removes a trailing pathname component, leaving the head}
 \cmdOper{t}{removes all leading pathname components, leaving the tail (filename in path)}
@@ -150,10 +101,8 @@
 \cmdOper{g}{causes s/old/new/ or \& to be applied over the entire event line}
 \cmdOper{G}{apply the following `s' modifier just once to each word in the event line.}
 
-%}}}
 \section{Bashrc}{The prompt of your {\tt shell} can be adjusted throug changing {\tt PS1=<expr>} in your {\tt \tild.bashrc}}
-\subsection{History Modifying Settings}{Append {\tt export <setting>=<value>} to your$\,\sim$/.bashrc}%{{{
-
+\subsection{History Modifying Settings}{Append {\tt export <setting>=<value>} to your$\,\sim$/.bashrc}
 \cmdS{HISTFILE}{if set to /dev/null history file is rejected (Default:$\,\sim$/.bash\_history)}
 \cmdL{HISTFILESIZE}{controls how many history commands to keep in HISTFILE (Default: 500)}
 \cmdS{HISTSIZE}{controls how many history commands to keep in the history list of current session (Default: 500)}
@@ -164,18 +113,15 @@
 \cmdOptLl{erasedups}{a value of erasedups causes all previous lines matching the current line to be removed from the history list before that line is saved.}
 \cmdL{HISTIGNORE}{controls which commands to ignore and not save to the history list.}
 
-%}}}
-\subsection{Shopt Option}{Shopt options can be set by a {\tt shopt -s option} and can be unset by a {\tt shopt -u option} shell com\-mand.}%{{{
-
+\subsection{Shopt Option}{Shopt options can be set by a {\tt shopt -s option} and can be unset by a {\tt shopt -u option} shell com\-mand.}
 \cmdS{histappend}{setting the variable appends current session history to HISTFILE. Unsetting overwrites the file each time}
 \cmdS{histreedit}{if set, puts a failed history substitution back on the command line for re-editing}
 \cmdS{histverify}{if set, puts the command to be executed after a substitution on command line as if you had typed it}
 
-%}}}
-
-%%
-\\\\\\
-%% Footer
+%%%%%%%%%%%%
+%  Footer  %
+%%%%%%%%%%%%
+\vskip5ex
 \copyrightnotice
 
 % Ending

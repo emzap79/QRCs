@@ -1,32 +1,34 @@
+%%%%%%%%%%%%%%
+%  preamble  %
+%%%%%%%%%%%%%%
 % TeX Format
 
 % version
-\def\content{VIMPERATOR}
-\def\versionnumber{1.3}  % Version of this reference card
-
+\def\content{\uppercase{vimperator}}
+\def\shortcontent{Vimpr}
+\def\versionnumber{1.2}  % Version of this reference card
 \def\version{v\versionnumber\ \month\ \year}
 
-% include definitions
+% include stylefile
 \input mydefs.sty
+\mytitle
 
-% Card content
-% Header
-%\hrule\vskip 3pt
-
-\title{\uppercase{\content\ quick reference card}}
-
+% shortcopyrightnotice
 \shortintro
+\shortintroVimpr
 
-\section{Page \& Tab Movements}{short introduction to vimperator can be found
-at:\\http://www.linuxjournal.com/article/10636}
+%%%%%%%%%%%%%%%%%%
+%  card content  %
+%%%%%%%%%%%%%%%%%%
+\section{Page \& Tab Movements}{}
 \subsection{Page Movements}{move commands work as you would expect them to do
 from VIM. See {\tt :h motion} for detailed documentation.}
-\cmdS{hjkl}	{move left/down/up/right}
-\cmdS{gg~G}	{move to top/bottom of page}
-\cmdS{\ctrl f~\ctrl d~\ctrl e}	{move screen/page/line down}
-\cmdS{\ctrl b~\ctrl u~\ctrl y}	{move screen/page/line up}
+\cmdS{hjkl}	{move left, down, up, right}
+\cmdS{gg~G}	{move to top, bottom of page}
+\cmdS{\ctrl f~\ctrl d~\ctrl e}	{move screen, page, line down}
+\cmdS{\ctrl b~\ctrl u~\ctrl y}	{move screen, page, line up}
 \cmdS{/~?}	{search in page, backwards}
-\cmdS{n~N}	{jump to next/previous search result}
+\cmdS{n~N}	{jump to next, previous search result}
 
 % subsect %% page_movements (end)
 
@@ -34,10 +36,10 @@ from VIM. See {\tt :h motion} for detailed documentation.}
 \cmdS{b$n$}	{switch to open buffer $n$ from list}
 \cmdS{gt\or\ctrl n}	{go to next tab}
 \cmdS{gT\or\ctrl p}	{go to previous tab}
-\cmdS{g0~g\$}	{go to first/last tab}
+\cmdS{g0~g\$}	{go to first, last tab}
 % \cmdS{g@}	{switch to first app tab}
 \cmdS{gh~gH}	{open own defined homepage, new tab}
-\cmdS{gu~gU}	{move up one path/all to root}
+\cmdS{gu~gU}	{move up one path, all to root}
 \cmdExmpl{moves up to http\ldots or.org/system}	{gu http://www.vimperator.org/system/app/}
 \cmdS{go\lbrack aA-zZ0-9\rbrack}	{jump to previously marked web page}
 
@@ -45,23 +47,24 @@ from VIM. See {\tt :h motion} for detailed documentation.}
 
 \section{Basic Commands}{}
 \subsection{General Keybinds}	{refer to {\tt :h :open}}
-\cmdS{o~t}	{open url in current/new tab}
-\cmdS{d~u}	{close current/undo last tab}
-\cmdS{y~Y}	{copy current url/selection to clipboard}
+\cmdS{d~u}	{close current, undo last tab}
+\cmdS{o~O}	{open current url, in new tab}
+\cmdS{y~Y}	{copy url, current selection to clipboard}
 \cmdS{p~P}	{paste from clipboard, in a new tab}
 \cmdS{t~T}	{open new tab, with current url}
-\cmdS{H~L}	{go to previous/next page in history}
-\cmdS{m~M}	{Set local/global mark at cursor/url}
-\cmdS{a~A}	{add/toggle bookmark}
-\cmdS{i~I}	{ignore any/specific {\tt vimperator} keybind}
-\cmdS{\lbracket\lbracket~\rbracket\rbracket}	{switch to previous/next page on multipage websites}
-\cmdS{+~-}	{zoom in/out by 25 \% on page in focus}
+\cmdS{w~W}	{id. but opens page(s) in new window, based on current location}
+\cmdS{H~L}	{go to previous, next page in history}
+\cmdS{m~M}	{Set local, global mark at cursor, url}
+\cmdS{a~A}	{add, toggle bookmark}
+\cmdS{i~I}	{ignore any, specific {\tt vimpr} keybind}
+\cmdS{\lbracket\lbracket~\rbracket\rbracket}	{switch to previous, next page on multipage websites}
+\cmdS{+~-}	{zoom in, out by 25 \% on page in focus}
 \cmdS{$n$zz}	{zoom page to $n$\% (100 if $n$ is omitted)}
 \cmdS{ZZ~ZQ}	{exit browser, clear history before}
 
 \subsection{Basic Exe commands}{works with tab completion}
 \cmdS{:addo\grey{ns}}	{show addons in current window}
-\cmdL{:bmark~:delb\grey{marks} $url$}	{add/delete bookmark}
+\cmdL{:bmark~:delb\grey{marks} $url$}	{add, delete bookmark}
 \cmdS{:em\grey{enu} \tab}	{command-line access to Firefox menubar}
 \cmdS{:hist\grey{ory}}	{pull up recent 10 online \& local pages}
 \cmdS{:pc\grey{lose}}	{close preview window, eg. history}
@@ -96,9 +99,9 @@ mode. Then press 24 to copy the hint location.}
 \subsection{ExtendedHint Commands}{list all extended mode commands {\tt :h extended-hints}}
 here are a few \ldots\\
 \cmdS{;~}	{imitates mouse-hovering a link object}
-\cmdS{s~S}	{save link/object}
+\cmdS{s~S}	{save link, object}
 \cmdS{i~I}	{open media object (in new tab)}
-\cmdS{y~Y}	{copy URL/label description to clipboard}
+\cmdS{y~Y}	{copy URL, label description to clipboard}
 
 \section{Plugins}{huge list: https://github.com/vimpr/vimperator-plugins}
 % Footer

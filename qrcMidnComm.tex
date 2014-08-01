@@ -1,23 +1,24 @@
+%%%%%%%%%%%%%%
+%  preamble  %
+%%%%%%%%%%%%%%
 % TeX Format
 
 % version
-\def\content{MC}
-\def\versionnumber{0.1}  % Version of this reference card
+\def\content{\uppercase{MC}}
+\def\shortcontent{\content}
+\def\versionnumber{1.2}  % Version of this reference card
 \def\version{v\versionnumber\ \month\ \year}
 
-% include definitions
+% include stylefile
 \input mydefs.sty
+\mytitle
 
-% Card content
-% Header
-%\hrule\vskip 3pt
-
-\title{\uppercase{\content\ quick reference card}}
-
+% shortcopyrightnotice
 \shortintro
 
-\vskip 0.5cm
-
+%%%%%%%%%%%%%%%%%%
+%  card content  %
+%%%%%%%%%%%%%%%%%%
 \section{Commands}{}
 \cmdS{\ctrl r}	{refresh active panel}
 \cmdS{\ctrl c~\ctrl o}	{opens chmod/chown for marked file}
