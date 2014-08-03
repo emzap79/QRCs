@@ -7,12 +7,12 @@ tex:
 	xdg-open qrcTeX.pdf &
 
 cli:
-	pdftex qrcBash.tex
-	xdg-open qrcBash.pdf &
+	pdftex qrcShell.tex
+	xdg-open qrcShell.pdf &
 
 bash:
-	pdftex qrcBash.tex
-	xdg-open qrcBash.pdf &
+	pdftex qrcShell.tex
+	xdg-open qrcShell.pdf &
 
 tmux:
 	pdftex qrcTmux.tex

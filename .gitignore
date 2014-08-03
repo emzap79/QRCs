@@ -24,6 +24,7 @@
 *_latexmk
 foo.bar
 qrcFoo.*
+qrcGit.priv.*
 qrcTeX.*
 qrcLaTeX.*
 qrcTig.*
