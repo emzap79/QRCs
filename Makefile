@@ -6,6 +6,10 @@ tex:
 	pdftex qrcTeX.tex
 	xdg-open qrcTeX.pdf &
 
+shell:
+	pdftex qrcShell.tex
+	xdg-open qrcShell.pdf &
+
 cli:
 	pdftex qrcShell.tex
 	xdg-open qrcShell.pdf &
