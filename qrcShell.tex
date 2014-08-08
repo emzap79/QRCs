@@ -28,11 +28,12 @@
 \cmdS{\meta d}{cut one word forward until space}
 \cmdS{\ctrl y}{paste most recently cut out text}
 
-\section{History}{Clearing your entire history event line: {\tt history -c}}
+\section{History}{Prompt all executed history events: {\tt history}, clear
+entire history event cache: {\tt history -c}}
 \subsection{Shortcuts}{}
 \cmdS{\ctrl p}{fetch the previous command from the history list}
-\cmdS{\ctrl r}{search history backward (incremental search)}
-\cmdS{\meta .\ \ \ }{print last argument(s) to line}
+\cmdS{\meta .\ \ }{print last argument(s) to line}
+\cmdS{\ctrl r\ \ctrl s}{search history backward, forward (incremental search)}
 \cmdS{\meta p~\meta n}{search backward, forward using non-incre\-mental search}
 \cmdS{\meta $<$~\meta $>$}	{move to the first, last line in history}
 % \cmdS{\ctrl n}{fetch the next command from the history list}
@@ -46,10 +47,6 @@
 % \cmdS{G}{move to the N-th history line}
 % \cmdExample{15G}{move to $15$th line}
 
-\subsection{Substitutions \& Replacements}{}
-\cmdS{\^{}$str_1$\^{}$str_2$\^{}}{quick substitution. Repeats the last command, replacing $str_1$ with $str_2$}
-\cmdL{$mod\,$s/old/new/}{substitutes new for old (for meaning of $mod$ifiers see below)}
-
 \subsection{History-Commands}{Example command is: {\tt cd foo/bar}}
 \cmdS{!!}{runs previous executed command (also known as `bang bang')}
 \cmdExmpl{sudo cd foo/bar}{sudo\ !!}
@@ -60,11 +57,12 @@
 % \cmdExmpl{sudo cd foo/bar}{!?sudo?}
 \cmdS{!!:$opt$}{filter last command by designators\or modifiers}
 \cmdExmpl{echo 'cd foo/bar'}{echo !cd:q}
-\cmdS{!\#}{refers to the entire command line typed so far}
+\cmdS{!\#}{entire command line typed so far}
+\cmdL{!!:gs/old/new/}{substitutes new for old}
+\cmdExmpl{\^{}$str_1$\^{}$str_2$ ($\Rightarrow$ \^{} literally)}{quick substitution, replacing $str_1$ with $str_2$}
 
-\subsection{Options}{you may append as many options to a history command as you
-want, e.~g. you could do a: $!!:\$:p$ (prints last argument of before executed
-command)}
+\subsection{Options}{you may append as many options as you want, e.~g. you
+could do a: $!!:\$:p$ (prints least argument of last executed history command)}
 \subsubsection{Event Designators}{}
 \cmdOper{0}{the first word in a line (usually command\or programs name)}
 \cmdOper{n}{the $n$th word in a line}
@@ -95,7 +93,7 @@ command)}
 \cmdS{popd}	{switch to last saved $dir$ from index}
 \cmdS{pushd $dir$}	{save $dir$ to index}   % http://www.linuxuser.co.uk/tutorials/14-command-line-tips-tricks
 \cmdS{\ctrl X\ctrl E}	{work on line under cursor in default EDITOR and execute it afterwards}
-\cmdS{\ctrl \#}{prepend hash on command, then jump to next line (... and reedit later)}
+\cmdS{\ctrl \#}{prepend hash to command, then jump to next line (... and reedit later)}
 % \subsection{Basic Operations}{}
 % \cmdS{cd $path$}{change directory}
 % \subsubsection{possible values for $path$}{}
