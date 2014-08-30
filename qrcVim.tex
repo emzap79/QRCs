@@ -160,13 +160,12 @@ previous line, if it lies between the $a$ and $b$ marks}
 \cmdOper{\bs$|$ }	{separate two branches ($\equiv$ {\it or\/})}
 \cmdOper{\bs( \bs) }	{group patterns into an atom}
 \cmdOper{\& \bs{}1 }	{the whole matched pattern, $1^{st}$ {\tt()} group}
-\cmdOper{\bs \& }	{a `branch' matches last concat, but only if all preceding concats also match at the same position}
+\cmdOper{\bs \& }	{a {\it branch}: matches last concat, but only if all preceding concats also match at the same position}
 % http://vim.wikia.com/wiki/Search_patterns
 \cmdExmpl{/.*red\bs\&.*blue}	{the following pattern finds all lines that contain both "red" and "blue", in any order}
 \cmdOper{\bs u \bs l }	{upper, lowercase character}
 \cmdOper{\bs U \bs L }	{id., whole pattern}
 \cmdOper{\bs c \bs C }	{ignore, match case on pattern}
-\cmdOper{\bs \%x }	{match hex character}
 \cmdOper{\bs @= \bs @! }	{\tt $char$(?=pattern) $char$(?!pattern)\rm}
 \cmdOper{\bs @$<$= \bs @$<$! }	{\tt (?=pattern)$char$ (?!pattern)$char$\rm}
 % http://unix.stackexchange.com/a/91472
@@ -178,6 +177,8 @@ comment `\#' is excluded from pattern}
 \cmdOper{\bs\_. }	{any single char, including end-of-line}
 \cmdOper{\bs zs \bs ze }	{set start, end of pattern}
 \cmdOper{\bs \%\^{} \bs\%\$ }	{match start, end of file}
+\cmdOper{\bs \%$n$l \bs \%$n$c \bs \%$n$v }	{matches specific line, column, virtual column $n$}
+\cmdOper{\bs \%x }	{match hex character}
 \cmdOper{\bs\%{}V }	{match inside visual area}
 \cmdOper{\bs\tt'\rm m }	{match with position of mark m}
 \cmdOper{\bs\%(\bs) }	{unnamed grouping}

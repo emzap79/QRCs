@@ -118,8 +118,11 @@ For database interaction, see packages {\tt RODBC}, {\tt DBI},\\
 \cmdL{factor(x,levels=)}	{encodes a vector {\tt x} as a factor}
 \cmdL{gl(n,k,length=n*k,labels=1:n)}	{generate levels (factors) by specifying the pattern of their levels; {\tt k} is the number of levels, and {\tt n} is the number of replications}
 \cmdL{expand.grid()}	{a data frame from all combinations of the supplied vectors or factors}
+
+% Bind Rows/Columns to Matrices
 \cmdS{rbind(...)}	{combine arguments by rows for matrices, data frames, and others}
 \cmdS{cbind(...)}	{id. by columns}
+\cmdExmpl{cbind(x, colName=c(1,2,3))}	{append column named ``colName'' to matrix x}
 
 \section{Slicing and extracting data}{}
 \subsection{Indexing vectors}{}
@@ -194,6 +197,7 @@ logical)}
 \cmdS{na.omit(x)}	{suppresses the observations with missing data ({\tt NA}) (suppresses the corresponding line if {\tt x} is a matrix or a data frame)}
 \cmdS{na.fail(x)}	{returns an error message if {\tt x }contains at least one {\tt NA}}
 \cmdS{unique(x)}	{if {\tt x} is a vector or a data frame, returns a similar object but with the duplicate elements suppressed}
+\cmdL{duplicated(x)}	{returns a logical vector indicating which elements (rows) of a vector or data frame are duplicates}
 \cmdS{table(x)}	{returns a table with the numbers of the differents values of {\tt x} (typically for integers or factors)}
 \cmdL{subset(x, \ldots)}	{returns a selection of {\tt x} with respect to criteria ({\tt \ldots}, typically comparisons: {\tt x\$V1 < 10}); if {\tt x} is a data frame, the option {\tt select} gives the variables to be kept or dropped using a minus sign}
 \cmdL{sample(x, size)}	{resample randomly and without replacement {\tt size}
