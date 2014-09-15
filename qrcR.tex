@@ -195,7 +195,7 @@ logical)}
 \cmdS{choose(n, k)}	{ computes the combinations of $k$ events among $n$ repetitions = $n!/[(n-k)!k!]$}
 \cmdS{combn(n, k)}	{ Generate All Combinations of n Elements, Taken m at a Time.}
 \cmdS{na.omit(x)}	{suppresses the observations with missing data ({\tt NA}) (suppresses the corresponding line if {\tt x} is a matrix or a data frame)}
-\cmdL{complete.cases(x[$n$],x[$n$])}	{suppress lines and/or columns, based on given indices} % http://stackoverflow.com/a/4862502
+\cmdL{complete.cases(x[$n$],x[$n$])}	{allows removement of `na's by using part of the dataframe} % http://stackoverflow.com/a/4862502
 \cmdExmpl{\\ x[complete.cases(x[,5:6]),]}	{skip all rows in data frame x, where `na' appears in column 5 or 6}
 \cmdS{na.fail(x)}	{returns an error message if {\tt x }contains at least one {\tt NA}}
 \cmdS{unique(x)}	{if {\tt x} is a vector or a data frame, returns a similar object but with the duplicate elements suppressed}
