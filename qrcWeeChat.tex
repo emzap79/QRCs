@@ -1,0 +1,88 @@
+%%%%%%%%%%%%%%
+%  preamble  %
+%%%%%%%%%%%%%%
+% TeX Format
+
+% version
+\def\content{\uppercase{Weechat}}
+\def\shortcontent{\content}
+\def\versionnumber{0.1}  % Version of this reference card
+\def\version{v\versionnumber\ \month\ \year}
+
+% include stylefile
+\input mydefs.sty
+\mytitle
+
+% shortcopyrightnotice
+\shortintro
+% \shortintroWeechat
+
+%%%%%%%%%%%%%%%%%%
+%  card content  %
+%%%%%%%%%%%%%%%%%%
+% http://ricostacruz.com/cheatsheets/weechat.html
+\section{Basic Operations}{}
+\cmdS{\bs help \key{cmd}}	{To get help on a specific command}
+\cmdS{\bs set}	{display all options (WeeChat and plugins)}
+\cmdL{\bs set weechat.*}	{display WeeChat options}
+\cmdS{\bs set irc.*}	{display IRC plugin options}
+
+\subsection{Movements}{moving around in weechat's command line is pretty much the same as in terminal (see: qrcShell)}
+
+\subsection{Buffer}{}
+\cmdS{\key{\ctrl s \ctrl u}}	{Set unread marker on all windows}
+\cmdS{\ctrl p \ctrl n}	{switch buffer left, right}
+\cmdS{\alt a}	{goto next active buffer}
+\cmdS{\alt 0\ldots9}	{switch to buffer $n$}
+\cmdS{F9/F10}	{scroll buffer title}
+\cmdS{F11/F12}	{scroll nick list}
+
+\cmdS{\alt w \alt <}	{switch windows}
+\cmdS{\alt w \alt b}	{balance windows}
+
+\subsection{Commands}{}
+\cmdS{/window zoom}	{zoom into window}
+\cmdL{/window splith, splitv}	{split window horizontally, vertically}
+\cmdL{/join \#channel}	{join a channel}
+\cmdL{/part [quit message]}	{part a channel, keeping buffer open}
+\cmdL{/query $nick$ $message$}	{send message to $nick$}
+\cmdS{/close}	{close server or (private) channel buffer}
+
+% https://github.com/ljakab/CheatSheet/blob/master/weechat.md
+\subsection{Setup}{Setting up authenticated FreeNode over SSL in Weechat}
+
+% /set weechat.network.gnutls_ca_file "/etc/ssl/certs/ca-certificates.crt"
+
+% /set irc.server.freenode.autoconnect on
+% /set irc.server.freenode.addresses "chat.freenode.net/7000"
+% /set irc.server.freenode.ssl on
+% /set irc.server.freenode.ssl_dhkey_size 1024
+
+% /set irc.server.freenode.nicks "lori, lori_, lori__"
+
+% /set irc.server.freenode.username "lori"
+% /set irc.server.freenode.realname "Lori"
+
+% /set irc.server_default.sasl_mechanism dh-blowfish
+% /set irc.server.freenode.sasl_username "lori"
+% /set irc.server.freenode.sasl_password "******"
+
+% /set irc.server.freenode.autojoin "#lispmob,#lisp-networking,#openvswitch,#opendaylight"
+
+% /connect freenode
+
+
+\subsection{Search}{}
+\cmdS{\ctrl r}	{incremental search }
+\cmdS{\enter, \ctrl j, \ctrl m}	{stop search}
+
+%% Footer
+\copyrightnotice
+
+% Ending
+\supereject
+\if L\lr \else\null\vfill\eject\fi
+\if L\lr \else\null\vfill\eject\fi
+\bye
+
+% EOF
