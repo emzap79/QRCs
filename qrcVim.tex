@@ -175,6 +175,7 @@ comment `\#' is excluded from pattern}
 % http://vim.wikia.com/wiki/Search_across_multiple_lines
 \cmdOper{\bs\_\^{} \bs\_\$ }	{start-of-line, end-of-line, anywhere in pattern}
 \cmdOper{\bs\_. }	{any single char, including end-of-line}
+\cmdExmpl{foo\bs\_\bs sbar}	{Find any pattern $foo\enskip bar$, even when divided by linebreak}
 \cmdOper{\bs zs \bs ze }	{set start, end of pattern}
 \cmdOper{\bs \%\^{} \bs\%\$ }	{match start, end of file}
 \cmdOper{\bs \%$n$l \bs \%$n$c \bs \%$n$v }	{matches specific line, column, virtual column $n$}
