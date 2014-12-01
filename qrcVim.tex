@@ -175,7 +175,7 @@ comment `\#' is excluded from pattern}
 % http://vim.wikia.com/wiki/Search_across_multiple_lines
 \cmdOper{\bs\_\^{} \bs\_\$ }	{start-of-line, end-of-line, anywhere in pattern}
 \cmdOper{\bs\_. }	{any single char, including end-of-line}
-\cmdExmpl{foo\bs\_\bs sbar}	{Find any pattern $foo\enskip bar$, even when divided by linebreak}
+\cmdExmpl{foo\bs\_\bs sbar}	{find any pattern $foo\enskip bar$, even when divided by linebreak}
 \cmdOper{\bs zs \bs ze }	{set start, end of pattern}
 \cmdOper{\bs \%\^{} \bs\%\$ }	{match start, end of file}
 \cmdOper{\bs \%$n$l \bs \%$n$c \bs \%$n$v }	{matches specific line, column, virtual column $n$}
@@ -235,7 +235,7 @@ comment `\#' is excluded from pattern}
 
 \subsection{Reading from \& writing to files}	{}
 \cmdS{:e\grey{dit} $f$ }	{edit file $f$, reload current file if no $f$}
-\cmdS{:ar\grey{gs} $f_1 \ldots f_n$}	{load files to buffer in background}
+\cmdS{:ar\grey{gs} $f_1 \ldots f_n$}	{load $n$ files to buffer in background}
 \cmdS{:$r$w\grey{rite} $f$ }	{write range $r$ to file $f$ (this file if no $f$)}
 \cmdS{:$r$w\grey{rite}\kern2pt$>>f$ }	{append range $r$ to file $f$}
 \cmdS{:q\grey{uit} :q\grey{uit}! }	{quit and confirm, discard changes}
@@ -359,7 +359,6 @@ comment `\#' is excluded from pattern}
 
 %% Footer
 \copyrightnotice
-
 
 % Ending
 \vfil
