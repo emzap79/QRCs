@@ -86,11 +86,14 @@
 \cmdS{g\ctrl G}	{Count words, character lines and bytes of selection}
 
 \section{Delete, Copy to Registers}	{}
-\subsection{Deletion}	{}
+\subsection{Deletion}	{refer to {\tt :h und-tree}}
 \cmdS{x X }	{delete character under, before cursor}
 \cmdS{d$m$ }	{delete text of movement command $m$}
 \cmdS{dd D }	{delete current line, to the end of line}
 \cmdS{u U }	{undo last command, restore last changed line}
+% http://stackoverflow.com/a/8569812/1483760
+\cmdExmpl{:u1|u}	{To revert the current buffer to the state before the very
+first change remembered by Vim in the undo list, use the command}
 \cmdS{.\thinspace\thinspace\ctrl R }	{repeat last $n$ changes, redo last undo}
 
 \subsection{Copying}	{}
@@ -108,8 +111,10 @@
 \cmdS{:@$x$ }	{execute register $x$ as an {\it Ex\/} command}
 \cmdS{:reg\grey{ister} $x$ }	{show content of single register $x$}
 \cmdS{q$x$ q$X$ q}	{record, append, stop recording typed characters as macro into register $x$}
-% \cmdS{q }	{stop recording macro}
 \cmdS{@$x$ }	{execute macro of register $x$}
+% http://stackoverflow.com/a/1291997/1483760
+% http://stackoverflow.com/a/3024430/1483760
+\cmdExmpl{:bufdo exe "\%normal @$x$"}	{execute $x$ on each file of buffer list}
 \cmdS{@@ }	{repeat previous recorded macro}
 \cmdS{q$x$q}	{empty register $x$}
 \cmdExmpl{:g/$p$/d $x$ | let @+ = @x}	{delete lines with pattern $p$ into Register $x$ and copy to clipboard afterwards}
@@ -136,7 +141,7 @@ flaglist below!}
 \cmdExmpl{:'$a$,'$b$g/$x$/-1j}	{join any line containing the string $x$ with
 previous line, if it lies between the $a$ and $b$ marks}
 \cmdL{:$r$g/$x$/s/$p$/$q$/g }	{for every line in $r$ containing $x$, substitute $p$ with $q$}
-\cmdS{:$r$\&\or:$r$\tild}	{repeat last search, substitution on range $r$, but without flags}
+\cmdS{:$r$\&\&~:$r$\&}	{repeat last search or substitution on range $r$ with, without flags}
 
 \subsection{Ex Ranges}	{refer to {\tt :h cmdline-ranges}}
 \cmdOper{, }	{cursor position interpreted from current line}
@@ -297,6 +302,7 @@ comment `\#' is excluded from pattern}
 \cmdS{:bd$n$ }	{delete buffer $n$ (also with filename)}
 \cmdExmpl{:bd *.ext \ctrl A}	{Delete all Buffers with Extension `ext'}
 \cmdS{:badd f.txt }	{load file into new buffer}
+\cmdS{:bufdo $cmd$}	{execute $cmd$ in each buffer in the buffer list.}
 \cmdS{:sb$n$ }	{Split window and edit buffer $n$ from the bufflist}
 
 \subsection{Buffer Shortcuts}	{refer to {\tt :h ctrl-w }}
