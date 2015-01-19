@@ -1,7 +1,7 @@
 % vim:fdm=marker
-% Intro %{{{
+% Intro                       {{{1
 
-% Font %{{{
+% Font                        {{{2
 
 \font\bigbf=cmbx12
 \font\smallrm=cmr8
@@ -10,10 +10,9 @@
 % \font\tinytt=cmtt5
 \font\tinyit=cmmi5
 
-% Font %}}}
-% Shortintro%{{{
+% Shortintro                  {{{1
 
-%% Intro Definitions%{{{
+%% Intro Definitions          {{{2
 
 % mytitle
 \def\mytitle{
@@ -22,7 +21,10 @@
 
 % shortintro
 \def\shortintro{\smallskip
-\centerline{\smallrm Frequently used \shortcontent\ commands -- Version \version}}
+\centerline{\smallrm
+Frequently used \shortcontent\ commands -- Version \version}
+\vskip 1.5ex
+}
 \def\year{2014}
 \def\month{August}
 
@@ -36,9 +38,7 @@
     \vskip 1.5ex
 }
 
-%% Intro Definitions%}}}
-%% Specific Intros%{{{
-
+%% Specific Intros            {{{2
 
 % intro qrcWeechat
 \def\shortintroWeechat{\shortintrospec{\smallrm Vim cheatsheet}}
@@ -67,10 +67,7 @@
 % http://michaelgoerz.net/
 \def\shortintroVim{\shortintrospec{\smallrm Vim cheatsheet based on the version by Michael Goerz}}
 
-%% Specific Intros%}}}
-
-% Shortintro%}}}
-% Copyrightnotice%{{{
+% Copyrightnotice             {{{2
 
 % short
 \def\shortcopyrightnotice{\smallskip
@@ -88,12 +85,9 @@ This TeXfile is based on Gabriel B. Burcas \copyright\ git-qrc.tex
 and has then been modified to my own requirements, with permission!
 \endgroup}
 
-% Copyrightnotice%}}}
+% Page Format                 {{{1
 
-% Intro %}}}
-% Page Format%{{{
-
-% Document Size%{{{
+% Document Size               {{{2
 
 % supressing black boxes at eol
 \overfullrule=0pt
@@ -102,8 +96,7 @@ and has then been modified to my own requirements, with permission!
 \pdfpageheight=21cm
 \pdfpagewidth=29.7cm
 
-% Document Size%}}}
-% Three columns definitions%{{{
+% Three columns definitions   {{{2
 
 \parindent 0pt
 \nopagenumbers
@@ -137,26 +130,16 @@ and has then been modified to my own requirements, with permission!
                 \advancepageno}
             \def\columnbox{\leftline{\pagebody}}
 
-% Three columns definitions%}}}
+% Other Commands              {{{1
 
-% Page Format%}}}
-% Definitions%{{{
-
-% META-Key
-\def\metakeydef{\key{M} denotes the meta-key, usually bound to \key{alt}\or \key{esc}}
-
-% Definitions%}}}
-% Other Commands%{{{
-
-% Hlinewidth%{{{
+% Hlinewidth                  {{{2
 
 % http://www.volkerschatz.com/tex/halign.html
 \def\hlinewd{
     \hrule width45.75ex depth.15ex
 }
 
-% Hlinewidth%}}}
-% Title & Sections%{{{
+% Title & Sections            {{{2
 
 \def\title#1{\hfil{\bf #1}\hfil\par\vskip 2pt\hrule}
 \def\section#1#2{\vskip 5ex {\bf#1}\par\vskip 1pt\hlinewd\vskip 1pt#2\vskip 5pt}
@@ -164,8 +147,7 @@ and has then been modified to my own requirements, with permission!
 % \def\subsubsection#1{\vskip 1ex {\hskip 2em #1\/}\par\vskip 1ex}
 \def\subsubsection#1#2{\vskip 1ex {\hskip 2em #1\/}\par\vskip 1pt\vskip 1pt #2}
 
-% Title & Sections%}}}
-% A short command%{{{
+% A short command             {{{2
 
 \def\cmdS#1#2{
   \noindent
@@ -190,8 +172,7 @@ and has then been modified to my own requirements, with permission!
   \vskip 0.14cm
 }
 
-%}}}
-% A long command%{{{
+% A long command              {{{2
 
 \def\cmdL#1#2{
   \vbox {
@@ -214,8 +195,7 @@ and has then been modified to my own requirements, with permission!
   \vskip 0.14cm
 }
 
-%}}}
-% A short option%{{{
+% A short option              {{{2
 
 \def\cmdOpt#1#2{
   \noindent
@@ -246,8 +226,7 @@ and has then been modified to my own requirements, with permission!
   \vskip 0.14cm
 }
 
-% A long command%}}}
-% A long option%{{{
+% A long option               {{{2
 
 \def\cmdOptL#1#2{
   \noindent
@@ -276,13 +255,11 @@ and has then been modified to my own requirements, with permission!
   \vskip 0.14cm
 }
 
-%}}}
-% A very short command%%{{{
+% A very short command%       {{{2
 
 \def\cnd#1{\hfill$\lfloor$ #1\par}
 
-% A very short command%%}}}
-% A very long option%{{{
+% A very long option          {{{2
 
 \def\cmdOptLl#1#2{
     \hsize=8.5cm
@@ -306,8 +283,7 @@ and has then been modified to my own requirements, with permission!
     \vskip 0.14cm
 }
 
-%}}}
-% An example command%{{{
+% An example command          {{{2
 
 \def\cmdExmpl#1#2{
 \vskip 0.2ex
@@ -324,8 +300,7 @@ and has then been modified to my own requirements, with permission!
 \vskip 1.0ex
 }
 
-%}}}
-% An operator command%{{{
+% An operator command         {{{2
 
 \def\cmdOper#1#2{
   \noindent
@@ -356,9 +331,9 @@ and has then been modified to my own requirements, with permission!
   %\hrule
   \par
   \vskip 0.14cm
+  }
 
-}%}}}
-% An long operator command%{{{
+% An long operator command    {{{2
 
 \def\cmdOperL#1#2{
     \noindent
@@ -390,17 +365,15 @@ and has then been modified to my own requirements, with permission!
     \vskip 0.14cm
 }
 
-% An long operator command%}}}
-% Optimizations%{{{
+% Optimizations               {{{2
 
 \def\cmd#1{{\tt#1}\null}	%\null so not an abbrev even if period follows
 \def\grey#1{\pdfliteral{0.65 0.65 0.65 rg}#1\pdfliteral{0 0 0 rg}}
 \def\black#1{\pdfliteral{0 0 0 rg}#1\pdfliteral{0.65 0.65 0.65 rg}}
 
-% Optimizations%}}}
-% Characters definitions%{{{
+% Definitions                 {{{1
 
-% Other Commands%{{{# %s% %s
+% Other Commands              {{{2
 
 % ASCII-Codes: http://www.theasciicode.com.ar/ascii-printable-characters/tilde-swung-dash-ascii-code-126.html
 \def\\{\hfil\break}
@@ -432,14 +405,20 @@ and has then been modified to my own requirements, with permission!
 \def\alt{$\langle${\rm{m}}$\rangle$}
 \def\meta{$\langle${\rm{m}}$\rangle$}
 
-% Other Commands%}}}# %s% %s
-% mathematical definitions%{{{
+% Key Definitions             {{{2
+
+% META/CTRL-Key
+\def\metakeydef{
+In this Reference Card, special characters are used as a placeholder for
+specific, non-alphabetical keys. \key{M} denotes the meta-key, usually
+bound to \key{alt}\or \key{esc} while {\rm\char94}\kern-1pt\ is
+referred to the Controllkey (CTRL).
+}
+
+% mathematical definitions    {{{2
 
 \def\expon{{\rm\char94}\kern-1pt}       % ^
 \def\lthan{{\char60}}                   % <
 \def\gthan{{\rm\char62}\kern-1pt}       % >
 \def\logor{{\rm\char179}\kern-1pt}      % |
 
-% mathematical definitions%}}}
-
-% Characters definitions%}}}
