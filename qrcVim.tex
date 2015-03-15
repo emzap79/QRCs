@@ -66,7 +66,7 @@
 \cmdS{\ctrl R\ctrl A}	{content under cursor to command mode}
 \cmdS{\ctrl R = 5*5}	{insert 25 into text}
 \cmdS{\ctrl R$x$ \ctrl R\ctrl R$x$ }	{insert content of register $x$, literally}
-\subsubsection{CTRL-X (Command Mode Completions)}
+\subsubsection{CTRL-X (Command Mode Completions)}{}
 \cmdS{\ctrl{}X\ctrl{}L}	{whole lines}
 \cmdS{\ctrl{}X\ctrl{}N \ctrl{}X\ctrl{}I}	{keywords in current file, plus included files}
 \cmdS{\ctrl{}X\ctrl{}K \ctrl{}X\ctrl{}N}	{keywords in dictionary, thesaurus}
@@ -122,11 +122,30 @@ first change remembered by Vim in the undo list, use the command}
 
 \section{Search \& Substitute}	{
 substitutions work like {\tt:s/$p$/$q$/$flag$}, you may limit your search to
-an area between $r$anges ({\tt Ex ranges)} -- for appending $flags$ such as $g$, $c$, $l$ etc, see
-flaglist below!}
+an area between $r$anges ({\tt Ex ranges)}.}
+
+\subsubsection{Search, Substitute Flags }
+\cmdOper{c}	{confirm each substitution}
+\cmdOper{e}	{do not issue error messages and continue as if no error occurred}
+\cmdOper{g}	{replace all occurrences in the line}
+\cmdOper{i I}	{ignore, mind case for the pattern (overwrites 'ignorecase' and 'smartcase' options)}
+\cmdOper{p~\#~l}	{print the line containing the last substitute, like {\tt :list} , prepend line number afterwards}
+\cmdOper{\&}	{must be the first one: keep flags from the previous substitute}
+\cmdOper{n}	{report the number of matches, do not actually substitute.  (the [c] flag is ignored.) }
+
 \subsection{Forward \& Backward Searches}	{refer to {\tt :h search-commands}}
 \cmdS{/$s$\enter~?$s$\enter }	{search forward, backward for $s$}
 \cmdL{/$s$/$o$\enter~?$s$?$o$\enter }	{search fwd, bwd for $s$ with offset $o$}
+
+\subsubsection{Offsets}	{}
+The offset gives the cursor position relative to the found match:\\
+\cmdOper{$n$, -$n$}{lines down-, upwards, in col 1}
+\cmdOper{$e$+$n$, $e$-$n$}{characters to the right, left of the end of the match}
+\cmdOper{$s$+$n$, $e$-$n$}{characters to the right, left of the start of the match}
+\cmdOper{$b$+$n$, $e$-$n$}{identical to s+,-$n$ above (mnemonic: begin)}
+\cmdOper{;$p$}{perform another search}
+
+\subsection{Quick Search Commands}	{}
 \cmdS{n\or /\enter }	{repeat forward last search}
 \cmdS{N\or~?\enter }	{repeat backward last search}
 \cmdS{\# * }	{search backward, forward for word under cursor}
@@ -146,7 +165,6 @@ previous line, if it lies between the $a$ and $b$ marks}
 \subsection{Ex Ranges}	{refer to {\tt :h cmdline-ranges}}
 \cmdOper{, }	{cursor position interpreted from current line}
 \cmdOper{;\ }	{the cursor position will be set to line of last search\or substitution}
-\cmdExmpl{, (this line) and ; (that line)}	{both {\tt ,} and {\tt ;} seperate line numbers. they differ in interpretation though}
 \cmdOper{$n$ }	{an absolute line number $n$}
 \cmdOper{.\thinspace\thinspace\thinspace\$ }	{the current, last line in file}
 \cmdOper{\% * }	{entire file, visual area}
@@ -172,9 +190,10 @@ previous line, if it lies between the $a$ and $b$ marks}
 \cmdOper{\bs U \bs L }	{id., whole pattern}
 \cmdOper{\bs c \bs C }	{ignore, match case on pattern}
 \cmdOper{\bs @= \bs @! }	{\tt $char$(?=pattern) $char$(?!pattern)\rm}
+\cmdExmpl{{\it pattern}\bs(foo\bs)\bs @!\$}	{matches pattern, only when line is not ending in 'foo'}
 \cmdOper{\bs @$<$= \bs @$<$! }	{\tt (?=pattern)$char$ (?!pattern)$char$\rm}
 % http://unix.stackexchange.com/a/91472
-\cmdExmpl{/\/\bs(\#.*\bs)\bs@<=pattern}	{everything before the
+\cmdExmpl{/\/\bs(\#.*\bs)\bs@<={\it pattern}}	{everything before the
 comment `\#' is excluded from pattern}
 \cmdOper{\bs @$>$ }	{\tt (?$>$pattern)\rm }
 % http://vim.wikia.com/wiki/Search_across_multiple_lines
@@ -191,15 +210,6 @@ comment `\#' is excluded from pattern}
 \cmdOper{\bs\_$[$ $]$ }	{collection with end-of-line included}
 \cmdOper{\bs\%$[$ $]$ }	{sequence of optionally matched atoms}
 \cmdOper{\bs{}v }	{very magic: patterns almost like perl}
-
-\subsection{Search, Substitute Flags}	{refer to {\tt :h :s\_flags}}
-\cmdOper{c}	{confirm each substitution}
-\cmdOper{e}	{do not issue error messages and continue as if no error occurred}
-\cmdOper{g}	{replace all occurrences in the line}
-\cmdOper{i I}	{ignore, mind case for the pattern (overwrites 'ignorecase' and 'smartcase' options)}
-\cmdOper{p~\#~l}	{print the line containing the last substitute, like {\tt :list} , prepend line number afterwards}
-\cmdOper{\&}	{must be the first one: keep flags from the previous substitute}
-\cmdOper{n}	{report the number of matches, do not actually substitute.  (the [c] flag is ignored.) }
 
 \section{Advanced Operations}{}
 \subsection{Special Text Operations}{}
