@@ -1,3 +1,19 @@
+loop:
+	pdftex qrcMatlab.tex
+	xdg-open qrcMatlab.pdf &
+
+all:
+	pdftex qrcMatlab.tex
+	xdg-open qrcMatlab.pdf &
+
+mm:
+	pdftex qrcMatlab.tex
+	xdg-open qrcMatlab.pdf &
+
+matlab:
+	pdftex qrcMatlab.tex
+	xdg-open qrcMatlab.pdf &
+
 mc:
 	pdftex qrcMidnComm.tex
 	xdg-open qrcMidnComm.pdf &

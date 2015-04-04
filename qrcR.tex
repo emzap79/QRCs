@@ -96,17 +96,19 @@ On windows, the file connection can also be used with {\tt description =
 \cmdExmpl{\\ x <- read.delim("clipboard")}{To read a table copied from Excel, use}
 \cmdExmpl{\\ {\smalltt write.table(x,"clipboard",sep="\bs t",col.names=NA)}}{To write a table to the clipboard for Excel, use}
 
-
 For database interaction, see packages {\tt RODBC}, {\tt DBI},\\
 {\tt RMySQL}, {\tt RPgSQL}, and {\tt ROracle}. See packages {\tt XML},
 {\tt hdf5}, {\tt netCDF} for reading other file formats.
 
 \subsection{Data creation}{}
-
-\cmdS{c(...)}	{generic function to concatenate arguments with the default forming a vector; with {\tt recursive=T} descends through lists combining all elements into one vector}
-\cmdS{from:to}	{generates a sequence; ``:'' has operator priority; 1:4 + 1 is ``2,3,4,5''}
+\cmdS{c(...)}	{generic function to concatenate arguments with the default
+forming a vector; with {\tt recursive=T} descends through lists combining all
+elements into one vector}
+\cmdS{from:to}	{generates a sequence; ``:'' has operator priority; 1:4 + 1 is
+``2,3,4,5''}
 \cmdS{seq(from,to)}	{generates a sequence {\tt by=} specifies increment; {\tt length=} specifies desired length}
-\cmdS{seq(along=x)}	{generates {\tt 1, 2, \ldots, length(along)};\\useful for {\tt for} loops}
+\cmdS{seq(along=x)}	{generates {\tt 1, 2, \ldots, length(along)};\\useful for
+{\tt for} loops}
 \cmdS{rep(x,times)}	{replicate {\tt x} {\tt times}; use {\tt each=} to repeat ``each'' element of {\tt x} {\tt each} times;}
 \cmdExmpl{1 2 3 1 2 3}{\tt rep(c(1,2,3),2)}
 \cmdExmpl{1 1 2 2 3 3}{\tt rep(c(1,2,3),each=2)}
@@ -121,7 +123,8 @@ For database interaction, see packages {\tt RODBC}, {\tt DBI},\\
 \cmdL{expand.grid()}	{a data frame from all combinations of the supplied vectors or factors}
 
 % Bind Rows/Columns to Matrices
-\cmdS{rbind(...)}	{combine arguments by rows for matrices, data frames, and others}
+\cmdS{rbind(...)}	{combine arguments by rows for matrices, data frames, and
+others}
 \cmdS{cbind(...)}	{id. by columns}
 \cmdExmpl{cbind(x, colName=c(1,2,3))}	{append column named ``colName'' to matrix x}
 
@@ -147,7 +150,6 @@ For database interaction, see packages {\tt RODBC}, {\tt DBI},\\
 
 
 \subsection{Indexing matrices}{}
-
 \cmdOper{\tt x[i,j]}	{element at row {\tt i}, column {\tt j}}
 \cmdOper{\tt x[i,]}	{row {\tt i}}
 \cmdOper{\tt x[,j]}	{column {\tt j}}
@@ -155,7 +157,6 @@ For database interaction, see packages {\tt RODBC}, {\tt DBI},\\
 \cmdOper{\tt x["name",]}	{row named {\tt "name"}}
 
 \subsection{Indexing data frames}{matrix indexing plus the following}
-
 \cmdOper{\tt x[["name"]]}	{column named {\tt "name"}}
 \cmdOper{\tt x\$name}	{id.}
 
@@ -178,7 +179,6 @@ For database interaction, see packages {\tt RODBC}, {\tt DBI},\\
 \cmdL{attributes(obj)}	{get or set the list of attributes of {\tt obj}}
 
 \section{Data selection and manipulation}{}
-
 \cmdS{which.max(x)}	{ returns the index of the greatest element of $x$}
 \cmdS{which.min(x)}	{ returns the index of the smallest element of $x$}
 \cmdS{rev(x)}	{ reverses the elements of {\tt x}}
@@ -369,22 +369,35 @@ specify missing data (NA) removal.
 \cmdS{optimise()}	{One Dimensional Optimization}
 \cmdS{merge(a,b)}	{merge two data frames by com\-mon col\-umns or row names}
 \cmdL{xtabs(a~b,data=x)}	{a contingency table from cross-classi\-fy\-ing factors}
-\cmdL{aggregate(x,by,FUN)}	{splits the data frame {\tt x} into subsets, computes summary statistics for each, and returns the result in a convenient form; {\tt by} is a list of grouping elements, each as long as the variables in {\tt x}}
-\cmdS{stack(x, \ldots)}	{transform data available as se\-pa\-rate col\-umns in a data frame or list into a single column}
+\cmdL{aggregate(x,by,FUN)}	{splits the data frame {\tt x} into subsets,
+computes summary statistics for each, and returns the result in a convenient
+form; {\tt by} is a list of grouping elements, each as long as the variables in
+{\tt x}}
+\cmdS{stack(x, \ldots)}	{transform data available as se\-pa\-rate col\-umns in
+a data frame or list into a single column}
 \cmdL{unstack(x, \ldots)}	{inverse of {\tt stack()}}
 \cmdL{reshape(x, \ldots)}	{reshapes a data frame between 'wide' format
     with re\-pea\-ted mea\-sure\-ments in separate
     columns of the same record and 'long' format in separate records}
 \cmdExmpl{ \code(direction="wide") or\\ \code(direction="long")}	{use}
 
-\section{Optimization and model fitting}{{\smalltt optim(par, fn, method = c("Nelder-Mead", "BFGS", \ldots)}: general purpose optimization; {\tt par} is initial values, {\tt fn} is function to optimize (normally minimize)}
-\cmdS{nlm(f,p)}	{minimize function {\tt f} using a Newton-type algorithm with starting values {\tt p}}
-\cmdS{lm(formula)}	{fit linear models; {\tt formula} is typically of the form {\tt response ~ termA + termB + \ldots}; use {\tt I(x*y) + I(x\^{}2)} for terms made of nonlinear components}
-\cmdL{glm(formula,family=)}	{fit generalized linear models, specified by giving a symbolic description of the linear predictor and a description of the error distribution}
+\section{Optimization and model fitting}{{\smalltt optim(par, fn, method =
+c("Nelder-Mead", "BFGS", \ldots)}: general purpose optimization; {\tt par} is
+initial values, {\tt fn} is function to optimize (normally minimize)}
+\cmdS{nlm(f,p)}	{minimize function {\tt f} using a Newton-type algorithm with
+starting values {\tt p}}
+\cmdS{lm(formula)}	{fit linear models; {\tt formula} is typically of the form
+{\tt response ~ termA + termB + \ldots}; use {\tt I(x*y) + I(x\^{}2)} for terms
+made of nonlinear components}
+\cmdL{glm(formula,family=)}	{fit generalized linear models, specified by giving
+a symbolic description of the linear predictor and a description of the error
+distribution}
 \cmdExmpl{{\tt family} is a description of the error distribution and link
     function to be used in the model}	{see {\tt ?family}}
-\cmdS{nls(formula)}	{nonlinear least-squares estimates of the nonlinear model parameters}
-\cmdS{approx(x,y=)}	{linearly interpolate given data points; {\tt x} can be an xy plotting structure}
+\cmdS{nls(formula)}	{nonlinear least-squares estimates of the nonlinear model
+parameters}
+\cmdS{approx(x,y=)}	{linearly interpolate given data points; {\tt x} can be an
+xy plotting structure}
 \cmdS{spline(x,y=)}	{cubic spline interpolation}
 \cmdL{loess(formula)}	{fit a polynomial surface using local fitting}
 
@@ -394,7 +407,9 @@ arguments: {\tt data=} the data frame for the formula variables,
 {\tt na.action=} action for missing values:\\{\tt "na.fail"}, {\tt "na.omit"}, or
 a function.
 
-\section{Statistics}{help.search("test") gives you a range of validity tests such as {\tt t.test(), binom.test(), prop.test(),\\power.t.test(), pairwise.t.test(), \ldots}}
+\section{Statistics}{help.search("test") gives you a range of validity tests
+such as {\tt t.test(), binom.test(), prop.test(),\\power.t.test(),
+pairwise.t.test(), \ldots}}
 \subsection{Model Analysis}	{The following generics often apply to model fitting functions}
 \cmdL{predict(fit,...)}	{predictions from {\tt fit} based on input data}
 \cmdL{df.residual(fit)}	{ returns the number of residual degrees of freedom}
@@ -442,45 +457,85 @@ density ({\tt p{\it func}(x, \ldots)}), and the value of quantile
     while(cond) expr\\ repeat expr\\ break\\ next\\ }
 
 
-\cmdL{ifelse(test, yes, no)}	{a value with the same shape as {\tt test} filled with elements from either {\tt yes} or {\tt no}}
-\cmdL{do.call(funname, args)}	{executes a function call from the name of the function and a list of arguments to be passed to it}
+\cmdL{ifelse(test, yes, no)}	{a value with the same shape as {\tt test}
+filled with elements from either {\tt yes} or {\tt no}}
+\cmdL{do.call(funname, args)}	{executes a function call from the name of the
+function and a list of arguments to be passed to it}
 
 \section{Plotting}{}
-\cmdS{plot(x)}	{plot of the values of {\tt x} (on the $y$-axis) ordered on the $x$-axis}
-\cmdS{plot(x, y)}	{bivariate plot of {\tt x} (on the $x$-axis) and {\tt y} (on the $y$-axis)}
+
+\cmdS{plot(x)}	{plot of the values of {\tt x} (on the $y$-axis) ordered on the
+$x$-axis}
+\cmdS{plot(x, y)}	{bivariate plot of {\tt x} (on the $x$-axis) and {\tt y}
+(on the $y$-axis)}
 \cmdS{hist(x)}	{ histogram of the frequencies of {\tt x}}
-\cmdS{barplot(x)}	{histogram of the values of {\tt x}; use {\tt horiz=F} for horizontal bars}
-\cmdS{dotchart(x)}	{if {\tt x} is a data frame, plots a Cleveland dot plot (stacked plots line-by-line and column-by-column)}
+\cmdS{barplot(x)}	{histogram of the values of {\tt x}; use {\tt horiz=F} for
+horizontal bars}
+\cmdS{dotchart(x)}	{if {\tt x} is a data frame, plots a Cleveland dot plot
+(stacked plots line-by-line and column-by-column)}
 \cmdS{pie(x)}	{ circular pie-chart}
 \cmdS{boxplot(x)}	{ ``box-and-whiskers'' plot}
-\cmdL{sunflowerplot(x, y)}	{id. than {\tt plot()} but the points with similar coordinates are drawn as flowers which petal number represents the number of points}
-\cmdS{stripplot(x)}	{plot of the values of {\tt x} on a line (an alternative to {\tt boxplot()} for small sample sizes)}
-\cmdL{coplot(x\~{}$\mid$ z)}	{bivariate plot of {\tt x} and {\tt y} for each value or interval of values of {\tt z}}
-\cmdL{interaction.plot (f1, f2, y)}	{if {\tt f1} and {\tt f2} are factors, plots the means of {\tt y} (on the $y$-axis) with respect to the values of {\tt f1} (on the $x$-axis) and of {\tt f2} (different curves); the option {\tt fun} allows to choose the summary statistic of {\tt y} (by default {\tt fun=mean})}
-\cmdS{matplot(x,y)}	{bivariate plot of the first column of {\tt x} {\it vs.} the first one of {\tt y}, the second one of {\tt x} {\it vs.} the second one of {\tt y}, etc.}
-\cmdL{fourfoldplot(x)}	{visualizes, with quarters of circles, the association between two dichotomous variables for different populations ({\tt x} must be an array with {\tt dim=c(2, 2, k)}, or a matrix with {\tt dim=c(2, 2)} if $k=1$)}
-\cmdS{assocplot(x)}	{ Cohen--Friendly graph showing the deviations  from independence of rows and columns in a two dimensional contingency table}
-\cmdL{mosaicplot(x)}	{ `mosaic' graph of the residuals from a log-linear regression of a contingency table}
-\cmdS{pairs(x)}	{if {\tt x} is a matrix or a data frame, draws all possible bivariate plots between the columns of {\tt x}}
-\cmdS{plot.ts(x)}	{if {\tt x} is an object of class {\tt "ts"}, plot of {\tt x} with respect to time, {\tt x}  may be multivariate but the series must have the same frequency and dates}
-\cmdS{ts.plot(x)}	{id. but if {\tt x} is multivariate the series may have different dates and must have the same frequency}
-\cmdS{qqnorm(x)}	{quantiles of {\tt x} with respect to the values expected under a normal law}
-\cmdS{qqplot(x, y)}	{quantiles of {\tt y} with respect to the quantiles of {\tt x}}
-\cmdL{contour(x, y, z)}	{contour plot (data are interpolated to draw the curves), {\tt x} and {\tt y} must be vectors and {\tt z} must be a matrix so that {\tt dim(z)=c(length(x), length(y))} ({\tt x} and {\tt y} may be omitted)}
-\cmdL{filled.contour(x, y, z)}	{ id. but the areas between the contours are coloured, and a legend of the colours is drawn as well}
+\cmdL{sunflowerplot(x, y)}	{id. than {\tt plot()} but the points with similar
+coordinates are drawn as flowers which petal number represents the number of
+points}
+\cmdS{stripplot(x)}	{plot of the values of {\tt x} on a line (an alternative to
+{\tt boxplot()} for small sample sizes)}
+\cmdL{coplot(x\~{}$\mid$ z)}	{bivariate plot of {\tt x} and {\tt y} for each
+value or interval of values of {\tt z}}
+\cmdL{interaction.plot (f1, f2, y)}	{if {\tt f1} and {\tt f2} are factors,
+plots the means of {\tt y} (on the $y$-axis) with respect to the values of {\tt
+f1} (on the $x$-axis) and of {\tt f2} (different curves); the option {\tt fun}
+allows to choose the summary statistic of {\tt y} (by default {\tt fun=mean})}
+\cmdS{matplot(x,y)}	{bivariate plot of the first column of {\tt x} {\it vs.}
+the first one of {\tt y}, the second one of {\tt x} {\it vs.} the second one of
+{\tt y}, etc.}
+\cmdL{fourfoldplot(x)}	{visualizes, with quarters of circles, the association
+between two dichotomous variables for different populations ({\tt x} must be an
+array with {\tt dim=c(2, 2, k)}, or a matrix with {\tt dim=c(2, 2)} if $k=1$)}
+\cmdS{assocplot(x)}	{ Cohen--Friendly graph showing the deviations  from
+independence of rows and columns in a two dimensional contingency table}
+\cmdL{mosaicplot(x)}	{ `mosaic' graph of the residuals from a log-linear
+regression of a contingency table}
+\cmdS{pairs(x)}	{if {\tt x} is a matrix or a data frame, draws all possible
+bivariate plots between the columns of {\tt x}}
+\cmdS{plot.ts(x)}	{if {\tt x} is an object of class {\tt "ts"}, plot of {\tt
+x} with respect to time, {\tt x}  may be multivariate but the series must have
+the same frequency and dates}
+\cmdS{ts.plot(x)}	{id. but if {\tt x} is multivariate the series may have
+different dates and must have the same frequency}
+\cmdS{qqnorm(x)}	{quantiles of {\tt x} with respect to the values expected
+under a normal law}
+\cmdS{qqplot(x, y)}	{quantiles of {\tt y} with respect to the quantiles of {\tt
+x}}
+\cmdL{contour(x, y, z)}	{contour plot (data are interpolated to draw the
+curves), {\tt x} and {\tt y} must be vectors and {\tt z} must be a matrix so
+that {\tt dim(z)=c(length(x), length(y))} ({\tt x} and {\tt y} may be omitted)}
+\cmdL{filled.contour(x, y, z)}	{ id. but the areas between the contours are
+coloured, and a legend of the colours is drawn as well}
 \cmdL{image(x, y, z)}	{ id. but with colours (actual data are plotted)}
 \cmdL{persp(x, y, z)}	{ id. but in perspective (actual data are plotted)}
-\cmdS{stars(x)}	{if {\tt x} is a matrix or a data frame, draws a graph with segments or a star where each row of {\tt x} is represented by a star and the columns are the lengths of the segments}
-\cmdL{symbols(x, y, \ldots)}	{draws, at the coordinates given by {\tt x} and {\tt y}, symbols (circles, squares, rectangles, stars, thermometres or ``boxplots'') which sizes, colours \ldots{} are specified by supplementary arguments}
-\cmdL{termplot(mod.obj)}	{ plot of the (partial) effects of a regression model ({\tt mod.obj})}
+\cmdS{stars(x)}	{if {\tt x} is a matrix or a data frame, draws a graph with
+segments or a star where each row of {\tt x} is represented by a star and the
+columns are the lengths of the segments}
+\cmdL{symbols(x, y, \ldots)}	{draws, at the coordinates given by {\tt x} and
+{\tt y}, symbols (circles, squares, rectangles, stars, thermometres or
+``boxplots'') which sizes, colours \ldots{} are specified by supplementary
+arguments}
+\cmdL{termplot(mod.obj)}	{ plot of the (partial) effects of a regression
+model ({\tt mod.obj})}
 
 \subsection{Plot Modifiers}{The following parameters are common to many
     plotting functions}
 
 \cmdOper{add=F}	{if \T superposes the plot on the previous one (if it exists)}
 \cmdOper{axes=T}	{if \F does not draw the axes and the box}
-\cmdOper{type="p"}	{ specifies the type of plot, {\tt "p"}: points, {\tt "l"}: lines, {\tt "b"}: points connected by lines, {\tt "o"}: id. but the lines are over the points, {\tt "h"}: vertical lines, {\tt "s"}: steps, the data are represented by the top of the vertical lines, {\tt "S"}: id. but the data are represented by the bottom of the vertical lines}
-\cmdOper{xlim=, ylim=}	{specifies the lower and upper limits of the axes, for example with {\tt xlim=c(1, 10)} or {\tt xlim=range(x)}}
+\cmdOper{type="p"}	{ specifies the type of plot, {\tt "p"}: points, {\tt "l"}:
+lines, {\tt "b"}: points connected by lines, {\tt "o"}: id. but the lines are
+over the points, {\tt "h"}: vertical lines, {\tt "s"}: steps, the data are
+represented by the top of the vertical lines, {\tt "S"}: id. but the data are
+represented by the bottom of the vertical lines}
+\cmdOper{xlim=, ylim=}	{specifies the lower and upper limits of the axes, for
+example with {\tt xlim=c(1, 10)} or {\tt xlim=range(x)}}
 \cmdOper{xlab=, ylab=}	{ annotates the axes, must be variables of mode character}
 \cmdOper{main=}	{ main title, must be a variable of mode character}
 \cmdOper{sub=}	{ sub-title (written in a smaller font)}
@@ -490,65 +545,92 @@ density ({\tt p{\it func}(x, \ldots)}), and the value of quantile
 \cmdS{points(x, y)}	{adds points (the option {\tt type=} can be used)}
 \cmdS{lines(x, y)}	{ id. but with lines}
 \cmdL{text(x, y, labels...)}	{ adds text given by {\tt labels} at
-    coordinates ({\tt x},{\tt y}); a typical use is: {\tt plot(x, y, type="n");
-        text(x, y, names)}}
-        \cmdL{mtext(text, side=3, line=0, \ldots)}	{adds text given by {\tt text} in the margin specified by {\tt side} (see {\tt axis()} below); {\tt line} specifies the line from the plotting area}
+coordinates ({\tt x},{\tt y}); a typical use is: {\tt plot(x, y, type="n");
+text(x, y, names)}}
+\cmdL{mtext(text, side=3, line=0, \ldots)}	{adds text given by {\tt text} in
+the margin specified by {\tt side} (see {\tt axis()} below); {\tt line}
+specifies the line from the plotting area}
 \cmdL{segments(x0, y0, x1, y1)}	{ draws lines from points ({\tt x0},{\tt y0})
-    to points ({\tt x1},{\tt y1})}
-    \cmdL{arrows(x0, y0, x1, y1, angle= 30, code=2)}	{id. with arrows at points ({\tt x0},{\tt y0}) if {\tt code=2}, at points ({\tt x1},{\tt y1}) if {\tt code=1}, or both if {\tt code=3}; {\tt angle} controls the angle from the shaft of the arrow to the edge of the arrow head}
-    \cmdS{abline(a,b)}	{draws a line of slope {\tt b} and intercept {\tt a}}
-    \cmdS{abline(h=y)}	{ draws a horizontal line at ordinate {\tt y}}
-    \cmdS{abline(v=x)}	{ draws a vertical line at abcissa {\tt x}}
-    \cmdL{abline(lm.obj)}	{ draws regression line given by {\tt lm.obj}}
-    \cmdL{rect(x1, y1, x2, y2)}	{ draws a rectangle which left, right, bottom, and top limits are {\tt x1}, {\tt x2}, {\tt y1}, and {\tt y2}, respectively}
-    \cmdL{polygon(x, y)}	{draws a polygon linking the points with coordinates given by {\tt x} and {\tt y}}
+to points ({\tt x1},{\tt y1})}
+\cmdL{arrows(x0, y0, x1, y1, angle= 30, code=2)}	{id. with arrows at points
+({\tt x0},{\tt y0}) if {\tt code=2}, at points ({\tt x1},{\tt y1}) if {\tt
+code=1}, or both if {\tt code=3}; {\tt angle} controls the angle from the shaft
+of the arrow to the edge of the arrow head}
+\cmdS{abline(a,b)}	{draws a line of slope {\tt b} and intercept {\tt a}}
+\cmdS{abline(h=y)}	{ draws a horizontal line at ordinate {\tt y}}
+\cmdS{abline(v=x)}	{ draws a vertical line at abcissa {\tt x}}
+\cmdL{abline(lm.obj)}	{ draws regression line given by {\tt lm.obj}}
+\cmdL{rect(x1, y1, x2, y2)}	{ draws a rectangle which left, right, bottom, and
+top limits are {\tt x1}, {\tt x2}, {\tt y1}, and {\tt y2}, respectively}
+\cmdL{polygon(x, y)}	{draws a polygon linking the points with coordinates
+given by {\tt x} and {\tt y}}
 \cmdL{legend(x, y, legend)}	{ adds the legend at the point ({\tt x,y})
-    with the symbols given by {\tt legend}. You may as well add {\tt "bottom", "topleft"} etc. in place of coordinates {\tt x,y} manually}
-        \cmdS{title()}	{ adds a title and optionally a sub-title}
-        \cmdL{axis(side, vect)}	{adds an axis at the bottom ({\tt side=1}), on the left ({\tt 2}), at the top ({\tt 3}), or on the right ({\tt 4}); {\tt vect} (optional) gives the abcissa (or ordinates) where tick-marks are drawn}
-        \cmdS{rug(x)}	{draws the data {\tt x} on the $x$-axis as small vertical lines}
-        \cmdL{locator(n, type="n", \ldots)}	{returns the coordinates ($x,y$) after the
-            user has clicked {\tt n} times on the plot with the mouse; also draws
-                symbols ({\tt type="p"}) or lines ({\tt type="l"}) with respect to optional
-                graphic parameters ({\tt \ldots})}
-                \cmdExmpl{type="n"}{by default nothing is drawn}
+with the symbols given by {\tt legend}. You may as well add {\tt "bottom",
+"topleft"} etc. in place of coordinates {\tt x,y} manually}
+\cmdS{title()}	{ adds a title and optionally a sub-title}
+\cmdL{axis(side, vect)}	{adds an axis at the bottom ({\tt side=1}), on the left
+({\tt 2}), at the top ({\tt 3}), or on the right ({\tt 4}); {\tt vect}
+(optional) gives the abcissa (or ordinates) where tick-marks are drawn}
+\cmdS{rug(x)}	{draws the data {\tt x} on the $x$-axis as small vertical lines}
+\cmdL{locator(n, type="n", \ldots)}	{returns the coordinates ($x,y$) after the
+user has clicked {\tt n} times on the plot with the mouse; also draws
+symbols ({\tt type="p"}) or lines ({\tt type="l"}) with respect to optional
+graphic parameters ({\tt \ldots})}
+\cmdExmpl{type="n"}{by default nothing is drawn}
 
-\section{Graphical parameters}{These can be set globally with
-{\tt par(...)}; many can be passed as
+\section{Graphical parameters}{These can be set globally with {\tt par(...)}; many can be passed as
 parameters to plotting commands.}
-
-
-\cmdS{adj}	{controls text justification ({\tt 0} left-justified, {\tt 0.5} centred, {\tt 1} right-justified)}
-\cmdS{bg}	{specifies the colour of the background (ex. : {\tt bg="red"}, {\tt bg="blue"}, \ldots{} the list of the 657 available colours is displayed with {\tt colors()})}
+\cmdS{adj}	{controls text justification ({\tt 0} left-justified, {\tt 0.5}
+centred, {\tt 1} right-justified)}
+\cmdS{bg}	{specifies the colour of the background (ex. : {\tt bg="red"}, {\tt
+bg="blue"}, \ldots{} the list of the 657 available colours is displayed with
+{\tt colors()})}
 \cmdS{bty}	{controls the type of box drawn around the plot, allowed values
     are: {\tt "o"}, {\tt "l"}, {\tt "7"}, {\tt "c"}, {\tt "u"} or {\tt "]"} (the box looks like the corresponding character)}
 \cmdExmpl{the box is not drawn}{if {\tt bty="n"}}
-\cmdS{cex}	{ a value controlling the size of texts and symbols with respect to the default; the following parameters have the same control for numbers on the axes,\\
+\cmdS{cex}	{ a value controlling the size of texts and symbols with respect to
+the default; the following parameters have the same control for numbers on the
+axes,\\
     {\tt cex.axis}, the axis labels, {\tt cex.lab}, the title, {\tt cex.main},
     and the sub-title, {\tt cex.sub}}
 \cmdS{col}	{controls the color of symbols and lines; use color names e.g. "red", "blue" or as "\#RRGGBB"}
 \cmdExmpl{colors(), rgb(), hsv(), gray() and rainbow()}{see}
 \cmdExmpl{col.axis, col.lab, col.main, col.sub}{as for {\tt cex} there are}
-\cmdS{font}	{an integer which controls the style of text ({\tt 1}: normal, {\tt 2}: italics, {\tt 3}: bold, {\tt 4}: bold italics)}
+\cmdS{font}	{an integer which controls the style of text ({\tt 1}: normal, {\tt
+2}: italics, {\tt 3}: bold, {\tt 4}: bold italics)}
 \cmdExmpl{font.axis, font.lab, font.main, font.sub}{as for cex there are}
 \cmdS{las}	{ an integer which controls the orientation of the axis labels ({\tt 0}: parallel to the axes, {\tt 1}: horizontal, {\tt 2}: perpendicular to the axes, {\tt 3}: vertical)}
-\cmdS{lty}	{controls the type of lines, can be an integer or string ({\tt 1}: {\tt "solid"}, {\tt 2}: {\tt "dashed"}, {\tt 3}: {\tt "dotted"}, {\tt 4}: {\tt "dotdash"}, {\tt 5}: {\tt "longdash"}, {\tt 6}: {\tt "twodash"}, or a string of up to eight characters (between {\tt "0"} and {\tt "9"}) which specifies alternatively the length, in points or pixels, of the drawn elements and the blanks, for example {\tt lty="44"} will have the same effect than {\tt lty=2}}
+\cmdS{lty}	{controls the type of lines, can be an integer or string ({\tt 1}:
+{\tt "solid"}, {\tt 2}: {\tt "dashed"}, {\tt 3}: {\tt "dotted"}, {\tt 4}: {\tt
+"dotdash"}, {\tt 5}: {\tt "longdash"}, {\tt 6}: {\tt "twodash"}, or a string of
+up to eight characters (between {\tt "0"} and {\tt "9"}) which specifies
+alternatively the length, in points or pixels, of the drawn elements and the
+blanks, for example {\tt lty="44"} will have the same effect than {\tt lty=2}}
 \cmdS{lwd}	{ a numeric which controls the width of lines, default {\tt 1}}
-\cmdS{mar}	{ a vector of 4 numeric values which control the space between the axes and the border of the graph of the form {\tt c(bottom, left, top, right)}, the default values are {\tt c(5.1, 4.1, 4.1, 2.1)}}
-\cmdS{mfcol}	{a vector of the form {\tt c(nr,nc)} which partitions the graphic window as a matrix of {\tt nr} lines and {\tt nc} columns, the plots are then drawn in columns}
+\cmdS{mar}	{ a vector of 4 numeric values which control the space between the
+axes and the border of the graph of the form {\tt c(bottom, left, top, right)},
+the default values are {\tt c(5.1, 4.1, 4.1, 2.1)}}
+\cmdS{mfcol}	{a vector of the form {\tt c(nr,nc)} which partitions the
+graphic window as a matrix of {\tt nr} lines and {\tt nc} columns, the plots
+are then drawn in columns}
 \cmdS{mfrow}	{ id. but the plots are drawn by row}
-\cmdS{pch}	{ controls the type of symbol, either an integer between 1 and 25, or any single character within {\tt ""}}
+\cmdS{pch}	{ controls the type of symbol, either an integer between 1 and 25,
+or any single character within {\tt ""}}
 % \sSmepage\includegraphics[width=8.5cm]{pch_symbol}
 % \sSmepage\includegraphics[draft]{pch_symbol}
 
 \cmdS{ps}	{ an integer which controls the size in points of texts and symbols}
-\cmdS{pty}	{ a character which specifies the type of the plotting region, {\tt "s"}: square, {\tt "m"}: maximal}
-\cmdS{tck}	{a value which specifies the length of tick-marks on the axes as a fraction of the smallest of the width or height of the plot; if {\tt tck=1} a grid is drawn}
+\cmdS{pty}	{ a character which specifies the type of the plotting region, {\tt
+"s"}: square, {\tt "m"}: maximal}
+\cmdS{tck}	{a value which specifies the length of tick-marks on the axes as a
+fraction of the smallest of the width or height of the plot; if {\tt tck=1} a
+grid is drawn}
 \cmdS{tcl}	{ a value which specifies the length of tick-marks on the axes as a fraction of the height of a line of text (by default {\tt tcl=-0.5})}
 \cmdS{xaxt}	{if {\tt xaxt="n"} the $x$-axis is set but not drawn (useful in
     conjonction with\\
     {\tt axis(side=1, \ldots)})}
-\cmdS{yaxt}	{if {\tt yaxt="n"} the $y$-axis is set but not drawn (useful in conjonction \\with {\tt axis(side=2, \ldots)})}
+\cmdS{yaxt}	{if {\tt yaxt="n"} the $y$-axis is set but not drawn (useful in
+conjonction \\with {\tt axis(side=2, \ldots)})}
 
 \section{Lattice (Trellis) graphics}{ Use {\tt panel=} to define a custom panel
     function (see {\tt apropos("panel")} and {\tt ?llines}). Lattice functions
@@ -559,17 +641,23 @@ parameters to plotting commands.}
 
 \cmdS{xyplot(y\~{}x)}	{ bivariate plots (with many functionalities)}
 \cmdL{barchart(y\~{}x)}	{  histogram of the values of {\tt y} with respect to those of {\tt x}}
-\cmdS{dotplot(y\~{}x)}	{ Cleveland dot plot (stacked plots line-by-line and column-by-column)}
+\cmdS{dotplot(y\~{}x)}	{ Cleveland dot plot (stacked plots line-by-line and
+column-by-column)}
 \cmdL{densityplot(\~{}x)}	{ density functions plot}
 \cmdL{histogram(\~{}x)}	{ histogram of the frequencies of {\tt x}}
 \cmdS{bwplot(y\~{}x)}	{ ``box-and-whiskers'' plot}
-\cmdS{qqmath(\~{}x)}	{  quantiles of {\tt x} with respect to the values expected under a theoretical distribution}
+\cmdS{qqmath(\~{}x)}	{  quantiles of {\tt x} with respect to the values
+expected under a theoretical distribution}
 
 \cmdL{stripplot(y\~{}x)}	{  single dimension plot, {\tt x} must be numeric, {\tt y} may be a factor}
-\cmdS{qq(y\~{}x)}	{quantiles to compare two distributions, {\tt x} must be numeric, {\tt y} may be numeric, character, or factor but must have two `levels'}
+\cmdS{qq(y\~{}x)}	{quantiles to compare two distributions, {\tt x} must be
+numeric, {\tt y} may be numeric, character, or factor but must have two
+`levels'}
 \cmdS{splom(\~{}x)}	{ matrix of bivariate plots}
 \cmdS{parallel(\~{}x)}	{ parallel coordinates plot}
-\cmdL{levelplot(z\~{}x*y|g1*g2)}	{coloured plot of the values of {\tt z} at the coordinates given by {\tt x} and {\tt y} ({\tt x}, {\tt y} and {\tt z} are all of the same length)}
+\cmdL{levelplot(z\~{}x*y|g1*g2)}	{coloured plot of the values of {\tt z} at
+the coordinates given by {\tt x} and {\tt y} ({\tt x}, {\tt y} and {\tt z} are
+all of the same length)}
 \cmdL{wireframe(z\~{}x*y|g1*g2)}	{ 3d surface plot}
 \cmdL{cloud(z\~{}x*y|g1*g2)}	{ 3d scatter plot}
 

@@ -12,7 +12,7 @@
 
 % Shortintro                  {{{1
 
-%% Intro Definitions          {{{2
+% Intro Definitions          {{{2
 
 % mytitle
 \def\mytitle{
@@ -38,7 +38,7 @@ Frequently used \shortcontent\ commands -- Version \version}
     \vskip 1.5ex
 }
 
-%% Specific Intros            {{{2
+% Specific Intros            {{{2
 
 % intro qrcWeechat
 \def\shortintroWeechat{\shortintrospec{\smallrm Vim cheatsheet}}
@@ -62,6 +62,12 @@ Frequently used \shortcontent\ commands -- Version \version}
         expanded.
     }
 }
+
+% intro: qrcMatlab
+% http://michaelgoerz.net/
+\def\shortintroML{\shortintrospec{\smallrm Matlab QRC based on the version by
+        PISM. The original cheat-sheet can be found at:
+        http://www.pism-docs.org/}}
 
 % intro: qrcVim
 % http://michaelgoerz.net/
@@ -386,7 +392,6 @@ and has then been modified to my own requirements, with permission!
 \def\key#1{$\langle${\rm{#1\/}}$\rangle$}
 \def\shift{$\Uparrow$}
 \def\space{\key{space}}
-\def\tild{{\char126}\kern-1pt}
 \def\tab{\key{tab}}
 \def\langlebr{\char60}
 \def\ranglebr{\char62}
@@ -420,4 +425,4 @@ referred to the Controllkey (CTRL).
 \def\lthan{{\char60}}                   % <
 \def\gthan{{\rm\char62}\kern-1pt}       % >
 \def\logor{{\rm\char179}\kern-1pt}      % |
-
+\def\tild{{\char126}\kern-1pt}          % ~
