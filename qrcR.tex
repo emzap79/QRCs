@@ -74,8 +74,7 @@
     platform-independent binary format}
 \cmdL{save.image(file)}	{saves all objects}
 \cmdL{cat(..., file="", sep=" ")}	{prints the arguments after
-    coercing to character; {\tt sep} is the character separator between
-    arguments}
+    coercing to character; {\tt sep} is the character separator between arguments}
 \cmdS{print(a, \ldots)}	{prints its arguments; generic, meaning it can
     have different methods for different objects}
 \cmdL{format(x,...)}	{format an R object for pretty printing}
@@ -93,8 +92,9 @@
 On windows, the file connection can also be used with {\tt description =
 "clipboard"}.
 
-\cmdExmpl{\\ x <- read.delim("clipboard")}{To read a table copied from Excel, use}
-\cmdExmpl{\\ {\smalltt write.table(x,"clipboard",sep="\bs t",col.names=NA)}}{To write a table to the clipboard for Excel, use}
+\cmdExmpl{x <- read.delim("clipboard")}{To read a table copied from Excel, use}
+\cmdExmpl{\\ {\smalltt write.table(x,"clipboard",sep="\bs t",col.names=NA)}}{To
+write a table to the clipboard for Excel, use}
 
 For database interaction, see packages {\tt RODBC}, {\tt DBI},\\
 {\tt RMySQL}, {\tt RPgSQL}, and {\tt ROracle}. See packages {\tt XML},
@@ -261,7 +261,18 @@ Where leading zeros are shown they will be used on output but are
 optional on input. See {\tt ?strftime}.
 
 {\tt as.POSIXct( strptime( , format= ) )\\
-    format()}
+    format()}\\
+
+Setting the C locale will overcome NA issues which emerge on some systems due
+to format incongruencies:
+
+{\tt lct <- Sys.getlocale(\"LC\_TIME\")\\
+Sys.setlocale(\"LC\_TIME\", \"C\")\\
+x <- "1919-01-31"\\
+as.Date(x,...)\\
+...\\
+Sys.setlocale(\"LC\_TIME\", lct)
+}
 
 \section{Math}{{\tt sin,cos,tan,asin,acos,atan,atan2,log,log10,exp}}
 

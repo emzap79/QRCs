@@ -26,25 +26,33 @@
 \cmdS{helpwin}	{invokes windowed help utility}
 \cmdS{length}	{length of a vector or maximum dimension of an array}
 \cmdS{size}	{display dimensions of a particular array}
-\cmdS{quite}	{terminates MATLAB}
+\cmdS{quit}	{terminates MATLAB}
 \cmdS{save}	{saves variables in a file}
 \cmdS{who}	{lists  variables in memory}
 \cmdS{whos}	{lists  variable names, sizes, and types in memory}
 
 \section{Special Variables/Constants}{}
-\cmdS{ans}	{default variable for last calculation}
-\cmdS{eps}	{1}
-\cmdS{flops}	{count of ßoating point operations}
-\cmdS{Inf}	{infinity}
-\cmdS{NaNa}	{NaN}
+\cmdS{ans}	{most recent temporary answer}
+\cmdS{eps}	{accuracy of floating point precision}
+\cmdExmpl{$2.2204e^{-16}$}	{default}
+\cmdS{i}	{imaginary number}
+\cmdS{flops}	{count of floating point operations}
+\cmdS{Inf}	{infinity, ie. any number divided by 0}
+\cmdS{NaN}	{Numerical result is not defined}
 \cmdS{pi}	{the math pi (3.1415e)}
 % \cmdS{i,j}	{\begin{math}\sqrt[]{-1}\end{math}}
-\cmdS{realmax}	{largest real number MATLAB can represent}
-\cmdS{realmin}	{smallest real number MATLAB can represent}
-\cmdS{intmax}	{returns largest possible integer used in MATLAB}
-\cmdS{intmin}	{returns smallest possible integer used in MATLAB}
-\cmdS{clock}	{returns the time}
-\cmdS{date}	{returns the date}
+\cmdL{realmin, realmax}	{smallest, largest real number MATLAB can represent}
+\cmdL{intmin, intmax}	{returns smallest, largest possible integer used in MATLAB}
+\cmdS{clock, date}	{returns the time, date}
+
+\section{File \& Folder Operations}{}
+\cmdS{cd}	{change direction}
+\cmdS{copyfile}	{copy from $pathA$ to $pathB$}
+\cmdS{dir}	{output content of a folder}
+\cmdS{exist}	{determines whether variable, function or folder exists}
+\cmdL{open('workspace.mat'), load('workspace.mat')}	{opens file to command
+    line, additionaly load it into worspace window}
+\cmdS{csvwrite()}	{write to CSV format in current folder}
 
 \section{Special Characters}{}
 \cmdOper{[]}	{forms matrices}
@@ -78,38 +86,43 @@
 
 \section{Conditional Statements}{}
 
-% if, elseif, else
-if expression\\
-\hskip 7em statements\\
-elseif expression\\
-\hskip 7em statements\\
-else expression\\
-\hskip 7em statements\\
-end
+\vtop{\tt
+    {if expression}\\
+    \hbox to 4em {\hskip 2em {statements}}\\
+    {elsif expression}\\
+    \hbox to 4em {\hskip 2em {statements}}\\
+    {else expression}\\
+    \hbox to 4em {\hskip 2em {statements}}\\
+        end
+        \vskip 4ex
+}
 
+\vtop{\tt
+    {switch switch\_expression}\\
+    \hbox to 4em {\hskip 2em {statements}}\\
+    {case case\_expression}\\
+    \hbox to 4em {\hskip 2em {statements}}\\
+    {case case\_expression}\\
+    \hbox to 4em {\hskip 2em {statements}}\\
+    {otherwise}\\
+    \hbox to 4em {\hskip 2em {statements}}\\
+        end
+        \vskip 4ex
+}
 
-% \begin{verbatim}
-% end
-% switch switch_expression
-%    case case_expression
-%       statements
-%    case case_expression
-%       statements
-%    otherwise
-%       statements
-% end
-% \end{verbatim}
+\vtop{\tt
+    {for k = vectorOrColumnList}\\
+    \hbox to 4em {\hskip 2em {statements}}\\
+        end
+        \vskip 4ex
+}
 
-% \section{Loops}
-% \begin{verbatim}
-% for k = vectorOrColumnList
-%    statements
-% end
-
-% while logicalExpression
-%    statements
-% end
-% \end{verbatim}
+\vtop{\tt
+    {while logicalExpression}\\
+    \hbox to 4em {\hskip 2em {statements}}\\
+        end
+        \vskip 4ex
+}
 
 %% Footer
 \copyrightnotice

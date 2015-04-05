@@ -10,10 +10,12 @@ commercial purpose.
 My repo contains qrc's, based on the following issues
 
 - R
+- VIM
 - GIT
 - TMUX
+- WEECHAT
 - CLI (*Shell*)
-- VIM
+- TEX/LATEX
 - VIMPERATOR (*Firefox Extension*)
 - MIDNIGHT COMMANDER
 

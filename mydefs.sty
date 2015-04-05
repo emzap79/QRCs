@@ -12,7 +12,7 @@
 
 % Shortintro                  {{{1
 
-% Intro Definitions          {{{2
+% Intro Definitions           {{{2
 
 % mytitle
 \def\mytitle{
@@ -38,7 +38,7 @@ Frequently used \shortcontent\ commands -- Version \version}
     \vskip 1.5ex
 }
 
-% Specific Intros            {{{2
+% Specific Intros             {{{2
 
 % intro qrcWeechat
 \def\shortintroWeechat{\shortintrospec{\smallrm Vim cheatsheet}}
@@ -184,18 +184,16 @@ and has then been modified to my own requirements, with permission!
       \hbox to \hsize{
           \cmd{#1}
         \hfil
-        % \dotfill
-        % \hskip 20em
-    }%
+    }
     \hskip 2.5cm  % indent for description
-    \hbox to 5.9cm {%
+    \hbox to 5.9cm {
       \hfuzz = 5pt
       \hfil
       \hsize=5.9cm
       \vtop{
         {#2}
         }}
-  }%
+  }
   % \par
   \vskip 0.14cm
 }
@@ -305,6 +303,10 @@ and has then been modified to my own requirements, with permission!
 \vskip 1.0ex
 }
 
+% A function command          {{{2
+
+%%%%%% not defined yet %%%%%%
+
 % An operator command         {{{2
 
 \def\cmdOper#1#2{
@@ -370,6 +372,17 @@ and has then been modified to my own requirements, with permission!
     \vskip 0.14cm
 }
 
+% if, elseif, else            {{{2
+
+% \def\cmdFun#1#2{
+%     \vtop{\tt
+%         {#1}\\
+%         \hbox to 24em {
+%             \hskip 2em
+%             {#2}\\
+%         }
+%     }
+
 % Optimizations               {{{2
 
 \def\cmd#1{{\tt#1}\null}	%\null so not an abbrev even if period follows
@@ -402,7 +415,6 @@ and has then been modified to my own requirements, with permission!
 \def\ldots{$..$}
 \def\lldots{$...$}
 \def\code{\tt}
-% \def\ast{$\ast$}
 \def\F{{\tt FALSE} }
 \def\T{{\tt TRUE} }
 \def\esc{$\langle${\rm{esc}}$\rangle$}
