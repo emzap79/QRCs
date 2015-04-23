@@ -6,7 +6,7 @@
 % version
 \def\content{\uppercase{r}}
 \def\shortcontent{\content}
-\def\versionnumber{1.2}  % Version of this reference card
+\def\versionnumber{1.3}  % Version of this reference card
 \def\version{v\versionnumber\ \month\ \year}
 
 % include stylefile
@@ -18,8 +18,7 @@
 \shortintroR
 
 % Granted to the public domain. See www.Rpad.org for the source and latest
-% version.
-% Includes material from {\it R for Beginners} by Emmanuel Paradis
+% version. Includes material from {\it R for Beginners} by Emmanuel Paradis
 % (with permission). Some additions by James McCreight.
 
 %%%%%%%%%%%%%%%%%%
@@ -51,25 +50,10 @@
 \cmdS{methods(a)}	{shows S3 methods of {\tt a}}
 \cmdL{methods(class=class(a))}	{lists all the methods to handle objects of class a}
 
-\subsection{Input and output}{}
+\section{Input and output}{}
 \cmdS{load()}	{load the datasets written with {\tt save}}
 \cmdS{data(x)}	{loads specified data set}
 \cmdS{library(x)}	{load add-on packages}
-\cmdL{read.table(file)}	{reads a file in table format and creates a data frame
-    from it; the default separator {\tt sep=""} is any whitespace;\\\\use {\tt
-        header=T} to read the first line as a header of column names;\\\\use {\tt
-        as.is=T} to prevent character vectors from being converted to factors;\\\\
-    use {\tt comment.char=""} to prevent {\tt "\#"} from being interpreted as a
-    comment;\\\\use {\tt skip=n} to skip {\tt n} lines before reading data;\\\\see
-    the help for options on row naming, NA treatment, and others}
-\cmdL{read.csv("filename",header=T)}	{id. but with defaults set for reading comma-delimited files}
-\cmdL{read.csv2("filename",header=T,fill=T)}	{id. but with defaults set for reading semicolon-delimited files and {\tt dec=","}; if {\tt fill} is
-{\tt TRUE} then in case the rows have unequal length, blank fields are implicitly added; if {\tt blank.lines.skip} is {\tt T} then blank lines in the input are ignored.}
-\cmdL{read.delim("filename",header=T)}	{id. but with defaults set for reading tab-delimited files}
-\cmdL{{\smalltt read.fwf(file,widths,header=F,sep="\bs t",as.is=F)}}	{
-    read a table of [{\tt f}]ixed [{\tt w}]idth [{\tt f}]or\-mat\-ted data into a
-    \emergencystretch=3em 'data.frame'; {\tt widths} is an integer vector,
-    giving the widths of the fixed-width fields}
 \cmdL{save(file,...)}	{saves the specified objects (...) in the XDR
     platform-independent binary format}
 \cmdL{save.image(file)}	{saves all objects}
@@ -78,23 +62,57 @@
 \cmdS{print(a, \ldots)}	{prints its arguments; generic, meaning it can
     have different methods for different objects}
 \cmdL{format(x,...)}	{format an R object for pretty printing}
-\cmdL{{\smalltt write.table(x,file="",row.names=T,col.names=T, sep=" ")}}	{prints {\tt x} after converting to a data frame; if {\tt quote} is {\tt TRUE}, character or factor columns are surrounded by quotes
-    ({\tt "}); {\tt sep} is the field separator; {\tt eol} is the
-    end-of-line separator; {\tt na} is the string for missing values;
-    use {\tt col.names=NA} to add a blank column header to get the
-    column headers aligned correctly for spreadsheet input}
 \cmdS{sink(file)}	{[output to {\tt file}, until {\tt sink()}] Most
     of the I/O functions have a {\tt file} argument. This can often be a
     character string naming a file or a connection.  {\tt file=""} means
     the standard input or output. Connections can include files, pipes,
     zipped files, and R variables.}
 
-On windows, the file connection can also be used with {\tt description =
-"clipboard"}.
+\subsection{Read from File}{}
+
+\cmdL{read.table(file)}	{reads a file in table format and creates a data frame
+from it; the default separator {\tt sep=""} is any whitespace}
+\cmdL{read.csv("filename",header=T)}	{id. but with defaults set for reading
+comma-delimited files}
+\cmdL{read.csv2("filename",header=T)}	{id. but with defaults set for
+reading semicolon-delimited files and {\tt dec=","}}
+\cmdL{read.delim("filename",header=T)}	{id. but with defaults set for reading
+tab-delimited files}
+\cmdL{{\smalltt read.fwf(file,widths,header=F,sep="\bs t",as.is=F)}}	{ read
+a table of [{\tt f}]ixed [{\tt w}]idth [{\tt f}]or\-mat\-ted data into a
+\emergencystretch=3em 'data.frame'; {\tt widths} is an integer vector, giving
+the widths of the fixed-width fields}
+
+\subsubsection{Read Options}{}
+\cmdOpt{as.is=TRUE} {\\ to prevent character vectors from being converted to factors}
+\cmdOpt{blank.lines.skip=TRUE} {\\ blank lines in the input are ignored.}
+\cmdOpt{fill=TRUE} {\\ in case the rows have unequal length, blank fields are implicitly added}
+\cmdOpt{header=TRUE} {\\ to read the first line as a header of column names}
+\cmdOpt{comment.char=""} {\\ to prevent "\#" from being interpreted as a comment}
+\cmdOpt{skip=n} {to skip $n$ lines before reading data}
+
+% the help for options on row naming, NA treatment, and others}
+
+\subsection{Write to file}{}
+\cmdL{{\smalltt write.table(x,file="",row.names=T,col.names=T, sep=" ")}}
+{prints {\tt x} after converting to a data frame; if {\tt quote} is {\tt TRUE},
+character or factor columns are surrounded by quotes ({\tt "}); {\tt sep} is
+the field separator; {\tt eol} is the end-of-line separator; {\tt na} is the
+string for missing values; use {\tt col.names=NA} to add a blank column header
+to get the column headers aligned correctly for spreadsheet input}
+
+\subsubsection{Clipboard}
+
+On windows, the file connection can also be used with description =
+"clipboard".
 
 \cmdExmpl{x <- read.delim("clipboard")}{To read a table copied from Excel, use}
-\cmdExmpl{\\ {\smalltt write.table(x,"clipboard",sep="\bs t",col.names=NA)}}{To
-write a table to the clipboard for Excel, use}
+\cmdExmpl{\\ {\smalltt write.table(x,"clipboard",sep="\bs t",col.names=NA)}}{To write a table to the clipboard for Excel, use}
+
+% http://people.debian.org/~kims/xclip/
+Unix users wishing to write to the primary selection may be able to do so via
+'xclip', for example by
+\cmdExmpl{\\pipe('xclip -i', x)}	{writes data 'x' to clipboard}.
 
 For database interaction, see packages {\tt RODBC}, {\tt DBI},\\
 {\tt RMySQL}, {\tt RPgSQL}, and {\tt ROracle}. See packages {\tt XML},
@@ -130,35 +148,35 @@ others}
 
 \section{Slicing and extracting data}{}
 \subsection{Indexing vectors}{}
-\cmdOper{\tt x[n] }	{ $ n^{th} $ element}
-\cmdOper{\tt x[-n] }	{all {\it but} the $ n^{th} $ element}
-\cmdOper{\tt x[-length(x)] }	{all {\it but last} element}
-\cmdOper{\tt x[1:n] }	{first elements}
-\cmdOper{\tt x[-(1:n)] }	{elements from {\tt n+1} to the end}
-\cmdOper{\tt x[c(1,4,2)] }	{specific elements}
-\cmdOper{\tt x["name"] }	{element named {\tt "name"}}
-\cmdOper{\tt x[x > 3] }	{all elements greater than 3}
-\cmdOper{\tt x[x > 3 \& x < 5] }	{all elements between 3 and 5}
+\cmdOper{x[n] }	{ $ n^{th} $ element}
+\cmdOper{x[-n] }	{all {\it but} the $ n^{th} $ element}
+\cmdOper{x[-length(x)] }	{all {\it but last} element}
+\cmdOper{x[1:n] }	{first elements}
+\cmdOper{x[-(1:n)] }	{elements from {\tt n+1} to the end}
+\cmdOper{x[c(1,4,2)] }	{specific elements}
+\cmdOper{x["name"] }	{element named {\tt "name"}}
+\cmdOper{x[x > 3] }	{all elements greater than 3}
+\cmdOper{x[x > 3 \& x < 5] }	{all elements between 3 and 5}
 \cmdExmpl{\\\tt x[x \%in\% c("a","and","the")] }	{elements in the given set}
 
 \subsection{Indexing lists}{}
 
-\cmdOper{\tt x[n]}	{list with elements {\tt n}}
-\cmdOper{\tt x[[n]]}	{{\tt n}$^{th}$ element of the list}
-\cmdOper{\tt x[["name"]]}	{element of the list named {\tt "name"}}
-\cmdOper{\tt x\$name}	{id.}
+\cmdOper{x[n]}	{list with elements {\tt n}}
+\cmdOper{x[[n]]}	{{\tt n}$^{th}$ element of the list}
+\cmdOper{x[["name"]]}	{element of the list named {\tt "name"}}
+\cmdOper{x\$name}	{id.}
 
 
 \subsection{Indexing matrices}{}
-\cmdOper{\tt x[i,j]}	{element at row {\tt i}, column {\tt j}}
-\cmdOper{\tt x[i,]}	{row {\tt i}}
-\cmdOper{\tt x[,j]}	{column {\tt j}}
-\cmdOper{\tt x[,c(1,3)]}	{columns 1 and 3}
-\cmdOper{\tt x["name",]}	{row named {\tt "name"}}
+\cmdOper{x[i,j]}	{element at row {\tt i}, column {\tt j}}
+\cmdOper{x[i,]}	{row {\tt i}}
+\cmdOper{x[,j]}	{column {\tt j}}
+\cmdOper{x[,c(1,3)]}	{columns 1 and 3}
+\cmdOper{x["name",]}	{row named {\tt "name"}}
 
 \subsection{Indexing data frames}{matrix indexing plus the following}
-\cmdOper{\tt x[["name"]]}	{column named {\tt "name"}}
-\cmdOper{\tt x\$name}	{id.}
+\cmdOper{x[["name"]]}	{column named {\tt "name"}}
+\cmdOper{x\$name}	{id.}
 
 \section{Variable information}{is.na(x), is.null(x), is.array(x), is.data.frame(x), \ldots}
 \cmdS{methods(is)}	{list all available typetests}
@@ -237,24 +255,24 @@ $+$ and $-$. {\tt ?DateTimeClasses} gives more information. See also package
 
 % POSIXlt vs. POSIXct vs. strptime: http://stackoverflow.com/a/10700025/3569509
 \cmdL{as.POSIXct(s)}	{convert to the respective class; {\tt format(dt)} converts to a string representation. The default string format is ``2001-02-21''. These accept a second argument to specify a format for conversion. Some common formats are:}
-\cmdOper{{\tt \%a}, {\tt \%A}}	{Abbreviated and full \\weekday name.}
-\cmdOper{{\tt \%b}, {\tt \%B}}	{Abbreviated and full month name.}
-\cmdOper{{\tt \%d}}	{Day of the month (01--31).}
-\cmdOper{{\tt \%H}}	{Hours (00--23).}
-\cmdOper{{\tt \%I}}	{Hours (01--12).}
-\cmdOper{{\tt \%j}}	{Day of year (001--366).}
-\cmdOper{{\tt \%m}}	{Month (01--12).}
-\cmdOper{{\tt \%M}}	{Minute (00--59).}
-\cmdOper{{\tt \%p}}	{AM/PM indicator. }
-\cmdOper{{\tt \%S}}	{Second as decimal number (00--61).}
-\cmdOper{{\tt \%U}}	{Week (00--53); the first Sunday as day 1 of week 1.}
-\cmdOper{{\tt \%w}}	{Weekday (0--6, Sunday is 0).}
-\cmdOper{{\tt \%W}}	{Week (00--53); the first Monday as day 1 of week 1.}
-\cmdOper{{\tt \%X}}	{Same as ``\%Y-\%m-\%d''}
-\cmdOper{{\tt \%y}}	{Year without century (00--99).\\(Don't use due to ambiguousness!)}
-\cmdOper{{\tt \%Y}}	{Year with century.}
-\cmdOper{{\tt \%z}}	{(output only.) Offset from Greenwich; {\tt -0800} is 8 hours west of.}
-\cmdOper{{\tt \%Z}}	{(output only.) Time zone as a character
+\cmdOper{\%a, \%A}	{Abbreviated and full \\weekday name.}
+\cmdOper{\%b, \%B}	{Abbreviated and full month name.}
+\cmdOper{\%d}	{Day of the month (01--31).}
+\cmdOper{\%H}	{Hours (00--23).}
+\cmdOper{\%I}	{Hours (01--12).}
+\cmdOper{\%j}	{Day of year (001--366).}
+\cmdOper{\%m}	{Month (01--12).}
+\cmdOper{\%M}	{Minute (00--59).}
+\cmdOper{\%p}	{AM/PM indicator. }
+\cmdOper{\%S}	{Second as decimal number (00--61).}
+\cmdOper{\%U}	{Week (00--53); the first Sunday as day 1 of week 1.}
+\cmdOper{\%w}	{Weekday (0--6, Sunday is 0).}
+\cmdOper{\%W}	{Week (00--53); the first Monday as day 1 of week 1.}
+\cmdOper{\%X}	{Same as ``\%Y-\%m-\%d''}
+\cmdOper{\%y}	{Year without century (00--99).\\(Don't use due to ambiguousness!)}
+\cmdOper{\%Y}	{Year with century.}
+\cmdOper{\%z}	{(output only.) Offset from Greenwich; {\tt -0800} is 8 hours west of.}
+\cmdOper{\%Z}	{(output only.) Time zone as a character
     string (empty if not available).}
 
 Where leading zeros are shown they will be used on output but are
@@ -310,21 +328,22 @@ center only use the option {\tt center=F}, to reduce only {\tt scale=F}
 \cmdS{cummax(x)}	{ id. for the maximum}
 
 \subsection{Arithmetic \& Boolean Operators}{}
-\cmdOper{\tt x + y}	{addition}
-\cmdOper{\tt x - y}	{subtraction}
-\cmdOper{\tt x * y}	{multiplication}
-\cmdOper{\tt x / y}	{division}
-\cmdOper{\tt x \expon\ y}	{exponentiation}
-\cmdOper{\tt x \%\% y}	{modular arithmetic}
-\cmdOper{\tt x \%/\% y}	{integer division}
-\cmdOper{\tt x == y}	{test for equality}
-\cmdOper{\tt x <= y}	{test for less-than-or-equal}
-\cmdOper{\tt x >= y}	{test for greater-than-or-equal}
-\cmdOper{\tt x \&\& y}	{boolean {\tt and} for scalars}
-\cmdOper{\tt x || y}	{boolean {\tt or} for scalars}
-\cmdOper{\tt x \& y}	{boolean {\tt and} for vectors (vector x,y,result)}
-\cmdOper{\tt x | y}	{boolean {\tt or} for vectors\\(vector x,y,result)}
-\cmdOper{\tt !x}	{boolean negation}
+\cmdOper{x + y}	{addition}
+\cmdOper{x - y}	{subtraction}
+\cmdOper{x * y}	{multiplication}
+\cmdOper{x / y}	{division}
+\cmdOper{x \expon\ y}	{exponentiation}
+\cmdOper{x \%\% y}	{modular arithmetic}
+\cmdOper{x \%/\% y}	{integer division}
+\cmdOper{X \%*\% Y}	{matrix multiplication}
+\cmdOper{x == y}	{test for equality}
+\cmdOper{x <= y}	{test for less-than-or-equal}
+\cmdOper{x >= y}	{test for greater-than-or-equal}
+\cmdOper{x \&\& y}	{boolean {\tt and} for scalars}
+\cmdOper{x || y}	{boolean {\tt or} for scalars}
+\cmdOper{x \& y}	{boolean {\tt and} for vectors (vector x,y,result)}
+\cmdOper{x | y}	{boolean {\tt or} for vectors\\(vector x,y,result)}
+\cmdOper{!x}	{boolean negation}
 
 \subsection{Complex Numbers}{{\smalltt union(x,y),  intersect(x,y),  setdiff(x,y),  setequal(x,y)}}
 \cmdL{is.element(el,set)}	{``set'' functions}
@@ -343,10 +362,10 @@ specify missing data (NA) removal.
 
 \subsection{Matrices}{}
 \cmdS{\%o\%, outer()}	{outer products on arrays}
+\cmdS{A\ \%*\%\ B}	{multiplication of A and B}
 \cmdS{kronecker}	{kronecker products on arrays}
 \cmdS{t(x)}	{transpose}
 \cmdS{diag(x)}	{diagonal}
-\cmdS{\%*\%}	{matrix multiplication}
 \cmdS{solve(a,b)}	{solves {\tt a \%*\% x = b} for {\tt x}}
 \cmdS{solve(a)}	{matrix inverse of {\tt a}}
 \cmdS{rowsum(x)}	{sum of rows for a matrix-like object;}

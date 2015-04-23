@@ -310,35 +310,31 @@ and has then been modified to my own requirements, with permission!
 % An operator command         {{{2
 
 \def\cmdOper#1#2{
-  \noindent
-  \hbox to \hsize {% This comment is needed to remove space at start of line
-    \vtop{
-      % \leftskip=0cm plus 150fil
-        \hbox to 3.5cm {
-      \hfil
-      % \hfuzz = 5pt
-      % \hskip 10pt
-      \hsize=10em
-      \noindent{#1}
-      \hfil
-      }
-      %\hrule
-    }% This comment is needed to remove space
-    \hfil	% absorb extra space b/w columns
-    \vtop{
-      \hsize=4.90cm
-      \hbox{\hfuzz = 15pt \vtop{
-      % Uncomment line below to right-align description
-      %\leftskip=0cm plus 150fil
-      {#2}
-      }}
-      %\hrule
+    \noindent
+    \hbox to \hsize {% This comment is needed to remove space at start of line
+        \vtop{
+            \hbox to 3.5cm {
+                \hfil
+                \hsize=10em
+                \noindent{\tt #1}
+                \hfil
+            }
+        }% This comment is needed to remove space
+        \hfil	% absorb extra space b/w columns
+        \vtop{
+            \hsize=4.90cm
+            \hbox{\hfuzz = 15pt \vtop{
+                    % Uncomment line below to right-align description
+                    %\leftskip=0cm plus 150fil
+                    {#2}
+                }
+            }
+        }
     }
-  }
-  %\hrule
-  \par
-  \vskip 0.14cm
-  }
+    %\hrule
+    \par
+    \vskip 0.14cm
+}
 
 % An long operator command    {{{2
 
@@ -431,7 +427,7 @@ bound to \key{alt}\or \key{esc} while {\rm\char94}\kern-1pt\ is
 referred to the Controllkey (CTRL).
 }
 
-% mathematical definitions    {{{2
+% Mathematical Definitions    {{{2
 
 \def\expon{{\rm\char94}\kern-1pt}       % ^
 \def\lthan{{\char60}}                   % <
