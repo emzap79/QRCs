@@ -6,7 +6,7 @@
 % version
 \def\content{\uppercase{MatLab}}
 \def\shortcontent{\content}
-\def\versionnumber{0.1}  % Version of this reference card
+\def\versionnumber{0.2}  % Version of this reference card
 \def\version{v\versionnumber\ \month\ \year}
 
 % include stylefile
@@ -124,6 +124,276 @@
         \vskip 4ex
 }
 
+% Getting help
+% % All $MATLAB$ functions have online documentation.
+\cmdS{help command}	{Help on command}
+\cmdS{doc command}	{Detailed documentation on command (opens in help browser).}
+
+% Workspace
+\cmdS{who}	{displays a list of variables in the workspace}
+\cmdS{whos}	{displays a detailed list of variables in the workspace}
+%% Format Options
+\cmdOper{format sets}	{the default format how $MATLAB$ displays numbers.}
+\cmdOper{format short}	{5 digit fixed point}
+\cmdOper{format long}	{15 digit fixed point}
+\cmdOper{format short}	{e 5 digit floating point}
+\cmdOper{format long}	{e 15 digit floating point}
+%% Clear Variables \& Workspace
+\cmdOper{clear x}	{clears the variable $x$}
+\cmdOper{clear}	{erases all variables in the workspace}
+\cmdOper{clc}	{clears the command window}
+\cmdOper{close n}	{closes figure window no. $n$}
+\cmdOper{close all}	{closes all figure windows}
+% % ... Three or more periods at the end of a line continue the current command or function call onto the next line. Text on a line after ... is ignored. (Unlike C or Java, in $MATLAB$ a command is normally terminated by a newline character.)
+
+% Data Creation
+\cmdS{x=[1,2,4,...]}	{define a row vector $x$}
+\cmdS{x=[1 2 4 ...]}	{same.}
+\cmdS{x=[1; 2; 5; ...]}	{define a column vector $x$}
+\cmdS{a:c}	{the range $a..c$; equivalent to $[a,a+1,...,c-1,c]$}
+\cmdS{a:b:c}	{the range $a..c$ with step size $b$; equivalent to $[a,a+b,a+2*b,..., c-b,c]$ }
+\cmdS{linspace(a,b,n)}	{a row vector with $n$ values linearly spaced from $a$ to $b$ (inclusive)}
+\cmdS{eye(n)}	{the $n \times n$ identity matrix}
+\cmdS{zeros(n)}	{a $n \times n$ zero matrix}
+\cmdS{zeros(m,n)}	{a $m \times n$ zero matrix}
+\cmdS{ones(n)}	{a $n \times n$ all-one matrix}
+\cmdS{ones(m,n)}	{a $m \times n$ all-one matrix}
+\cmdS{diag(x)}	{creates a diagonal matrix whose diagonal consists of the entries of the vector $x$}
+§§[X,Y]=meshgrid(x,y)§ transforms the domain specified by vectors $x$ and $y$ into matrices $X$ and $Y$ that can be used for the evaluation of functions of two variables.
+
+% Variable Information
+\cmdS{length(a)}	{the length of the vector $x$. For matrices length returns the number of rows or columns, whichever is larger.}
+§§[x,y]=size(a)§ the number of rows $(x)$ and columns $(y)$ of the matrix $a$
+\cmdS{size(a,1)}	{the number of rows of $a$}
+\cmdS{size(a,2)}	{the number of columns of $a$}
+\cmdS{numel(a)}	{the number of elements in $a$}
+\cmdS{nnz(a)}	{the number of non-zero elements in $a$}
+
+%% Slicing and Extracting Data 
+%%% Indexing vectors
+\cmdOper{x(1)}	{$1st$ element}
+\cmdOper{x(n)}	{$nth$ element}
+\cmdOper{x(end)}	{last element}
+\cmdOper{x(1:n)}	{first $n$ elements}
+\cmdOper{x(end-n:end)}	{last $n+1$ elements}
+\cmdOper{x([1 2 4])}	{specific elements (use any row or column vector as index)}
+\cmdOper{x(x>3)}	{all elements greater than $3$}
+\cmdOper{x(x>3 \& x<5)}	{all elements between $3$ and $5$}
+\cmdOper{x(:)}	{transformed to column vector}
+
+%%% Indexing matrices
+\cmdOper{x(i,j)}	{element at row $i$, column $j$}
+\cmdOper{x(i,:)}	{row $i$}
+\cmdOper{x(:,j)}	{column $j$}
+\cmdOper{x(1:m,:)}	{first $n$ rows}
+\cmdOper{x(:,1:n)}	{first $n$ columns}
+\cmdOper{x(end,end)}	{The last element in the last row}
+\cmdOper{x(:)}	{transformed to column vector (column by column)}
+
+% Data Selection and Manipulation
+\cmdS{x'}	{the complex conjugate transpose of $x$}
+\cmdS{x.'}	{the non-conjugate transpose of $x$}
+% % % % % % % % % % % % % % % % % % % % % % % % % % % % % % % % % 
+% % % for matrices, the following commands work columnwise  % % %
+% % % % % % % % % % % % % % % % % % % % % % % % % % % % % % % % % 
+\cmdS{max(x)}	{the greatest element of $x$}
+\cmdS{min(x)}	{the smallest element of $x$}
+\cmdS{fliplr(x)}	{reverses the elements of $x$ from left to right}
+\cmdS{flipud(x)}	{reverses the elements of $x$ from top to bottom}
+§§[a,i]=max(x)§ returns in addition the position $i$ of the greatest element
+§§[a,i]=min(x)§ returns in addition the position $i$ of the smallest element
+\cmdS{sort(x)}	{sorts the elements of $x$ in ascending order}
+\cmdS{sortrows(x)}	{sorts the rows of $x$ in ascending order as a group, according to the first column.}
+\cmdS{sortrows(x,c)}	{as above, but sorted according to column $c$. If $c$ is negative, the rows are sorted by descending order. If $c$ is a vector, the rows are sorted first by column $c(1)$, then by column $c(2)$, etc.}
+% % % % % % % % % % % % % % % % % % % % % % % % % % % % % % % % % 
+% % % % % % % % % % % % % % % % % % % % % % % % % % % % % % % % % 
+% % % % % % % % % % % % % % % % % % % % % % % % % % % % % % % % % 
+\cmdS{find(x)}	{returns the indices corresponding to the nonzero entries of $x$}
+\cmdS{find(x==a)}	{returns the indices of the positions $j$ such that $x[j]==a[j]$}
+\cmdS{unique(x)}	{returns the same values as in a but with no repetitions; the values will also be sorted.}
+\cmdS{reshape(x,m,n)}	{returns the $m  \times  n matrix$ whose elements are taken columnwise from $x$.}
+
+% Matrix Computations
+\cmdOper{a+b}	{If $a$ and $b$ are $m \times n$ matrices, this is the standard matrix addition. If $a$ is a matrix and $b$ is a scalar, or vice-versa, the scalar is added to every entry of the matrix.}
+\cmdOper{a-b}	{If $a$ and $b$ are $m \times n$ matrices, this is the standard matrix subtraction. If $a$ is a matrix and $b$ is a scalar, or vice-versa, the scalar is subtracted from every entry of the matrix.}
+\cmdOper{a*b}	{If $a$ is an $k \times m$ matrix and $b$ is an $m \times n$ matrix, this is the standard matrix multiplication, i.e., yielding an $k \times m$ matrix. If $a$ is a matrix and $b$ is a scalar, or vice-versa, every element of the matrix is multiplied by the scalar.}
+\cmdOper{a.*b}	{If $a$ and $b$ are $m \times n$ matrices, this is their pointwise multiplication. If either element is a scalar, this is the same as $a*b$.}
+\cmdOper{a/b}	{If $a$ and $b$ are matrices of appropriate dimensions, this is roughly $a*inv(b).$ If $b$ is a scalar, this divides every entry of $a$ by $b$.}
+\cmdOper{a./b}	{If $a$ and $b$ are $m \times n$ matrices, this is their
+pointwise division. If $a$ is a scalar, then this divides a by every entry of
+$b$. If $b$ is a scalar, then this divides every entry of $a$ by $b$. }
+\cmdOper{a\bs b}	{If $a$ is an $n \times n$ matrix and $b$ is an $n \times
+1$ column vector, or a matrix with several such columns, then $x=a$\bs$b$ is the
+solution to the equation $a*x=b$. If a is a scalar, then this divides every
+entry of $b$ by $a$.}
+\cmdOper{$a.$\bs$b$}	{If $a$ and $b$ are $m \times n$ matrices, this is their
+left pointwise division. If a is a scalar, then this divides every entry of $b$
+by $a$. If $b$ is a scalar, then this divides $b$ by every entry of $a$.}
+\cmdOper{$a'*b$}	{If $a$ and $b$ are $n \times 1$ column vectors, this is their inner product (or scalar product or dot product). (This is not another operator, just a combination of ' (conjugate transpose) and *).}
+\cmdOper{inv(a)}	{The inverse of the $n \times n$ matrix $a$.}
+\cmdOper{eig(a)}	{is a vector containing the eigenvalues of the $n \times n$ matrix $a$.}
+§§§§[v,d]=eig(a)§ produces a diagonal matrix d of eigenvalues and a full matrix $v$ whose columns are the corresponding eigenvectors such that $a*v=v*d$.
+\cmdOper{rank(a)}	{is the rank, or number of linearly independent rows or columns of the matrix $a$.}
+
+% Math
+\cmdS{sin,cos,tan,asin,acos,atan,atan2,log,log10,exp,...}	{These are the standard mathematical functions; they always operate pointwise on their arguments.}
+\cmdS{sum(x)}	{sum of the elements of $x$}
+\cmdS{prod(x)}	{product of the elements of $x$}
+\cmdS{diff(x)}	{difference (and sample-wise derivative) of the vector $x$}
+\cmdS{cumsum(x)}	{cumulative sum of the elements of $x$ (and sample-wise integral)}
+\cmdS{cumprod(x)}	{same, for the product}
+\cmdS{mean(x)}	{mean of the elements of $x$}
+\cmdS{median(x)}	{median of the elements of $x$}
+\cmdS{log(x, base)}	{computes the logarithm of $x$ with base $base$}
+\cmdS{real(x)}	{real part of a complex number}
+\cmdS{imag(x)}	{imaginary part of a complex number}
+\cmdS{abs(x)}	{absolute value of $x$, or complex magnitude if $x$ is a complex number}
+\cmdS{angle(x)}	{angle in radians of the complex number}
+\cmdS{conj(x)}	{the complex conjugate of $x$}
+
+% Constants
+\cmdOper{i}	{Imaginary unit $sqrt(1)$}
+\cmdOper{j}	{same.}
+
+\cmdOper{pi}	{$\pi = 3.1415926535897$ \ldots}
+\cmdOper{Inf}	{Infinity; results e.g. when dividing a non-zero value by zero.}
+\cmdOper{NaN}	{Not a number; results e.g. when computing $0/0$.}
+\cmdOper{realmax}	{Largest positive floating point number in $MATLAB$.}
+\cmdOper{realmin}	{Smallest positive floating point number in $MATLAB$.}
+\cmdOper{intmax}	{Largest positive integer value in $MATLAB$.}
+\cmdOper{intmin}	{Smallest integer value in $MATLAB$.}
+\cmdOper{eps}	{Spacing of floating point numbers. Use it to prevent unwanted behavior due to rounding errors. (See help for details.)}
+\cmdOper{exp(1)}	{The base of the natural logarithm.}
+% % Attention: It is possible to assign a value to a predefined constant and thus to override its original value (MATLAB will not warn you if you do so.)
+
+% Signal Processing
+\cmdS{c=conv(a,b)}	{Convolution; e.g., $c(1)=a(1)*b(1)$}
+\cmdS{c=xcorr(a,b)}	{Cross-correlation estimates.}
+\cmdS{fft(x)}	{Fast Fourier Transform of the vector $x$}
+\cmdS{ifft(x)}	{Inverse Fast Fourier Transform}
+\cmdS{fftshift(x)}	{swaps the left and right halves of $x$ to shift the zerofrequency component to the center of the spectrum.}
+\cmdS{filter(b,a,x)}	{filters the data in vector $x$ with the filter described by vectors $a$ and $b$.}
+§§[b,a]=butter(n,Wn)§ designs an nth order lowpass digital Butterworth filter and returns the filter coefficients in the vectors b (numerator) and a (denominator). The cutoff frequency must be $0.0 < Wn < 1.0$, with $1.0$ corresponding to half the sample rate.
+\cmdS{downsample(x,n)}	{downsamples the signal $x$ by keeping every nth sample starting with the first.}
+\cmdS{upsample(x,n)}	{upsamples the signal $x$ by inserting $n?1$ zeros between input samples.}
+\cmdS{resample(x,p,q)}	{resamples the signal $x$ at $p/q$ times the original sample rate.}
+
+% Communication Toolbox
+\cmdS{randint(m,n)}	{generates an $m \times n$ matrix of random binary numbers.}
+\cmdS{randint(m,n,p)}	{generates an $m \times n$ matrix of random integers between $0$ and $p-1$.}
+\cmdS{pskmod,pskdemod}	{phase shift keying modulation/demodulation}
+\cmdS{qammod,qamdemod}	{quadrature amplitude modulation/demodulation}
+\cmdS{rcosine}	{designs a raised or root raised cosine filter}
+\cmdS{rcosflt}	{filters a signal using raised or root raised cosine filter}
+\cmdS{awgn}	{add white Gaussian noise to a signal}
+\cmdS{biterr}	{computes the bit error rate}
+\cmdS{symerr}	{computes the symbol error rate}
+
+% Sparse Matrices
+% % Using sparse matrices can result in a significant computational gain if
+% % you work with large matrices that have relatively few non-zero entries.
+\cmdS{sparse(x)}	{converts a sparse or full matrix to sparse}
+\cmdS{sparse(m,n)}	{creates an $m \times n$ all-zero sparse matrix}
+\cmdS{speye(n)}	{creates an $n \times n$ sparse identity matrix}
+\cmdS{spones(x)}	{creates a matrix with the same sparsity structure as $x$, but with ones in the nonzero positions.}
+
+% Plotting
+\cmdS{plot(x)}	{plot of the values of $x$ (on the y-axis) versus $0:length(x)-1$}
+\cmdS{plot(x,y)}	{bivariate plot of $x$ (on the x-axis) and y (on the y-axis)}
+\cmdS{plot(x,y,...)}	{allows you to specify formatting options (cf. help plot)}
+\cmdS{hist(x)}	{histogram of the frequencies of $x$}
+\cmdS{stem(...)}	{is the same as $plot(...)$, but the data sequence is plotted as discrete "stems" from the x-axis with circles for the data values.}
+\cmdS{semilogy(...)}	{is the same as $plot(...)$, except a logarithmic (base 10) scale is used for the y-axis.}
+\cmdS{scatterplot(x)}	{generates a scatter plot of $x$. $x$ can be a real or complex vector, or a two-column matrix with real signal in the first column and imaginary signal in the second column.}
+
+% Figures
+% % Plots are drawn on figure windows. The following commands control the
+% % appearance of figures and plots.
+\cmdS{h=figure}	{creates a new figure and returns its handle.}
+\cmdS{figure(h)}	{makes h the current figure, forces it to become visible, and raises it above all other figures on the screen.}
+\cmdS{figure('name', '...')}	{creates a new figure window with the specified window title}
+\cmdS{subplot(m,n,k)}	{divides the current figure window into $m \times n$ subfigures and selects the $kth$ for the current plot.}
+\cmdS{xlabel('...')}	{sets the text for the x-axis. $xlabel$, as well as
+$ylabel$, title etc. accept basic LATEX-like strings such as $a$\expon $2$ for
+$a^2$ or \bs $alpha$ for $\alpha$.}
+\cmdS{ylabel('...')}	{sets the text for the y-axis.}
+\cmdS{title('...')}	{sets a title for the current plot.}
+\cmdL{print -depsc2 fig.eps}	{saves the current figure into the file $fig.eps$.}
+
+% Input and Output
+\cmdS{input('prompt', fmt)}	{shows prompt for user input}
+\cmdExmpl{x=input('foo bar: ')}	{assigns 'string' to variable $x$ (quotation marks matters)}
+\cmdExmpl{x=input('foo bar: ', s)}	{option 's' interprets all input as character string, eg. numbers.}
+\cmdS{disp(x)}	{displays the contents of variable $x$}
+\cmdS{fprintf(fmt, vars, ...)}	{Like the C function $printf$}
+% % formatstrings
+%     %d  integer
+%     %f  real number in decimal notation
+%     %e  real number in exponential notation
+%     %g  real number, optimized notation
+%     %s  textstring
+%     %c  single character
+% % exmpl: fprintf('x=%7.5f \n', pi);
+% % >> x=3.14159
+
+\cmdOper{isnumeric(), ischar()}	{tests whether content of $x$ is numeric or a character textstring (boolean logic).}
+\cmdS{sprintf(fmt, vars, ...)}	{Like $printf$, but returns the string instead of printing it to the screen.}
+\cmdS{error('...')}	{displays an error message and halts execution. The message
+can also be a formatting string as for $fprintf$, followed by the corresponding
+variables, e.g. error('Warning \bs \%d\bs n', val).}
+
+\cmdS{warning('...')}	{Like error, but execution of the function/script is continued. }
+\cmdS{waitbar}	{displays progress information.}
+\cmdS{load foo}	{loads the variables saved in the file $foo.mat$ into the current workspace.}
+\cmdS{load('foo')}	{returns the variables saved in the file $foo.mat$ as a structure;}
+% % this structure will have a field for each variabe in the file. For example,
+% % if $foo.mat$ contains variables $x$ and $y$, and you load the file with a =
+% % load('foo'), then $x$ and $y$ will be accessible as $a.x$ and $a.y$.
+\cmdS{save foo a b}	{... saves the variables $a, b$, etc. in the file $foo.mat$.}
+\cmdS{save('foo', 'a', 'b')}	{same.}
+
+% String Conversions
+% % String to Function/Number
+\cmdOper{func2str}	{Constructs a function name string from a function handle}
+\cmdOper{str2func}	{Constructs a function handle from a function name string}
+\cmdOper{int2str}	{Integer to string conversion}
+\cmdOper{mat2str}	{Convert a matrix into a string}
+\cmdOper{num2str}	{Number to string conversion}
+\cmdOper{sprintf}	{Write formatted data to a string}
+\cmdOper{sscanf}	{Read string under format control}
+\cmdOper{str2double}	{Convert string to double-precision value}
+\cmdOper{str2mat}	{String to matrix conversion}
+\cmdOper{str2num}	{String to number conversion}
+% % Radix Conversion
+\cmdOper{bi\grey{n}2de\grey{c}}	{Binary to decimal number conversion}
+\cmdOper{de\grey{c}2bi\grey{n}}	{Nonnegative integer decimal to binary number conversion}
+\cmdOper{dec2hex}	{Decimal to hexadecimal number conversion}
+\cmdOper{hex2dec}	{Hexadecimal to decimal number conversion}
+\cmdOper{hex2num}	{Hexadecimal to double number conversion}
+
+% MATLAB vs R
+% http://home.online.no/~pjacklam/r/doc/matlab_vs_r.html
+
+% Matlab vs R function and operator names
+% 
+% Matlab	 	R
+% size          dim
+% [...]         c, rbind, cbind
+% permute		aperm
+% error         stop
+% ceil          ceiling
+% linspace		seq
+% :             : (but behaves differently)
+% ones(...)		rep(1, ...), matrix(1, ...), array(1, ...)
+% zeros(...)	rep(0, ...), matrix(0, ...), array(0, ...)
+% ~             !
+% ~=            !=
+% logical		as.logical
+% cd            getwd, setwd
+% cell          list, as.list
+% sprintf		formatC
+% eval('...')		eval(parse(text = "..."))
+% reshape(x, s)		array(x, s), dim(x) <- s
 %% Footer
 \copyrightnotice
 
