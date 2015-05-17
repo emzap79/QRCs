@@ -6,7 +6,7 @@
 % version
 \def\content{\uppercase{MatLab}}
 \def\shortcontent{\content}
-\def\versionnumber{0.2}  % Version of this reference card
+\def\versionnumber{0.3}  % Version of this reference card
 \def\version{v\versionnumber\ \month\ \year}
 
 % include stylefile
@@ -17,35 +17,48 @@
 \shortintro
 % \shortintroML
 
-\section{Basic Commands and Functions}{}
-\cmdS{Clc}	{clears command window}
-\cmdS{clear}	{clears workspace}
-\cmdS{Diary}	{creates a copy of all commands and most results}
-\cmdS{exit}	{terminates MATLAB}
-\cmdS{help}	{invokes help utility}
+\section{Getting help}{All $MATLAB$ functions have online documentation.}
+\cmdS{help command}	{Help on command}
 \cmdS{helpwin}	{invokes windowed help utility}
-\cmdS{length}	{length of a vector or maximum dimension of an array}
-\cmdS{size}	{display dimensions of a particular array}
-\cmdS{quit}	{terminates MATLAB}
-\cmdS{save}	{saves variables in a file}
-\cmdS{who}	{lists  variables in memory}
-\cmdS{whos}	{lists  variable names, sizes, and types in memory}
+\cmdS{doc command}	{Detailed documentation on command (opens in help browser).}
 
-\section{Special Variables/Constants}{}
-\cmdS{ans}	{most recent temporary answer}
-\cmdS{eps}	{accuracy of floating point precision}
-\cmdExmpl{$2.2204e^{-16}$}	{default}
-\cmdS{i}	{imaginary number}
-\cmdS{flops}	{count of floating point operations}
-\cmdS{Inf}	{infinity, ie. any number divided by 0}
-\cmdS{NaN}	{Numerical result is not defined}
-\cmdS{pi}	{the math pi (3.1415e)}
-% \cmdS{i,j}	{\begin{math}\sqrt[]{-1}\end{math}}
-\cmdL{realmin, realmax}	{smallest, largest real number MATLAB can represent}
-\cmdL{intmin, intmax}	{returns smallest, largest possible integer used in MATLAB}
+\section{Commands and Functions}{}
+\subsection{Workspace}{}
+\cmdS{who}	{lists variables in memory}
+\cmdS{whos}	{lists variable names, sizes, and types in memory}
+\cmdS{format}	{invoke output style \ldots}
+\cmdOper{sets}	{the default format how $MATLAB$ displays numbers.}
+\cmdOper{short}	{5 digit fixed point}
+\cmdOper{long}	{15 digit fixed point}
+\cmdL{clear, clear $v$}	{clears workspace, variable $v$}
+\cmdL{close all, close n}	{closes all figure windows, window $n$}
+\cmdS{Clc}	{clears command window}
+\cmdS{Diary}	{creates a copy of all commands and most results}
 \cmdS{clock, date}	{returns the time, date}
+\cmdS{exit}	{terminates MATLAB}
+\cmdS{quit}	{terminates MATLAB}
+% ... Three or more periods at the end of a line continue the current command
+% or function call onto the next line. Text on a line after ... is ignored.
+% (Unlike C or Java, in $MATLAB$ a command is normally terminated by a newline
+% character.)
 
-\section{File \& Folder Operations}{}
+\subsection{Special Variables/Constants}{}
+% \cmdOper{i,j}	{\begin{math}\sqrt[]{-1}\end{math}}
+\cmdOper{Inf}	{Infinity; results e.g. when dividing a non-zero value by zero.}
+\cmdOper{NaN}	{Not a number; results e.g. when computing $0/0$.}
+\cmdOper{ans}	{most recent temporary answer}
+\cmdOper{eps}	{Spacing of floating point numbers. Use it to prevent unwanted behavior due to rounding errors.}
+\cmdExmpl{$2.2204e^{-16}$}	{default}
+\cmdOper{exp(1)}	{The base of the natural logarithm.}
+\cmdOper{flops}	{count of floating point operations}
+\cmdOper{i}	{imaginary number}
+\cmdOper{pi}	{the math pi (3.1415e)}
+\cmdOper{realmin, realmax}	{smallest, largest real number MATLAB can represent}
+\cmdOper{intmin, intmax}	{returns smallest, largest possible integer used in MATLAB}
+% Attention: It is possible to assign a value to a predefined constant and
+% thus to override its original value (MATLAB will not warn you if you do so.)
+
+\subsection{File \& Folder Operations}{}
 \cmdS{cd}	{change direction}
 \cmdS{copyfile}	{copy from $pathA$ to $pathB$}
 \cmdS{dir}	{output content of a folder}
@@ -54,37 +67,7 @@
     line, additionaly load it into worspace window}
 \cmdS{csvwrite()}	{write to CSV format in current folder}
 
-\section{Special Characters}{}
-\cmdOper{[]}	{forms matrices}
-\cmdOper{()}	{used in statements to group operations}
-\cmdOper{.}	{decimal point}
-\cmdOper{,! }	{separates subscripts or matrix elements}
-\cmdOper{;}	{separates rows in a matrix definition or suppresses output}
-\cmdOper{:}	{indicates all rows or all columns}
-\cmdOper{=}	{assignment operator (not equality)}
-\cmdOper{\%}	{indicates a comment}
-\cmdOper{\%\%}	{cell divider}
-\cmdOper{+}	{addition}
-\cmdOper{-}	{ubtraction}
-\cmdOper{*}	{multiplication}
-\cmdOper{.*}	{array multiplication}
-\cmdOper{/}	{division}
-\cmdOper{./}	{array division}
-\cmdOper{\expon}	{exponential}
-\cmdOper{.\expon}	{array exponential}
-
-\section{Relational and Logical Operators}{}
-\cmdOper{<}	{less than}
-\cmdOper{<==}	{less than or equal to}
-\cmdOper{>}	{greater than}
-\cmdOper{>==}	{greater than or equal to}
-\cmdOper{==}	{equal to}
-\cmdOper{~=}	{not equal to}
-\cmdOper{\&}	{and}
-\cmdOper{!}	{or}
-\cmdOper{\tild}	{not}
-
-\section{Conditional Statements}{}
+\subsection{Conditional Statements}{}
 
 \vtop{\tt
     {if expression}\\
@@ -124,29 +107,7 @@
         \vskip 4ex
 }
 
-% Getting help
-% % All $MATLAB$ functions have online documentation.
-\cmdS{help command}	{Help on command}
-\cmdS{doc command}	{Detailed documentation on command (opens in help browser).}
-
-% Workspace
-\cmdS{who}	{displays a list of variables in the workspace}
-\cmdS{whos}	{displays a detailed list of variables in the workspace}
-%% Format Options
-\cmdOper{format sets}	{the default format how $MATLAB$ displays numbers.}
-\cmdOper{format short}	{5 digit fixed point}
-\cmdOper{format long}	{15 digit fixed point}
-\cmdOper{format short}	{e 5 digit floating point}
-\cmdOper{format long}	{e 15 digit floating point}
-%% Clear Variables \& Workspace
-\cmdOper{clear x}	{clears the variable $x$}
-\cmdOper{clear}	{erases all variables in the workspace}
-\cmdOper{clc}	{clears the command window}
-\cmdOper{close n}	{closes figure window no. $n$}
-\cmdOper{close all}	{closes all figure windows}
-% % ... Three or more periods at the end of a line continue the current command or function call onto the next line. Text on a line after ... is ignored. (Unlike C or Java, in $MATLAB$ a command is normally terminated by a newline character.)
-
-% Data Creation
+\section{Data Creation}{}
 \cmdS{x=[1,2,4,...]}	{define a row vector $x$}
 \cmdS{x=[1 2 4 ...]}	{same.}
 \cmdS{x=[1; 2; 5; ...]}	{define a column vector $x$}
@@ -161,7 +122,26 @@
 \cmdS{diag(x)}	{creates a diagonal matrix whose diagonal consists of the entries of the vector $x$}
 §§[X,Y]=meshgrid(x,y)§ transforms the domain specified by vectors $x$ and $y$ into matrices $X$ and $Y$ that can be used for the evaluation of functions of two variables.
 
-% Variable Information
+\subsubsection{Special Characters}{}
+\cmdOper{[]}	{forms matrices}
+\cmdOper{()}	{used in statements to group operations}
+\cmdOper{.}	{decimal point}
+\cmdOper{,! }	{separates subscripts or matrix elements}
+\cmdOper{;}	{separates rows in a matrix definition or suppresses output}
+\cmdOper{:}	{indicates all rows or all columns}
+\cmdOper{=}	{assignment operator (not equality)}
+\cmdOper{\%}	{indicates a comment}
+\cmdOper{\%\%}	{cell divider}
+\cmdOper{+}	{addition}
+\cmdOper{-}	{ubtraction}
+\cmdOper{*}	{multiplication}
+\cmdOper{.*}	{array multiplication}
+\cmdOper{/}	{division}
+\cmdOper{./}	{array division}
+\cmdOper{\expon}	{exponential}
+\cmdOper{.\expon}	{array exponential}
+
+\section{Variable Information}{}
 \cmdS{length(a)}	{the length of the vector $x$. For matrices length returns the number of rows or columns, whichever is larger.}
 §§[x,y]=size(a)§ the number of rows $(x)$ and columns $(y)$ of the matrix $a$
 \cmdS{size(a,1)}	{the number of rows of $a$}
@@ -169,8 +149,8 @@
 \cmdS{numel(a)}	{the number of elements in $a$}
 \cmdS{nnz(a)}	{the number of non-zero elements in $a$}
 
-%% Slicing and Extracting Data 
-%%% Indexing vectors
+\subsection{Slicing and Extracting Data }{}
+\subsubsection{Indexing vectors}{}
 \cmdOper{x(1)}	{$1st$ element}
 \cmdOper{x(n)}	{$nth$ element}
 \cmdOper{x(end)}	{last element}
@@ -181,7 +161,7 @@
 \cmdOper{x(x>3 \& x<5)}	{all elements between $3$ and $5$}
 \cmdOper{x(:)}	{transformed to column vector}
 
-%%% Indexing matrices
+\subsubsection{Indexing matrices}{}
 \cmdOper{x(i,j)}	{element at row $i$, column $j$}
 \cmdOper{x(i,:)}	{row $i$}
 \cmdOper{x(:,j)}	{column $j$}
@@ -190,7 +170,18 @@
 \cmdOper{x(end,end)}	{The last element in the last row}
 \cmdOper{x(:)}	{transformed to column vector (column by column)}
 
-% Data Selection and Manipulation
+\subsubsection{Relational and Logical Operators}{}
+\cmdOper{<}	{less than}
+\cmdOper{<==}	{less than or equal to}
+\cmdOper{>}	{greater than}
+\cmdOper{>==}	{greater than or equal to}
+\cmdOper{==}	{equal to}
+\cmdOper{\tild=}	{not equal to}
+\cmdOper{\&}	{and}
+\cmdOper{!}	{or}
+\cmdOper{\tild}	{not}
+
+\section{Data Selection and Manipulation}{}
 \cmdS{x'}	{the complex conjugate transpose of $x$}
 \cmdS{x.'}	{the non-conjugate transpose of $x$}
 % % % % % % % % % % % % % % % % % % % % % % % % % % % % % % % % % 
@@ -213,7 +204,7 @@
 \cmdS{unique(x)}	{returns the same values as in a but with no repetitions; the values will also be sorted.}
 \cmdS{reshape(x,m,n)}	{returns the $m  \times  n matrix$ whose elements are taken columnwise from $x$.}
 
-% Matrix Computations
+\section{Matrix Computations}{}
 \cmdOper{a+b}	{If $a$ and $b$ are $m \times n$ matrices, this is the standard matrix addition. If $a$ is a matrix and $b$ is a scalar, or vice-versa, the scalar is added to every entry of the matrix.}
 \cmdOper{a-b}	{If $a$ and $b$ are $m \times n$ matrices, this is the standard matrix subtraction. If $a$ is a matrix and $b$ is a scalar, or vice-versa, the scalar is subtracted from every entry of the matrix.}
 \cmdOper{a*b}	{If $a$ is an $k \times m$ matrix and $b$ is an $m \times n$ matrix, this is the standard matrix multiplication, i.e., yielding an $k \times m$ matrix. If $a$ is a matrix and $b$ is a scalar, or vice-versa, every element of the matrix is multiplied by the scalar.}
@@ -235,7 +226,7 @@ by $a$. If $b$ is a scalar, then this divides $b$ by every entry of $a$.}
 §§§§[v,d]=eig(a)§ produces a diagonal matrix d of eigenvalues and a full matrix $v$ whose columns are the corresponding eigenvectors such that $a*v=v*d$.
 \cmdOper{rank(a)}	{is the rank, or number of linearly independent rows or columns of the matrix $a$.}
 
-% Math
+\section{Math}{}
 \cmdS{sin,cos,tan,asin,acos,atan,atan2,log,log10,exp,...}	{These are the standard mathematical functions; they always operate pointwise on their arguments.}
 \cmdS{sum(x)}	{sum of the elements of $x$}
 \cmdS{prod(x)}	{product of the elements of $x$}
@@ -251,22 +242,11 @@ by $a$. If $b$ is a scalar, then this divides $b$ by every entry of $a$.}
 \cmdS{angle(x)}	{angle in radians of the complex number}
 \cmdS{conj(x)}	{the complex conjugate of $x$}
 
-% Constants
+\section{Constants}{}
 \cmdOper{i}	{Imaginary unit $sqrt(1)$}
 \cmdOper{j}	{same.}
 
-\cmdOper{pi}	{$\pi = 3.1415926535897$ \ldots}
-\cmdOper{Inf}	{Infinity; results e.g. when dividing a non-zero value by zero.}
-\cmdOper{NaN}	{Not a number; results e.g. when computing $0/0$.}
-\cmdOper{realmax}	{Largest positive floating point number in $MATLAB$.}
-\cmdOper{realmin}	{Smallest positive floating point number in $MATLAB$.}
-\cmdOper{intmax}	{Largest positive integer value in $MATLAB$.}
-\cmdOper{intmin}	{Smallest integer value in $MATLAB$.}
-\cmdOper{eps}	{Spacing of floating point numbers. Use it to prevent unwanted behavior due to rounding errors. (See help for details.)}
-\cmdOper{exp(1)}	{The base of the natural logarithm.}
-% % Attention: It is possible to assign a value to a predefined constant and thus to override its original value (MATLAB will not warn you if you do so.)
-
-% Signal Processing
+\section{Signal Processing}{}
 \cmdS{c=conv(a,b)}	{Convolution; e.g., $c(1)=a(1)*b(1)$}
 \cmdS{c=xcorr(a,b)}	{Cross-correlation estimates.}
 \cmdS{fft(x)}	{Fast Fourier Transform of the vector $x$}
@@ -278,7 +258,7 @@ by $a$. If $b$ is a scalar, then this divides $b$ by every entry of $a$.}
 \cmdS{upsample(x,n)}	{upsamples the signal $x$ by inserting $n?1$ zeros between input samples.}
 \cmdS{resample(x,p,q)}	{resamples the signal $x$ at $p/q$ times the original sample rate.}
 
-% Communication Toolbox
+\section{Communication Toolbox}{}
 \cmdS{randint(m,n)}	{generates an $m \times n$ matrix of random binary numbers.}
 \cmdS{randint(m,n,p)}	{generates an $m \times n$ matrix of random integers between $0$ and $p-1$.}
 \cmdS{pskmod,pskdemod}	{phase shift keying modulation/demodulation}
@@ -289,7 +269,7 @@ by $a$. If $b$ is a scalar, then this divides $b$ by every entry of $a$.}
 \cmdS{biterr}	{computes the bit error rate}
 \cmdS{symerr}	{computes the symbol error rate}
 
-% Sparse Matrices
+\section{Sparse Matrices}{}
 % % Using sparse matrices can result in a significant computational gain if
 % % you work with large matrices that have relatively few non-zero entries.
 \cmdS{sparse(x)}	{converts a sparse or full matrix to sparse}
@@ -297,7 +277,7 @@ by $a$. If $b$ is a scalar, then this divides $b$ by every entry of $a$.}
 \cmdS{speye(n)}	{creates an $n \times n$ sparse identity matrix}
 \cmdS{spones(x)}	{creates a matrix with the same sparsity structure as $x$, but with ones in the nonzero positions.}
 
-% Plotting
+\section{Plotting}{}
 \cmdS{plot(x)}	{plot of the values of $x$ (on the y-axis) versus $0:length(x)-1$}
 \cmdS{plot(x,y)}	{bivariate plot of $x$ (on the x-axis) and y (on the y-axis)}
 \cmdS{plot(x,y,...)}	{allows you to specify formatting options (cf. help plot)}
@@ -306,7 +286,7 @@ by $a$. If $b$ is a scalar, then this divides $b$ by every entry of $a$.}
 \cmdS{semilogy(...)}	{is the same as $plot(...)$, except a logarithmic (base 10) scale is used for the y-axis.}
 \cmdS{scatterplot(x)}	{generates a scatter plot of $x$. $x$ can be a real or complex vector, or a two-column matrix with real signal in the first column and imaginary signal in the second column.}
 
-% Figures
+\section{Figures}{}
 % % Plots are drawn on figure windows. The following commands control the
 % % appearance of figures and plots.
 \cmdS{h=figure}	{creates a new figure and returns its handle.}
@@ -320,7 +300,7 @@ $a^2$ or \bs $alpha$ for $\alpha$.}
 \cmdS{title('...')}	{sets a title for the current plot.}
 \cmdL{print -depsc2 fig.eps}	{saves the current figure into the file $fig.eps$.}
 
-% Input and Output
+\section{Input and Output}{}
 \cmdS{input('prompt', fmt)}	{shows prompt for user input}
 \cmdExmpl{x=input('foo bar: ')}	{assigns 'string' to variable $x$ (quotation marks matters)}
 \cmdExmpl{x=input('foo bar: ', s)}	{option 's' interprets all input as character string, eg. numbers.}
@@ -352,7 +332,7 @@ variables, e.g. error('Warning \bs \%d\bs n', val).}
 \cmdS{save foo a b}	{... saves the variables $a, b$, etc. in the file $foo.mat$.}
 \cmdS{save('foo', 'a', 'b')}	{same.}
 
-% String Conversions
+\section{String Conversions}{}
 % % String to Function/Number
 \cmdOper{func2str}	{Constructs a function name string from a function handle}
 \cmdOper{str2func}	{Constructs a function handle from a function name string}
@@ -371,7 +351,7 @@ variables, e.g. error('Warning \bs \%d\bs n', val).}
 \cmdOper{hex2dec}	{Hexadecimal to decimal number conversion}
 \cmdOper{hex2num}	{Hexadecimal to double number conversion}
 
-% MATLAB vs R
+% \section{MATLAB vs R}{}
 % http://home.online.no/~pjacklam/r/doc/matlab_vs_r.html
 
 % Matlab vs R function and operator names
@@ -394,7 +374,8 @@ variables, e.g. error('Warning \bs \%d\bs n', val).}
 % sprintf		formatC
 % eval('...')		eval(parse(text = "..."))
 % reshape(x, s)		array(x, s), dim(x) <- s
-%% Footer
+
+% Footer
 \copyrightnotice
 
 % Ending
