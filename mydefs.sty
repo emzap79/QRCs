@@ -26,7 +26,7 @@ Frequently used \shortcontent\ commands -- Version \version}
 \vskip 1.5ex
 }
 \def\year{2015}
-\def\month{May}
+\def\month{June}
 
 % specific-intro:
 \def\shortintrospec#1{
@@ -158,7 +158,8 @@ and has then been modified to my own requirements, with permission!
   \noindent
   \hbox to \hsize {%
     \vtop{
-      \hbox to 2.4cm {
+      %\hbox to 2.4cm {
+      \hbox to 7em {
         \noindent\cmd{#1}\dotfill
       }
       %\hrule
@@ -177,6 +178,31 @@ and has then been modified to my own requirements, with permission!
   \vskip 0.14cm
 }
 
+% A medium long command             {{{2
+
+\def\cmdM#1#2{
+  \noindent
+  \hbox to \hsize {%
+    \vtop{
+        \hbox to 7em {
+        \noindent\cmd{#1}\dotfill
+      }
+      %\hrule
+    }%
+    \vtop{
+      \parindent=1.5\baselineskip   % indent first row of paragraph
+      \hsize=5.90cm
+      \hbox{\hfuzz = 15pt \vtop{
+              {#2} % {.\ .\ .\ #2}
+      }}
+      %\hrule
+    }
+  }
+  %\hrule
+  \par
+  \vskip 0.14cm
+}
+
 % A long command              {{{2
 
 \def\cmdL#1#2{
@@ -185,7 +211,7 @@ and has then been modified to my own requirements, with permission!
           \cmd{#1}
         \hfil
     }
-    \hskip 2.5cm  % indent for description
+    \hskip 7em  % indent for description
     \hbox to 5.9cm {
       \hfuzz = 5pt
       \hfil
@@ -293,14 +319,13 @@ and has then been modified to my own requirements, with permission!
 \hbox to \hsize {
     $\Rightarrow$
     \hfuzz = 20pt
-    % \hfil
     \hsize=7.0cm
     \hskip .5em
     \vtop{
-        \noindent\cmd{\tt {#2}: #1}
+        \noindent\cmd{#2: #1}
     }
 }
-\vskip 1.0ex
+\vskip 1.2ex
 }
 
 % A function command          {{{2
