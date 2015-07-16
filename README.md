@@ -10,6 +10,7 @@ commercial purpose.
 My repo contains qrc's, based on the following issues
 
 - R
+- MATLAB
 - VIM
 - GIT
 - TMUX

@@ -308,12 +308,13 @@ Sys.setlocale(\"LC\_TIME\", lct)
     probabilities (default: 0,.25,.5,.75,1)}
 \cmdL{weighted.mean(x, w)}	{mean of {\tt x} with weights {\tt w}}
 \cmdS{rank(x)}	{ ranks of the elements of {\tt x}}
-\cmdS{var(x)}	{or {\tt cov(x)}  variance of the elements of {\tt x}
+\cmdL{var(x)\or cov(x)}	{variance of the elements of {\tt x}
     (calculated on $n-1$); if {\tt x} is a matrix or a data frame, the
     variance-covariance matrix is calculated}
 \cmdS{sd(x)}	{standard deviation of {\tt x}}
 \cmdS{cor(x)}	{correlation matrix of {\tt x} if it is a matrix or a data frame (1 if {\tt x} is a vector)}
-\cmdS{var(x, y)}	{or {\tt cov(x, y)}  covariance between {\tt x} and {\tt y}, or between the columns of {\tt x} and those of {\tt y} if they are matrices or data frames}
+\cmdS{acf(x)}	{Computes (and by default plots) estimates of the autocovariance or autocorrelation function}
+\cmdL{var(x, y)\or {\tt cov(x, y)}}	{covariance between {\tt x} and {\tt y}, or between the columns of {\tt x} and those of {\tt y} if they are matrices or data frames}
 \cmdS{cor(x, y)}	{linear correlation between {\tt x} and {\tt y}, or correlation matrix if they are matrices or data frames}
 \cmdS{round(x, n)}	{rounds the elements of {\tt x} to {\tt n} decimals}
 \cmdS{log(x, base)}	{computes the logarithm of {\tt x} with base {\tt base}}
@@ -374,6 +375,18 @@ specify missing data (NA) removal.
 \cmdS{colSums(x)}	{id. for columns}
 \cmdS{rowMeans(x)}	{fast version of row means}
 \cmdS{colMeans(x)}	{id. for columns}
+
+\section{Time Series Calculations}{}
+\cmdS{ts(x)}	{Create a time-series vector}
+\cmdS{window(x)}	{Extracts the subset of the object x observed between the
+    times start and end. If a frequency is specified, the series is then re-sampled
+    at the new frequency}
+\cmdExmpl{\\ window(x, start=c(1901, 11), frequency=T)}	{Resampling a timeseries for
+    every 11th entry eg. monthly data}
+\cmdS{time(x)}	{creates the vector of times at which a time series was sampled}
+\cmdS{cycle(x)}	{gives the positions in the cycle of each observation}
+\cmdS{frequency(x)}	{returns the number of samples per unit time and deltat the
+    time interval between observations}
 
 \section{Advanced data processing and HOFs}{}
 % see: http://stackoverflow.com/a/7141669/3569509
