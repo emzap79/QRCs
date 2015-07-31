@@ -24,8 +24,7 @@
 %%%%%%%%%%%%%%%%%%
 %  card content  %
 %%%%%%%%%%%%%%%%%%
-\section{Basic Operations}{}
-\subsection{Help}{Most R functions have online documentation.}
+\section{Help}{Most R functions have online documentation.}
 \cmdS{help(topic)}	{documentation on {\tt topic}}
 \cmdS{?topic}	{id.}
 \cmdL{help.search("topic")}	{search the help system}
@@ -33,7 +32,12 @@
     matching the regular ex\-pres\-sion "to\-pic"}
 \cmdS{help.start()}	{start the HTML version of help}
 
-\subsection{Fundamentals}{}
+\section{Input and output}{Most of the I/O functions have a {\tt file}
+argument. This can often be a character string naming a file or a connection.
+{\tt file=""} means the standard input or output. Connections can include
+files, pipes, zipped files, and R variables. }
+
+\subsection{Basic Operations}{}
 \cmdS{<-}	{assign to an object, equivalent to =(?)}
 \cmdS{<<-}	{lexical assignment (*NOT* global assignment)}
 \cmdS{getwd()}	{get the working directory}
@@ -50,7 +54,7 @@
 \cmdS{methods(a)}	{shows S3 methods of {\tt a}}
 \cmdL{methods(class=class(a))}	{lists all the methods to handle objects of class a}
 
-\section{Input and output}{}
+\subsection{Fundamentals}{}
 \cmdS{load()}	{load the datasets written with {\tt save}}
 \cmdS{data(x)}	{loads specified data set}
 \cmdS{library(x)}	{load add-on packages}
@@ -62,11 +66,7 @@
 \cmdS{print(a, \ldots)}	{prints its arguments; generic, meaning it can
     have different methods for different objects}
 \cmdL{format(x,...)}	{format an R object for pretty printing}
-\cmdS{sink(file)}	{[output to {\tt file}, until {\tt sink()}] Most
-    of the I/O functions have a {\tt file} argument. This can often be a
-    character string naming a file or a connection.  {\tt file=""} means
-    the standard input or output. Connections can include files, pipes,
-    zipped files, and R variables.}
+\cmdS{sink(file)}	{output to {\tt file}, until {\tt sink()}}
 
 \subsection{Read from File}{}
 
@@ -118,6 +118,7 @@ For database interaction, see packages {\tt RODBC}, {\tt DBI},\\
 {\tt RMySQL}, {\tt RPgSQL}, and {\tt ROracle}. See packages {\tt XML},
 {\tt hdf5}, {\tt netCDF} for reading other file formats.
 
+\section{Generating, slicing and extracting data}{}
 \subsection{Data creation}{}
 \cmdS{c(...)}	{generic function to concatenate arguments with the default
 forming a vector; with {\tt recursive=T} descends through lists combining all
@@ -146,7 +147,6 @@ others}
 \cmdS{cbind(...)}	{id. by columns}
 \cmdExmpl{cbind(x, colName=c(1,2,3))}	{append column named ``colName'' to matrix x}
 
-\section{Slicing and extracting data}{}
 \subsection{Indexing vectors}{}
 \cmdOper{x[n] }	{ $ n^{th} $ element}
 \cmdOper{x[-n] }	{all {\it but} the $ n^{th} $ element}
@@ -160,12 +160,10 @@ others}
 \cmdExmpl{\\\tt x[x \%in\% c("a","and","the")] }	{elements in the given set}
 
 \subsection{Indexing lists}{}
-
 \cmdOper{x[n]}	{list with elements {\tt n}}
 \cmdOper{x[[n]]}	{{\tt n}$^{th}$ element of the list}
 \cmdOper{x[["name"]]}	{element of the list named {\tt "name"}}
 \cmdOper{x\$name}	{id.}
-
 
 \subsection{Indexing matrices}{}
 \cmdOper{x[i,j]}	{element at row {\tt i}, column {\tt j}}
@@ -178,7 +176,38 @@ others}
 \cmdOper{x[["name"]]}	{column named {\tt "name"}}
 \cmdOper{x\$name}	{id.}
 
-\section{Variable information}{is.na(x), is.null(x), is.array(x), is.data.frame(x), \ldots}
+\section{Data selection and manipulation}{}
+\subsection{Most common commands}{}
+\cmdS{which.max(x)}	{ returns the index of the greatest element of $x$}
+\cmdS{which.min(x)}	{ returns the index of the smallest element of $x$}
+\cmdS{rev(x)}	{ reverses the elements of {\tt x}}
+\cmdS{sort(x)}	{sorts the elements of {\tt x} in increasing order}
+\cmdS{\tt rev(sort(x))}	{to sort in decreasing order}
+\cmdL{cut(x,breaks)}	{divides {\tt x} into intervals (factors); {\tt breaks} is the number of cut intervals or a vector of cut points}
+\cmdS{x \%in\% y}	{logical vector indicating if there is a match or not for its left operand\\}
+\cmdS{match(x, y)}	{returns a vector of the same length than {\tt x}
+    with the elements of {\tt x} which are in {\tt y} ({\tt NA}
+    otherwise)}
+\cmdL{which(x == a)}	{returns a vector of the indices of {\tt x} if the
+comparison operation is true ($T$), in this example the values of {\tt i} for
+which {\tt x[i] == a} (the argument of this function must be a variable of mode
+logical)}
+\cmdS{choose(n, k)}	{ computes the combinations of $k$ events among $n$ repetitions = $n!/[(n-k)!k!]$}
+\cmdS{combn(n, k)}	{ generate all combinations of n elements, taken m at a time.}
+\cmdS{na.omit(x)}	{suppresses the observations with missing data ({\tt NA}) (suppresses the corresponding line if {\tt x} is a matrix or a data frame)}
+\cmdL{complete.cases(x[$n$],x[$n$])}	{allows removement of `na's by using part of the dataframe} % http://stackoverflow.com/a/4862502
+\cmdExmpl{\\ x[complete.cases(x[,5:6]),]}	{skip all rows in data frame x, where `na' appears in column 5 or 6}
+\cmdS{na.fail(x)}	{returns an error message if {\tt x }contains at least one {\tt NA}}
+\cmdS{unique(x)}	{if {\tt x} is a vector or a data frame, returns a similar object but with the duplicate elements suppressed}
+\cmdL{duplicated(x)}	{returns a logical vector indicating which elements (rows) of a vector or data frame are duplicates}
+\cmdS{table(x)}	{returns a table with the numbers of the differents values of {\tt x} (typically for integers or factors)}
+\cmdL{subset(x, \ldots)}	{returns a selection of {\tt x} with respect to criteria ({\tt \ldots}, typically comparisons: {\tt x\$V1 < 10}); if {\tt x} is a data frame, the option {\tt select} gives the variables to be kept or dropped using a minus sign}
+\cmdL{sample(x, size)}	{resample randomly and without replacement {\tt size}
+elements in the vector {\tt x}, the option {\tt replace = TRUE} allows to
+resample with replacement}
+\cmdL{prop.table(x,margin=)}	{table entries as fraction of marginal table}
+
+\subsection{Variable information}{is.na(x), is.null(x), is.array(x), is.data.frame(x), \ldots}
 \cmdS{methods(is)}	{list all available typetests}
 \cmdS{methods(as)}	{list of all variable conversions}
 \cmdS{any(x)}	{any TRUE elements of {\tt x}?}
@@ -196,38 +225,7 @@ others}
 \cmdL{attr(x,which)}	{get or set the attribute {\tt which} of {\tt x}}
 \cmdL{attributes(obj)}	{get or set the list of attributes of {\tt obj}}
 
-\section{Data selection and manipulation}{}
-\cmdS{which.max(x)}	{ returns the index of the greatest element of $x$}
-\cmdS{which.min(x)}	{ returns the index of the smallest element of $x$}
-\cmdS{rev(x)}	{ reverses the elements of {\tt x}}
-\cmdS{sort(x)}	{sorts the elements of {\tt x} in increasing order}
-\cmdS{\tt rev(sort(x))}	{to sort in decreasing order}
-\cmdL{cut(x,breaks)}	{divides {\tt x} into intervals (factors); {\tt breaks} is the number of cut intervals or a vector of cut points}
-\cmdS{x \%in\% y}	{logical vector indicating if there is a match or not for its left operand\\}
-\cmdS{match(x, y)}	{returns a vector of the same length than {\tt x}
-    with the elements of {\tt x} which are in {\tt y} ({\tt NA}
-    otherwise)}
-\cmdL{which(x == a)}	{returns a vector of the indices of {\tt x} if the
-comparison operation is true ($T$), in this example the values of {\tt i} for
-which {\tt x[i] == a} (the argument of this function must be a variable of mode
-logical)}
-\cmdS{choose(n, k)}	{ computes the combinations of $k$ events among $n$ repetitions = $n!/[(n-k)!k!]$}
-\cmdS{combn(n, k)}	{ Generate All Combinations of n Elements, Taken m at a Time.}
-\cmdS{na.omit(x)}	{suppresses the observations with missing data ({\tt NA}) (suppresses the corresponding line if {\tt x} is a matrix or a data frame)}
-\cmdL{complete.cases(x[$n$],x[$n$])}	{allows removement of `na's by using part of the dataframe} % http://stackoverflow.com/a/4862502
-\cmdExmpl{\\ x[complete.cases(x[,5:6]),]}	{skip all rows in data frame x, where `na' appears in column 5 or 6}
-\cmdS{na.fail(x)}	{returns an error message if {\tt x }contains at least one {\tt NA}}
-\cmdS{unique(x)}	{if {\tt x} is a vector or a data frame, returns a similar object but with the duplicate elements suppressed}
-\cmdL{duplicated(x)}	{returns a logical vector indicating which elements (rows) of a vector or data frame are duplicates}
-\cmdS{table(x)}	{returns a table with the numbers of the differents values of {\tt x} (typically for integers or factors)}
-\cmdL{subset(x, \ldots)}	{returns a selection of {\tt x} with respect to criteria ({\tt \ldots}, typically comparisons: {\tt x\$V1 < 10}); if {\tt x} is a data frame, the option {\tt select} gives the variables to be kept or dropped using a minus sign}
-\cmdL{sample(x, size)}	{resample randomly and without replacement {\tt size}
-elements in the vector {\tt x}, the option {\tt replace = TRUE} allows to
-resample with replacement}
-\cmdL{prop.table(x,margin=)}	{table entries as fraction of marginal table}
-
-\section{Characters (Strings)}{}
-
+\subsection{Characters (Strings)}{}
 \cmdS{paste(...)}	{concatenate vectors after converting to character; {\tt sep=} is the string to separate terms (a single space is the default); {\tt collapse=} is an optional string to separate ``collapsed'' results}
 \cmdL{substr(x,start,stop)}	{substrings in a character vector}
 \cmdExmpl{\\substr(x, start, stop) <- value}	{can also assign, as}
@@ -356,7 +354,6 @@ center only use the option {\tt center=F}, to reduce only {\tt scale=F}
 \cmdL{convolve(x,y)}	{compute the several kinds of convolutions of two sequences}
 \cmdS{fft(x)}	{Fast Fourier Transform of an array}
 \cmdS{mvfft(x)}	{FFT of each column of a matrix}
-\cmdL{filter(x,filter)}	{applies linear filtering to a univariate time series or to each series separately of a multivariate time series}
 
 Many math functions have a logical parameter {\tt na.rm=F} to
 specify missing data (NA) removal.
@@ -376,18 +373,6 @@ specify missing data (NA) removal.
 \cmdS{rowMeans(x)}	{fast version of row means}
 \cmdS{colMeans(x)}	{id. for columns}
 
-\section{Time Series Calculations}{}
-\cmdS{ts(x)}	{Create a time-series vector}
-\cmdS{window(x)}	{Extracts the subset of the object x observed between the
-    times start and end. If a frequency is specified, the series is then re-sampled
-    at the new frequency}
-\cmdExmpl{\\ window(x, start=c(1901, 11), frequency=T)}	{Resampling a timeseries for
-    every 11th entry eg. monthly data}
-\cmdS{time(x)}	{creates the vector of times at which a time series was sampled}
-\cmdS{cycle(x)}	{gives the positions in the cycle of each observation}
-\cmdS{frequency(x)}	{returns the number of samples per unit time and deltat the
-    time interval between observations}
-
 \section{Advanced data processing and HOFs}{}
 % see: http://stackoverflow.com/a/7141669/3569509
 \subsection{Apply functions to elements}{The base apply family of function is
@@ -398,7 +383,7 @@ specify missing data (NA) removal.
 \cmdL{by(data,INDEX,FUN)}	{apply {\tt FUN} to data frame {\tt data} subsetted by {\tt INDEX}}
 \subsubsection{Options for INDEX}
 \cmdOper{1}	{apply FUN to array's rows}
-\cmdOper{2}	{apply FUN to columns}
+\cmdOper{2}	{apply FUN to array's columns}
 
 \subsection{The 6 common higher-order functions}{}
 \cmdL{Reduce(f, x, init, right = F, accumulate = F)}{}
@@ -462,12 +447,11 @@ pairwise.t.test(), \ldots}}
 \cmdS{fitted(fit)}	{ returns the fitted values}
 \cmdS{logLik(fit)}	{ computes the logarithm of the likelihood and the number of parameters}
 \cmdS{AIC(fit)}	{ computes the Akaike information criterion or AIC}
-
 \cmdS{aov(formula)}	{analysis of variance model}
 \cmdL{anova(fit,...)}	{analysis of variance (or deviance) tables for one or more fitted model objects}
 \cmdS{density(x)}	{kernel density estimates of {\tt x}}
 
-\section{Distributions}{}
+\subsection{Distributions}{}
 \cmdL{rnorm(n, mean=0, sd=1)}	{Gaussian (normal)}
 \cmdL{rexp(n, rate=1)}	{exponential}
 \cmdL{rgamma(n, shape, scale=1)}	{gamma}
@@ -493,20 +477,21 @@ density ({\tt d{\it func}(x, \ldots)}), the cumulative probability
 density ({\tt p{\it func}(x, \ldots)}), and the value of quantile
 ({\tt q{\it func}(p, \ldots)}, with 0 $<$ {\tt p} $<$ 1).
 
-\section{Programming}{ Use curly braces $\lbrace\rbrace$ around statements }
-
-{\tt function( arglist ) expr \# function definition\\ return(value) if(cond)
-    expr\\ if(cond) cons.expr else  alt.expr\\ for(var in seq) expr\\
-    while(cond) expr\\ repeat expr\\ break\\ next\\ }
-
-
-\cmdL{ifelse(test, yes, no)}	{a value with the same shape as {\tt test}
-filled with elements from either {\tt yes} or {\tt no}}
-\cmdL{do.call(funname, args)}	{executes a function call from the name of the
-function and a list of arguments to be passed to it}
+\subsection{Time Series Calculations}{}
+\cmdS{ts(x)}	{Create a time-series vector}
+\cmdS{window(x)}	{Extracts the subset of the object x observed between the
+    times start and end. If a frequency is specified, the series is then re-sampled
+    at the new frequency}
+\cmdExmpl{\\ window(x, start=c(1901, 11), frequency=T)}	{Resampling a timeseries for
+    every 11th entry eg. monthly data}
+\cmdS{time(x)}	{creates the vector of times at which a time series was sampled}
+\cmdS{cycle(x)}	{gives the positions in the cycle of each observation}
+\cmdS{frequency(x)}	{returns the number of samples per unit time and deltat the
+    time interval between observations}
+\cmdL{filter(x,filter)}	{applies linear filtering to a univariate time series
+    or to each series separately of a multivariate time series}
 
 \section{Plotting}{}
-
 \cmdS{plot(x)}	{plot of the values of {\tt x} (on the $y$-axis) ordered on the
 $x$-axis}
 \cmdS{plot(x, y)}	{bivariate plot of {\tt x} (on the $x$-axis) and {\tt y}
@@ -583,7 +568,7 @@ example with {\tt xlim=c(1, 10)} or {\tt xlim=range(x)}}
 \cmdOper{main=}	{ main title, must be a variable of mode character}
 \cmdOper{sub=}	{ sub-title (written in a smaller font)}
 
-\section{Low-level plotting commands}{}
+\subsection{Low-level plotting commands}{}
 \cmdS{dev.new()}	{open a new graphics device (typically a window). see similar in help.}
 \cmdS{points(x, y)}	{adds points (the option {\tt type=} can be used)}
 \cmdS{lines(x, y)}	{ id. but with lines}
@@ -621,7 +606,7 @@ symbols ({\tt type="p"}) or lines ({\tt type="l"}) with respect to optional
 graphic parameters ({\tt \ldots})}
 \cmdExmpl{type="n"}{by default nothing is drawn}
 
-\section{Graphical parameters}{These can be set globally with {\tt par(...)}; many can be passed as
+\subsection{Graphical parameters}{These can be set globally with {\tt par(...)}; many can be passed as
 parameters to plotting commands.}
 \cmdS{adj}	{controls text justification ({\tt 0} left-justified, {\tt 0.5}
 centred, {\tt 1} right-justified)}
@@ -675,13 +660,12 @@ grid is drawn}
 \cmdS{yaxt}	{if {\tt yaxt="n"} the $y$-axis is set but not drawn (useful in
 conjonction \\with {\tt axis(side=2, \ldots)})}
 
-\section{Lattice (Trellis) graphics}{ Use {\tt panel=} to define a custom panel
+\subsection{Lattice (Trellis) graphics}{ Use {\tt panel=} to define a custom panel
     function (see {\tt apropos("panel")} and {\tt ?llines}). Lattice functions
     return an object of class trellis and have to be {\tt print}ed to produce
     the graph. Use {\tt print(xyplot(...))} inside functions where automatic
     printing doesn't work. Use {\tt lattice.theme} and {\tt lset} to change
     Lattice defaults.}
-
 \cmdS{xyplot(y\~{}x)}	{ bivariate plots (with many functionalities)}
 \cmdL{barchart(y\~{}x)}	{  histogram of the values of {\tt y} with respect to those of {\tt x}}
 \cmdS{dotplot(y\~{}x)}	{ Cleveland dot plot (stacked plots line-by-line and
@@ -710,7 +694,15 @@ on separate panels. Lattice functions take many of the same arguments as base
 graphics plus also {\tt data=} the data frame for the formula variables and
 {\tt subset=} for subsetting.
 
+\section{Programming}{ Use curly braces $\lbrace\rbrace$ around statements }
+{\tt function( arglist ) expr \# function definition\\ return(value) if(cond)
+    expr\\ if(cond) cons.expr else  alt.expr\\ for(var in seq) expr\\
+    while(cond) expr\\ repeat expr\\ break\\ next\\ }
 
+\cmdL{ifelse(test, yes, no)}	{a value with the same shape as {\tt test}
+filled with elements from either {\tt yes} or {\tt no}}
+\cmdL{do.call(funname, args)}	{executes a function call from the name of the
+function and a list of arguments to be passed to it}
 
 %% Footer
 \copyrightnotice
