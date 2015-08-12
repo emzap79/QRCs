@@ -6,7 +6,7 @@
 % version
 \def\content{\uppercase{tmux}}
 \def\shortcontent{\content}
-\def\versionnumber{1.2}  % Version of this reference card
+\def\versionnumber{1.3}  % Version of this reference card
 \def\version{v\versionnumber\ \month\ \year}
 
 % include stylefile
@@ -20,43 +20,39 @@
 %%%%%%%%%%%%%%%%%%
 %  card content  %
 %%%%%%%%%%%%%%%%%%
-\section{From Shell}{}
+\section{From Shell}{to reach the command mode, use \ctrl b:}
 
-\cmdL{create session}	{tmux new -s {\tt session-name}}
-\cmdL{kill session}	{tmux kill-session -t {\tt session-name}}
-\cmdL{attach session}	{tmux a[ttach] -t {\tt session-name}\\\or\ tmux a \#}
-\cmdL{rename session}	{tmux rename-session -t {\tt old-name} {\tt new-name}}
-\cmdL{list session}	{tmux ls}
+\cmdM{create session}	{new -s {\tt $foo$}}
+\cmdM{kill session}	{kill-session -t {\tt $foo$}}
+\cmdM{attach session}	{a\grey{ttach} -t {\tt $foo$}\or\ a \#}
+\cmdM{rename session}	{rename-session -t $old$ $new$}
+\cmdM{list session}	{ls}
+\cmdM{move session}	{move-window -t $other\_session$}
 
-\section{Inside Tmux}{\metakeydef}
-
-\subsection{Sessions}{to create a new session from within tmux, do execute \ctrl b :new -s \key{name}}
+\section{Sessions}{\metakeydef}
 \cmdS{\ctrl b?}	{show all available keybinds}
-\cmdS{\ctrl bd \ctrl bs}	{detach from / list all sessions}
+\cmdS{\ctrl bL}	{switch back to previous session}
+\cmdS{\ctrl bd \ctrl bs}	{detach from,  list all sessions}
 
+\section{Panes and Buffers}{}
 \subsection{Copy Mode}{{\tt vim} like movements}
-\cmdS{h j k l}{move left/down/up/right}
-\cmdS{\ctrl b\lbracket ~ q}	{enter / exit copy mode}
-\cmdS{\key{space} \enter}	{select / copy text under cursor}
+\cmdS{\ctrl b\lbracket ~ q}	{enter, exit copy mode}
+\cmdS{h j k l}{move left, down, up, right}
+\cmdS{\key{space} \enter}	{select,  copy text under cursor}
 \cmdS{\ctrl b\rbracket}	{paste copied text to command line}
 
-\subsection{Windows (Buffers)}{}
+\subsection{Open, Switch, Delete}{}
 \cmdS{\ctrl b$n$}	{switch to buffer $0 \ldots n$}
-\cmdS{\ctrl bf~\ctrl bw}	{find / list windows}
-\cmdS{\ctrl bc~\ctrl b,~\ctrl b\&}	{create/rename/close window}
-\cmdS{\ctrl bp \ctrl bn \ctrl bl}	{go to prev/next/last window}
-
-\subsection{Open / Switch / Delete Panes}{Resize panes with $\ctrl b$\esc\ plus arrow keys}
-\cmdS{\ctrl bt \ctrl bq}	{show time/numeric values of panes}
-\cmdS{\ctrl b\arrows}	{switch to left/right/top/bottom pane}
-\cmdS{\ctrl b$\lbrace$ \ctrl b$\rbrace$}	{swap position with previous/next pane}
-\cmdS{\ctrl bx \or\ctrl d }	{delete pane}
-\cmdS{\ctrl b\%  \ctrl b"}	{split pane vertically / horizontally}
-
-% \cmdS{\ctrl b\#~\ctrl bo}	{show/switch buffers}
-% \cmdS{\ctrl b\ctrl o}	{swap with previous pane}
-% \cmdS{\ctrl b\key{M - \arrows }}	{resize pane left/right/up/down}
-% \cmdS{\ctrl b!}	{push all other panes to next window}
+\cmdS{\ctrl bc~\ctrl b,~\ctrl bx}	{create, rename, delete window}
+\cmdS{\ctrl bp \ctrl bn \ctrl bl}	{go to prev, next, last window}
+\cmdS{\ctrl b\arrows}	{switch to left, right, top, bottom pane}
+\cmdS{\ctrl bf~\ctrl bw}	{find, list windows}
+\cmdS{\ctrl bt \ctrl bq}	{show time, numeric values of panes}
+\cmdS{\ctrl b\ctrl o}	{swap with previous pane}
+\cmdS{\ctrl b$\lbrace$ \ctrl b$\rbrace$}	{swap position with previous, next pane}
+\cmdS{\ctrl b\% \ctrl b"}	{split pane vertically, horizontally}
+\cmdS{\ctrl b\key{M - \arrows }}	{resize pane left, right, up, down}
+\cmdS{\ctrl b!}	{push all other panes to next window}
 
 \subsection{Panes Position}{}
 \cmdS{\ctrl b\key{space}}	{toggle through all layouts}
