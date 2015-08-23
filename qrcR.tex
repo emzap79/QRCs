@@ -570,6 +570,9 @@ example with {\tt xlim=c(1, 10)} or {\tt xlim=range(x)}}
 
 \subsection{Low-level plotting commands}{}
 \cmdS{dev.new()}	{open a new graphics device (typically a window). see similar in help.}
+\cmdM{graphics.off()}	{closes before opened plot. it is implemented by
+calling $dev.off()$ as many times as necessary.}
+\cmdExmpl{rgl.close(), iplot.off()}	{equvialent commands for $rgl$, $iplots$ packages}
 \cmdS{points(x, y)}	{adds points (the option {\tt type=} can be used)}
 \cmdS{lines(x, y)}	{ id. but with lines}
 \cmdL{text(x, y, labels...)}	{ adds text given by {\tt labels} at
