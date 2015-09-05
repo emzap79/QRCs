@@ -28,7 +28,7 @@
 \cmdS{help(topic)}	{documentation on {\tt topic}}
 \cmdS{?topic}	{id.}
 \cmdL{help.search("topic")}	{search the help system}
-\cmdL{apropos("topic")}	{the names of all objects in the search list
+\cmdM{apropos("topic")}	{the names of all objects in the search list
     matching the regular ex\-pres\-sion "to\-pic"}
 \cmdS{help.start()}	{start the HTML version of help}
 
@@ -392,7 +392,7 @@ specify missing data (NA) removal.
 \subsection{Others}{}
 \cmdS{optimise()}	{One Dimensional Optimization}
 \cmdS{merge(a,b)}	{merge two data frames by com\-mon col\-umns or row names}
-\cmdM{xtabs(a~b,data=x)}	{a contingency table from cross-classi\-fy\-ing factors}
+\cmdL{xtabs(a~b,data=x)}	{a contingency table from cross-classi\-fy\-ing factors}
 \cmdL{aggregate(x,by,FUN)}	{splits the data frame {\tt x} into subsets,
 computes summary statistics for each, and returns the result in a convenient
 form; {\tt by} is a list of grouping elements, each as long as the variables in
@@ -405,9 +405,10 @@ a data frame or list into a single column}
     columns of the same record and 'long' format in separate records}
 \cmdExmpl{ \code(direction="wide") or\\ \code(direction="long")}	{use}
 
-\section{Optimization and model fitting}{{\smalltt optim(par, fn, method =
-c("Nelder-Mead", "BFGS", \ldots)}: general purpose optimization; {\tt par} is
-initial values, {\tt fn} is function to optimize (normally minimize)}
+\section{Optimization and model fitting}{}
+\cmdL{optim(par, fn, method = c("Nelder-Mead", "BFGS", \ldots)}{general purpose
+optimization; {\tt par} is initial values, {\tt fn} is function to optimize
+(normally minimize)}
 \cmdS{nlm(f,p)}	{minimize function {\tt f} using a Newton-type algorithm with
 starting values {\tt p}}
 \cmdS{lm(formula)}	{fit linear models; {\tt formula} is typically of the form
@@ -474,7 +475,10 @@ density ({\tt p{\it func}(x, \ldots)}), and the value of quantile
 ({\tt q{\it func}(p, \ldots)}, with 0 $<$ {\tt p} $<$ 1).
 
 \subsection{Time Series Calculations}{}
-\cmdS{ts(x)}	{Create a time-series vector}
+\cmdL{ts(x, start, end, frequency)}	{Create a time-series vector}
+\cmdL{ar(x, order.max, method)}	{fit an autoregressive time series model to the data}
+\cmdExmpl{ar(data, order.max = 1, method = "ols")}	{fit an AR(1) to $data$ via
+    an OLS regression}
 \cmdS{window(x)}	{Extracts the subset of the object x observed between the
     times start and end. If a frequency is specified, the series is then re-sampled
     at the new frequency}
@@ -670,9 +674,9 @@ conjonction \\with {\tt axis(side=2, \ldots)})}
 \cmdM{dotplot(y\~{}x)}	{ Cleveland dot plot (stacked plots line-by-line and
 column-by-column)}
 \cmdM{densityplot(\~{}x)}	{ density functions plot}
-\cmdL{histogram(\~{}x)}	{ histogram of the frequencies of {\tt x}}
+\cmdM{histogram(\~{}x)}	{ histogram of the frequencies of {\tt x}}
 \cmdS{bwplot(y\~{}x)}	{ ``box-and-whiskers'' plot}
-\cmdM{qqmath(\~{}x)}	{  quantiles of {\tt x} with respect to the values
+\cmdS{qqmath(\~{}x)}	{  quantiles of {\tt x} with respect to the values
 expected under a theoretical distribution}
 
 \cmdM{stripplot(y\~{}x)}	{  single dimension plot, {\tt x} must be numeric, {\tt y} may be a factor}
