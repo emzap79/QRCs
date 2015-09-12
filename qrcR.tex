@@ -490,6 +490,11 @@ density ({\tt p{\it func}(x, \ldots)}), and the value of quantile
     time interval between observations}
 \cmdL{filter(x,filter)}	{applies linear filtering to a univariate time series
     or to each series separately of a multivariate time series}
+\cmdL{Box.test(x, lag = p, type = c())}	{Compute the `Box--Pierce' or `Ljung--Box'
+test statistic for examining the null hypothesis of independence in a given
+time series.}
+\cmdOper{Box-Pierce}	{$T\ast sum(rho[i]^2)$}
+\cmdOper{Ljung-Box}	{$T(T+2)\ast sum(rho[i]^2/(T-j))$}
 
 \section{Plotting}{}
 \cmdS{plot(x)}	{plot of the values of {\tt x} (on the $y$-axis) ordered on the
