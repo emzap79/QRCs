@@ -225,7 +225,7 @@ resample with replacement}
 
 \subsection{Characters (Strings)}{}
 \cmdS{paste(...)}	{concatenate vectors after converting to character; {\tt sep=} is the string to separate terms (a single space is the default); {\tt collapse=} is an optional string to separate ``collapsed'' results}
-\cmdM{substr(x,start,stop)}	{substrings in a character vector}
+\cmdL{substr(x,start,stop)}	{substrings in a character vector}
 \cmdExmpl{\\substr(x, start, stop) <- value}	{can also assign, as}
 \cmdM{strsplit(x,split)}	{split {\tt x} according to the substring {\tt split}}
 \cmdM{grep(pattern,x)}	{searches for matches to {\tt pattern} within {\tt x}; see {\tt ?regex}}
@@ -332,6 +332,7 @@ center only use the option {\tt center=F}, to reduce only {\tt scale=F}
 \cmdOper{x \%/\% y}	{integer division}
 \cmdOper{X \%*\% Y}	{matrix multiplication}
 \cmdOper{x == y}	{test for equality}
+\cmdOper{x != y}	{test for inequality}
 \cmdOper{x <= y}	{test for less-than-or-equal}
 \cmdOper{x >= y}	{test for greater-than-or-equal}
 \cmdOper{x \&\& y}	{boolean {\tt and} for scalars}
@@ -344,7 +345,7 @@ center only use the option {\tt center=F}, to reduce only {\tt scale=F}
 \cmdL{is.element(el,set)}	{``set'' functions}
 \cmdS{Re(x)}	{real part of a complex number}
 \cmdS{Im(x)}	{imaginary part}
-\cmdS{Mod(x)}	{modulus; {\tt abs(x)} is the same}
+\cmdM{Mod(x)\or abs(x)}	{absolute value of $x$}
 \cmdS{Arg(x)}	{angle in radians of the complex number}
 \cmdS{Conj(x)}	{complex conjugate}
 \cmdM{convolve(x,y)}	{compute the several kinds of convolutions of two sequences}
@@ -357,9 +358,11 @@ specify missing data (NA) removal.
 \subsection{Matrices}{}
 \cmdS{\%o\%, outer()}	{outer products on arrays}
 \cmdS{A\ \%*\%\ B}	{multiplication of A and B}
-\cmdS{kronecker}	{kronecker products on arrays}
+\cmdS{kronecker()}	{kronecker products on arrays}
+\cmdExmpl{kronecker(A,solve(A))}	{Kronecker product of A with her own inverted matrix}
 \cmdS{t(x)}	{transpose}
 \cmdS{diag(x)}	{diagonal}
+\cmdS{det(a)}	{matrix determinant of {\tt a}}
 \cmdS{solve(a,b)}	{solves {\tt a \%*\% x = b} for {\tt x}}
 \cmdS{solve(a)}	{matrix inverse of {\tt a}}
 \cmdS{rowsum(x)}	{sum of rows for a matrix-like object;}
@@ -371,12 +374,13 @@ specify missing data (NA) removal.
 
 \section{Advanced data processing and HOFs}{}
 % see: http://stackoverflow.com/a/7141669/3569509
-\subsection{Apply functions to elements}{The base apply family of function is
-    standardized and parallelized by the {\tt plyr} package.}
-\cmdL{apply(X,INDEX,FUN=)}	{a vector or array or list of values obtained by applying a function {\tt FUN} to margins ({\tt INDEX}) of {\tt X}}
-\cmdL{lapply(X,FUN)}	{apply {\tt FUN} to each element of the list {\tt X}}
-\cmdL{tapply(X,INDEX,FUN=)}	{apply {\tt FUN} to each cell of a ragged array given by {\tt X} with indexes {\tt INDEX}}
+\subsection{Apply functions to elements}{The following section covers the most
+common commands: l$apply$ as well as $apply$ itself. Regarding the
+missing functions [m,r,s,t,v]$apply$ consult the R-help pages. The base apply
+family of function is standardized and parallelized by the {\tt plyr} package.}
 \cmdL{by(data,INDEX,FUN)}	{apply {\tt FUN} to data frame {\tt data} subsetted by {\tt INDEX}}
+\cmdM{lapply(X,FUN)}	{apply {\tt FUN} to each element of the list {\tt X}}
+\cmdL{apply(X,INDEX,FUN=)}	{a vector, array or list of values obtained by applying a function {\tt FUN} to margins ({\tt INDEX}) of {\tt X}}
 \subsubsection{Options for INDEX}
 \cmdOper{1}	{apply FUN to array's rows}
 \cmdOper{2}	{apply FUN to array's columns}
@@ -448,33 +452,38 @@ pairwise.t.test(), \ldots}}
 \cmdM{anova(fit,...)}	{analysis of variance (or deviance) tables for one or more fitted model objects}
 \cmdS{density(x)}	{kernel density estimates of {\tt x}}
 
-\subsection{Distributions}{}
-\cmdExmpl{rnorm(n, mean=0, sd=1)}	{Gaussian (normal)}
-\cmdExmpl{rexp(n, rate=1)}	{exponential}
-\cmdExmpl{rgamma(n, shape, scale=1)}	{gamma}
-\cmdExmpl{rpois(n, lambda)}	{Poisson}
-\cmdExmpl{rweibull(n, shape, scale=1)}	{Weibull}
-\cmdExmpl{rcauchy(n, location=0, scale=1)}	{Cauchy}
-\cmdExmpl{rbeta(n, shape1, shape2)}	{beta}
-\cmdExmpl{rt(n, df)}	{`Student' ($t$)}
-\cmdExmpl{rf(n, df1, df2)}	{Fisher--Snedecor ($F$)  ($\chi^2$)}
-\cmdExmpl{rchisq(n, df)}	{Pearson}
-\cmdExmpl{rbinom(n, size, prob)}	{binomial}
-\cmdExmpl{rgeom(n, prob)}	{geometric}
-\cmdExmpl{rhyper(nn, m, n, k)}	{hypergeometric}
-\cmdExmpl{rlogis(n, location=0, scale=1)}	{logistic}
-\cmdExmpl{rlnorm(n, meanlog=0, sdlog=1)}	{lognormal}
-\cmdExmpl{rnbinom(n, size, prob)}	{negative binomial}
-\cmdExmpl{runif(n, min=0, max=1)}	{uniform}
-\cmdExmpl{rwilcox(nn, m, n)}	{{\tt rsignrank(nn, n)} Wilcoxon's statistics}
 
-All these functions can be used by replacing the letter {\tt r} with
-{\tt d}, {\tt p} or {\tt q} to get, respectively, the probability
-density ({\tt d{\it func}(x, \ldots)}), the cumulative probability
-density ({\tt p{\it func}(x, \ldots)}), and the value of quantile
-({\tt q{\it func}(p, \ldots)}, with 0 $<$ {\tt p} $<$ 1).
+\section{Random Distributions}{ All these functions can be used by replacing
+the letter {\tt r} with {\tt d}, {\tt p} or {\tt q} to get, respectively, the
+probability density ({\tt d{\it func}(x, \ldots)}), the cumulative probability
+density ({\tt p{\it func}(x, \ldots)}), and the value of quantile ({\tt q{\it
+func}(p, \ldots)}, with 0 $<$ {\tt p} $<$ 1).}
 
-\subsection{Time Series Calculations}{}
+\subsection{Normally Distributed}{}
+\cmdM{Gaussian}{rnorm(n, mean=0, sd=1)}
+\cmdM{exponential}{rexp(n, rate=1)}
+\cmdM{gamma}{rgamma(n, shape, scale=1)}
+\cmdM{Poisson}{rpois(n, lambda)}
+\cmdM{Weibull}{rweibull(n, shape, scale=1)}
+\cmdM{Cauchy}{rcauchy(n, location=0, scale=1)}
+\cmdM{beta}{rbeta(n, shape1, shape2)}
+\cmdM{`Student'-$t$}{rt(n, df)}
+\cmdM{Fisher-Snedecor}{rf(n, df1, df2)}
+\cmdExmpl{}	{($F$)($\chi^2$)}
+\cmdM{Pearson}{rchisq(n, df)}
+\cmdM{geometric}{rgeom(n, prob)}
+\cmdM{hypergeometric}{rhyper(nn, m, n, k)}
+\cmdM{logistic}{rlogis(n, location=0, scale=1) }
+\cmdM{lognormal}{rlnorm(n, meanlog=0, sdlog=1)}
+\cmdM{uniform}{runif(n, min=0, max=1)}
+\subsection{Wilcoxon's statistics}{}
+\cmdL{Wilcoxon Statistic}{rwilcox(nn, m, n)}
+\cmdL{Signed Rank Statistic}{rsignrank(nn, n)}
+\subsection{Binomial Distributed}{}
+\cmdL{positive binomial}{rbinom(n, size, prob)}
+\cmdL{negative binomial}{rnbinom(n, size, prob)}
+
+\section{Time Series Calculations}{}
 \cmdL{ts(x, start, end, frequency)}	{Create a time-series vector}
 \cmdL{ar(x, order.max, method)}	{fit an autoregressive time series model to the data}
 \cmdExmpl{ar(data, order.max = 1, method = "ols")}	{fit an AR(1) to $data$ via
