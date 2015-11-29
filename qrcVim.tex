@@ -6,7 +6,7 @@
 % version
 \def\content{\uppercase{vim}}
 \def\shortcontent{\content}
-\def\versionnumber{1.3}  % Version of this reference card
+\def\versionnumber{1.4}  % Version of this reference card
 \def\version{v\versionnumber\ \month\ \year}
 
 % include stylefile
@@ -25,7 +25,7 @@
 \cmdM{:h /zero-width}	{matches with `zero-width' \key{@!} patterns}
 
 \section{Movements}	{{\tt :viu } show a summary of all commands }
-\subsection{Basic Movements}{refer to helpsection {\tt :h motion}}
+\subsection{Basic Movements}{\hright{\tt :h motion}}
 \cmdS{h l k j }	{character left, right; line up, down }
 \cmdS{b w }	{word\or token left, right }
 \cmdS{ge e }	{end of word\or token left, right}
@@ -41,7 +41,7 @@
 \cmdS{f$c$ F$c$ }	{next, previous occurence of character $c$}
 \cmdS{t$c$ T$c$ }	{before next, previous occurence of $c$}
 
-\subsection{Jumps}	{print the jump list with {\tt :jumps}}
+\subsection{Jumps | {print jump list {\tt :jumps}}}	{\hright {\tt :h various-motions}}
 \cmdS{\lapos\ \rapos }	{beginning of previous, next paragraph}
 \cmdS{( ) }	{beginning of previous, next sentence}
 \cmdS{[[\ ]]}	{go to previous, next function \or \bs section in \TeX}
@@ -130,10 +130,10 @@ first change remembered by Vim in the undo list, use the command}
 
 \vskip 5ex
 
-\subsection{Registers \& Macros}{show content of all registers: {\tt :reg}}
+\subsection{Registers \& Macros}{}
+\cmdM{:reg\enter, :reg $x$ }	{show content of all registers, single register $x$}
 % \cmdS{$n$.\ }	{repeat last changes with count replaced by $n$ }
 \cmdS{:@$x$ }	{execute register $x$ as an {\it Ex\/} command}
-\cmdS{:reg\grey{ister} $x$ }	{show content of single register $x$}
 \cmdS{q$x$ q$X$ q}	{record, append, stop recording typed characters as macro into register $x$}
 \cmdS{@$x$ }	{execute macro of register $x$}
 % http://stackoverflow.com/a/1291997/1483760

@@ -26,7 +26,7 @@ Frequently used \shortcontent\ commands -- Version \version}
 \vskip 1.5ex
 }
 \def\year{2015}
-\def\month{September}
+\def\month{December}
 
 % specific-intro:
 \def\shortintrospec#1{
@@ -233,9 +233,10 @@ and has then been modified to my own requirements, with permission!
       \hbox to 2.4cm {
       % \hfuzz = 5pt
       \hskip 24pt
-      \hfil
       % \hsize=1.9cm
-      \noindent\cmd{\tt-#1}
+      \rightskip=0cm minus 150fil
+      \noindent\cmd{\tt- #1}
+      \hfil
       }
       %\hrule
     }% This comment is needed to remove space
@@ -426,6 +427,10 @@ and has then been modified to my own requirements, with permission!
 \def\backspace{$\leftarrow$}
 \def\ctrl{{\rm\char94}\kern-1pt}
 \def\enter{$\hookleftarrow$}
+\def\hleft{$\hookleftarrow$}
+\def\hright{$\hookrightarrow$}
+\def\rarrow{$\rightarrow$}
+\def\larrow{$\leftarrow$}
 \def\arrows{$\Leftrightarrow\Updownarrow$}
 \def\or{\enspace{\tinyit{or}}\enspace}
 \def\key#1{$\langle${\rm{#1\/}}$\rangle$}
@@ -438,8 +443,8 @@ and has then been modified to my own requirements, with permission!
 \def\rbracket{]}
 \def\rapos{\char125}
 \def\lapos{\char123}
-\def\ldots{$..$}
-\def\lldots{$...$}
+\def\sldots{$..$}
+\def\ldots{$...$}
 \def\code{\tt}
 \def\F{{\tt FALSE} }
 \def\T{{\tt TRUE} }

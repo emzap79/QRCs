@@ -199,7 +199,9 @@ which {\tt x[i] == a} (the argument of this function must be a variable of mode 
 \cmdS{unique(x)}	{if {\tt x} is a vector or a data frame, returns a similar object but with the duplicate elements suppressed}
 \cmdM{duplicated(x)}	{returns a logical vector indicating which elements (rows) of a vector or data frame are duplicates}
 \cmdS{table(x)}	{returns a table with the numbers of the differents values of {\tt x} (typically for integers or factors)}
-\cmdM{subset(x, \ldots)}	{returns a selection of {\tt x} with respect to criteria ({\tt \ldots}, typically comparisons: {\tt x\$V1 < 10}); if {\tt x} is a data frame, the option {\tt select} gives the variables to be kept or dropped using a minus sign}
+\cmdL{subset(x, subset, select)}	{returns a selection of {\tt x} with respect to criteria, typically comparisons: {\tt x\$V1 < 10}}
+\cmdExmpl{combine more than one subset argument with logical operators.}	{subset(x, Temp > 80 \& Temp < 120, \ldots)}
+\cmdExmpl{if {\tt x} is a data frame, the option {\tt select} gives the variables to be kept (or dropped, using a minus sign).}	{select}
 \cmdM{sample(x, size)}	{resample randomly and without replacement {\tt size}
 elements in the vector {\tt x}, the option {\tt replace = TRUE} allows to
 resample with replacement}
@@ -221,13 +223,13 @@ resample with replacement}
 \cmdS{class(x)}	{get or set the class of {\tt x}; {\tt class(x) <- "myclass"}}
 \cmdS{unclass(x)}	{remove the class attribute of {\tt x}}
 \cmdM{attr(x,which)}	{get or set the attribute {\tt which} of {\tt x}}
-\cmdM{attributes(obj)}	{get or set the list of attributes of {\tt obj}}
+\cmdM{attributes(x)}	{get or set the list of attributes of {\tt x}}
 
 \subsection{Characters (Strings)}{}
 \cmdS{paste(...)}	{concatenate vectors after converting to character; {\tt sep=} is the string to separate terms (a single space is the default); {\tt collapse=} is an optional string to separate ``collapsed'' results}
 \cmdL{substr(x,start,stop)}	{substrings in a character vector}
 \cmdExmpl{\\substr(x, start, stop) <- value}	{can also assign, as}
-\cmdM{strsplit(x,split)}	{split {\tt x} according to the substring {\tt split}}
+\cmdL{strsplit(x,split)}	{split {\tt x} according to the substring {\tt split}}
 \cmdM{grep(pattern,x)}	{searches for matches to {\tt pattern} within {\tt x}; see {\tt ?regex}}
 \cmdL{gsub(pattern,replacement,x)}	{replacement of matches determined by regular expression matching {\tt sub()} is the same but only replaces the first occurrence.}
 \cmdS{tolower(x)}	{convert to lowercase}
@@ -237,6 +239,12 @@ resample with replacement}
 \cmdS{assign}	{assign a value to a name}
 \cmdS{get}	{get a value from a name}
 \cmdL{eval(parse(text='1+1'))}	{compute on the language!!}
+\cmdL{type.convert(x, na.strings, as.is, dec)}	{convert object attributes}
+\cmdOpt{na.strings}	{\\ what to do with missing data ("NA")}
+\cmdOpt{as.is}	{if TRUE: strings, else: factors}
+\cmdOpt{dec}	{decimal specifier: '.' or ','}
+\cmdOpt{numerals}	{\\"allow.loss","warn.loss","no.loss"}
+\cmdExmpl{type.convert(dax, na.strings = "NA", as.is = TRUE, dec = ",")}	{convert from character to numerical vector}
 
 \section{Dates and Times}{
 The class {\tt Date} has dates without times.  {\tt POSIXct} has
@@ -278,12 +286,12 @@ optional on input. See {\tt ?strftime}.
 Setting the C locale will overcome NA issues which emerge on some systems due
 to format incongruencies:
 
-{\tt lct <- Sys.getlocale(\"LC\_TIME\")\\
-Sys.setlocale(\"LC\_TIME\", \"C\")\\
+{\tt lct <- Sys.getlocale(`LC\_TIME')\\
+Sys.setlocale(`LC\_TIME', `C')\\
 x <- "1919-01-31"\\
 as.Date(x,...)\\
 ...\\
-Sys.setlocale(\"LC\_TIME\", lct)
+Sys.setlocale(`LC\_TIME', lct)
 }
 
 \section{Math}{{\tt sin,cos,tan,asin,acos,atan,atan2,log,log10,exp}}
@@ -440,24 +448,33 @@ a function.
 such as {\tt t.test(), binom.test(), prop.test(),\\power.t.test(),
 pairwise.t.test(), \ldots}}
 \subsection{Model Analysis}	{The following generics often apply to model fitting functions}
-\cmdL{predict(fit,...)}	{predictions from {\tt fit} based on input data}
-\cmdL{df.residual(fit)}	{ returns the number of residual degrees of freedom}
+\cmdM{predict(fit,...)}	{predictions from {\tt fit} based on input data}
 \cmdS{coef(fit)}	{ returns the estimated coefficients (sometimes with their standard-errors)}
-\cmdL{residuals(fit)}	{ returns the residuals}
-\cmdL{deviance(fit)}	{ returns the deviance}
+\cmdM{residuals(fit)}	{ returns the residuals}
+\cmdM{df.residual(fit)}	{ returns the number of residual degrees of freedom}
+\cmdM{deviance(fit)}	{ returns the deviance}
 \cmdS{fitted(fit)}	{ returns the fitted values}
 \cmdS{logLik(fit)}	{ computes the logarithm of the likelihood and the number of parameters}
 \cmdS{AIC(fit)}	{ computes the Akaike information criterion or AIC}
-\cmdM{aov(formula)}	{analysis of variance model}
+\cmdS{aov(formula)}	{analysis of variance model}
 \cmdM{anova(fit,...)}	{analysis of variance (or deviance) tables for one or more fitted model objects}
 \cmdS{density(x)}	{kernel density estimates of {\tt x}}
 
+\section{Distribution Functions}{All of the following commands can be used by
+replacing the letter {\tt r} with {\tt d}, {\tt p} or {\tt q} to get the
+probability density, the cumulative probability density, and the value of
+quantile, respectively.}
 
-\section{Random Distributions}{ All these functions can be used by replacing
-the letter {\tt r} with {\tt d}, {\tt p} or {\tt q} to get, respectively, the
-probability density ({\tt d{\it func}(x, \ldots)}), the cumulative probability
-density ({\tt p{\it func}(x, \ldots)}), and the value of quantile ({\tt q{\it
-func}(p, \ldots)}, with 0 $<$ {\tt p} $<$ 1).}
+\cmdS{{\tt d{\it func}(x, \ldots)}}{Cumulative Density Function}
+\cmdS{{\tt p{\it func}(q, \ldots)}}{Probability Distribution Function}
+\cmdS{{\tt q{\it func}(p, \ldots)}}{Quantile Function}
+\cmdExmpl{with 0 $<$ {\tt p} $<$ 1}{prob.}
+\cmdS{{\tt r{\it func}(n, \ldots)}}{Random generated Function}
+
+\subsection{Student-t}{Density $dt(x, df, ncp)$, distribution function
+$pt(\ldots)$, quantile function $qt(\ldots)$ and random generation $rt(\ldots)$
+for the $t$ distribution with $df$ degrees of freedom (and optional
+non-centrality parameter ncp).}
 
 \subsection{Normally Distributed}{}
 \cmdM{Gaussian}{rnorm(n, mean=0, sd=1)}
@@ -477,14 +494,15 @@ func}(p, \ldots)}, with 0 $<$ {\tt p} $<$ 1).}
 \cmdM{lognormal}{rlnorm(n, meanlog=0, sdlog=1)}
 \cmdM{uniform}{runif(n, min=0, max=1)}
 \subsection{Wilcoxon's statistics}{}
-\cmdL{Wilcoxon Statistic}{rwilcox(nn, m, n)}
-\cmdL{Signed Rank Statistic}{rsignrank(nn, n)}
+\cmdL{rwilcox(nn, m, n)}{Wilcoxon Statistic}
+\cmdM{rsignrank(nn, n)}{Signed Rank Statistic}
 \subsection{Binomial Distributed}{}
-\cmdL{positive binomial}{rbinom(n, size, prob)}
-\cmdL{negative binomial}{rnbinom(n, size, prob)}
+\cmdL{rbinom(n, size, prob)}{positive binomial}
+\cmdL{rnbinom(n, size, prob)}{negative binomial}
 
 \section{Time Series Calculations}{}
 \cmdL{ts(x, start, end, frequency)}	{Create a time-series vector}
+\cmdL{xts(x, order.by=as.POSIXct(\ldots))}	{Convert data vector to a timeseries-object}
 \cmdL{ar(x, order.max, method)}	{fit an autoregressive time series model to the data}
 \cmdExmpl{ar(data, order.max = 1, method = "ols")}	{fit an AR(1) to $data$ via
     an OLS regression}
@@ -510,9 +528,11 @@ time series.}
 $x$-axis}
 \cmdS{plot(x, y)}	{bivariate plot of {\tt x} (on the $x$-axis) and {\tt y}
 (on the $y$-axis)}
-\cmdS{hist(x)}	{ histogram of the frequencies of {\tt x}}
+\cmdS{hist(x)}	{histogram of the frequencies of {\tt x}}
 \cmdS{barplot(x)}	{histogram of the values of {\tt x}; use {\tt horiz=F} for
 horizontal bars}
+\cmdS{curve(x)}	{draws a curve corresponding to a function over the interval
+[from, to].}
 \cmdS{dotchart(x)}	{if {\tt x} is a data frame, plots a Cleveland dot plot
 (stacked plots line-by-line and column-by-column)}
 \cmdS{pie(x)}	{ circular pie-chart}
