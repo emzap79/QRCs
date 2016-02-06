@@ -180,8 +180,8 @@ others}
 \cmdS{which.max(x)}	{ returns the index of the greatest element of $x$}
 \cmdS{which.min(x)}	{ returns the index of the smallest element of $x$}
 \cmdS{rev(x)}	{ reverses the elements of {\tt x}}
-\cmdS{sort(x)}	{sorts the elements of {\tt x} in increasing order}
-\cmdS{\tt rev(sort(x))}	{to sort in decreasing order}
+\cmdL{order(x), sort(x)}	{shows numerical order, sorts the elements of {\tt x} in increasing order}
+\cmdExmpl{\tt rev(sort(x))}	{to sort in decreasing order}
 \cmdM{cut(x,breaks)}	{divides {\tt x} into intervals (factors); {\tt breaks} is the number of cut intervals or a vector of cut points}
 \cmdS{x \%in\% y}	{logical vector indicating if there is a match or not for its left operand\\}
 \cmdS{match(x, y)}	{returns a vector of the same length than {\tt x}
@@ -302,6 +302,7 @@ Sys.setlocale(`LC\_TIME', lct)
 \cmdS{min(x)}	{ minimum of the elements of {\tt x}}
 \cmdS{range(x)}	{ id. then {\tt c(min(x), max(x))}}
 \cmdS{sum(x)}	{ sum of the elements of {\tt x}}
+\cmdL{Mod(x)\or abs(x)}	{absolute value of $x$}
 \cmdS{diff(x)}	{ lagged and iterated differences of vector {\tt x}}
 \cmdS{prod(x)}	{ product of the elements of {\tt x}}
 \cmdS{mean(x)}	{ mean of the elements of {\tt x}}
@@ -353,7 +354,6 @@ center only use the option {\tt center=F}, to reduce only {\tt scale=F}
 \cmdL{is.element(el,set)}	{``set'' functions}
 \cmdS{Re(x)}	{real part of a complex number}
 \cmdS{Im(x)}	{imaginary part}
-\cmdM{Mod(x)\or abs(x)}	{absolute value of $x$}
 \cmdS{Arg(x)}	{angle in radians of the complex number}
 \cmdS{Conj(x)}	{complex conjugate}
 \cmdM{convolve(x,y)}	{compute the several kinds of convolutions of two sequences}
@@ -424,8 +424,9 @@ optimization; {\tt par} is initial values, {\tt fn} is function to optimize
 \cmdS{nlm(f,p)}	{minimize function {\tt f} using a Newton-type algorithm with
 starting values {\tt p}}
 \cmdS{lm(formula)}	{fit linear models; {\tt formula} is typically of the form
-{\tt response ~ termA + termB + \ldots}; use {\tt I(x*y) + I(x\^{}2)} for terms
-made of nonlinear components}
+{\tt response \tild\ termA + termB + \ldots + termN}}
+\cmdExmpl{\tt I(x*y) + I(x\^{}2)}	{for terms made of nonlinear components, use}
+
 \cmdL{glm(formula,family=)}	{fit generalized linear models, specified by giving
 a symbolic description of the linear predictor and a description of the error
 distribution}
