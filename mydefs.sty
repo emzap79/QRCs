@@ -25,8 +25,8 @@
 Frequently used \shortcontent\ commands -- Version \version}
 \vskip 1.5ex
 }
-\def\year{2015}
-\def\month{December}
+\def\year{2016}
+\def\month{March}
 
 % specific-intro:
 \def\shortintrospec#1{
@@ -256,6 +256,39 @@ and has then been modified to my own requirements, with permission!
   \vskip 0.14cm
 }
 
+% A medium option               {{{2
+
+\def\cmdOptM#1#2{
+  \noindent
+  \hbox to \hsize {% This comment is needed to remove space at start of line
+    \vtop{
+      \hbox to 2.4cm {
+      % \hfuzz = 5pt
+      \hskip 24pt
+      % \hsize=1.9cm
+      \rightskip=0cm minus 150fil
+      \noindent\cmd{\tt- #1}
+      \hfil
+      }
+      %\hrule
+    }% This comment is needed to remove space
+    \hfil	% absorb extra space b/w columns
+    \vtop{
+      \parindent=1.5\baselineskip   % indent first row of paragraph
+      \hsize=5.90cm
+      \hbox{\hfuzz = 15pt \vtop{
+      % Uncomment line below to right-align description
+      %\leftskip=0cm plus 150fil
+      {#2}
+      }}
+      %\hrule
+    }
+  }
+  %\hrule
+  \par
+  \vskip 0.14cm
+}
+
 % A long option               {{{2
 
 \def\cmdOptL#1#2{
@@ -263,10 +296,11 @@ and has then been modified to my own requirements, with permission!
   \hbox to \hsize {% This comment is needed to remove space at start of line
     \vtop{
       \hbox to 2.4cm {
-      %\hfuzz = 5pt
-      %\hsize=5.9cm
-      \hskip 15pt
-      \noindent\cmd{\tt-#1}
+      % \hfuzz = 5pt
+      \hskip 24pt
+      % \hsize=1.9cm
+      \rightskip=0cm minus 150fil
+      \noindent\cmd{\tt- #1}
       \hfil
       }
       %\hrule
@@ -274,11 +308,11 @@ and has then been modified to my own requirements, with permission!
     % \hfil	% absorb extra space b/w columns
     % \hskip 3em  % indent for description
     \vtop{
-      \parindent=1.5\baselineskip   % indent first row of paragraph
+      \parindent=4.0\baselineskip   % indent first row of paragraph
+      \hsize=14em
       \hbox{\hfuzz = 15pt \vtop{
-      {#2}
+              {#2} % {.\ .\ .\ #2}
       }}
-      %\hrule
     }
   }
   %\hrule
@@ -363,36 +397,60 @@ and has then been modified to my own requirements, with permission!
     \vskip 0.14cm
 }
 
+% A medium operator command    {{{2
+
+\def\cmdOperM#1#2{
+    \noindent
+    \hbox to \hsize {% This comment is needed to remove space at start of line
+        \vtop{
+            \hbox to 3.5cm {
+                \hfil
+                \hsize=10em
+                \noindent{\tt #1}
+                \hfil
+            }
+        }% This comment is needed to remove space
+        \hfil	% absorb extra space b/w columns
+        \vtop{
+            \parindent=1.5\baselineskip   % indent first row of paragraph
+            \hsize=14em
+            \hbox{\hfuzz = 15pt \vtop{
+                    {#2} % {.\ .\ .\ #2}
+                }
+            }
+        }
+    }
+%\hrule
+\par
+\vskip 0.14cm
+}
+
 % An long operator command    {{{2
 
 \def\cmdOperL#1#2{
     \noindent
-    \vbox{
-        \hbox {% This comment is needed to remove space at start of line
-            % \leftskip=0cm plus 150fil
-            \hfil
-            % \hfuzz = 5pt
-            \hsize=10em
-            \noindent{#1}
-            \hfil
-            % \hskip 2ex
-            %\hrule
+    \hbox to \hsize {% This comment is needed to remove space at start of line
+        \vtop{
+            \hbox to 3.5cm {
+                \hfil
+                \hsize=10em
+                \noindent{\tt #1}
+                \hfil
+            }
         }% This comment is needed to remove space
         \hfil	% absorb extra space b/w columns
-        % \hsize=4.90cm
-        \hskip 7em
         \vtop{
-            \hbox{
-                % Uncomment line below to right-align description
-                %\leftskip=0cm plus 150fil
-                {#2}
+            \parindent=4.0\baselineskip   % indent first row of paragraph
+            \hsize=14em
+            \hbox{\hfuzz = 15pt \vtop{
+                    {#2} % {.\ .\ .\ #2}
+                }
             }
-            %\hrule
         }
     }
-    %\hrule
-    \par
-    \vskip 0.14cm
+%\hrule
+\par
+\vskip 0.14cm
 }
 
 % if, elseif, else            {{{2

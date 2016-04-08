@@ -6,7 +6,7 @@
 % version
 \def\content{\uppercase{r}}
 \def\shortcontent{\content}
-\def\versionnumber{1.3}  % Version of this reference card
+\def\versionnumber{1.4}  % Version of this reference card
 \def\version{v\versionnumber\ \month\ \year}
 
 % include stylefile
@@ -100,10 +100,7 @@ the field separator; {\tt eol} is the end-of-line separator; {\tt na} is the
 string for missing values; use {\tt col.names=NA} to add a blank column header
 to get the column headers aligned correctly for spreadsheet input}
 
-\subsubsection{Clipboard}
-
-On windows, the file connection can also be used with description =
-"clipboard".
+\subsubsection{Clipboard}{On windows, the file connection can also be used with description = "clipboard".}
 
 \cmdExmpl{x <- read.delim("clipboard")}{To read a table copied from Excel, use}
 \cmdExmpl{\\ {\smalltt write.table(x,"clipboard",sep="\bs t",col.names=NA)}}{To write a table to the clipboard for Excel, use}
@@ -146,7 +143,9 @@ others}
 \cmdS{cbind(...)}	{id. by columns}
 \cmdExmpl{cbind(x, colName=c(1,2,3))}	{append column named ``colName'' to matrix x}
 
-\subsection{Indexing vectors}{}
+
+\section{Indexing Data}{}
+\subsection{vectors}{}
 \cmdOper{x[n] }	{ $ n^{th} $ element}
 \cmdOper{x[-n] }	{all {\it but} the $ n^{th} $ element}
 \cmdOper{x[-length(x)] }	{all {\it but last} element}
@@ -158,22 +157,20 @@ others}
 \cmdOper{x[x > 3 \& x < 5] }	{all elements between 3 and 5}
 \cmdExmpl{\\\tt x[x \%in\% c("a","and","the")] }	{elements in the given set}
 
-\subsection{Indexing lists}{}
+\subsection{lists}{}
 \cmdOper{x[n]}	{list with elements {\tt n}}
 \cmdOper{x[[n]]}	{{\tt n}$^{th}$ element of the list}
 \cmdOper{x[["name"]]}	{element of the list named {\tt "name"}}
 \cmdOper{x\$name}	{id.}
 
-\subsection{Indexing matrices}{}
+\subsection{matrices and data frames}{}
 \cmdOper{x[i,j]}	{element at row {\tt i}, column {\tt j}}
 \cmdOper{x[i,]}	{row {\tt i}}
 \cmdOper{x[,j]}	{column {\tt j}}
 \cmdOper{x[,c(1,3)]}	{columns 1 and 3}
 \cmdOper{x["name",]}	{row named {\tt "name"}}
-
-\subsection{Indexing data frames}{matrix indexing plus the following}
-\cmdOper{x[["name"]]}	{column named {\tt "name"}}
-\cmdOper{x\$name}	{id.}
+\cmdOper{x[,"name"]}	{column named {\tt "name"}}
+\cmdExmpl{id.}	{x\$name\or x[["name"]]}
 
 \section{Data selection and manipulation}{}
 \subsection{Most common commands}{}
@@ -230,8 +227,8 @@ resample with replacement}
 \cmdL{substr(x,start,stop)}	{substrings in a character vector}
 \cmdExmpl{\\substr(x, start, stop) <- value}	{can also assign, as}
 \cmdL{strsplit(x,split)}	{split {\tt x} according to the substring {\tt split}}
-\cmdM{grep(pattern,x)}	{searches for matches to {\tt pattern} within {\tt x}; see {\tt ?regex}}
-\cmdL{gsub(pattern,replacement,x)}	{replacement of matches determined by regular expression matching {\tt sub()} is the same but only replaces the first occurrence.}
+\cmdM{grep(pttrn,x)}	{searches for matches to {\tt pattern} within {\tt x}; see {\tt ?regex}}
+\cmdL{gsub(pttrn,replmt,x)}	{replacement of matches determined by regular expression matching {\tt sub()} is the same but only replaces the first occurrence.}
 \cmdS{tolower(x)}	{convert to lowercase}
 \cmdS{toupper(x)}	{convert to uppercase}
 \cmdM{pmatch(x,table)}	{partial matches for the elements of {\tt x} among {\tt table}}
@@ -389,7 +386,7 @@ family of function is standardized and parallelized by the {\tt plyr} package.}
 \cmdL{by(data,INDEX,FUN)}	{apply {\tt FUN} to data frame {\tt data} subsetted by {\tt INDEX}}
 \cmdM{lapply(X,FUN)}	{apply {\tt FUN} to each element of the list {\tt X}}
 \cmdL{apply(X,INDEX,FUN=)}	{a vector, array or list of values obtained by applying a function {\tt FUN} to margins ({\tt INDEX}) of {\tt X}}
-\subsubsection{Options for INDEX}
+\subsubsection{Options for INDEX}{}
 \cmdOper{1}	{apply FUN to array's rows}
 \cmdOper{2}	{apply FUN to array's columns}
 
@@ -463,7 +460,7 @@ pairwise.t.test(), \ldots}}
 
 \section{Distribution Functions}{All of the following commands can be used by
 replacing the letter {\tt r} with {\tt d}, {\tt p} or {\tt q} to get the
-probability density, the cumulative probability density, and the value of
+probability function, the cumulative probability function, and the value of
 quantile, respectively.}
 
 \cmdS{{\tt d{\it func}(x, \ldots)}}{Cumulative Density Function}
@@ -472,36 +469,33 @@ quantile, respectively.}
 \cmdExmpl{with 0 $<$ {\tt p} $<$ 1}{prob.}
 \cmdS{{\tt r{\it func}(n, \ldots)}}{Random generated Function}
 
-\subsection{Student-t}{Density $dt(x, df, ncp)$, distribution function
-$pt(\ldots)$, quantile function $qt(\ldots)$ and random generation $rt(\ldots)$
-for the $t$ distribution with $df$ degrees of freedom (and optional
-non-centrality parameter ncp).}
-
-\subsection{Normally Distributed}{}
-\cmdM{Gaussian}{rnorm(n, mean=0, sd=1)}
-\cmdM{exponential}{rexp(n, rate=1)}
-\cmdM{gamma}{rgamma(n, shape, scale=1)}
-\cmdM{Poisson}{rpois(n, lambda)}
-\cmdM{Weibull}{rweibull(n, shape, scale=1)}
-\cmdM{Cauchy}{rcauchy(n, location=0, scale=1)}
-\cmdM{beta}{rbeta(n, shape1, shape2)}
-\cmdM{`Student'-$t$}{rt(n, df)}
-\cmdM{Fisher-Snedecor}{rf(n, df1, df2)}
+\subsection{Functions\ (y$func$)}{}
+\cmdOper{Gaussian}{$y$norm(n, mean=0, sd=1)}
+\cmdExmpl{pnorm(x)}{$\Phi(x)$}
+\cmdExmpl{qnorm(x)}{$\Phi^{-1}(x)$}
+\cmdOper{exponential}{$y$exp(n, rate=1)}
+\cmdOper{gamma}{$y$gamma(n, shape, scale=1)}
+\cmdOper{Poisson}{$y$pois(n, lambda)}
+\cmdOper{Weibull}{$y$weibull(n, shape, scale=1)}
+\cmdOper{Cauchy}{$y$cauchy(n, location=0, scale=1)}
+\cmdOper{beta}{$y$beta(n, shape1, shape2)}
+\cmdOper{`Student'-$t$}{$y$t(n, df)}
+\cmdOper{Fisher-Snedecor}{$y$f(n, df1, df2)}
 \cmdExmpl{}	{($F$)($\chi^2$)}
-\cmdM{Pearson}{rchisq(n, df)}
-\cmdM{geometric}{rgeom(n, prob)}
-\cmdM{hypergeometric}{rhyper(nn, m, n, k)}
-\cmdM{logistic}{rlogis(n, location=0, scale=1) }
-\cmdM{lognormal}{rlnorm(n, meanlog=0, sdlog=1)}
-\cmdM{uniform}{runif(n, min=0, max=1)}
+\cmdOper{Pearson}{$y$chisq(n, df)}
+\cmdOper{geometric}{$y$geom(n, prob)}
+\cmdOper{hypergeometric}{$y$hyper(nn, m, n, k)}
+\cmdOper{logistic}{$y$logis(n, location=0, scale=1) }
+\cmdOper{lognormal}{$y$lnorm(n, meanlog=0, sdlog=1)}
+\cmdOper{uniform}{$y$unif(n, min=0, max=1)}
 \subsection{Wilcoxon's statistics}{}
-\cmdL{rwilcox(nn, m, n)}{Wilcoxon Statistic}
-\cmdM{rsignrank(nn, n)}{Signed Rank Statistic}
+\cmdOper{$y$wilcox(nn, m, n)}{Wilcoxon Statistic}
+\cmdOper{$y$signrank(nn, n)}{Signed Rank Statistic}
 \subsection{Binomial Distributed}{}
-\cmdL{rbinom(n, size, prob)}{positive binomial}
-\cmdL{rnbinom(n, size, prob)}{negative binomial}
+\cmdOperL{$y$binom(n, size, prob)}{positive binomial}
+\cmdOperL{$y$nbinom(n, size, prob)}{negative binomial}
 
-\section{Time Series Calculations}{}
+\section{Time Series Calculations \rarrow library(xts)}{}
 \cmdL{ts(x, start, end, frequency)}	{Create a time-series vector}
 \cmdL{xts(x, order.by=as.POSIXct(\ldots))}	{Convert data vector to a timeseries-object}
 \cmdL{ar(x, order.max, method)}	{fit an autoregressive time series model to the data}
@@ -587,21 +581,24 @@ arguments}
 \cmdL{termplot(mod.obj)}	{ plot of the (partial) effects of a regression
 model ({\tt mod.obj})}
 
-\subsection{Plot Modifiers}{The following parameters are common to many
+\subsubsection{Plot Modifiers}{The following parameters are common to many
     plotting functions}
+\cmdOptM{add=F}	{if \T superposes the plot on the previous one (if it exists)}
+\cmdOptM{axes=T}	{if \F does not draw the axes and the box}
+\cmdOptM{type=""}	{ specifies the type of plot}
+\cmdOper{"p"}{points}
+\cmdOper{"l"}{lines}
+\cmdOper{"b"}{points connected by lines}
+\cmdOper{"o"}{id. but the lines are over the points}
+\cmdOper{"h"}{vertical lines}
+\cmdOper{"s"}{steps, the data are represented by the top of the vertical lines}
+\cmdOper{"S"}{id. but the data are represented by the bottom of the vertical lines}
 
-\cmdOper{add=F}	{if \T superposes the plot on the previous one (if it exists)}
-\cmdOper{axes=T}	{if \F does not draw the axes and the box}
-\cmdOper{type="p"}	{ specifies the type of plot, {\tt "p"}: points, {\tt "l"}:
-lines, {\tt "b"}: points connected by lines, {\tt "o"}: id. but the lines are
-over the points, {\tt "h"}: vertical lines, {\tt "s"}: steps, the data are
-represented by the top of the vertical lines, {\tt "S"}: id. but the data are
-represented by the bottom of the vertical lines}
-\cmdOper{xlim=, ylim=}	{specifies the lower and upper limits of the axes, for
-example with {\tt xlim=c(1, 10)} or {\tt xlim=range(x)}}
-\cmdOper{xlab=, ylab=}	{ annotates the axes, must be variables of mode character}
-\cmdOper{main=}	{ main title, must be a variable of mode character}
-\cmdOper{sub=}	{ sub-title (written in a smaller font)}
+\cmdOptL{xlim=, ylim=}	{specifies the lower and upper limits of the axes}
+\cmdExmpl{xlim=c(1, 10) \or xlim=range(x)}	{upper and lower limits}
+\cmdOptL{xlab=, ylab=}	{ annotates the axes, must be variables of mode character}
+\cmdOpt{main=}	{ main title, must be a variable of mode character}
+\cmdOpt{sub=}	{ sub-title (written in a smaller font)}
 
 \subsection{Low-level plotting commands}{}
 \cmdS{dev.new()}	{open a new graphics device (typically a window). see similar in help.}
@@ -652,13 +649,14 @@ centred, {\tt 1} right-justified)}
 bg="blue"}, \ldots{} the list of the 657 available colours is displayed with
 {\tt colors()})}
 \cmdS{bty}	{controls the type of box drawn around the plot, allowed values
-    are: {\tt "o"}, {\tt "l"}, {\tt "7"}, {\tt "c"}, {\tt "u"} or {\tt "]"} (the box looks like the corresponding character)}
+ are: {\tt "o"}, {\tt "l"}, {\tt "7"}, {\tt "c"}, {\tt "u"} or {\tt "]"} (the box looks like the corresponding character)}
 \cmdExmpl{the box is not drawn}{if {\tt bty="n"}}
 \cmdS{cex}	{ a value controlling the size of texts and symbols with respect to
-the default; the following parameters have the same control for numbers on the
-axes,\\
-    {\tt cex.axis}, the axis labels, {\tt cex.lab}, the title, {\tt cex.main},
-    and the sub-title, {\tt cex.sub}}
+the default; the following parameters have the same control for\ldots}
+\cmdOper{\tt cex.axis} {numbers on the axes}
+\cmdOper{\tt cex.lab} {the axis labels}
+\cmdOper{\tt cex.main} {the title}
+\cmdOper{\tt cex.sub} {the sub-title}
 \cmdS{col}	{controls the color of symbols and lines; use color names e.g. "red", "blue" or as "\#RRGGBB"}
 \cmdExmpl{colors(), rgb(), hsv(), gray() and rainbow()}{see}
 \cmdExmpl{col.axis, col.lab, col.main, col.sub}{as for {\tt cex} there are}
