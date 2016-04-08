@@ -6,7 +6,7 @@
 % version
 \def\content{\uppercase{vim}}
 \def\shortcontent{\content}
-\def\versionnumber{1.4}  % Version of this reference card
+\def\versionnumber{1.5}  % Version of this reference card
 \def\version{v\versionnumber\ \month\ \year}
 
 % include stylefile
@@ -78,29 +78,6 @@
 \cmdS{R gR }	{replace characters starting at the cursor, without affecting layout}
 \cmdS{s$c$}	{substitute character $c$ under cursor $\to$ insert mode}
 
-\subsection{Command Mode CTRL-Keys}	{}
-\cmdS{\ctrl V$c$ \ctrl V$n$ }	{insert char $c$ literally, decimal value $n$}
-\cmdS{\ctrl A \ctrl @}	{insert previously inserted text, stop insert $\to$ command mode}
-\cmdS{\ctrl N \ctrl P }	{text completion before, after cursor}
-\cmdS{\ctrl W \ctrl U }	{delete word before cursor, to start of line}
-\cmdS{\ctrl D \ctrl T }	{shift left, right one shift width}
-\cmdS{\ctrl O$c$ }	{execute $c$ in temporary command mode}
-\cmdS{\key{esc}\or\ctrl\rbracket}	{abandon edition $\to$ command mode}
-\subsubsection{CTRL-R}{}
-\cmdS{\ctrl R\ctrl A}	{content under cursor to command mode}
-\cmdS{\ctrl R = 5*5}	{insert 25 into text}
-\cmdS{\ctrl R$x$ \ctrl R\ctrl R$x$ }	{insert content of register $x$, literally}
-\subsubsection{CTRL-X (Command Mode Completions)}{}
-\cmdS{\ctrl{}X\ctrl{}L}	{whole lines}
-\cmdS{\ctrl{}X\ctrl{}N \ctrl{}X\ctrl{}I}	{keywords in current file, plus included files}
-\cmdS{\ctrl{}X\ctrl{}K \ctrl{}X\ctrl{}N}	{keywords in dictionary, thesaurus}
-\cmdS{\ctrl{}X\ctrl{}]}	{tags}
-\cmdS{\ctrl{}X\ctrl{}F}	{file names}
-\cmdS{\ctrl{}X\ctrl{}D}	{definitions or macros}
-\cmdS{\ctrl{}X\ctrl{}V}	{vim command line}
-\cmdS{\ctrl{}X\ctrl{}U}	{user defined completion}
-\cmdS{\ctrl{}X\ctrl{}O}	{omni completion}
-
 \subsection{Visual Mode}	{refer to {\tt :h object-select}}
 \cmdS{v V \ctrl V }	{start\or stop highlighting characters, lines, block}
 \cmdS{o }	{exchange cursor position with start of highlighting}
@@ -148,7 +125,7 @@ first change remembered by Vim in the undo list, use the command}
 substitutions work like {\tt:s/$p$/$q$/$flag$}, you may limit your search to
 an area between $r$anges ({\tt Ex ranges)}.}
 
-\subsubsection{Search, Substitute Flags }
+\subsubsection{Search, Substitute Flags }{}
 \cmdOper{c}	{confirm each substitution}
 \cmdOper{e}	{do not issue error messages and continue as if no error occurred}
 \cmdOper{g}	{replace all occurrences in the line}
@@ -321,21 +298,6 @@ comment `\#' is excluded from pattern}
 \cmdS{:bufdo $cmd$}	{execute $cmd$ in each buffer in the buffer list.}
 \cmdS{:sb$n$ }	{Split window and edit buffer $n$ from the bufflist}
 
-\subsection{Buffer Shortcuts}	{refer to {\tt :h ctrl-w }}
-\cmdS{\ctrl \^{} }	{toggle between the current and the last window}
-\cmdS{\ctrl Wf gf }	{open file under cursor in new, current window}
-\cmdS{\ctrl Ww \ctrl W\ctrl W }	{move to window below, above (wrap)}
-\cmdS{\ctrl Wj \ctrl Wk }	{move to window below, above}
-\cmdS{\ctrl Wt \ctrl Wb }	{move to top, bottom window}
-\cmdS{\ctrl Wc \ctrl Wo }	{close current, all other window(s)}
-\cmdS{\ctrl Ws \ctrl Wv }	{split window in two (vert.)}
-\cmdS{\ctrl Wx\or\ctrl W\ctrl R}	{swap open buffer windows }
-\cmdS{\ctrl W$n$+ \ctrl W$n$- }	{increase, decrease window size by $n$ lines}
-\cmdS{\ctrl W$n>$ \ctrl W$n<$ }	{increase, decrease window width}
-\cmdS{\ctrl W = }	{Make all windows equally high and wide}
-\cmdS{\ctrl W $n\_$ }	{set window height to $n$ (default: very high) }
-\cmdS{\ctrl W $n|$ }	{set current window width to $n$ }
-
 \subsection{Tab Management}	{}
 \cmdS{:tabs }	{list all tabs including their displayed windows}
 \cmdS{:tabfi\grey{rst} }	{go to first tab}
@@ -375,6 +337,50 @@ comment `\#' is excluded from pattern}
 \section{Common Digraphs}	{}
 \cmdS{\ctrl K$n$S \ctrl K$n$s}	{Superscript, subscript Number $n$}
 
+\vfil \break
+\section{CTRL-Keys}	{}
+\subsection{CTRL in Normal Mode}	{}
+\subsubsection{CTRL-W}{Buffer Shortcuts}
+\cmdS{\ctrl \^{} }	{toggle between the current and the last window}
+\cmdS{\ctrl Wf gf }	{open file under cursor in new, current window}
+\cmdS{\ctrl Ww \ctrl W\ctrl W }	{move to window below, above (wrap)}
+\cmdS{\ctrl Wj \ctrl Wk }	{move to window below, above}
+\cmdS{\ctrl Wt \ctrl Wb }	{move to top, bottom window}
+\cmdS{\ctrl Wc \ctrl Wo }	{close current, all other window(s)}
+\cmdS{\ctrl Ws \ctrl Wv }	{split window in two (vert.)}
+\cmdS{\ctrl Wx\or\ctrl W\ctrl R}	{swap open buffer windows }
+\cmdS{\ctrl W$n$+ \ctrl W$n$- }	{increase, decrease window size by $n$ lines}
+\cmdS{\ctrl W$n>$ \ctrl W$n<$ }	{increase, decrease window width}
+\cmdS{\ctrl W$=$ }	{Make all windows equally high and wide}
+\cmdS{\ctrl W$\_$ \ctrl W$|$ }	{maximize current window height, width}
+\cmdS{\ctrl W$n\_$ \ctrl W$n|$ }	{set current window heigth, width to $n$ }
+
+\subsection{CTRL in Command, Insert Mode}	{}
+\subsubsection{CTRL-R}{}
+\cmdS{\ctrl R\ctrl A}	{content under cursor to command mode}
+\cmdS{\ctrl R = 5*5}	{insert 25 into text}
+\cmdS{\ctrl R$x$ \ctrl R\ctrl R$x$ }	{insert content of register $x$, literally}
+
+\subsubsection{CTRL-X}{Keyword completion}
+\cmdS{\ctrl{}X\ctrl{}L}	{whole lines}
+\cmdS{\ctrl{}X\ctrl{}N \ctrl{}X\ctrl{}I}	{keywords in current file, plus included files}
+\cmdS{\ctrl{}X\ctrl{}K \ctrl{}X\ctrl{}N}	{keywords in dictionary, thesaurus}
+\cmdS{\ctrl{}X\ctrl{}]}	{tags}
+\cmdS{\ctrl{}X\ctrl{}F}	{file names}
+\cmdS{\ctrl{}X\ctrl{}D}	{definitions or macros}
+\cmdS{\ctrl{}X\ctrl{}V}	{vim command line}
+\cmdS{\ctrl{}X\ctrl{}U}	{user defined completion}
+\cmdS{\ctrl{}X\ctrl{}O}	{omni completion}
+
+\subsubsection{CTRL-$<\ldots>$}{}
+\cmdS{\ctrl V$c$ \ctrl V$n$ }	{insert char $c$ literally, decimal value $n$}
+\cmdS{\ctrl A \ctrl @}	{insert previously inserted text, stop insert $\to$ command mode}
+\cmdS{\ctrl N \ctrl P }	{text completion before, after cursor}
+\cmdS{\ctrl W \ctrl U }	{delete word before cursor, to start of line}
+\cmdS{\ctrl D \ctrl T }	{shift left, right one shift width}
+\cmdS{\ctrl O$c$ }	{execute $c$ in temporary command mode}
+\cmdS{\key{esc}\or\ctrl\rbracket}	{abandon edition $\to$ command mode}
+
 % \section{Plugin Commands}	{}
 % \cmdS{:BufOnly }	{Deletes all other Buffers}
 
@@ -384,7 +390,6 @@ comment `\#' is excluded from pattern}
 % Ending
 \vfil
 \supereject
-\if L\lr \else\null\vfill\eject\fi
 \if L\lr \else\null\vfill\eject\fi
 \bye
 

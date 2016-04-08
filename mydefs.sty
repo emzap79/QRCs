@@ -150,7 +150,7 @@ and has then been modified to my own requirements, with permission!
 \def\title#1{\hfil{\bf #1}\hfil\par\vskip 2pt\hrule}
 \def\section#1#2{\vskip 5ex {\bf#1}\par\vskip 1pt\hlinewd\vskip 1pt#2\vskip 5pt}
 \def\subsection#1#2{\vskip 2ex {#1\/}\par\vskip 1pt\hrule\vskip 1pt#2\vskip 5pt}
-\def\subsubsection#1{\vskip 1ex {\hskip 2em #1\/}\par\vskip 3pt}
+\def\subsubsection#1#2{\vskip 2ex {#1\/}\par\vskip 1pt\vskip 1pt#2\vskip 5pt}
 
 % A short command             {{{2
 
@@ -266,14 +266,15 @@ and has then been modified to my own requirements, with permission!
       %\hfuzz = 5pt
       %\hsize=5.9cm
       \hskip 15pt
-      \noindent\cmd{\tt--#1}
+      \noindent\cmd{\tt-#1}
       \hfil
       }
       %\hrule
     }% This comment is needed to remove space
-    \hfil	% absorb extra space b/w columns
+    % \hfil	% absorb extra space b/w columns
+    % \hskip 3em  % indent for description
     \vtop{
-      \hsize=5.90cm
+      \parindent=1.5\baselineskip   % indent first row of paragraph
       \hbox{\hfuzz = 15pt \vtop{
       {#2}
       }}
