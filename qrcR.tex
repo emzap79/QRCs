@@ -497,21 +497,24 @@ quantile, respectively.}
 
 \section{Time Series Calculations \rarrow library(xts)}{}
 \cmdL{ts(x, start, end, frequency)}	{Create a time-series vector}
+\cmdExmpl{ts(rnorm(24), start = c(2010, 1), frequency=12)}	{Time Series Object
+of 24 random variables over a two years scale, starting from Jan 2010}
 \cmdL{xts(x, order.by=as.POSIXct(\ldots))}	{Convert data vector to a timeseries-object}
-\cmdL{ar(x, order.max, method)}	{fit an autoregressive time series model to the data}
 \cmdExmpl{ar(data, order.max = 1, method = "ols")}	{fit an AR(1) to $data$ via
     an OLS regression}
 \cmdS{window(x)}	{Extracts the subset of the object x observed between the
-    times start and end. If a frequency is specified, the series is then re-sampled
-    at the new frequency}
-\cmdExmpl{\\ window(x, start=c(1901, 11), frequency=T)}	{Resampling a timeseries for
-    every 11th entry eg. monthly data}
+    start and end of a timeseries object. (If a frequency is specified, the series
+            is then re-sampled at the new frequency)}
+\cmdExmpl{\\ window(x, start=c(2000, 11), frequency=T)}	{Resampling a timeseries for
+    the month of November (every 11th month of a year) over the past couple of decades}
+\cmdExmpl{window(x, c(2000,1), c(2015,12))}	{Extract Data between Jan 2000 and Dec 2015 from x}
 \cmdS{time(x)}	{creates the vector of times at which a time series was sampled}
 \cmdS{cycle(x)}	{gives the positions in the cycle of each observation}
-\cmdS{frequency(x)}	{returns the number of samples per unit time and deltat the
+\cmdM{frequency(x)}	{returns the number of samples per unit time and deltat the
     time interval between observations}
 \cmdL{filter(x,filter)}	{applies linear filtering to a univariate time series
     or to each series separately of a multivariate time series}
+\cmdL{ar(x, order.max, method)}	{fit an autoregressive time series model to the data}
 \cmdL{Box.test(x, lag = p, type = c())}	{Compute the `Box--Pierce' or `Ljung--Box'
 test statistic for examining the null hypothesis of independence in a given
 time series.}
