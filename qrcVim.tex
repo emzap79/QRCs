@@ -6,7 +6,7 @@
 % version
 \def\content{\uppercase{vim}}
 \def\shortcontent{\content}
-\def\versionnumber{1.5}  % Version of this reference card
+\def\versionnumber{1.6}  % Version of this reference card
 \def\version{v\versionnumber\ \month\ \year}
 
 % include stylefile
@@ -284,7 +284,7 @@ comment `\#' is excluded from pattern}
 \cmdS{zn zN zi }	{fold non, fold normal, invert folding}
 \cmdS{:set fdc=$n$ }	{show foldcolumn to level $n$}
 
-\section{Multiple Files, Buffers, Tabs (\enter)}	{}
+\section{Multiple Files, Buffers, Tabs (\enter)}	{execute $cmd$ in each buffer in the buffer list {\tt:bufdo cmd}}
 \subsection{Generic Buffer Commands}	{}
 \cmdS{:tab ball }	{show buffers as tablist}
 \cmdS{:buffers }	{show list of buffers}
@@ -295,7 +295,7 @@ comment `\#' is excluded from pattern}
 \cmdS{:bd$n$ }	{delete buffer $n$ (also with filename)}
 \cmdExmpl{:bd *.ext \ctrl A}	{Delete all Buffers with Extension `ext'}
 \cmdS{:badd f.txt }	{load file into new buffer}
-\cmdS{:bufdo $cmd$}	{execute $cmd$ in each buffer in the buffer list.}
+% \cmdS{}	{execute $cmd$ in each buffer in the buffer list.}
 \cmdS{:sb$n$ }	{Split window and edit buffer $n$ from the bufflist}
 
 \subsection{Tab Management}	{}
