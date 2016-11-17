@@ -114,136 +114,13 @@ For database interaction, see packages {\tt RODBC}, {\tt DBI},\\
 {\tt RMySQL}, {\tt RPgSQL}, and {\tt ROracle}. See packages {\tt XML},
 {\tt hdf5}, {\tt netCDF} for reading other file formats.
 
-\section{Generating, slicing and extracting data}{}
-\subsection{Data creation}{}
-\cmdS{c(...)}	{generic function to concatenate arguments with the default
-forming a vector; with {\tt recursive=T} descends through lists combining all
-elements into one vector}
-\cmdS{from:to}	{generates a sequence; ``:'' has operator priority; 1:4 + 1 is
-``2,3,4,5''}
-\cmdS{seq(from,to)}	{generates a sequence {\tt by=} specifies increment; {\tt length=} specifies desired length}
-\cmdS{seq(along=x)}	{generates {\tt 1, 2, \ldots, length(along)};\\useful for
-{\tt for} loops}
-\cmdS{rep(x,times)}	{replicate {\tt x} {\tt times}; use {\tt each=} to repeat ``each'' element of {\tt x} {\tt each} times;}
-\cmdExmpl{1 2 3 1 2 3}{\tt rep(c(1,2,3),2)}
-\cmdExmpl{1 1 2 2 3 3}{\tt rep(c(1,2,3),each=2)}
-\cmdM{data.frame(...)}	{create a data frame of the named or unnamed arguments}
-\cmdExmpl{\\d\ldots ame(v=1:4,ch=c("a","B","c","d"),n=10)}	{shorter vectors are being recycled to the length of the longest}
-\cmdS{list(...)}	{create a list of the named or unnamed arguments }
-\cmdExmpl{list(a=c(1,2),b="hi",c=3i)}{use}
-\cmdM{array(x,dim=)}	{array with data {\tt x}; specify dimensions like {\tt dim=c(3,4,2)}; elements of {\tt x} recycle if {\tt x} is not long enough}
-\cmdL{matrix(x,nrow=,ncol=)}	{matrix; elements of {\tt x} recycle}
-\cmdL{factor(x,levels=)}	{encodes a vector {\tt x} as a factor}
-\cmdL{gl(n,k,length=n*k,labels=1:n)}	{generate levels (factors) by specifying the pattern of their levels; {\tt k} is the number of levels, and {\tt n} is the number of replications}
-\cmdM{expand.grid()}	{a data frame from all combinations of the supplied vectors or factors}
-
 % Bind Rows/Columns to Matrices
 \cmdS{rbind(...)}	{combine arguments by rows for matrices, data frames, and
 others}
 \cmdS{cbind(...)}	{id. by columns}
 \cmdExmpl{cbind(x, colName=c(1,2,3))}	{append column named ``colName'' to matrix x}
 
-
-\section{Indexing Data}{}
-\subsection{vectors}{}
-\cmdOper{x[n] }	{ $ n^{th} $ element}
-\cmdOper{x[-n] }	{all {\it but} the $ n^{th} $ element}
-\cmdOper{x[-length(x)] }	{all {\it but last} element}
-\cmdOper{x[1:n] }	{first elements}
-\cmdOper{x[-(1:n)] }	{elements from {\tt n+1} to the end}
-\cmdOper{x[c(1,4,2)] }	{specific elements}
-\cmdOper{x["name"] }	{element named {\tt "name"}}
-\cmdOper{x[x > 3] }	{all elements greater than 3}
-\cmdOper{x[x > 3 \& x < 5] }	{all elements between 3 and 5}
-\cmdExmpl{\\\tt x[x \%in\% c("a","and","the")] }	{elements in the given set}
-
-\subsection{lists}{}
-\cmdOper{x[n]}	{list with elements {\tt n}}
-\cmdOper{x[[n]]}	{{\tt n}$^{th}$ element of the list}
-\cmdOper{x[["name"]]}	{element of the list named {\tt "name"}}
-\cmdOper{x\$name}	{id.}
-
-\subsection{matrices and data frames}{}
-\cmdOper{x[i,j]}	{element at row {\tt i}, column {\tt j}}
-\cmdOper{x[i,]}	{row {\tt i}}
-\cmdOper{x[,j]}	{column {\tt j}}
-\cmdOper{x[,c(1,3)]}	{columns 1 and 3}
-\cmdOper{x["name",]}	{row named {\tt "name"}}
-\cmdOper{x[,"name"]}	{column named {\tt "name"}}
-\cmdExmpl{id.}	{x\$name\or x[["name"]]}
-
-\section{Data selection and manipulation}{}
-\subsection{Most common commands}{}
-\cmdS{which.max(x)}	{ returns the index of the greatest element of $x$}
-\cmdS{which.min(x)}	{ returns the index of the smallest element of $x$}
-\cmdS{rev(x)}	{ reverses the elements of {\tt x}}
-\cmdL{order(x), sort(x)}	{shows numerical order, sorts the elements of {\tt x} in increasing order}
-\cmdExmpl{\tt rev(sort(x))}	{to sort in decreasing order}
-\cmdM{cut(x,breaks)}	{divides {\tt x} into intervals (factors); {\tt breaks} is the number of cut intervals or a vector of cut points}
-\cmdS{x \%in\% y}	{logical vector indicating if there is a match or not for its left operand\\}
-\cmdS{match(x, y)}	{returns a vector of the same length than {\tt x}
-    with the elements of {\tt x} which are in {\tt y} ({\tt NA}
-    otherwise)}
-\cmdM{which(x == a)}	{returns a vector of the indices of {\tt x} if the
-comparison operation is true ($T$), in this example the values of {\tt i} for
-which {\tt x[i] == a} (the argument of this function must be a variable of mode logical)}
-\cmdS{choose(n, k)}	{ computes the combinations of $k$ events among $n$ repetitions = $n!/[(n-k)!k!]$}
-\cmdS{combn(n, k)}	{ generate all combinations of n elements, taken m at a time.}
-\cmdS{na.omit(x)}	{suppresses the observations with missing data ({\tt NA}) (suppresses the corresponding line if {\tt x} is a matrix or a data frame)}
-\cmdL{complete.cases(x[$n$],x[$n$])}	{allows removement of `na's by using part of the dataframe} % http://stackoverflow.com/a/4862502
-\cmdExmpl{\\ x[complete.cases(x[,5:6]),]}	{skip all rows in data frame x, where `na' appears in column 5 or 6}
-\cmdS{na.fail(x)}	{returns an error message if {\tt x }contains at least one {\tt NA}}
-\cmdS{unique(x)}	{if {\tt x} is a vector or a data frame, returns a similar object but with the duplicate elements suppressed}
-\cmdM{duplicated(x)}	{returns a logical vector indicating which elements (rows) of a vector or data frame are duplicates}
-\cmdS{table(x)}	{returns a table with the numbers of the differents values of {\tt x} (typically for integers or factors)}
-\cmdL{subset(x, subset, select)}	{returns a selection of {\tt x} with respect to criteria, typically comparisons: {\tt x\$V1 < 10}}
-\cmdExmpl{combine more than one subset argument with logical operators.}	{subset(x, Temp > 80 \& Temp < 120, \ldots)}
-\cmdExmpl{if {\tt x} is a data frame, the option {\tt select} gives the variables to be kept (or dropped, using a minus sign).}	{select}
-\cmdM{sample(x, size)}	{resample randomly and without replacement {\tt size}
-elements in the vector {\tt x}, the option {\tt replace = TRUE} allows to
-resample with replacement}
-\cmdL{prop.table(x,margin=)}	{table entries as fraction of marginal table}
-
-\subsection{Variable information}{is.na(x), is.null(x), is.array(x), is.data.frame(x), \ldots}
-\cmdS{methods(is)}	{list all available typetests}
-\cmdS{methods(as)}	{list of all variable conversions}
-\cmdS{any(x)}	{any TRUE elements of {\tt x}?}
-\cmdS{all(x)}	{all TRUE elements of {\tt x}?}
-\cmdS{length(x)}	{ number of elements in {\tt x}}
-% see: http://stackoverflow.com/a/18969751/3569509
-\cmdS{rle(x)}	{length of consecutive elements in {\tt x}}
-\cmdS{dim(x)}	{Retrieve or set the dimension of an object; {\tt dim(x) <- c(3,2)}}
-\cmdS{dimnames(x)}	{Retrieve or set the dimension names of an object}
-\cmdS{nrow(x)}	{number of rows; {\tt NROW(x)} is the same but treats a vector as a one-row matrix}
-\cmdS{ncol(x)}	{and}
-\cmdS{NCOL(x)}	{id. for columns}
-\cmdS{class(x)}	{get or set the class of {\tt x}; {\tt class(x) <- "myclass"}}
-\cmdS{unclass(x)}	{remove the class attribute of {\tt x}}
-\cmdM{attr(x,which)}	{get or set the attribute {\tt which} of {\tt x}}
-\cmdM{attributes(x)}	{get or set the list of attributes of {\tt x}}
-
-\subsection{Characters (Strings)}{}
-\cmdS{paste(...)}	{concatenate vectors after converting to character; {\tt sep=} is the string to separate terms (a single space is the default); {\tt collapse=} is an optional string to separate ``collapsed'' results}
-\cmdL{substr(x,start,stop)}	{substrings in a character vector}
-\cmdExmpl{\\substr(x, start, stop) <- value}	{can also assign, as}
-\cmdL{strsplit(x,split)}	{split {\tt x} according to the substring {\tt split}}
-\cmdM{grep(pttrn,x)}	{searches for matches to {\tt pattern} within {\tt x}; see {\tt ?regex}}
-\cmdL{gsub(pttrn,replmt,x)}	{replacement of matches determined by regular expression matching {\tt sub()} is the same but only replaces the first occurrence.}
-\cmdS{tolower(x)}	{convert to lowercase}
-\cmdS{toupper(x)}	{convert to uppercase}
-\cmdM{pmatch(x,table)}	{partial matches for the elements of {\tt x} among {\tt table}}
-\cmdS{nchar(x)}	{number of characters}
-\cmdS{assign}	{assign a value to a name}
-\cmdS{get}	{get a value from a name}
-\cmdL{eval(parse(text='1+1'))}	{compute on the language!!}
-\cmdL{type.convert(x, na.strings, as.is, dec)}	{convert object attributes}
-\cmdOpt{na.strings}	{\\ what to do with missing data ("NA")}
-\cmdOpt{as.is}	{if TRUE: strings, else: factors}
-\cmdOpt{dec}	{decimal specifier: '.' or ','}
-\cmdOpt{numerals}	{\\"allow.loss","warn.loss","no.loss"}
-\cmdExmpl{type.convert(dax, na.strings = "NA", as.is = TRUE, dec = ",")}	{convert from character to numerical vector}
-
-\section{Dates and Times}{
+\subsection{Dates and Times}{
 The class {\tt Date} has dates without times.  {\tt POSIXct} has
 dates and times, including time zones. Comparisons (e.g. $>$),
 {\tt seq()}, and {\tt difftime()} are useful. {\tt Date} also allows
@@ -291,6 +168,130 @@ as.Date(x,...)\\
 Sys.setlocale(`LC\_TIME', lct)
 }
 
+\subsection{Indexing Data}{}
+\subsubsection{vectors}{}
+\cmdOper{x[n] }	{ $ n^{th} $ element}
+\cmdOper{x[-n] }	{all {\it but} the $ n^{th} $ element}
+\cmdOper{x[-length(x)] }	{all {\it but last} element}
+\cmdOper{x[1:n] }	{first elements}
+\cmdOper{x[-(1:n)] }	{elements from {\tt n+1} to the end}
+\cmdOper{x[c(1,4,2)] }	{specific elements}
+\cmdOper{x["name"] }	{element named {\tt "name"}}
+\cmdOper{x[x > 3] }	{all elements greater than 3}
+\cmdOper{x[x > 3 \& x < 5] }	{all elements between 3 and 5}
+\cmdExmpl{\\\tt x[x \%in\% c("a","and","the")] }	{elements in the given set}
+
+\subsubsection{lists}{}
+\cmdOper{x[n]}	{list with elements {\tt n}}
+\cmdOper{x[[n]]}	{{\tt n}$^{th}$ element of the list}
+\cmdOper{x[["name"]]}	{element of the list named {\tt "name"}}
+\cmdOper{x\$name}	{id.}
+
+\subsubsection{matrices and data frames}{}
+\cmdOper{x[i,j]}	{element at row {\tt i}, column {\tt j}}
+\cmdOper{x[i,]}	{row {\tt i}}
+\cmdOper{x[,j]}	{column {\tt j}}
+\cmdOper{x[,c(1,3)]}	{columns 1 and 3}
+\cmdOper{x["name",]}	{row named {\tt "name"}}
+\cmdOper{x[,"name"]}	{column named {\tt "name"}}
+\cmdExmpl{id.}	{x\$name\or x[["name"]]}
+\vfil\break
+
+\section{Generating and Extracting Data}{}
+\subsection{Data creation}{}
+\cmdS{c(...)}	{generic function to concatenate arguments with the default
+forming a vector; with {\tt recursive=T} descends through lists combining all
+elements into one vector}
+\cmdS{from:to}	{generates a sequence; ``:'' has operator priority; 1:4 + 1 is
+``2,3,4,5''}
+\cmdS{seq(from,to)}	{generates a sequence {\tt by=} specifies increment; {\tt length=} specifies desired length}
+\cmdS{seq(along=x)}	{generates {\tt 1, 2, \ldots, length(along)};\\useful for
+{\tt for} loops}
+\cmdS{rep(x,times)}	{replicate {\tt x} {\tt times}; use {\tt each=} to repeat ``each'' element of {\tt x} {\tt each} times;}
+\cmdExmpl{1 2 3 1 2 3}{\tt rep(c(1,2,3),2)}
+\cmdExmpl{1 1 2 2 3 3}{\tt rep(c(1,2,3),each=2)}
+\cmdM{data.frame(...)}	{create a data frame of the named or unnamed arguments}
+\cmdExmpl{\\d\ldots ame(v=1:4,ch=c("a","B","c","d"),n=10)}	{shorter vectors are being recycled to the length of the longest}
+\cmdS{list(...)}	{create a list of the named or unnamed arguments }
+\cmdExmpl{list(a=c(1,2),b="hi",c=3i)}{use}
+\cmdM{array(x,dim=)}	{array with data {\tt x}; specify dimensions like {\tt dim=c(3,4,2)}; elements of {\tt x} recycle if {\tt x} is not long enough}
+\cmdL{matrix(x,nrow=,ncol=)}	{matrix; elements of {\tt x} recycle}
+\cmdL{factor(x,levels=)}	{encodes a vector {\tt x} as a factor}
+\cmdL{gl(n,k,length=n*k,labels=1:n)}	{generate levels (factors) by specifying the pattern of their levels; {\tt k} is the number of levels, and {\tt n} is the number of replications}
+\cmdM{expand.grid()}	{a data frame from all combinations of the supplied vectors or factors}
+
+\subsection{Variable information}{is.na(x), is.null(x), is.array(x), is.data.frame(x), \ldots}
+\cmdS{methods(is)}	{list all available typetests}
+\cmdS{methods(as)}	{list of all variable conversions}
+\cmdS{any(x)}	{any TRUE elements of {\tt x}?}
+\cmdS{all(x)}	{all TRUE elements of {\tt x}?}
+\cmdS{length(x)}	{ number of elements in {\tt x}}
+% see: http://stackoverflow.com/a/18969751/3569509
+\cmdS{rle(x)}	{length of consecutive elements in {\tt x}}
+\cmdS{dim(x)}	{Retrieve or set the dimension of an object; {\tt dim(x) <- c(3,2)}}
+\cmdS{dimnames(x)}	{Retrieve or set the dimension names of an object}
+\cmdS{nrow(x)}	{number of rows; {\tt NROW(x)} is the same but treats a vector as a one-row matrix}
+\cmdS{ncol(x)}	{and}
+\cmdS{NCOL(x)}	{id. for columns}
+\cmdS{class(x)}	{get or set the class of {\tt x}; {\tt class(x) <- "myclass"}}
+\cmdS{unclass(x)}	{remove the class attribute of {\tt x}}
+\cmdM{attr(x,which)}	{get or set the attribute {\tt which} of {\tt x}}
+\cmdM{attributes(x)}	{get or set the list of attributes of {\tt x}}
+
+\subsection{Characters (Strings)}{}
+\cmdS{paste(...)}	{concatenate vectors after converting to character; {\tt sep=} is the string to separate terms (a single space is the default); {\tt collapse=} is an optional string to separate ``collapsed'' results}
+\cmdL{substr(x,start,stop)}	{substrings in a character vector}
+\cmdExmpl{\\substr(x, start, stop) <- value}	{can also assign, as}
+\cmdL{strsplit(x,split)}	{split {\tt x} according to the substring {\tt split}}
+\cmdM{grep(pttrn,x)}	{searches for matches to {\tt pattern} within {\tt x}; see {\tt ?regex}}
+\cmdL{gsub(pttrn,replmt,x)}	{replacement of matches determined by regular expression matching {\tt sub()} is the same but only replaces the first occurrence.}
+\cmdS{tolower(x)}	{convert to lowercase}
+\cmdS{toupper(x)}	{convert to uppercase}
+\cmdM{pmatch(x,table)}	{partial matches for the elements of {\tt x} among {\tt table}}
+\cmdS{nchar(x)}	{number of characters}
+\cmdS{assign}	{assign a value to a name}
+\cmdS{get}	{get a value from a name}
+\cmdL{eval(parse(text='1+1'))}	{compute on the language!!}
+\cmdL{type.convert(x, na.strings, as.is, dec)}	{convert object attributes}
+\cmdOpt{na.strings}	{\\ what to do with missing data ("NA")}
+\cmdOpt{as.is}	{if TRUE: strings, else: factors}
+\cmdOpt{dec}	{decimal specifier: '.' or ','}
+\cmdOpt{numerals}	{\\"allow.loss","warn.loss","no.loss"}
+\cmdExmpl{type.convert(dax, na.strings = "NA", as.is = TRUE, dec = ",")}	{convert from character to numerical vector}
+
+\subsection{Most common commands}{}
+\cmdS{which.max(x)}	{ returns the index of the greatest element of $x$}
+\cmdS{which.min(x)}	{ returns the index of the smallest element of $x$}
+\cmdS{rev(x)}	{ reverses the elements of {\tt x}}
+\cmdL{order(x), sort(x)}	{shows numerical order, sorts the elements of {\tt x} in increasing order}
+\cmdExmpl{\tt rev(sort(x))}	{to sort in decreasing order}
+\cmdM{cut(x,breaks)}	{divides {\tt x} into intervals (factors); {\tt breaks} is the number of cut intervals or a vector of cut points}
+\cmdS{x \%in\% y}	{logical vector indicating if there is a match or not for its left operand\\}
+\cmdS{match(x, y)}	{returns a vector of the same length than {\tt x}
+    with the elements of {\tt x} which are in {\tt y} ({\tt NA}
+    otherwise)}
+\cmdM{which(x == a)}	{returns a vector of the indices of {\tt x} if the
+comparison operation is true ($T$), in this example the values of {\tt i} for
+which {\tt x[i] == a} (the argument of this function must be a variable of mode logical)}
+\cmdS{choose(n, k)}	{ computes the combinations of $k$ events among $n$ repetitions = $n!/[(n-k)!k!]$}
+\cmdS{combn(n, k)}	{ generate all combinations of n elements, taken m at a time.}
+\cmdS{na.omit(x)}	{suppresses the observations with missing data ({\tt NA}) (suppresses the corresponding line if {\tt x} is a matrix or a data frame)}
+\cmdL{complete.cases(x[$n$],x[$n$])}	{allows removement of `na's by using part of the dataframe} % http://stackoverflow.com/a/4862502
+\cmdExmpl{\\ x[complete.cases(x[,5:6]),]}	{skip all rows in data frame x, where `na' appears in column 5 or 6}
+\cmdS{na.fail(x)}	{returns an error message if {\tt x }contains at least one {\tt NA}}
+\cmdS{unique(x)}	{if {\tt x} is a vector or a data frame, returns a similar object but with the duplicate elements suppressed}
+\cmdM{duplicated(x)}	{returns a logical vector indicating which elements (rows) of a vector or data frame are duplicates}
+\cmdS{table(x)}	{returns a table with the numbers of the differents values of {\tt x} (typically for integers or factors)}
+\cmdL{subset(x, subset, select)}	{returns a selection of {\tt x} with respect to criteria, typically comparisons: {\tt x\$V1 < 10}}
+\cmdExmpl{combine more than one subset argument with logical operators.}	{subset(x, Temp > 80 \& Temp < 120, \ldots)}
+\cmdExmpl{if {\tt x} is a data frame, the option {\tt select} gives the variables to be kept (or dropped, using a minus sign).}	{select}
+\cmdM{sample(x, size)}	{resample randomly and without replacement {\tt size}
+elements in the vector {\tt x}, the option {\tt replace = TRUE} allows to
+resample with replacement}
+\cmdL{prop.table(x,margin=)}	{table entries as fraction of marginal table}
+
+
+\vfil\break
 \section{Math}{{\tt sin,cos,tan,asin,acos,atan,atan2,log,log10,exp}}
 
 \subsection{Basic Math Operations}{}
@@ -748,7 +749,6 @@ function and a list of arguments to be passed to it}
 
 % Ending
 \supereject
-\if L\lr \else\null\vfill\eject\fi
 \if L\lr \else\null\vfill\eject\fi
 \bye
 
