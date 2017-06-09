@@ -6,7 +6,7 @@
 % version
 \def\content{\uppercase{vim}}
 \def\shortcontent{\content}
-\def\versionnumber{1.6}  % Version of this reference card
+\def\versionnumber{1.7}  % Version of this reference card
 \def\version{v\versionnumber\ \month\ \year}
 
 % include stylefile
@@ -88,7 +88,7 @@
 
 \vfil\break
 
-\section{Delete, Copy to Registers}	{For a better understanding, how to yank,
+\section{Advanced Operations}	{For a better understanding, how to yank,
 delete and move text you need a good understanding of how registers work in
 vim.\\\\Find more information\ldots \\ here: http://stackoverflow.com/a/1498026\\ and more
 in detail: http://stackoverflow.com/a/3997110.}
@@ -120,7 +120,7 @@ first change remembered by Vim in the undo list, use the command} % http://stack
 \cmdExmpl{:g/$p$/d $x$ | let @+ = @x}	{delete lines with pattern $p$ into Register $x$ and copy to clipboard afterwards}
 \cmdS{q:~@: }	{list all, repeat macro}
 
-\section{Search \& Substitute}	{
+\subsection{Search \& Substitute}	{
 substitutions work like {\tt:s/$p$/$q$/$flag$}, you may limit your search to
 an area between $r$anges ({\tt Ex ranges)}.}
 
@@ -213,7 +213,7 @@ comment `\#' is excluded from pattern}
 
 \vfil\break\hfil\vfil\break
 
-\section{Advanced Operations}{}
+\section{Even More Advanced\ldots}{}
 \subsection{Special Text Operations}{}
 \cmdS{cgn dgn }	{change, delete the next search pattern match (repeat change, deletion with \key{.})}
 \cmdS{J gJ }	{join current line with next, without space}
@@ -225,13 +225,13 @@ comment `\#' is excluded from pattern}
 \cmdS{m$c$ }	{mark current position with mark $c\in[a..Z]$}
 \cmdS{`$c$ `$C$ }	{go to mark $c$ in current, $C$ in any file}
 
-\section{Ex Commands (\enter)}	{refer to {\tt :help holy-grail} for list of all commands}
-\subsection{Tags}	{}
+\subsection{Ex Commands (\enter)}	{refer to {\tt :help holy-grail} for list of all commands}
+\subsubsection{Tags}	{}
 \cmdS{:ts\grey{elect} $t$ }	{list matching tags and select one for jump}
 \cmdS{:tj\grey{ump} $t$ }	{jump to tag or select one if multiple matches}
 \cmdS{:ta\grey{g} \ctrl[ }	{jump to tag (under cursor)}
 
-\subsection{Reading from \& writing to files}	{}
+\subsubsection{Reading from \& writing to files}	{}
 \cmdS{:e\grey{dit} $f$ }	{edit file $f$, reload current file if no $f$}
 \cmdS{:ar\grey{gs} $f_1 \ldots f_n$}	{load $n$ files to buffer in background}
 \cmdS{:$r$w\grey{rite} $f$ }	{write range $r$ to file $f$ (this file if no $f$)}
@@ -240,12 +240,12 @@ comment `\#' is excluded from pattern}
 \cmdL{:wq\or :x\or ZZ}	{write to current file and exit}
 \cmdL{:$r$d\grey{elete}~:$r$d\grey{elete} $x$ }	{delete range $r$ lines, into register $x$}
 
-\subsection{Filter Lines}{}
+\subsubsection{Filter Lines}{}
 \cmdS{!$mc$\enter }	{filter lines of movement $m$ through command $c$}
 \cmdS{$n$!!$c$\enter }	{filter $n$ lines through command $c$}
 \cmdS{:$r$!$c$ }	{filter range $r$ lines through command $c$}
 
-\subsection{Insert, Send Content}	{}
+\subsubsection{Insert, Send Content}	{}
 \cmdS{:r $f$ }	{insert content of file $f$ below cursor}
 \cmdS{:r!\ $c$ }	{insert output of command $c$ below cursor}
 \cmdL{:$r$co\grey{py}\or :$r$t\ $a$}	{copy range $r$ below line $a$}
@@ -254,27 +254,27 @@ comment `\#' is excluded from pattern}
 \cmdL{:$r$ha\grey{rdcopy} > file.ps }	{print range to ps file}
 \cmdS{:$r$ha $r$w!lp }	{sending $r$ to printer (printout)}
 
-\subsection{Compile}	{}
+\subsubsection{Compile}	{}
 \cmdL{:cl\grey{ist} :cf\grey{ile} }	{list all errors, read errors from file}
 \cmdL{:cn\grey{ext} :cp\grey{revious} }	{display the next, previous error}
 \cmdS{:comp\grey{iler} $c$ }	{set, show compiler plugins}
 \cmdS{:cope\grey{n} }	{navigate errors from make}
 \cmdS{:mak\grey{e} }	{run {\tt makeprg}, jump to first error}
 
-\section{Standard Mode Formatting, Filtering}	{leave out $m$ for visual mode commands}
-\subsection{Indentation}{set indent-foldmethod by {\tt :set fdm=indent}}
+\subsection{Standard Mode Formatting, Filtering}	{leave out $m$ for visual mode commands}
+\subsubsection{Indentation}{set indent-foldmethod by {\tt :set fdm=indent}}
 \cmdS{$<m\enspace>m$ }	{shift left, right text of movement $m$}
 \cmdS{$n\hskip -0.3em>$ $n\hskip -0.3em<$ $=$ }	{indent, unindent $n$ levels, reindent}
 \cmdS{$n<\kern-3pt<\enspace n>\kern-3pt>$ }	{shift $n$ lines left, right}
 %\cmdS{:,2s/\ze #/\=repeat(' ',32) }	{indent comments ' #' to column 32}
 
-\subsection{Alignment}{}
+\subsubsection{Alignment}{}
 \cmdS{gq$m$ gqgq }	{format movement $m$, current line}
 \cmdS{:$r$ce $w$ }	{center lines in range $r$ to width $w$}
 \cmdS{:$r$ri $w$ }	{rightalign lines in range $r$ to width $w$}
 \cmdS{:$r$le $i$ }	{left align lines in range with indent $i$}
 
-\subsection{Folds}	{}
+\subsubsection{Folds}	{}
 \cmdS{zf$m$ }	{create fold of movement $m$}
 \cmdS{:$r$fo\grey{ld} }	{create fold for range $r$}
 \cmdS{zd zE }	{delete fold at cursor, all in window}
@@ -285,8 +285,8 @@ comment `\#' is excluded from pattern}
 \cmdS{zn zN zi }	{fold non, fold normal, invert folding}
 \cmdS{:set fdc=$n$ }	{show foldcolumn to level $n$}
 
-\section{Multiple Files, Buffers, Tabs (\enter)}	{execute $cmd$ in each buffer in the buffer list {\tt:bufdo cmd}}
-\subsection{Generic Buffer Commands}	{}
+\subsection{Multiple Files, Buffers, Tabs (\enter)}	{execute $cmd$ in each buffer in the buffer list {\tt:bufdo cmd}}
+\subsubsection{Generic Buffer Commands}	{}
 \cmdS{:bufdo $c$}	{execute command $c$ on all open buffers}
 \cmdExmpl{:bufdo exe "\%normal @$c$"}	{execute normal command $c$ on each open buffer} % http://stackoverflow.com/a/3024430/1483760
 \cmdS{:tab ball }	{show buffers as tablist}
@@ -301,7 +301,7 @@ comment `\#' is excluded from pattern}
 % \cmdS{}	{execute $cmd$ in each buffer in the buffer list.}
 \cmdS{:sb$n$ }	{Split window and edit buffer $n$ from the bufflist}
 
-\subsection{Tab Management}	{}
+\subsubsection{Tab Management}	{}
 \cmdS{:tabs }	{list all tabs including their displayed windows}
 \cmdS{:tabfi\grey{rst} }	{go to first tab}
 \cmdS{:tabl\grey{ast} }	{go to last tab}
@@ -312,22 +312,22 @@ comment `\#' is excluded from pattern}
 \cmdS{gt gT }	{go to next, previous Tab}
 \cmdS{$n$gt }	{goto tab in position $n$ }
 
-\section{Miscellaneous}	{}
-\subsection{Spell Check}	{activate spellcheck: {\tt :set spell spelllang=en\_us}}
+\subsection{Miscellaneous}	{}
+\subsubsection{Spell Check}	{activate spellcheck: {\tt :set spell spelllang=en\_us}}
 \cmdS{]s\ [s }	{next, previous misspelled word}
 \cmdS{zg zG }	{add good word (to internal word list)}
 \cmdS{zug zuG}	{undo the addition of a word to the dictionary}
 \cmdS{zw zW }	{mark bad word (to internal word list)}
 \cmdS{z= }	{suggest corrections}
 
-\subsection{Invocation}	{}
+\subsubsection{Invocation}	{}
 \cmdL{vimdiff $f_1$ $f_2$ }	{diff $file_1$ + $file_2$ using synchronized split windows}
 \cmdL{vim -o/-O $f_1$ $f_2 \ldots f_n$ }	{open $files$ in horiz, vert split mode}
 \cmdS{vim +$n$ $file$ }	{open $file$ at $n$th line (eof if $n$ omitted)}
 \cmdS{vim +/$s$ $file$ }	{open $file$ and search for $string$ }
 \cmdS{vim -S $name$ }	{reload vim-session $name$}
 
-\subsection{Special operations}	{Usefull (and not so usefull) operations which don't fit to any other section :-)}
+\subsubsection{Special operations}	{Usefull (and not so usefull) operations which don't fit to any other subsection :-)}
 \cmdS{K }	{run {\tt keywordprg} (manpage) on word under cursor}
 \cmdS{\ctrl A \ctrl X}	{increment, decrement number under cursor}
 \cmdS{\ctrl L }	{redraw screen}
@@ -337,12 +337,12 @@ comment `\#' is excluded from pattern}
 \cmdL{\ctrl K$c_1c_2$\or$c_1$\kern-1pt\backspace$c_2$ }	{enter digraph $\{c_1,c_2\}$}
 \cmdExmpl{:digraphs\or:h digraph-table}	{for a complete list of all digraphs enter}
 
-\section{Common Digraphs}	{}
+\subsection{Common Digraphs}	{}
 \cmdS{\ctrl K$n$S \ctrl K$n$s}	{Superscript, subscript Number $n$}
-\cmdS{\ctrl K$char$* \ctrl K$Char$*}	{Capital, small greek letter $char$}
+\cmdM{\ctrl K$char$* \ctrl K$Char$*}	{small, Capital greek letter $char$}
 \cmdS{\ctrl K$nn$}	{Vulgar fraction one $n^{th}$ eg. one half, one quarter etc.}
 
-\vfil \break
+\vfil\break\hfil\vfil\break
 \section{CTRL-Keys}	{}
 \subsection{CTRL in Normal Mode}	{}
 \subsubsection{CTRL-W}{Buffer Shortcuts}
@@ -386,7 +386,7 @@ comment `\#' is excluded from pattern}
 \cmdS{\ctrl O$c$ }	{execute $c$ in temporary command mode}
 \cmdS{\key{esc}\or\ctrl\rbracket}	{abandon edition $\to$ command mode}
 
-% \section{Plugin Commands}	{}
+% \subsection{Plugin Commands}	{}
 % \cmdS{:BufOnly }	{Deletes all other Buffers}
 
 %% Footer
